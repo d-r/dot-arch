@@ -1,0 +1,44 @@
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+#waybar {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #bbb;
+    font-family: "Terminus", sans-serif;
+    font-size: 14px;
+    /* font-family: "JetBrains Mono", sans-serif; */
+    /* font-weight: bold; */
+}
+
+#workspaces button {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #777;
+}
+#workspaces button.active {
+    border-color: #4c7899;
+    color: white;
+    background-color: #222;
+}
+#workspaces button.urgent {
+    border-color: #c9545d;
+    color: #c9545d;
+}
+
+#pulseaudio.muted {
+    color: red;
+}
+
+#battery.warning {
+    color: yellow;
+}
+#battery.critical {
+    color: red;
+}
+
+#network.disconnected {
+    color: red;
+}
