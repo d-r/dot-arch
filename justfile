@@ -1,3 +1,7 @@
-# Link files
+# Link dotfiles
 link:
-    stow --verbose=2 .
+    stow -t ~ -v 2 -R .
+
+# Unlink dotfiles
+unlink:
+    stow -t ~ -v 2 -D .
