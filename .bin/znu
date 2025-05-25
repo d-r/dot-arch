@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+
+# Enter nu from within zsh, so that it inherits the environment.
+# Means $env.EDITOR and such will be set, and I won't have to replicate
+# the contents of .zshenv in conf.nu.
+exec nu
