@@ -36,9 +36,18 @@ output "eDP-1" {
 //------------------------------------------------------------------------------
 // WORKSPACES
 
+workspace "\\" {}
 workspace "1" {}
 workspace "2" {}
 workspace "3" {}
+
+spawn-at-startup "kitty" "--class" "scratch"
+spawn-at-startup "kitty" "--class" "scratch"
+window-rule {
+    match app-id="scratch"
+    open-on-workspace "\\"
+    open-focused false
+}
 
 spawn-at-startup "firefox"
 window-rule {
@@ -79,7 +88,7 @@ prefer-no-csd // Remove window decorations
 screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 input {
-    // workspace-auto-back-and-forth
+    workspace-auto-back-and-forth
     focus-follows-mouse
 
     keyboard {
@@ -272,6 +281,7 @@ binds {
 
     Mod+Backspace { close-window; }
 
+    Mod+Backslash hotkey-overlay-title="Focus scratchpad" { focus-workspace "\\"; }
     Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
 
     Mod+R hotkey-overlay-title="Run program" { spawn "rofi" "-show" "drun"; }
