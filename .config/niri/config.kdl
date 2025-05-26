@@ -257,6 +257,14 @@ animations {
 //------------------------------------------------------------------------------
 // BINDS
 
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+
+// Get a list of bindable actions:
+//   $ niri msg action -h | less
+
+// Run a command inside of a shell:
+//   { spawn "sh" "-c" "notify-send Hello \"OH, HAI!\""" }
+
 binds {
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Shift+Slash { show-hotkey-overlay; }
