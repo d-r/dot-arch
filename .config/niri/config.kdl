@@ -3,6 +3,18 @@
 //------------------------------------------------------------------------------
 // STARTUP
 
+hotkey-overlay {
+    skip-at-startup
+}
+
+environment {
+    // Needed for xwayland-satellite
+    DISPLAY ":0"
+
+    // Needed for Electron apps
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
 // Make more X11 apps work. Emacs doesn't run without this, for example.
 // See https://github.com/YaLTeR/niri/wiki/Xwayland
 spawn-at-startup "xwayland-satellite"
@@ -14,20 +26,57 @@ spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-108
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 
 //------------------------------------------------------------------------------
-// SETTINGS
-
-prefer-no-csd // Remove window decorations
-
-screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
-
-environment {
-    DISPLAY ":0" // Needed for xwayland-satellite.
-}
+// MONITORS
 
 // Laptop screen, 13", 1920x1080
 output "eDP-1" {
     scale 1
 }
+
+//------------------------------------------------------------------------------
+// WORKSPACES
+
+workspace "1" {}
+workspace "2" {}
+workspace "3" {}
+
+spawn-at-startup "firefox"
+window-rule {
+    match at-startup=true app-id="firefox"
+    open-on-workspace "1"
+    open-focused false
+    open-maximized true
+}
+
+spawn-at-startup "code"
+window-rule {
+    match at-startup=true app-id="code"
+    open-on-workspace "2"
+    open-focused false
+}
+
+spawn-at-startup "obsidian"
+window-rule {
+    match at-startup=true app-id="obsidian"
+    open-on-workspace "3"
+    open-focused false
+    open-maximized true
+}
+
+//------------------------------------------------------------------------------
+// WINDOWS
+
+window-rule {
+    match app-id="Rofi"
+    open-floating true
+}
+
+//------------------------------------------------------------------------------
+// SETTINGS
+
+prefer-no-csd // Remove window decorations
+
+screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 input {
     // workspace-auto-back-and-forth
@@ -48,10 +97,6 @@ input {
         dwt // Disable while typing
         click-method "clickfinger"
     }
-}
-
-hotkey-overlay {
-    skip-at-startup
 }
 
 layout {
@@ -207,14 +252,6 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
-}
-
-//------------------------------------------------------------------------------
-// RULES
-
-window-rule {
-    match app-id="Rofi"
-    open-floating true
 }
 
 //------------------------------------------------------------------------------
