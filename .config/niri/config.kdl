@@ -20,7 +20,7 @@ binds {
 
     Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
 
-    Mod+R hotkey-overlay-title="Run program" { spawn "rofi" "-show" "drun"; }
+    Mod+R hotkey-overlay-title="Run program" { spawn "fuzzel"; }
 
     Mod+O repeat=false { toggle-overview; }
 
@@ -304,11 +304,6 @@ screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 //------------------------------------------------------------------------------
 // RULES
-
-window-rule {
-    match app-id="Rofi"
-    open-floating true
-}
 
 window-rule {
     match app-id="firefox"
