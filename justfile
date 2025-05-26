@@ -1,7 +1,7 @@
-# Link dotfiles
-link:
+# Install (create/update symlinks)
+in:
     stow -t ~ -v 2 -R .
 
-# Unlink dotfiles
-unlink:
+# Uninstall (delete symlinks)
+un:
     stow -t ~ -v 2 -D .
