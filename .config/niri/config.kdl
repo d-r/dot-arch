@@ -1,112 +1,105 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 //------------------------------------------------------------------------------
-// STARTUP
+// BINDS
 
-hotkey-overlay {
-    skip-at-startup
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+
+// Get a list of bindable actions:
+//   $ niri msg action -h | less
+
+// Run a command inside of a shell:
+//   { spawn "sh" "-c" "notify-send Hello \"OH, HAI!\""" }
+
+binds {
+    Mod+Shift+Delete { quit skip-confirmation=true; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+P { power-off-monitors; }
+
+    Mod+Backspace { close-window; }
+
+    Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
+
+    Mod+R hotkey-overlay-title="Run program" { spawn "rofi" "-show" "drun"; }
+
+    Mod+O repeat=false { toggle-overview; }
+
+    // MOVE FOCUS
+
+    Mod+Left { focus-column-left; }
+    Mod+Down { focus-workspace-down; }
+    Mod+Up { focus-workspace-up; }
+    Mod+Right { focus-column-right; }
+
+    Mod+H { focus-column-left; }
+    Mod+J { focus-workspace-down; }
+    Mod+K { focus-workspace-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End { focus-column-last; }
+
+    // MOVE COLUMN
+
+    Mod+Ctrl+Left { move-column-left; }
+    Mod+Ctrl+Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Up { move-column-to-workspace-up; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-column-to-workspace-down; }
+    Mod+Ctrl+K { move-column-to-workspace-up; }
+    Mod+Ctrl+L { move-column-right; }
+
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End { move-column-to-last; }
+
+    // MOVE WORKSPACE
+
+    Mod+Ctrl+Page_Down { move-workspace-down; }
+    Mod+Ctrl+Page_Up { move-workspace-up; }
+
+    // LAYOUT
+
+    Mod+Semicolon { switch-preset-column-width; }
+
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+V { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    Mod+W { toggle-column-tabbed-display; }
+
+    // SCREENSHOTS
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // TODO: Read and understand what this is.
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }
-
-environment {
-    // Needed for xwayland-satellite
-    DISPLAY ":0"
-
-    // Needed for Electron apps
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-}
-
-// Make more X11 apps work. Emacs doesn't run without this, for example.
-// See https://github.com/YaLTeR/niri/wiki/Xwayland
-spawn-at-startup "xwayland-satellite"
-
-// Set wallpaper
-spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-1080p.jpg"
-
-// Enable top bar
-spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 
 //------------------------------------------------------------------------------
-// MONITORS
-
-// Laptop screen, 13", 1920x1080
-output "eDP-1" {
-    scale 1
-}
-
-//------------------------------------------------------------------------------
-// WORKSPACES
-
-workspace "\\" {}
-workspace "1" {}
-workspace "2" {}
-workspace "3" {}
-
-spawn-at-startup "kitty" "--class" "scratch"
-spawn-at-startup "kitty" "--class" "scratch"
-window-rule {
-    match app-id="scratch"
-    open-on-workspace "\\"
-    open-focused false
-}
-
-spawn-at-startup "firefox"
-window-rule {
-    match at-startup=true app-id="firefox"
-    open-on-workspace "1"
-    open-focused false
-    open-maximized true
-}
-
-spawn-at-startup "code"
-window-rule {
-    match at-startup=true app-id="code"
-    open-on-workspace "2"
-    open-focused false
-}
-
-spawn-at-startup "obsidian"
-window-rule {
-    match at-startup=true app-id="obsidian"
-    open-on-workspace "3"
-    open-focused false
-    open-maximized true
-}
-
-//------------------------------------------------------------------------------
-// WINDOWS
-
-window-rule {
-    match app-id="Rofi"
-    open-floating true
-}
-
-//------------------------------------------------------------------------------
-// SETTINGS
+// LOOK AND FEEL
 
 prefer-no-csd // Remove window decorations
-
-screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
-
-input {
-    workspace-auto-back-and-forth
-    focus-follows-mouse
-
-    keyboard {
-        xkb {
-            layout "us"
-        }
-    }
-
-    mouse {
-        natural-scroll
-    }
-
-    touchpad {
-        natural-scroll
-        dwt // Disable while typing
-        click-method "clickfinger"
-    }
-}
 
 layout {
     // Set gaps around windows in logical pixels.
@@ -264,118 +257,71 @@ animations {
 }
 
 //------------------------------------------------------------------------------
-// BINDS
+// I/O
 
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
-
-// Get a list of bindable actions:
-//   $ niri msg action -h | less
-
-// Run a command inside of a shell:
-//   { spawn "sh" "-c" "notify-send Hello \"OH, HAI!\""" }
-
-binds {
-    Mod+Shift+Delete { quit skip-confirmation=true; }
-    Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+P { power-off-monitors; }
-
-    Mod+Backspace { close-window; }
-
-    Mod+Backslash hotkey-overlay-title="Focus scratchpad" { focus-workspace "\\"; }
-    Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
-
-    Mod+R hotkey-overlay-title="Run program" { spawn "rofi" "-show" "drun"; }
-
-    // TODO: Bind this to something else
-    Mod+O repeat=false { toggle-overview; }
-
-    // MOVE FOCUS
-
-    Mod+Left { focus-column-left; }
-    Mod+Down { focus-workspace-down; }
-    Mod+Up { focus-workspace-up; }
-    Mod+Right { focus-column-right; }
-
-    Mod+H { focus-column-left; }
-    Mod+J { focus-workspace-down; }
-    Mod+K { focus-workspace-up; }
-    Mod+L { focus-column-right; }
-
-    Mod+Home { focus-column-first; }
-    Mod+End { focus-column-last; }
-
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
-
-    // MOVE COLUMN
-
-    Mod+Ctrl+Left { move-column-left; }
-    Mod+Ctrl+Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Up { move-column-to-workspace-up; }
-    Mod+Ctrl+Right { move-column-right; }
-
-    Mod+Ctrl+H { move-column-left; }
-    Mod+Ctrl+J { move-column-to-workspace-down; }
-    Mod+Ctrl+K { move-column-to-workspace-up; }
-    Mod+Ctrl+L { move-column-right; }
-
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End { move-column-to-last; }
-
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
-
-    // MOVE WORKSPACE
-
-    Mod+Ctrl+Page_Down { move-workspace-down; }
-    Mod+Ctrl+Page_Up { move-workspace-up; }
-
-    // LAYOUT
-
-    Mod+Semicolon { switch-preset-column-width; }
-
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+Ctrl+F { expand-column-to-available-width; }
-
-    Mod+C { center-column; }
-    Mod+Ctrl+C { center-visible-columns; }
-
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
-
-    Mod+V { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-
-    Mod+W { toggle-column-tabbed-display; }
-
-    // SCREENSHOTS
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
-    // Applications such as remote-desktop clients and software KVM switches may
-    // request that niri stops processing the keyboard shortcuts defined here
-    // so they may, for example, forward the key presses as-is to a remote machine.
-    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-    // so a buggy application can't hold your session hostage.
-    //
-    // The allow-inhibiting=false property can be applied to other binds as well,
-    // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+// Laptop screen, 13", 1920x1080
+output "eDP-1" {
+    scale 1
 }
+
+input {
+    workspace-auto-back-and-forth
+    focus-follows-mouse
+
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    mouse {
+        natural-scroll
+    }
+
+    touchpad {
+        natural-scroll
+        dwt // Disable while typing
+        click-method "clickfinger"
+    }
+}
+
+screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
+
+//------------------------------------------------------------------------------
+// RULES
+
+window-rule {
+    match app-id="Rofi"
+    open-floating true
+}
+
+window-rule {
+    match app-id="firefox"
+    open-maximized true
+}
+
+window-rule {
+    match app-id="obsidian"
+    open-maximized true
+}
+
+//------------------------------------------------------------------------------
+// STARTUP
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+environment {
+    // Needed for xwayland-satellite
+    DISPLAY ":0"
+
+    // Needed for Electron apps
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-1080p.jpg"
+spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
+
+spawn-at-startup "firefox"
