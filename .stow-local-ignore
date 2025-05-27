@@ -1,9 +1,1 @@
-\.git
-\.gitignore
-\.gitmodules
-
-^/README.md
-^/LICENSE
-^/justfile
-
-history.txt
+.common/stow-local-ignore
