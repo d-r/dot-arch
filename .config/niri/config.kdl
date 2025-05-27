@@ -24,7 +24,7 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
 
-    // MOVE FOCUS
+    // FOCUS
 
     Mod+Left { focus-column-left; }
     Mod+Down { focus-workspace-down; }
@@ -48,6 +48,12 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
+
+    // TABS
+
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Backslash { focus-window-down-or-top; }
 
     // MOVE COLUMN
 
@@ -139,6 +145,15 @@ prefer-no-csd // Remove window decorations
 layout {
     // Set gaps around windows in logical pixels.
     gaps 12
+
+    default-column-display "tabbed"
+
+    tab-indicator {
+        position "top"
+        hide-when-single-tab
+        length total-proportion=1.0
+        gaps-between-tabs 12
+    }
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
