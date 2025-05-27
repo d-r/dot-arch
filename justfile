@@ -5,3 +5,8 @@ in:
 # Uninstall (delete symlinks)
 un:
     stow -t ~ -v 2 -D .
+
+# Commit update to .common submodule
+bump:
+    git add .common
+    git commit -m 'Bump .common'
