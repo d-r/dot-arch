@@ -365,6 +365,7 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
+spawn-at-startup "swaync"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
