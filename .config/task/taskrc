@@ -1,0 +1,26 @@
+# Where to put the database
+data.location=$HOME/data/task
+
+# 1-nov-24
+dateformat=d-b-y
+
+# Don't ask for confirmation before deleting a task
+confirmation=no
+
+# Don't nag me about news
+news.version=3.9.9
+
+# Aliases
+alias.rm=delete
+
+# Default project
+default.project=me
+
+# Contexts
+context.me.read=pro:me
+context.me.write=pro:me
+context.dm.read=pro:dm
+context.dm.write=pro:dm
+
+# Active context
+context=$CONTEXT

@@ -9,7 +9,7 @@ I use Arch, BTW! Back "home" after I grew weary of NixOS and everything Nix. All
 You'll need [Stow](https://www.gnu.org/software/stow/) and [just](https://github.com/casey/just).
 
 ```sh
-git clone --recurse-submodules git@github.com:d-r/dot-arch.git dot
+git clone git@github.com:d-r/dot-arch.git dot
 cd dot
 just
 ```

@@ -1,1 +1,9 @@
-.common/stow-local-ignore
+\.git
+\.gitignore
+\.gitmodules
+
+^/README.md
+^/LICENSE
+^/justfile
+
+history.txt
