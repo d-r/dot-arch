@@ -1,7 +1,7 @@
 autoload -Uz compinit
 compinit
 
-PROMPT="%F{blue}%~%f " # the current path in blue
+PROMPT="%F{blue}%~>%f " # the current path in blue
 
 HISTFILE=~/.zhistory
 HISTSIZE=10000
