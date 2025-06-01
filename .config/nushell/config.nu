@@ -31,5 +31,8 @@ alias pif = pacman -Si # package info
 
 source $"($nu.home-path)/.cargo/env.nu"
 
-# $ zoxide init nushell | save -f ~/dot/config/nushell/zoxide.nu
+# zoxide init nushell | save -f zoxide.nu
 source "zoxide.nu"
+
+# carapace _carapace nushell | save -f carapace.nu
+source "carapace.nu"
