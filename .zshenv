@@ -21,3 +21,5 @@ export EDITOR="nano"
 export MANPAGER='nvim +Man!'
 
 export FZF_DEFAULT_OPTS="--layout=reverse"
+
+eval "$(zoxide init zsh)"
