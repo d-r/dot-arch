@@ -18,6 +18,9 @@
         "clock"
     ],
 
+    "niri/workspaces": {
+        "current-only": true
+    },
     "niri/window": {
         "format": "{title} ({app_id})",
         "separate-outputs": true
