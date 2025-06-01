@@ -14,3 +14,8 @@ alias j='just'
 alias yt='yt-dlp'
 alias e=$EDITOR
 alias m='micro'
+
+alias pac='sudo pacman'
+alias pin='sudo pacman -Sy' # install
+alias pun='sudo pacman -Rs' # uninstall
+alias pif='pacman -Si' # package info
