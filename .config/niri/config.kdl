@@ -142,11 +142,6 @@ binds {
 
 prefer-no-csd // Remove window decorations
 
-overview {
-    zoom 0.25
-    backdrop-color "#1f1f1f"
-}
-
 layout {
     // Set gaps around windows in logical pixels.
     gaps 12
