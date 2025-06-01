@@ -338,16 +338,34 @@ input {
 screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 //------------------------------------------------------------------------------
-// RULES
+// WORKSPACES
+
+workspace "hub"
+workspace "org"
+workspace "dot"
 
 window-rule {
-    match app-id="firefox"
+    match at-startup=true app-id="firefox"
+
+    open-on-workspace "hub"
+    open-focused false
     open-maximized true
 }
 
 window-rule {
-    match app-id="obsidian"
+    match at-startup=true app-id="obsidian"
+
+    open-on-workspace "org"
+    open-focused false
     open-maximized true
+}
+
+window-rule {
+    match at-startup=true app-id="code"
+
+    open-on-workspace "dot"
+    open-focused false
+    open-maximized false
 }
 
 //------------------------------------------------------------------------------
@@ -371,3 +389,5 @@ spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-108
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 
 spawn-at-startup "firefox"
+spawn-at-startup "obsidian"
+spawn-at-startup "code" "/home/dan/dot"
