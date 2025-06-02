@@ -20,7 +20,7 @@
     ],
 
     "niri/workspaces": {
-        "current-only": true
+        // "current-only": true
     },
     "niri/window": {
         "format": "{title} ({app_id})",
