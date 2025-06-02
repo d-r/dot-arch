@@ -18,9 +18,11 @@ binds {
 
     Mod+Backspace { close-window; }
 
-    Mod+Return hotkey-overlay-title="Open a terminal" { spawn "kitty"; }
+    Mod+Grave hotkey-overlay-title="Focus scratchpad" { focus-workspace "~"; }
 
-    Mod+R hotkey-overlay-title="Run program" { spawn "fuzzel"; }
+    Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
+
+    Mod+R hotkey-overlay-title="Run..." { spawn "fuzzel"; }
 
     Mod+O repeat=false { toggle-overview; }
 
@@ -340,9 +342,23 @@ screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 //------------------------------------------------------------------------------
 // WORKSPACES
 
+workspace "~"
 workspace "hub"
 workspace "org"
 workspace "dot"
+
+spawn-at-startup "kitty"
+spawn-at-startup "kitty"
+spawn-at-startup "firefox"
+spawn-at-startup "obsidian"
+spawn-at-startup "code" "/home/dan/dot"
+
+window-rule {
+    match at-startup=true app-id="kitty"
+
+    open-on-workspace "~"
+    open-focused false
+}
 
 window-rule {
     match at-startup=true app-id="firefox"
@@ -387,7 +403,3 @@ spawn-at-startup "swaync"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "--image" "/home/dan/walls/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
-
-spawn-at-startup "firefox"
-spawn-at-startup "obsidian"
-spawn-at-startup "code" "/home/dan/dot"
