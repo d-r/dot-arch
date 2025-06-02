@@ -59,7 +59,7 @@
     "niri/language": {
         "format": "{}",
         "format-en": "US",
-        "format-se": "SE"
+        "format-sv": "SE"
     },
     "clock": {
         "interval": 60,
