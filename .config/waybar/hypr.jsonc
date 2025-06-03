@@ -62,6 +62,7 @@
         "interval": 60,
         "format": "{:%a %b %d %H:%M} ",
         "tooltip-format": "Week {:%W}",
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "xdg-open https://calendar.google.com/"
     }
 }
