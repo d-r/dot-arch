@@ -17,6 +17,7 @@ alias c='clear'
 alias j='just'
 alias yt='yt-dlp'
 alias e=$EDITOR
+alias hx='helix'
 alias m='micro'
 
 alias pac='sudo pacman'
