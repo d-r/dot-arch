@@ -340,27 +340,21 @@ input {
 
 screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
-//------------------------------------------------------------------------------
+//------------------------------------------------`------------------------------
 // WORKSPACES
 
 workspace "~"
-workspace "hub"
-workspace "org"
-workspace "dot"
-
-spawn-at-startup "kitty"
-spawn-at-startup "kitty"
-spawn-at-startup "firefox"
-spawn-at-startup "obsidian"
-spawn-at-startup "code" "/home/dan/dot"
-
+spawn-at-startup "kitty" "--class" "scratch"
+spawn-at-startup "kitty" "--class" "scratch"
 window-rule {
-    match at-startup=true app-id="kitty"
+    match at-startup=true app-id="scratch"
 
     open-on-workspace "~"
     open-focused false
 }
 
+workspace "hub"
+spawn-at-startup "firefox"
 window-rule {
     match at-startup=true app-id="firefox"
 
@@ -369,20 +363,40 @@ window-rule {
     open-maximized true
 }
 
-window-rule {
-    match at-startup=true app-id="obsidian"
-
-    open-on-workspace "org"
-    open-focused false
-    open-maximized true
-}
-
+workspace "dot"
+spawn-at-startup "code" "/home/dan/dot"
 window-rule {
     match at-startup=true app-id="code"
 
     open-on-workspace "dot"
     open-focused false
     open-maximized false
+}
+
+workspace "dev"
+
+workspace "snd"
+
+spawn-at-startup "code" "/home/dan/dot"
+
+// Disabled, because it crashes niri
+//spawn-at-startup "renoise"
+
+window-rule {
+    match app-id="Renoise"
+
+    open-on-workspace "snd"
+    open-maximized true
+}
+
+workspace "org"
+spawn-at-startup "obsidian"
+window-rule {
+    match at-startup=true app-id="obsidian"
+
+    open-on-workspace "org"
+    open-focused false
+    open-maximized true
 }
 
 //------------------------------------------------------------------------------
