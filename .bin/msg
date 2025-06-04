@@ -1,0 +1,13 @@
+#!/usr/bin/env nu
+
+# See "3.2 Replace previous notification" in:
+# https://wiki.archlinux.org/title/Desktop_notifications
+const HINT_PREFIX = "string:x-canonical-private-synchronous:"
+
+# Only show the notification for 1 second
+const TIME_IN_MS = 1000
+
+# Send a message to the user
+def main [subject: string, body: string] {
+    notify-send $body -h ($HINT_PREFIX + $subject) -t $TIME_IN_MS
+}

@@ -1,7 +1,5 @@
 #!/usr/bin/env nu
 
-const HINT = "string:x-canonical-private-synchronous:sys-notify"
-
 # Brightness
 def main []: nothing -> int {
     main get
@@ -14,18 +12,18 @@ def "main get" []: nothing -> int {
     ($v / 255) * 100 | math round
 }
 
-# Decrease brightness
+# Decrease brightness by 5%
 def "main dec" [] {
     brightnessctl set 5%-
     notify
 }
 
-# Increase brightness
+# Increase brightness by 5%
 def "main inc" [] {
     brightnessctl set 5%+
     notify
 }
 
 def notify [] {
-    notify-send --expire-time=1000 -h $HINT $"Brightness: (main get)%"
+    msg "brightness" $"Brightness: (main get)%"
 }

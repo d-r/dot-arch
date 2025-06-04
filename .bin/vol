@@ -1,7 +1,5 @@
 #!/usr/bin/env nu
 
-const HINT = "string:x-canonical-private-synchronous:sys-notify"
-
 # Volume
 def main []: nothing -> string {
     main get
@@ -38,5 +36,5 @@ def "main toggle-mic" [] {
 }
 
 def notify [] {
-    notify-send --expire-time=1000 -h $HINT (main get)
+    msg "volume" (main get)
 }
