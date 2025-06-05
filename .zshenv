@@ -2,11 +2,19 @@
 
 export PATH="$PATH:$HOME/.bin"
 
-export XDG_CACHE_HOME="$HOME/.cache"
+# https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+# https://wiki.archlinux.org/title/XDG_user_directories
+export XDG_DOWNLOAD_DIR="$HOME/dl"
+export XDG_DOCUMENTS_DIR="$HOME/doc"
+export XDG_PICTURES_DIR="$HOME/images"
 export XDG_MUSIC_DIR="$HOME/media/audio"
+export XDG_VIDEOS_DIR="$HOME/media/video" # ?
+export XDG_DESKTOP_DIR="$HOME/tmp" # ?
 
 export LANG="en_IE.UTF-8"
 export LC_ALL=$LANG
