@@ -1,0 +1,13 @@
+#!/usr/bin/env nu
+
+use "~/.config/nushell/hy-cmd.nu" *
+
+def main [] {
+    help main
+}
+
+def "main toggle-term" [] {
+    let $id = hy ws-id
+    let $ws = $"t($id)"
+    hy do togglespecialworkspace $ws
+}

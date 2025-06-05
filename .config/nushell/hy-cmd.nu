@@ -4,6 +4,11 @@ export def hy [] {
     help hy
 }
 
+# Get the ID of the active workspace
+export def "hy ws-id" []: nothing -> record {
+    (hy ws) | get id
+}
+
 # Get the active workspace
 export def "hy ws" []: nothing -> record {
     hc activeworkspace -j | from json
@@ -15,12 +20,12 @@ export def "hy win" []: nothing -> record {
 }
 
 # List workspaces
-export def "hy lws" []: nothing -> table {
+export def "hy ls-ws" []: nothing -> table {
     hc workspaces -j | from json
 }
 
 # List windows
-export def "hy lwin" []: nothing -> table {
+export def "hy ls-win" []: nothing -> table {
     hc clients -j | from json
 }
 
