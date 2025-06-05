@@ -21,10 +21,9 @@ alias t = task
 alias yt = yt-dlp
 alias rr = rustrover
 
-alias pac = sudo pacman
-alias pin = sudo pacman -Sy # install
-alias pun = sudo pacman -Rs # uninstall
-alias pif = pacman -Si # package info
+alias in = yay -Sy # install
+alias un = yay -Rs # uninstall
+alias up = yay # update
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
