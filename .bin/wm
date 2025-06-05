@@ -1,0 +1,49 @@
+#!/usr/bin/env nu
+
+const ROOM_SIZE = 3
+
+def main []: nothing -> string {
+    let r = hc room-index
+    let s = hc space-index
+    $"($r) ($s)"
+}
+
+def "main focus-room" [ri: int] {
+    let i = ($ri * $ROOM_SIZE) + (hc space-index)
+    hc focus-ws $i
+}
+
+def "main focus-space" [si: int] {
+    let i = ((hc room-index) * $ROOM_SIZE) + $si
+    hc focus-ws $i
+}
+
+#-------------------------------------------------------------------------------
+# HYPRCTL
+
+alias ctl = hyprctl
+alias dis = hyprctl dispatch
+
+# READ
+
+def "hc room-index" []: nothing -> int {
+    (hc ws-index) // $ROOM_SIZE
+}
+
+def "hc space-index" []: nothing -> int {
+    (hc ws-index) mod $ROOM_SIZE
+}
+
+def "hc ws-index" []: nothing -> int {
+    ((hc ws) | get id) - 1
+}
+
+def "hc ws" []: nothing -> record {
+    ctl activeworkspace -j | from json
+}
+
+# WRITE
+
+def "hc focus-ws" [$index: int] {
+    dis workspace ($index + 1)
+}
