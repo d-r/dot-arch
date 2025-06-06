@@ -9,21 +9,20 @@
     color: #bbb;
     font-family: "Terminus", sans-serif;
     font-size: 14px;
-    /* font-family: "JetBrains Mono", sans-serif; */
-    /* font-weight: bold; */
 }
 
 #workspaces button {
     padding-left: 10px;
     padding-right: 10px;
     color: #bbb;
+    font-weight: normal; /* bold by default */
 }
 #workspaces button.empty {
     color: #777;
 }
 #workspaces button.active {
-    border-color: #4c7899;
-    background-color: #222;
+    color: #33ccff;
+    font-weight: bold;;
 }
 #workspaces button.urgent {
     border-color: #c9545d;
