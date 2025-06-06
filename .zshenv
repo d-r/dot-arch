@@ -11,9 +11,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # https://wiki.archlinux.org/title/XDG_user_directories
 export XDG_DOWNLOAD_DIR="$HOME/dl"
 export XDG_DOCUMENTS_DIR="$HOME/doc"
-export XDG_PICTURES_DIR="$HOME/images"
-export XDG_MUSIC_DIR="$HOME/media/audio"
+export XDG_MUSIC_DIR="$HOME/media/audio/releases"
 export XDG_VIDEOS_DIR="$HOME/media/video" # ?
+export XDG_PICTURES_DIR="$HOME/images" # ?
 export XDG_DESKTOP_DIR="$HOME/tmp" # ?
 
 export LANG="en_IE.UTF-8"
