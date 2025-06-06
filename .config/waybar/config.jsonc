@@ -20,7 +20,7 @@
     ],
 
     "hyprland/window": {
-        "format": "{title} ({class})",
+        "format": "{class}",
         "separate-outputs": true
     },
     "pulseaudio": {
