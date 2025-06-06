@@ -4,8 +4,13 @@ export def hy [] {
     help hy
 }
 
-# Get the ID of the active workspace
-export def "hy ws-id" []: nothing -> record {
+# Get the 0-based index of the active workspace
+export def "hy ws-index" []: nothing -> int {
+    (hy ws-id) - 1
+}
+
+# Get the ID (1-based index) of the active workspace
+export def "hy ws-id" []: nothing -> int {
     (hy ws) | get id
 }
 
