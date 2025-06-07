@@ -6,6 +6,7 @@ def main [] {
     help main
 }
 
+# Toggle scratchpad terminal for the current workspace
 def "main toggle-term" [] {
     let $id = hy ws-id
     let $ws = $"t($id)"
