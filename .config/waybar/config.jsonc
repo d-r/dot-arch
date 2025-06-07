@@ -26,7 +26,7 @@
     "pulseaudio": {
         "format": "{volume:3}% <span foreground=\"#777\">VO</span>",
         "format-muted": "<s>{volume:3}%</s> <span foreground=\"#777\">VO</span>",
-        "on-click": "pkill pavucontrol || pavucontrol"
+        "on-click": "hyprctl dispatch togglespecialworkspace snd"
     },
     "backlight": {
         "format": "{percent:3}% <span foreground=\"#777\">BR</span>",
