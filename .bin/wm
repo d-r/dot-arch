@@ -38,6 +38,16 @@ def "main go-to-room" [$i: int] {
     main go-to $i (main space-index)
 }
 
+# Go to the previous space
+def "main go-to-prev-space" [] {
+    main go-to-space ((main space-index) - 1)
+}
+
+# Go to the next space
+def "main go-to-next-space" [] {
+    main go-to-space ((main space-index) + 1)
+}
+
 # Go to space at given 0-based index
 def "main go-to-space" [$i: int] {
     main go-to (main room-index) $i
