@@ -39,10 +39,9 @@
             "critical": 10
         },
         "format": "{capacity:3}% <span foreground=\"#777\">BA</span>",
-        "format-charging": "{capacity:3}% <span foreground=\"white\">AC</span>",
+        "format-charging": "{capacity:3}% <span foreground=\"white\">BA</span>",
 
-        // FIXME: This does not work. "AC" only shows when the battery is not
-        // fully charged.
+        // FIXME: This does not work.
         "format-plugged": "{capacity:3}% <span foreground=\"white\">AC</span>",
 
         "tooltip": false
