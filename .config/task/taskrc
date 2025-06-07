@@ -1,5 +1,5 @@
 # Where to put the database
-data.location=$HOME/data/task
+data.location=$XDG_DATA_HOME/task
 
 # 1-nov-24
 dateformat=d-b-y
