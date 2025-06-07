@@ -5,7 +5,7 @@ export def hy [] {
 }
 
 # Get the ID of the active workspace
-export def "hy ws-id" []: nothing -> record {
+export def "hy ws-id" []: nothing -> int {
     (hy ws) | get id
 }
 

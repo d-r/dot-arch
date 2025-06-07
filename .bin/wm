@@ -2,12 +2,84 @@
 
 use "~/.config/nushell/hy-cmd.nu" *
 
+const $ROOM_COUNT = 3
+const $ROOM_SIZE = 4
+
+const $LAST_ROOM_INDEX = $ROOM_COUNT - 1
+const $LAST_SPACE_INDEX = $ROOM_SIZE - 1
+
 def main [] {
-    help main
+    let $ri = main room-index
+    let $si = main space-index
+    $"($ri) ($si)"
 }
 
+#-------------------------------------------------------------------------------
+# WRITE
+
+# Toggle scratch terminal for the current room
 def "main toggle-term" [] {
-    let $id = hy ws-id
-    let $ws = $"t($id)"
-    hy do togglespecialworkspace $ws
+    let $id = (main room-index) + 1
+    hy do togglespecialworkspace $"t($id)"
+}
+
+# Go to the previous room
+def "main go-to-prev-room" [] {
+    main go-to-room ((main room-index) - 1)
+}
+
+# Go to the next room
+def "main go-to-next-room" [] {
+    main go-to-room ((main room-index) + 1)
+}
+
+# Go to room at given 0-based index
+def "main go-to-room" [$i: int] {
+    main go-to $i (main space-index)
+}
+
+# Go to space at given 0-based index
+def "main go-to-space" [$i: int] {
+    main go-to (main room-index) $i
+}
+
+# Go to <room index> <space index>
+def "main go-to" [$room_index, $space_index] {5
+    let $ri = clamp-index $room_index $LAST_ROOM_INDEX
+    let $si = clamp-index $space_index $LAST_SPACE_INDEX
+    let $id = ($ri * $ROOM_SIZE) + $si + 1
+    hy do workspace $id
+}
+
+def clamp-index [$i, $max] {
+    if $i < 0 {
+        0
+    } else if $i > $max {
+        $max
+    } else {
+        $i
+    }
+}
+
+#-------------------------------------------------------------------------------
+# READ
+
+# Get the current posititon as [row-index, column-index]
+def "main pos" []: nothing -> list {
+    [(main room-index), (main space-index)]
+}
+
+# Get 0-based index of the current room
+def "main room-index" []: nothing -> int {
+    (main ws-index) // $ROOM_SIZE
+}
+
+# Get 0-based index of the current space
+def "main space-index" []: nothing -> int {
+    (main ws-index) mod $ROOM_SIZE
+}
+
+# Get 0-based workspace index
+def "main ws-index" []: nothing -> int {
+    (hy ws-id) - 1
 }
