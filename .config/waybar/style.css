@@ -22,7 +22,7 @@
 }
 #workspaces button.active {
     color: #33ccff;
-    font-weight: bold;;
+    font-weight: bold;
 }
 #workspaces button.urgent {
     border-color: #c9545d;
@@ -42,4 +42,9 @@
 
 #network.disconnected {
     color: red;
+}
+
+#language {
+    color: #33ccff;
+    font-weight: bold;
 }
