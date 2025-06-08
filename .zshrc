@@ -17,6 +17,12 @@ PROMPT="%F{blue}%~>%f " # the current path in blue
 #-------------------------------------------------------------------------------
 # ALIASES
 
+# Be verbose. I like getting feedback on my actions.
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+alias ln='ln -v'
+
 alias c='clear'
 alias ls='eza -al --group-directories-first'
 alias j='just'
