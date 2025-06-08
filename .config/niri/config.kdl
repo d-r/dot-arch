@@ -322,8 +322,8 @@ input {
 
     keyboard {
         xkb {
-            layout "us"
-            // layout "se"
+            layout "us,se"
+            options "grp:alt_shift_toggle" // Switch layout with alt+shift
         }
     }
 
