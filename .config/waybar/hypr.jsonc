@@ -45,8 +45,6 @@
             "critical": 10
         },
         "format": "{capacity:3}% <span foreground=\"#777\">B</span>",
-        // FIXME: This does not work.
-        // "format-plugged": "{capacity:3}% <span foreground=\"white\">P</span>",
         "tooltip": false
     },
     "hyprland/language": {
