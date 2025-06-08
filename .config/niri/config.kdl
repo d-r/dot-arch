@@ -106,12 +106,6 @@ binds {
 
     Mod+W { toggle-column-tabbed-display; }
 
-    // SCREENSHOTS
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
     // VOLUME KEYS
 
     XF86AudioLowerVolume { spawn "vol" "dec"; }
@@ -123,6 +117,12 @@ binds {
 
     XF86MonBrightnessDown { spawn "bri" "dec"; }
     XF86MonBrightnessUp { spawn "bri" "inc"; }
+
+    // SCREENSHOTS
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
 
     // TODO: Read and understand what this is.
     // Applications such as remote-desktop clients and software KVM switches may
@@ -335,7 +335,7 @@ input {
     }
 }
 
-screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
+screenshot-path "~/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 //------------------------------------------------------------------------------
 // RULES
