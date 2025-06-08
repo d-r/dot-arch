@@ -43,7 +43,16 @@ function y() {
 }
 
 #-------------------------------------------------------------------------------
-# INTEGRATIONS
+# EXTENSIONS
 
+# Completions
+# https://carapace.sh/
 source <(carapace _carapace)
+
+# The `z` command - better `cd`
+# https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
+
+# Syntax highlighting of commands
+# https://github.com/zsh-users/zsh-syntax-highlighting/tree/master
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
