@@ -22,6 +22,7 @@ alias ls='eza -al --group-directories-first'
 alias j='just'
 alias t='task'
 alias yt='yt-dlp'
+alias qb='qutebrowser'
 
 alias e=$EDITOR
 alias hx='helix'
