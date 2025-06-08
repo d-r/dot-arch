@@ -341,61 +341,10 @@ input {
 screenshot-path "~/images/screenshots/niri-%Y-%m-%d_%H-%M-%S.png"
 
 //------------------------------------------------------------------------------
-// WORKSPACES
-
-workspace "~"
-spawn-at-startup "kitty" "--class" "scratch"
-spawn-at-startup "kitty" "--class" "scratch"
-window-rule {
-    match at-startup=true app-id="scratch"
-
-    open-on-workspace "~"
-    open-focused false
-}
-
-workspace "hub"
-spawn-at-startup "firefox"
-window-rule {
-    match at-startup=true app-id="firefox"
-
-    open-on-workspace "hub"
-    open-focused false
-    open-maximized true
-}
-
-workspace "dot"
-spawn-at-startup "code" "/home/dan/dot"
-window-rule {
-    match at-startup=true app-id="code"
-
-    open-on-workspace "dot"
-    open-focused false
-    open-maximized false
-}
-
-workspace "dev"
-
-workspace "snd"
-
-spawn-at-startup "code" "/home/dan/dot"
-
-// Disabled, because it crashes niri
-//spawn-at-startup "renoise"
+// RULES
 
 window-rule {
-    match app-id="Renoise"
-
-    open-on-workspace "snd"
-    open-maximized true
-}
-
-workspace "org"
-spawn-at-startup "obsidian"
-window-rule {
-    match at-startup=true app-id="obsidian"
-
-    open-on-workspace "org"
-    open-focused false
+    match app-id="firefox"
     open-maximized true
 }
 
@@ -419,3 +368,7 @@ spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-nee
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "udiskie"
+
+// APPLICATIONS
+
+spawn-at-startup "firefox"
