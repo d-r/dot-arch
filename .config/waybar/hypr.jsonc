@@ -24,18 +24,18 @@
         "separate-outputs": true
     },
     "pulseaudio": {
-        "format": "{volume:3}% <span foreground=\"#777\">V</span>",
-        "format-muted": "<s>{volume:3}%</s> <span foreground=\"#777\">V</span>",
+        "format": "{volume:3}% <span foreground=\"#777\">VO</span>",
+        "format-muted": "<s>{volume:3}%</s> <span foreground=\"#777\">VO</span>",
         "on-click": "hyprctl dispatch togglespecialworkspace snd"
     },
     "backlight": {
-        "format": "{percent:3}% <span foreground=\"#777\">L</span>",
+        "format": "{percent:3}% <span foreground=\"#777\">BR</span>",
         "tooltip": false
     },
     "network": {
         "interval": 5,
-        "format": "{signalStrength:3}% <span foreground=\"#777\">W</span>",
-        "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
+        "format": "{signalStrength:3}% <span foreground=\"#777\">WI</span>",
+        "format-disconnected": "DIS <span foreground=\"#777\">WI</span>",
         "tooltip-format": "{essid}\n{ipaddr}\n{ifname}"
     },
     "battery": {
@@ -44,7 +44,7 @@
             "warning": 20,
             "critical": 10
         },
-        "format": "{capacity:3}% <span foreground=\"#777\">B</span>",
+        "format": "{capacity:3}% <span foreground=\"#777\">BA</span>",
         "tooltip": false
     },
     "hyprland/language": {
