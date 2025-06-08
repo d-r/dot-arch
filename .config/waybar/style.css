@@ -25,7 +25,6 @@
     font-weight: bold;
 }
 #workspaces button.urgent {
-    border-color: #c9545d;
     color: #c9545d;
 }
 
@@ -33,14 +32,15 @@
     color: red;
 }
 
-#battery.charging {
-    color: white;
-}
+/* The order of these is important. `.charging` needs to go last, or it won't be applied. */
 #battery.warning {
     color: yellow;
 }
 #battery.critical {
     color: red;
+}
+#battery.charging {
+    color: white;
 }
 
 #network.disconnected {
