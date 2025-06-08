@@ -1,0 +1,63 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 20,
+
+    "modules-left": [
+        "niri/workspaces"
+    ],
+    "modules-center": [
+        "niri/window"
+    ],
+    "modules-right": [
+        "backlight",
+        "pulseaudio",
+        "network",
+        "battery",
+        "niri/language",
+        "clock"
+    ],
+
+    "niri/window": {
+        "format": "{app_id}",
+        "separate-outputs": true
+    },
+    "pulseaudio": {
+        "format": "{volume:3}% <span foreground=\"#777\">V</span>",
+        "format-muted": "<s>{volume:3}%</s> <span foreground=\"#777\">V</span>",
+        "on-click": "pkill pavucontrol || pavucontrol"
+    },
+    "backlight": {
+        "format": "{percent:3}% <span foreground=\"#777\">L</span>",
+        "tooltip": false
+    },
+    "network": {
+        "interval": 5,
+        "format": "{signalStrength:3}% <span foreground=\"#777\">W</span>",
+        "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
+        "tooltip-format": "{essid}\n{ipaddr}\n{ifname}"
+    },
+    "battery": {
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity:3}% <span foreground=\"#777\">B</span>",
+        // FIXME: This does not work.
+        // "format-plugged": "{capacity:3}% <span foreground=\"white\">P</span>",
+        "tooltip": false
+    },
+    "niri/language": {
+        "format-en": "US",
+        "format-sv": "SE"
+    },
+    "clock": {
+        "interval": 60,
+        "format": "{:%a %b %d %H:%M} ",
+        "tooltip-format": "Week {:%W}",
+        "tooltip": true,
+        "on-click": "xdg-open https://calendar.google.com/"
+    }
+}
