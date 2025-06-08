@@ -13,8 +13,8 @@
     "modules-right": [
         "backlight",
         "pulseaudio",
-        "battery",
         "network",
+        "battery",
         "hyprland/language",
         "clock"
     ],
@@ -32,6 +32,12 @@
         "format": "{percent:3}% <span foreground=\"#777\">L</span>",
         "tooltip": false
     },
+    "network": {
+        "interval": 5,
+        "format": "{signalStrength:3}% <span foreground=\"#777\">W</span>",
+        "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
+        "tooltip-format": "{essid}\n{ipaddr}\n{ifname}"
+    },
     "battery": {
         "interval": 5,
         "states": {
@@ -42,12 +48,6 @@
         // FIXME: This does not work.
         // "format-plugged": "{capacity:3}% <span foreground=\"white\">P</span>",
         "tooltip": false
-    },
-    "network": {
-        "interval": 5,
-        "format": "{signalStrength:3}% <span foreground=\"#777\">W</span>",
-        "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
-        "tooltip-format": "{essid}\n{ipaddr}\n{ifname}"
     },
     "hyprland/language": {
         "format-en": "US",
