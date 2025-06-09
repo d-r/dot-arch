@@ -5,7 +5,7 @@ $env.config.show_banner = false
 $env.config.use_kitty_protocol = true
 $env.config.filesize.unit = "metric"
 
-$env.PROMPT_COMMAND_RIGHT = ""
+$env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 
 #-------------------------------------------------------------------------------
 # ALIASES AND COMMANDS
