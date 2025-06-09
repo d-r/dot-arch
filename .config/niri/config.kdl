@@ -162,7 +162,7 @@ gestures {
 }
 
 layout {
-    gaps 12
+    gaps 8
     center-focused-column "never"
     default-column-display "tabbed"
 
@@ -173,17 +173,29 @@ layout {
         proportion 0.66667
     }
 
-    focus-ring {
+    border {
         width 2
         active-color "#7fc8ff"
         inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    // The focus ring is drawn *outside* of the window, which means it will be
+    // clipped if it can't fit inside the gaps. That ain't what I want.
+    // Made me think `default-floating-position x=0 y=0` didn't work as advertised,
+    // as it looked like the top of my terminal window was disappearing behind
+    // my Waybar.
+    focus-ring {
+        off
     }
 
     tab-indicator {
         position "top"
+        place-within-column // So it doesn't spill out into the upper gap
         hide-when-single-tab
-        length total-proportion=1.0
-        gaps-between-tabs 12
+        length total-proportion=1.0 // Stretch across the full width of the column
+        width 4
+        gaps-between-tabs 8
     }
 }
 
