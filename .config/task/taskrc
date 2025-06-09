@@ -19,6 +19,8 @@ default.project=me
 # Contexts
 context.me.read=pro:me
 context.me.write=pro:me
+context.sys.read=pro:sys
+context.sys.write=pro:sys
 
 # Active context
 context=$CONTEXT
