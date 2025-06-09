@@ -305,6 +305,14 @@ animations {
     // slowdown 3.0
 }
 
+debug {
+    // Make xdg-activation work in more cases.
+    // I.e., the thing where an app asks to be focused, and the WM focuses it.
+    // Without this, Firefox won't gain focus when I run:
+    // xdg-open https://calendar.google.com/
+    honor-xdg-activation-with-invalid-serial
+}
+
 //------------------------------------------------------------------------------
 // I/O
 
