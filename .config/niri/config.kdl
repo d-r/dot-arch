@@ -230,10 +230,19 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
+// GTK4 dark mode
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
+
+// GTK3 dark mode
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "adw-gtk3-dark"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "adw-gtk3"
+
+// Infra
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "udiskie"
 
+// Apps
 spawn-at-startup "firefox"
