@@ -155,6 +155,12 @@ input {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 layout {
     gaps 12
     center-focused-column "never"
