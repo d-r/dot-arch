@@ -117,7 +117,7 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // TODO: Read and understand what this is.
+    // TODO: Learn what this does
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }
@@ -180,11 +180,10 @@ layout {
         urgent-color "#9b0000"
     }
 
-    // The focus ring is drawn *outside* of the window, which means it will be
-    // clipped if it can't fit inside the gaps. That ain't what I want.
-    // Made me think `default-floating-position x=0 y=0` didn't work as advertised,
-    // as it looked like the top of my terminal window was disappearing behind
-    // my Waybar.
+    // Borders are always visible, as windows shrink to accommodate their width.
+    // The focus ring spills out into the gaps, and will be clipped if there's
+    // not enough space for it.
+    // That ain't what I want.
     focus-ring {
         off
     }
@@ -213,8 +212,8 @@ debug {
 window-rule {
     match app-id="firefox"
 
-    // For whatever reason, Firefox eats up one pixel of the window border.
-    // So if the global border width is 2, Firefox windows will get a single
+    // For some reason, Firefox eats up one pixel of its window border.
+    // So if the global border width is 2, a Firefox window will get a single
     // pixel border. It'll get *no border* when the width is 1.
     // So give it an extra pixel.
     border {
@@ -239,11 +238,8 @@ hotkey-overlay {
 }
 
 environment {
-    // Needed for xwayland-satellite
-    DISPLAY ":0"
-
-    // Needed for Electron apps
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    DISPLAY ":0" // Needed by X11 apps
+    ELECTRON_OZONE_PLATFORM_HINT "auto" // Needed by Electron apps
 }
 
 // GTK4 dark mode
@@ -253,7 +249,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "adw-gtk3-dark"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "adw-gtk3"
 
-// Infra
+// Utilities
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
