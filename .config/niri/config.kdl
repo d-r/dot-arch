@@ -212,7 +212,16 @@ debug {
 
 window-rule {
     match app-id="firefox"
+
     open-maximized true
+
+    // For whatever reason, Firefox eats up one pixel of the window border.
+    // So if the global border width is 2, Firefox windows will get a single
+    // pixel border. It'll get *no border* when the width is 1.
+    // So give it an extra pixel.
+    border {
+        width 3
+    }
 }
 
 //------------------------------------------------------------------------------
