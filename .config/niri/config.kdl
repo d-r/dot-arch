@@ -198,6 +198,10 @@ layout {
     }
 }
 
+overview {
+    zoom 0.3
+}
+
 debug {
     // Make xdg-activation work in more cases.
     // I.e., the thing where an app asks to be focused, and the WM focuses it.
