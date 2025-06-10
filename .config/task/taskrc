@@ -1,4 +1,5 @@
 data.location=$XDG_DATA_HOME/task
+editor=helix
 news.version=3.9.9 # Stop nagging me about news
 confirmation=no # Just go ahead and delete that task
 dateformat=d-b-y # 1-nov-24
