@@ -14,11 +14,11 @@ news.version=3.9.9
 alias.rm=delete
 
 # Default project
-default.project=me
+default.project=life
 
 # Contexts
-context.me.read=pro:me
-context.me.write=pro:me
+context.life.read=pro:life
+context.life.write=pro:life
 context.sys.read=pro:sys
 context.sys.write=pro:sys
 
