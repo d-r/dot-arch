@@ -18,6 +18,7 @@ alias hx = helix
 alias l = eza -al --group-directories-first
 alias j = just
 alias t = task
+alias tt = taskwarrior-tui
 alias yt = yt-dlp
 alias rr = rustrover
 
