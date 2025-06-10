@@ -48,8 +48,8 @@
         "tooltip": false
     },
     "hyprland/language": {
-        "format-en": "US",
-        "format-sv": "SE"
+        "format-en": " US <span foreground=\"#777\">KB</span>",
+        "format-sv": " SE <span foreground=\"#777\">KB</span>"
     },
     "clock": {
         "interval": 60,
