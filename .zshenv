@@ -28,4 +28,4 @@ export LC_TIME=$LANG
 export EDITOR="nano"
 export MANPAGER='nvim +Man!'
 
-export FZF_DEFAULT_OPTS="--layout=reverse"
+export FZF_DEFAULT_OPTS="--layout=reverse" # Put prompt at the top
