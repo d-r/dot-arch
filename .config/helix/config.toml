@@ -15,3 +15,8 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false # Show dotfiles
+
+[keys.normal]
+C-s = ":write!"
+C-x = ":write-quit-all!"
+C-q = ":quit-all!"
