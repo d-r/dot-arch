@@ -1,26 +1,13 @@
-# Where to put the database
 data.location=$XDG_DATA_HOME/task
-
-# 1-nov-24
-dateformat=d-b-y
-
-# Don't ask for confirmation before deleting a task
-confirmation=no
-
-# Don't nag me about news
-news.version=3.9.9
-
-# Aliases
-alias.rm=delete
-
-# Default project
+news.version=3.9.9 # Stop nagging me about news
+confirmation=no # Just go ahead and delete that task
+dateformat=d-b-y # 1-nov-24
 default.project=life
 
-# Contexts
 context.life.read=pro:life
 context.life.write=pro:life
 context.sys.read=pro:sys
 context.sys.write=pro:sys
-
-# Active context
 context=$CONTEXT
+
+alias.rm=delete
