@@ -52,16 +52,16 @@
     ),
     song_table_format: [
         (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown"))
-            ),
-            width: "20%",
-        ),
-        (
             prop: (kind: Property(Title),
                 default: (kind: Text("Unknown"))
             ),
             width: "35%",
+        ),
+        (
+            prop: (kind: Property(Artist),
+                default: (kind: Text("Unknown"))
+            ),
+            width: "20%",
         ),
         (
             prop: (kind: Property(Album), style: (fg: "white"),
@@ -114,7 +114,9 @@
                 ],
                 right: [
                     (kind: Property(Widget(ScanStatus)), style: (fg: "blue")),
-                    (kind: Property(Widget(Volume)), style: (fg: "blue"))
+                    (kind: Text("Volume: "), style: (fg: "blue")),
+                    (kind: Property(Status(Volume)), style: (fg: "blue")),
+                    (kind: Text("%"), style: (fg: "blue")),
                 ]
             ),
             (
@@ -122,9 +124,6 @@
                     (kind: Property(Status(Elapsed))),
                     (kind: Text(" / ")),
                     (kind: Property(Status(Duration))),
-                    (kind: Text(" (")),
-                    (kind: Property(Status(Bitrate))),
-                    (kind: Text(" kbps)"))
                 ],
                 center: [
                     (kind: Property(Song(Artist)), style: (fg: "yellow", modifiers: "Bold"),
