@@ -15,7 +15,7 @@ def "main pick" [$cmd = 'xdg-open'] {
 
 # List bookmarks
 def "main list" [] {
-    open-file | choices
+    open-file | menu
 }
 
 # Get URL by key
@@ -67,11 +67,11 @@ def save-to-file []: record -> nothing {
 
 def picker []: record -> string {
     # TODO: Smarter delimiter
-    let $choice = $in | choices | fzf --delimiter '  ' --nth 1
+    let $choice = $in | menu | fzf --delimiter '  ' --nth 1
     $choice | choice-value
 }
 
-def choices []: record -> string {
+def menu []: record -> string {
     let $items = $in | transpose k v
     let $lines = $items | each {|f| $"($f.k)\t($f.v)\n" }
     $lines | str join | column -t -s "\t"
