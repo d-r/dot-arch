@@ -41,6 +41,12 @@ def "main set" [$key: string, $url: string] {
     open-file | update $key $url | save-to-file
 }
 
+# Edit bookmarks.json with $EDITOR
+def "main edit" [] {
+    let $editor = $env.EDITOR? | default micro
+    ^($editor) (file-path)
+}
+
 #-------------------------------------------------------------------------------
 # PRIVATE
 
