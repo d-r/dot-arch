@@ -9,15 +9,12 @@ def main [] {
 
 # Open fzf bookmark picker
 def "main pick" [] {
-    # TODO: Smarter delimiter
-    let $choice = (main list) | fzf --delimiter '  ' --nth 1
-    $choice | url
+    open-file | picker
 }
 
 # List bookmarks
 def "main list" [] {
-    let $lines = open-file-as-table | each {|f| $"($f.k)\t($f.v)\n" }
-    $lines | str join | column -t -s "\t"
+    open-file | choices
 }
 
 # Get URL by key
@@ -47,18 +44,32 @@ def "main set" [$key: string, $url: string] {
 #-------------------------------------------------------------------------------
 # PRIVATE
 
-def open-file []: nothing -> record {
-    open ~/.local/share/sys/bookmarks.json
+const $FILE_PATH = '~/.local/share/sys/bookmarks.json'
+
+def file-path []: nothing -> string {
+    $FILE_PATH | path expand
 }
 
-def open-file-as-table []: nothing -> table {
-    open-file | transpose k v
+def open-file []: nothing -> record {
+    open (file-path)
 }
 
 def save-to-file []: record -> nothing {
-    $in | to json | save -f ~/.local/share/sys/bookmarks.json
+    $in | to json | save -f (file-path)
 }
 
-def url []: string -> any {
-    $in | split column -r '\s+' -n 2 _ url | first | get url
+def picker []: record -> string {
+    # TODO: Smarter delimiter
+    let $choice = $in | choices | fzf --delimiter '  ' --nth 1
+    $choice | choice-value
+}
+
+def choices []: record -> string {
+    let $items = $in | transpose k v
+    let $lines = $items | each {|f| $"($f.k)\t($f.v)\n" }
+    $lines | str join | column -t -s "\t"
+}
+
+def choice-value []: string -> any {
+    $in | split column -r '\s+' -n 2 k v | first | get v
 }
