@@ -1,0 +1,64 @@
+#!/usr/bin/env nu
+
+def main [] {
+    main pick
+}
+
+#-------------------------------------------------------------------------------
+# READ
+
+# Open fzf bookmark picker
+def "main pick" [] {
+    # TODO: Smarter delimiter
+    let $choice = (main list) | fzf --delimiter '  ' --nth 1
+    $choice | url
+}
+
+# List bookmarks
+def "main list" [] {
+    let $lines = open-file-as-table | each {|f| $"($f.k)\t($f.v)\n" }
+    $lines | str join | column -t -s "\t"
+}
+
+# Get URL by key
+def "main get" [$key: string] {
+    open-file | get $key
+}
+
+#-------------------------------------------------------------------------------
+# WRITE
+
+# Add a URL, prompting the user for a key
+def "main add-url" [$url: string] {
+    let $key = (input 'Key: ')
+    main add $key $url
+}
+
+# Add a bookmark
+def "main add" [$key: string, $url: string] {
+    open-file | insert $key $url | save-to-file
+}
+
+# Set URL by key
+def "main set" [$key: string, $url: string] {
+    open-file | update $key $url | save-to-file
+}
+
+#-------------------------------------------------------------------------------
+# PRIVATE
+
+def open-file []: nothing -> record {
+    open ~/.local/share/sys/bookmarks.json
+}
+
+def open-file-as-table []: nothing -> table {
+    open-file | transpose k v
+}
+
+def save-to-file []: record -> nothing {
+    $in | to json | save -f ~/.local/share/sys/bookmarks.json
+}
+
+def url []: string -> any {
+    $in | split column -r '\s+' -n 2 _ url | first | get url
+}
