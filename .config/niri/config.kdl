@@ -214,6 +214,12 @@ debug {
 // RULES
 
 window-rule {
+    // Only draw the border *around* the window, don't draw it as a rectangle
+    // *behind* the window.
+    draw-border-with-background false
+}
+
+window-rule {
     match app-id="firefox"
 
     // For some reason, Firefox eats up one pixel of its window border.
