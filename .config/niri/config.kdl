@@ -175,9 +175,11 @@ layout {
 
     border {
         width 2
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
+
+        // These colors were taken from kitty/tokyonight_night.conf
+        active-color "#7aa2f7"
+        inactive-color "#292e42"
+        urgent-color "#db4b4b"
     }
 
     // Borders are always visible, as windows shrink to accommodate their width.
