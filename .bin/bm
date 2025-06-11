@@ -8,8 +8,9 @@ def main [] {
 # READ
 
 # Open fzf bookmark picker
-def "main pick" [] {
-    open-file | picker
+def "main pick" [$cmd = 'xdg-open'] {
+    let $url = (open-file | picker)
+    ^($cmd) $url
 }
 
 # List bookmarks
