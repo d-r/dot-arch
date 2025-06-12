@@ -16,7 +16,7 @@ const $SK_COLORS = {
 }
 
 # Open bookmark picker
-def "main pick" [$cmd = 'xdg-open'] {
+def "main pick" [] {
     let $colors = $SK_COLORS | transpose k v | each {|x| $"($x.k):($x.v)" } | str join ","
     let $choice = (main list) | sk --color=($colors) --reverse --no-info --delimiter '\s\s+' --nth 1
     $choice | choice-value
