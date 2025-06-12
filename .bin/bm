@@ -7,9 +7,9 @@ def main [$cmd = 'xdg-open'] {
 #-------------------------------------------------------------------------------
 # READ
 
-# Open fzf bookmark picker
+# Open bookmark picker
 def "main pick" [$cmd = 'xdg-open'] {
-    let $choice = (main list) | fzf --reverse --no-info --delimiter '\s\s+' --nth 1
+    let $choice = (main list) | sk --reverse --no-info --delimiter '\s\s+' --nth 1
     $choice | choice-value
 }
 
