@@ -10,7 +10,8 @@ $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 #-------------------------------------------------------------------------------
 # ALIASES AND COMMANDS
 
-use hy-cmd.nu *
+use _hy.nu *
+use _nim.nu *
 
 alias c = clear
 alias e = ^($env.EDITOR)
@@ -36,14 +37,6 @@ def --env y [...args] {
 		cd $cwd
 	}
 	rm -fp $tmp
-}
-
-def nim [...$args] {
-	if ($args | is-empty) {
-		niri msg --help
-	} else {
-		niri msg -j ...$args | from json
-	}
 }
 
 #-------------------------------------------------------------------------------

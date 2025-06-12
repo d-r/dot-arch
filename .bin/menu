@@ -1,0 +1,12 @@
+#!/usr/bin/env nu
+
+use ~/.config/nushell/_nim.nu *
+
+def main [...$args] {
+    let $pid = (nim windows | where app_id == "menu" | get pid.0?)
+    if ($pid | is-empty) {
+        kitty --config ~/.config/kitty/menu.conf --app-id menu ...$args
+    } else {
+        kill $pid
+   }
+}
