@@ -7,11 +7,10 @@ def main [$cmd = 'xdg-open'] {
 #-------------------------------------------------------------------------------
 # READ
 
+# TODO: Apply color scheme inside of the kitty config instead?
 const $ACCENT_COLOR = "#7fc8ff"
 const $ACTIVE_BG_COLOR = "#1a1a1a"
-
-# TODO: Apply color scheme inside of the kitty config instead?
-const $SK_COLORS = {
+const $COLORS = {
     prompt: "#555555",
     cursor: $ACCENT_COLOR,
     matched: $ACCENT_COLOR,
@@ -21,10 +20,14 @@ const $SK_COLORS = {
     current_match_bg: $ACTIVE_BG_COLOR,
 }
 
+def --wrapped pick [...$args]: string -> string {
+    let $colors = $COLORS | transpose k v | each {$"($in.k):($in.v)" } | str join ","
+    $in | sk --color=($colors) --reverse --no-info ...$args
+}
+
 # Open bookmark picker
 def "main pick" [] {
-    let $colors = $SK_COLORS | transpose k v | each {$"($in.k):($in.v)" } | str join ","
-    let $choice = (main list) | sk --color=($colors) --reverse --no-info --delimiter '\s\s+' --nth 1
+    let $choice = (main list) | pick --delimiter '\s\s+' --nth 1
     $choice | choice-value
 }
 
