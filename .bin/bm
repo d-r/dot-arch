@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
-def main [] {
-    main pick
+def main [$cmd = 'xdg-open'] {
+    ^($cmd) (main pick)
 }
 
 #-------------------------------------------------------------------------------
@@ -9,13 +9,14 @@ def main [] {
 
 # Open fzf bookmark picker
 def "main pick" [$cmd = 'xdg-open'] {
-    let $url = (open-file | picker)
-    ^($cmd) $url
+    # TODO: Smarter delimiter
+    let $choice = (main list) | fzf --delimiter '  ' --nth 1
+    $choice | choice-value
 }
 
 # List bookmarks
 def "main list" [] {
-    open-file | menu
+    open-file | kv-menu
 }
 
 # Get URL by key
@@ -65,13 +66,7 @@ def save-to-file []: record -> nothing {
     $in | to json | save -f (file-path)
 }
 
-def picker []: record -> string {
-    # TODO: Smarter delimiter
-    let $choice = $in | menu | fzf --delimiter '  ' --nth 1
-    $choice | choice-value
-}
-
-def menu []: record -> string {
+def kv-menu []: record -> string {
     let $items = $in | transpose k v
     let $lines = $items | each {|f| $"($f.k)\t($f.v)\n" }
     $lines | str join | column -t -s "\t"
