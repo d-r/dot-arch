@@ -7,9 +7,18 @@ def main [$cmd = 'xdg-open'] {
 #-------------------------------------------------------------------------------
 # READ
 
+const $SK_COLORS = {
+    fg: "#777777"
+    current: "#eeeeee",
+    current_bg: "#222222",
+    current_match: "#7fc8ff",
+    matched: "#7fc8ff",
+}
+
 # Open bookmark picker
 def "main pick" [$cmd = 'xdg-open'] {
-    let $choice = (main list) | sk --reverse --no-info --delimiter '\s\s+' --nth 1
+    let $colors = $SK_COLORS | transpose k v | each {|x| $"($x.k):($x.v)" } | str join ","
+    let $choice = (main list) | sk --color=($colors) --reverse --no-info --delimiter '\s\s+' --nth 1
     $choice | choice-value
 }
 
@@ -67,7 +76,7 @@ def save-to-file []: record -> nothing {
 
 def kv-menu []: record -> string {
     let $items = $in | transpose k v
-    let $lines = $items | each {|f| $"($f.k)\t($f.v)\n" }
+    let $lines = $items | each {|x| $"($x.k)\t($x.v)\n" }
     $lines | str join | column -t -s "\t"
 }
 
