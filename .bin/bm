@@ -7,12 +7,18 @@ def main [$cmd = 'xdg-open'] {
 #-------------------------------------------------------------------------------
 # READ
 
+const $ACCENT_COLOR = "#7fc8ff"
+const $ACTIVE_BG_COLOR = "#1a1a1a"
+
+# TODO: Apply color scheme inside of the kitty config instead?
 const $SK_COLORS = {
-    fg: "#777777"
-    current: "#eeeeee",
-    current_bg: "#222222",
-    current_match: "#7fc8ff",
-    matched: "#7fc8ff",
+    prompt: "#555555",
+    cursor: $ACCENT_COLOR,
+    matched: $ACCENT_COLOR,
+    current: "#dddddd",
+    current_bg: $ACTIVE_BG_COLOR,
+    current_match: $ACCENT_COLOR,
+    current_match_bg: $ACTIVE_BG_COLOR,
 }
 
 # Open bookmark picker
