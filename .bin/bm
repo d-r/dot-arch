@@ -23,7 +23,7 @@ const $SK_COLORS = {
 
 # Open bookmark picker
 def "main pick" [] {
-    let $colors = $SK_COLORS | transpose k v | each {|x| $"($x.k):($x.v)" } | str join ","
+    let $colors = $SK_COLORS | transpose k v | each {$"($in.k):($in.v)" } | str join ","
     let $choice = (main list) | sk --color=($colors) --reverse --no-info --delimiter '\s\s+' --nth 1
     $choice | choice-value
 }
@@ -82,7 +82,7 @@ def save-to-file []: record -> nothing {
 
 def kv-menu []: record -> string {
     let $items = $in | transpose k v
-    let $lines = $items | each {|x| $"($x.k)\t($x.v)\n" }
+    let $lines = $items | each {$"($in.k)\t($in.v)\n" }
     $lines | str join | column -t -s "\t"
 }
 
