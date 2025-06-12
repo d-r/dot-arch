@@ -9,8 +9,7 @@ def main [$cmd = 'xdg-open'] {
 
 # Open fzf bookmark picker
 def "main pick" [$cmd = 'xdg-open'] {
-    # TODO: Smarter delimiter
-    let $choice = (main list) | fzf --delimiter '  ' --nth 1
+    let $choice = (main list) | fzf --reverse --no-info --delimiter '\s\s+' --nth 1
     $choice | choice-value
 }
 
