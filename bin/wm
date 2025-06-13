@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use "~/.config/nushell/hy-cmd.nu" *
+use ~/dot/nu/hypr.nu *
 
 def main [] {
     help main

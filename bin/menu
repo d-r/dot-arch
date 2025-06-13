@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use ~/.config/nushell/_nim.nu *
+use ~/dot/nu/niri.nu *
 
 def main [...$args] {
     let $pid = (nim windows | where app_id == "menu" | get pid.0?)

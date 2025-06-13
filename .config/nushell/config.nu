@@ -1,3 +1,8 @@
+const NU_LIB_DIRS = [
+    ~/.config/nushell
+    ~/dot/nu
+]
+
 #-------------------------------------------------------------------------------
 # SETTINGS
 
@@ -46,7 +51,7 @@ def --env y [...args] {
 source $"($nu.home-path)/.cargo/env.nu"
 
 # zoxide init nushell | save -f zoxide.nu
-source "zoxide.nu"
+source zoxide.nu
 
 # carapace _carapace nushell | save -f carapace.nu
-source "carapace.nu"
+source carapace.nu

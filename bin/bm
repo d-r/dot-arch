@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use ~/.config/nushell/picker.nu *
+use ~/dot/nu/picker.nu *
 
 def main [$cmd = 'xdg-open'] {
     ^($cmd) (main pick)
