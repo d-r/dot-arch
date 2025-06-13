@@ -8,7 +8,7 @@ def main [$cmd = 'xdg-open'] {
 
 # Open bookmark picker
 def "main pick" [] {
-    (main list | pick --column=key).url
+    (main list | pick --match-column=key).url
 }
 
 # List bookmarks

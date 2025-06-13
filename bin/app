@@ -10,9 +10,7 @@ def main [] {
 }
 
 def "main pick" [] {
-    let $apps = main list
-    let $i = $apps | select name | pick-index
-    ($apps | get $i).desktop_file
+    ((main list) | pick name).desktop_file
 }
 
 def "main list" []: nothing -> table {

@@ -14,31 +14,23 @@ const $THEME = {
 
 const $COLUMN_SEP = '\s\s+'
 
-export def --wrapped pick [...$args]: table -> record {
-    let $i = ($in | pick-index ...$args)
-    $in | get $i
-}
-
-export def --wrapped pick-index [...$args, --column: string]: table -> int {
-    let $nth = if ($column | is-empty) {
+export def pick [...$columns: string, --match-column: string]: table -> record {
+    let $nth = if ($match_column | is-empty) {
         ""
     } else {
-        ($in | index-of-column $column) + 1
+        ($in | index-of-column $match_column) + 1
     }
-
-    let $theme = $THEME | dict-str ":" ","
-
-    let $choice = $in | table-str | (
+    let $choice = $in | select ...$columns | indexed | table-str | (
         sk
-        --no-info
         --no-sort
+        --no-info
+        --color ($THEME | dict-str ":" ",")
         --delimiter $COLUMN_SEP
-        --with-nth "2.."
+        --with-nth 2.. # Exclude the index column
         --nth $nth
-        --color $theme
     )
-
-    $choice | split row -r $COLUMN_SEP | first | into int
+    let $i = $choice | split row -r $COLUMN_SEP | first | into int
+    $in | get $i
 }
 
 #-------------------------------------------------------------------------------
@@ -52,7 +44,7 @@ export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
 }
 
 export def table-str []: table -> string {
-    $in | indexed | to tsv --noheaders | column -t -s "\t"
+    $in | to tsv --noheaders | column -t -s "\t"
 }
 
 # Rename the special `#` column to `index`, to make it part of the table proper.
