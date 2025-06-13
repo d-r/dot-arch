@@ -14,24 +14,44 @@ const $THEME = {
 
 const $COLUMN_SEP = '\s\s+'
 
-export def pick-value []: record -> any {
-    let $menu = $in | transpose | table-str
-    let $choice = $menu | pick-line --nth 1 --delimiter $COLUMN_SEP
-    $choice | split row -r $COLUMN_SEP | get 1
-}
+export def --wrapped pick [...$args, --column: string]: table -> any {
+    let $n = if ($column | is-empty) {
+        ""
+    } else {
+        ($in | index-of-column $column) + 1
+    }
 
-export def --wrapped pick-line [...$args]: string -> string {
     let $theme = $THEME | dict-str ":" ","
-    $in | sk --color=($theme) --reverse --no-info ...$args
+    let $choice = $in | table-str | sk --color $theme --no-sort --delimiter $COLUMN_SEP --with-nth 2.. --nth $n
+
+    let $index = $choice | split row -r $COLUMN_SEP | first | into int
+    $in | get $index
 }
 
-export def table-str []: table -> string {
-    $in | to tsv --noheaders | column -t -s "\t"
-}
+#-------------------------------------------------------------------------------
+# UTILITIES
 
 export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
     $in
         | transpose k v
         | each { [$in.k, $kv_sep, $in.v] | str join }
         | str join $pair_sep
+}
+
+export def table-str []: table -> string {
+    $in | indexed | to tsv --noheaders | column -t -s "\t"
+}
+
+# Rename the special `#` column to `index`, to make it part of the table proper.
+# See https://www.nushell.sh/book/working_with_tables.html#the-index-column
+export def indexed []: table -> table {
+    $in | enumerate | flatten
+}
+
+export def index-of-column [$name: string]: table -> int {
+    $in | columns | index-of $name
+}
+
+export def index-of [$v]: list -> int {
+    enumerate | where item == $v | get index.0
 }

@@ -8,12 +8,12 @@ def main [$cmd = 'xdg-open'] {
 
 # Open bookmark picker
 def "main pick" [] {
-    open-file | pick-value
+    (main list | pick --column=key).url
 }
 
 # List bookmarks
 def "main list" [] {
-    open-file
+    open-file | transpose key url
 }
 
 # Add a URL, prompting the user for a key
