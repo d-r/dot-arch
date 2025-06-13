@@ -20,10 +20,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Grave repeat=false { toggle-overview; }
 
-    Mod+R hotkey-overlay-title="Run..." { spawn "fuzzel"; }
+    Mod+R hotkey-overlay-title="Run..." { spawn "ni" "pick" "app"; }
     Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
 
-    Mod+O { spawn "ni" "spawn-in-modal" "bm"; }
+    Mod+O { spawn "ni" "pick" "bookmark"; }
 
     // LAYOUT
 

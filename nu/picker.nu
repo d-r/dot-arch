@@ -14,18 +14,31 @@ const $THEME = {
 
 const $COLUMN_SEP = '\s\s+'
 
-export def --wrapped pick [...$args, --column: string]: table -> any {
-    let $n = if ($column | is-empty) {
+export def --wrapped pick [...$args]: table -> record {
+    let $i = ($in | pick-index ...$args)
+    $in | get $i
+}
+
+export def --wrapped pick-index [...$args, --column: string]: table -> int {
+    let $nth = if ($column | is-empty) {
         ""
     } else {
         ($in | index-of-column $column) + 1
     }
 
     let $theme = $THEME | dict-str ":" ","
-    let $choice = $in | table-str | sk --color $theme --no-sort --delimiter $COLUMN_SEP --with-nth 2.. --nth $n
 
-    let $index = $choice | split row -r $COLUMN_SEP | first | into int
-    $in | get $index
+    let $choice = $in | table-str | (
+        sk
+        --no-info
+        --no-sort
+        --delimiter $COLUMN_SEP
+        --with-nth "2.."
+        --nth $nth
+        --color $theme
+    )
+
+    $choice | split row -r $COLUMN_SEP | first | into int
 }
 
 #-------------------------------------------------------------------------------

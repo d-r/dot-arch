@@ -1,0 +1,31 @@
+#!/usr/bin/env nu
+
+# This script uses "dex" to run applications:
+# https://archlinux.org/packages/?name=dex
+
+use ~/dot/nu/picker.nu *
+
+def main [] {
+    niri msg action spawn -- dex (main pick)
+}
+
+def "main pick" [] {
+    let $apps = main list
+    let $i = $apps | select name | pick-index
+    ($apps | get $i).desktop_file
+}
+
+def "main list" []: nothing -> table {
+    let $global = scan /usr/share/applications/*.desktop
+    let $local = scan ~/.local/share/applications/*.desktop
+    $global | merge $local
+}
+
+def scan [$p: string]: nothing -> table {
+    glob $p | each { parse-file $in }
+}
+
+def parse-file [$path: path]: nothing -> record {
+    let $name = cat $path | rg '^Name=(.+)$' -r '$1' -m 1
+    {name: $name, desktop_file: $path}
+}

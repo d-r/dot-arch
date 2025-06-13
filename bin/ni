@@ -7,8 +7,25 @@ def main [] {
     help main
 }
 
+# Pick something off a menu
+def "main pick" [] {
+    help main pick
+}
+
+# Pick a bookmark
+def "main pick bookmark" [] {
+    modal bm
+}
+
+# Pick an application
+def "main pick app" [] {
+    modal app
+}
+
+#-------------------------------------------------------------------------------
+
 # Run a command inside of a modal terminal
-def --wrapped "main spawn-in-modal" [...$cmd] {
+def --wrapped modal [...$cmd] {
     let $pid = (nim windows | where app_id == modal | get pid.0?)
     if ($pid | is-empty) {
         kitty --config ~/.config/kitty/modal.conf --app-id modal ...$cmd
