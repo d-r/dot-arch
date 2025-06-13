@@ -1,48 +1,20 @@
 #!/usr/bin/env nu
 
+use ~/.config/nushell/picker.nu *
+
 def main [$cmd = 'xdg-open'] {
     ^($cmd) (main pick)
 }
 
-#-------------------------------------------------------------------------------
-# READ
-
-# TODO: Apply color scheme inside of the kitty config instead?
-const $ACCENT_COLOR = "#7fc8ff"
-const $ACTIVE_BG_COLOR = "#1a1a1a"
-const $COLORS = {
-    prompt: "#555555",
-    cursor: $ACCENT_COLOR,
-    matched: $ACCENT_COLOR,
-    current: "#dddddd",
-    current_bg: $ACTIVE_BG_COLOR,
-    current_match: $ACCENT_COLOR,
-    current_match_bg: $ACTIVE_BG_COLOR,
-}
-
-def --wrapped pick [...$args]: string -> string {
-    let $colors = $COLORS | transpose k v | each {$"($in.k):($in.v)" } | str join ","
-    $in | sk --color=($colors) --reverse --no-info ...$args
-}
-
 # Open bookmark picker
 def "main pick" [] {
-    let $choice = (main list) | pick --delimiter '\s\s+' --nth 1
-    $choice | choice-value
+    open-file | pick-value
 }
 
 # List bookmarks
 def "main list" [] {
-    open-file | kv-menu
+    open-file
 }
-
-# Get URL by key
-def "main get" [$key: string] {
-    open-file | get $key
-}
-
-#-------------------------------------------------------------------------------
-# WRITE
 
 # Add a URL, prompting the user for a key
 def "main add-url" [$url: string] {
@@ -81,14 +53,4 @@ def open-file []: nothing -> record {
 
 def save-to-file []: record -> nothing {
     $in | to json | save -f (file-path)
-}
-
-def kv-menu []: record -> string {
-    let $items = $in | transpose k v
-    let $lines = $items | each {$"($in.k)\t($in.v)\n" }
-    $lines | str join | column -t -s "\t"
-}
-
-def choice-value []: string -> any {
-    $in | split column -r '\s+' -n 2 k v | first | get v
 }

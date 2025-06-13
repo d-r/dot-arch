@@ -10,8 +10,9 @@ $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 #-------------------------------------------------------------------------------
 # ALIASES AND COMMANDS
 
-use _hy.nu *
-use _nim.nu *
+use picker.nu *
+use hypr.nu *
+use niri.nu *
 
 alias c = clear
 alias e = ^($env.EDITOR)
