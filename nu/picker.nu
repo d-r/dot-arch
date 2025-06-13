@@ -12,7 +12,8 @@ const $THEME = {
     current_match_bg: $ACTIVE_BG_COLOR,
 }
 
-const $COLUMN_SEP = '\s\s+'
+# Two spaces is the default output separator of the `column` command
+const $COLUMN_SEP = '  '
 
 export def pick [...$columns: string, --match-column: string]: table -> record {
     let $nth = if ($match_column | is-empty) {
@@ -44,7 +45,7 @@ export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
 }
 
 export def table-str []: table -> string {
-    $in | to tsv --noheaders | column -t -s "\t"
+    $in | to tsv --noheaders | column --table --separator "\t"
 }
 
 # Rename the special `#` column to `index`, to make it part of the table proper.
