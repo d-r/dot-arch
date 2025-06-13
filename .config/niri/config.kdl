@@ -23,7 +23,7 @@ binds {
     Mod+R hotkey-overlay-title="Run..." { spawn "fuzzel"; }
     Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
 
-    Mod+O { spawn "menu" "bm"; }
+    Mod+O { spawn "ni" "spawn-in-modal" "bm"; }
 
     // LAYOUT
 
@@ -245,7 +245,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="menu"
+    match app-id="modal"
 
     open-floating true
     default-floating-position x=0 y=0 relative-to="top"

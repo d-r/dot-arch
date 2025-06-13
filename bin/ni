@@ -1,0 +1,18 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/niri.nu *
+
+# The knight who says "Ni!"
+def main [] {
+    help main
+}
+
+# Run a command inside of a modal terminal
+def --wrapped "main spawn-in-modal" [...$cmd] {
+    let $pid = (nim windows | where app_id == modal | get pid.0?)
+    if ($pid | is-empty) {
+        kitty --config ~/.config/kitty/modal.conf --app-id modal ...$cmd
+    } else {
+        kill $pid
+    }
+}
