@@ -1,9 +1,10 @@
-\.git
-\.gitignore
-\.gitmodules
-
+^/bin
 ^/README.md
 ^/LICENSE
 ^/justfile
 
 history.txt
+
+\.git
+\.gitignore
+\.gitmodules
