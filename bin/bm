@@ -41,7 +41,7 @@ def "main edit" [] {
 #-------------------------------------------------------------------------------
 # PRIVATE
 
-const $FILE_PATH = '~/bucket/bookmarks.json'
+const $FILE_PATH = '~/me/bookmarks.json'
 
 def file-path []: nothing -> string {
     $FILE_PATH | path expand
