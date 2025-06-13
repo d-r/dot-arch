@@ -1,6 +1,7 @@
 . "$HOME/.cargo/env"
 
 export PATH="$PATH:$HOME/dot/bin"
+export PATH="$PATH:$HOME/lab"
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME="$HOME/.config"
