@@ -22,7 +22,6 @@ export def pick [...$columns: string, --match-column: string]: table -> record {
     }
     let $choice = $in | select ...$columns | indexed | table-str | (
         sk
-        --no-sort
         --no-info
         --color ($THEME | dict-str ":" ",")
         --delimiter $COLUMN_SEP
