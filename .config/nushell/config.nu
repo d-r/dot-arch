@@ -3,6 +3,8 @@ const NU_LIB_DIRS = [
     ~/dot/nu
 ]
 
+plugin add nu_plugin_formats
+
 #-------------------------------------------------------------------------------
 # SETTINGS
 
