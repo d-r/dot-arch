@@ -1,6 +1,7 @@
 const NU_LIB_DIRS = [
     ~/.config/nushell
     ~/dot/nu
+    ~/lab
 ]
 
 plugin add nu_plugin_formats
