@@ -1,10 +1,26 @@
 #!/usr/bin/env nu
 
 use ~/dot/nu/niri.nu *
+use ~/dot/nu/kit.nu *
+
+alias perform = niri msg action
 
 # The knight who says "Ni!"
 def main [] {
     help main
+}
+
+# Spawn a terminal
+def "main toggle-term" [] {
+    let $ws = (main focused-workspace)
+    let $w = (nim windows | where workspace_id == $ws.id | where app_id == kitty | first?)
+    if ($w | is-empty) {
+        kitty
+    } else if $w.is_focused {
+        perform focus-window-previous
+    } else {
+        perform focus-window --id $w.id
+    }
 }
 
 # Run a CLI app inside of a terminal
@@ -25,6 +41,12 @@ def "main pick bookmark" [] {
 # Pick an application
 def "main pick app" [] {
     modal app
+}
+
+#-------------------------------------------------------------------------------
+
+def "main focused-workspace" [] {
+    nim workspaces | where is_focused == true | first
 }
 
 #-------------------------------------------------------------------------------

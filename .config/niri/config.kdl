@@ -21,7 +21,7 @@ binds {
     Mod+Grave repeat=false { toggle-overview; }
 
     Mod+R hotkey-overlay-title="Run..." { spawn "ni" "pick" "app"; }
-    Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
+    Mod+Return hotkey-overlay-title="Open terminal" { spawn "ni" "toggle-term"; }
 
     Mod+O { spawn "ni" "pick" "bookmark"; }
 
