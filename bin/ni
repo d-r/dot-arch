@@ -7,6 +7,11 @@ def main [] {
     help main
 }
 
+# Run a CLI app inside of a terminal
+def "main spawn-cli-app" [$id: string, ...$cmd] {
+    kitty --app-id $id ...$cmd
+}
+
 # Pick something off a menu
 def "main pick" [] {
     help main pick
