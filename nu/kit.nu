@@ -2,7 +2,7 @@
 
 export alias first? = try { first }
 
-export alias alst? = try { last }
+export alias last? = try { last }
 
 # Rename the special `#` column to `index`, to make it part of the table proper.
 # See https://www.nushell.sh/book/working_with_tables.html#the-index-column
@@ -16,4 +16,11 @@ export def index-of-column [$name: string]: table -> int {
 
 export def index-of [$v]: list -> int {
     enumerate | where item == $v | get index.0
+}
+
+export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
+    $in
+        | transpose k v
+        | each { [$in.k, $kv_sep, $in.v] | str join }
+        | str join $pair_sep
 }

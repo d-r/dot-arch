@@ -10,6 +10,22 @@ def main [] {
 #-------------------------------------------------------------------------------
 # HIGH-LEVEL
 
+const $ACCENT_COLOR = "#7fc8ff"
+const $ACTIVE_BG_COLOR = "#1a1a1a"
+const $THEME = {
+    prompt: "#555555",
+    cursor: $ACCENT_COLOR,
+    matched: $ACCENT_COLOR,
+    current: "#dddddd",
+    current_bg: $ACTIVE_BG_COLOR,
+    current_match: $ACCENT_COLOR,
+    current_match_bg: $ACTIVE_BG_COLOR,
+}
+
+let $theme = ($THEME | dict-str ":" ",")
+
+let $sk_options = $"--reverse --no-info --color=($theme)"
+
 # Spawn a terminal
 def "main toggle-term" [] {
     let $w = (main windows-in-focused-workspace | where app_id == term | first?)
@@ -51,10 +67,18 @@ def "main pick project" [] {
 def --wrapped modal [...$cmd] {
     let $pid = (main windows | where app_id == modal | get pid.0?)
     if ($pid | is-empty) {
-        kitty --config ~/.config/kitty/modal.conf --app-id modal ...$cmd
+        let $cmd = (main nu-command ...$cmd)
+        kitty --config ~/.config/kitty/modal.conf --app-id=modal -- ...$cmd
     } else {
         kill $pid
     }
+}
+
+# Generate a [nu -c ...] command to be executed in a terminal
+def "main nu-command" [...$cmd] {
+    let $opt = $'SKIM_DEFAULT_OPTIONS="($sk_options)" '
+    let $cmd = $opt ++ ($cmd | str join " ")
+    [nu -c $cmd]
 }
 
 #-------------------------------------------------------------------------------
