@@ -20,11 +20,14 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Grave repeat=false { toggle-overview; }
 
-    // Mod+R hotkey-overlay-title="Run..." { spawn "ni" "pick" "app"; }
-    Mod+R hotkey-overlay-title="Run..." { spawn "fuzzel"; }
-    Mod+Return hotkey-overlay-title="Open terminal" { spawn "ni" "toggle-term"; }
+    Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
+
+    // PICKERS
 
     Mod+O { spawn "ni" "pick" "bookmark"; }
+    Mod+P { spawn "ni" "pick" "project"; }
+    // Mod+R { spawn "ni" "pick" "app"; }
+    Mod+R { spawn "fuzzel"; }
 
     // LAYOUT
 

@@ -2,13 +2,13 @@
 
 use ~/dot/nu/kit.nu *
 
-#-------------------------------------------------------------------------------
-# HIGH-LEVEL
-
 # The knight who says "Ni!"
 def main [] {
     help main
 }
+
+#-------------------------------------------------------------------------------
+# HIGH-LEVEL
 
 # Spawn a terminal
 def "main toggle-term" [] {
@@ -42,9 +42,14 @@ def "main pick app" [] {
     modal app
 }
 
+# Pick a project
+def "main pick project" [] {
+    modal pro
+}
+
 # Run a command inside of a modal terminal
 def --wrapped modal [...$cmd] {
-    let $pid = (nim windows | where app_id == modal | get pid.0?)
+    let $pid = (main windows | where app_id == modal | get pid.0?)
     if ($pid | is-empty) {
         kitty --config ~/.config/kitty/modal.conf --app-id modal ...$cmd
     } else {

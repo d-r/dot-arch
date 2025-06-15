@@ -1,0 +1,65 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/kit.nu *
+use ~/dot/nu/picker.nu *
+
+
+def main [] {
+    let $p = (main pick)
+
+    let $dir = $p.dir | path expand
+    niri msg action spawn -- $p.editor $dir
+}
+
+
+def "main pick" [] {
+    main list | pick name dir
+}
+
+def "main list" [] {
+    let $all = [
+        (project ~/dot)
+        (project ~/lab)
+        (project ~/vault obsidian)
+        (projects-in ~/src)
+    ]
+    $all | flatten
+}
+
+#-------------------------------------------------------------------------------
+
+def shorten-project-path []: record -> record  {
+    update dir ($in.dir | path relative-to $env.HOME)
+}
+
+def "projects-in" [$dir] {
+    let $dir = ($dir | path expand)
+    let $dirs = (ls $dir | where type == dir | get name)
+    $dirs | each { project $in }
+}
+
+def project [$dir, $editor?] {
+    let $dir = ($dir | path expand)
+
+    # TODO: Is this *really* the most succint way to express this?
+    # Fucking hell, that's verbose. Repeating $editor 3 times...
+    # Tried to use the `or` operator, but null is not falsy, FFS...
+    let $editor = match $editor {
+        null => (editor-for $dir),
+        _ => $editor
+    }
+
+    {
+        name: ($dir | path basename)
+        dir: $dir,
+        editor: $editor,
+    }
+}
+
+def editor-for [$dir] {
+    if ([$dir, "Cargo.toml"] | path join | path exists) {
+        "rustrover"
+    } else {
+        "code"
+    }
+}
