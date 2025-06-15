@@ -2,13 +2,13 @@
 
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/picker.nu *
-
+use ~/dot/nu/niri.nu *
 
 def main [] {
     let $p = (main pick)
 
     let $dir = $p.dir | path expand
-    niri msg action spawn -- $p.editor $dir
+    ni spawn $p.editor $dir
 }
 
 
