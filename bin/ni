@@ -13,9 +13,9 @@ def main [] {
 # Spawn a terminal
 def "main toggle-term" [] {
     let $ws = (main focused-workspace)
-    let $w = (nim windows | where workspace_id == $ws.id | where app_id == kitty | first?)
+    let $w = (nim windows | where workspace_id == $ws.id | where app_id == term | first?)
     if ($w | is-empty) {
-        kitty
+        kitty --app-id term
     } else if $w.is_focused {
         perform focus-window-previous
     } else {
