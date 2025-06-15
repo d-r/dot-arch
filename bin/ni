@@ -67,24 +67,30 @@ def --wrapped "main spawn" [...$cmd] {
     act spawn -- ...$cmd
 }
 
-# Focus a window by ID
-def "main focus-window" [$id] {
-    act focus-window --id $id
-}
-
 # Focus the previously focused window
 def "main focus-previous-window" [] {
     act focus-window-previous
 }
 
-# Focus a workspace by index/name
-def "main focus-workspace" [$ref] {
-    act focus-workspace $ref
+# Focus a window by ID
+def "main focus-window" [$id] {
+    act focus-window --id $id
 }
 
 # Focus the previously focused workspace
 def "main focus-previous-workspace" [] {
     act focus-workspace-previous
+}
+
+# Focus the last (and always empty) workspace
+def "main focus-last-workspace" [] {
+    let $ws = (main workspaces | last)
+    main focus-workspace $ws.id
+}
+
+# Focus a workspace by index/name
+def "main focus-workspace" [$ref] {
+    act focus-workspace $ref
 }
 
 #-------------------------------------------------------------------------------
@@ -118,4 +124,3 @@ def "main focused-workspace" [] {
 def "main workspaces" [] {
     msg workspaces | sort-by idx
 }
-
