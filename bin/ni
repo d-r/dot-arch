@@ -1,9 +1,9 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/niri.nu *
 use ~/dot/nu/kit.nu *
 
-alias perform = niri msg action
+#-------------------------------------------------------------------------------
+# HIGH-LEVEL
 
 # The knight who says "Ni!"
 def main [] {
@@ -12,14 +12,13 @@ def main [] {
 
 # Spawn a terminal
 def "main toggle-term" [] {
-    let $ws = (main focused-workspace)
-    let $w = (nim windows | where workspace_id == $ws.id | where app_id == term | first?)
+    let $w = (main windows-in-focused-workspace | where app_id == term | first?)
     if ($w | is-empty) {
         kitty --app-id term
     } else if $w.is_focused {
-        perform focus-window-previous
+        main focus-previous-window
     } else {
-        perform focus-window --id $w.id
+        main focus-window $w.id
     }
 }
 
@@ -28,7 +27,7 @@ def "main spawn-cli-app" [$id: string, ...$cmd] {
     kitty --app-id $id ...$cmd
 }
 
-# Pick something off a menu
+# Pick something from a menu
 def "main pick" [] {
     help main pick
 }
@@ -43,14 +42,6 @@ def "main pick app" [] {
     modal app
 }
 
-#-------------------------------------------------------------------------------
-
-def "main focused-workspace" [] {
-    nim workspaces | where is_focused == true | first
-}
-
-#-------------------------------------------------------------------------------
-
 # Run a command inside of a modal terminal
 def --wrapped modal [...$cmd] {
     let $pid = (nim windows | where app_id == modal | get pid.0?)
@@ -59,4 +50,51 @@ def --wrapped modal [...$cmd] {
     } else {
         kill $pid
     }
+}
+
+#-------------------------------------------------------------------------------
+# ACTIONS
+
+alias perform = niri msg action
+
+# Focus the window that previously had focus
+def "main focus-previous-window" [] {
+    perform focus-window-previous
+}
+
+# Focus a window
+def "main focus-window" [$id] {
+    perform focus-window --id $id
+}
+
+#-------------------------------------------------------------------------------
+# QUERIES
+
+# Get the focused workspace
+def "main focused-workspace" [] {
+    main workspaces | where is_focused == true | first
+}
+
+# Get the focused window
+def "main focused-window" [] {
+    main windows-in-focused-workspace | where is_focused == true | first?
+}
+
+# List windows in focused workspace
+def "main windows-in-focused-workspace" [] {
+    main windows | where workspace_id == (main focused-workspace).id
+}
+
+# List workspaces
+def "main workspaces" [] {
+    msg workspaces
+}
+
+# List windows
+def "main windows" [] {
+    msg windows
+}
+
+def --wrapped msg [...$args] {
+    niri msg -j ...$args | from json
 }
