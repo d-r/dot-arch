@@ -19,6 +19,7 @@ def "main pick" [] {
 def "main list" [] {
     let $all = [
         (project ~/dot)
+        (project ~/me)
         (project ~/lab)
         (project ~/vault obsidian)
         (projects-in ~/src)
