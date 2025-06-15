@@ -55,24 +55,38 @@ def --wrapped modal [...$cmd] {
 #-------------------------------------------------------------------------------
 # ACTIONS
 
-alias perform = niri msg action
+alias act = niri msg action
 
-# Focus the window that previously had focus
-def "main focus-previous-window" [] {
-    perform focus-window-previous
+# Spawn a command
+def --wrapped "main spawn" [...$cmd] {
+    act spawn -- ...$cmd
 }
 
-# Focus a window
+# Focus a window by ID
 def "main focus-window" [$id] {
-    perform focus-window --id $id
+    act focus-window --id $id
+}
+
+# Focus the previously focused window
+def "main focus-previous-window" [] {
+    act focus-window-previous
+}
+
+# Focus a workspace by index/name
+def "main focus-workspace" [$ref] {
+    act focus-workspace $ref
+}
+
+# Focus the previously focused workspace
+def "main focus-previous-workspace" [] {
+    act focus-workspace-previous
 }
 
 #-------------------------------------------------------------------------------
 # QUERIES
 
-# Get the focused workspace
-def "main focused-workspace" [] {
-    main workspaces | where is_focused == true | first
+def --wrapped msg [...$args] {
+    niri msg -j ...$args | from json
 }
 
 # Get the focused window
@@ -80,21 +94,23 @@ def "main focused-window" [] {
     main windows-in-focused-workspace | where is_focused == true | first?
 }
 
-# List windows in focused workspace
+# List windows in the focused workspace
 def "main windows-in-focused-workspace" [] {
     main windows | where workspace_id == (main focused-workspace).id
 }
 
-# List workspaces
-def "main workspaces" [] {
-    msg workspaces
-}
-
 # List windows
 def "main windows" [] {
-    msg windows
+    msg windows | sort-by id
 }
 
-def --wrapped msg [...$args] {
-    niri msg -j ...$args | from json
+# Get the focused workspace
+def "main focused-workspace" [] {
+    main workspaces | where is_focused == true | first
 }
+
+# List workspaces
+def "main workspaces" [] {
+    msg workspaces | sort-by idx
+}
+
