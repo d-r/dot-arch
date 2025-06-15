@@ -2,7 +2,7 @@
 
 use ~/dot/nu/kit.nu *
 
-# The knight who says "Ni!"
+# Uh...
 def main [] {
     help main
 }
