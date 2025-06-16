@@ -253,7 +253,7 @@ window-rule {
 
     open-floating true
     default-floating-position x=0 y=0 relative-to="top"
-    default-column-width { proportion 1.0; }
+    default-column-width { proportion 0.6; }
     default-window-height { proportion 1.0; }
     border {
         off
