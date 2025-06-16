@@ -17,7 +17,7 @@ export def "desktop apps" []: nothing -> table {
 # List relevant entries found on the system
 export def "desktop entries" []: nothing -> table {
     gather [
-        (desktop entries-in ~/.local/share/application)
+        (desktop entries-in ~/.local/share/applications)
         (desktop entries-in /usr/share/applications)
     ]
 }
