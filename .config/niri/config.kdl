@@ -27,6 +27,7 @@ binds {
     Mod+O { spawn "uh" "pick" "bookmark"; }
     Mod+P { spawn "uh" "pick" "project"; }
     Mod+R { spawn "uh" "pick" "app"; }
+    // Mod+R { spawn "fuzzel"; }
 
     // LAYOUT
 
@@ -265,7 +266,6 @@ hotkey-overlay {
 }
 
 environment {
-    DISPLAY ":0" // Needed by X11 apps
     ELECTRON_OZONE_PLATFORM_HINT "auto" // Needed by Electron apps
 }
 
@@ -277,7 +277,6 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "ad
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "adw-gtk3"
 
 // Utilities
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 spawn-at-startup "swaync"
