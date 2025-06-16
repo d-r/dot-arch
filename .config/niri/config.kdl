@@ -182,7 +182,7 @@ layout {
     }
 
     focus-ring {
-        width 2
+        width 1
 
         // The default colors
         active-color "#7fc8ff"
@@ -229,7 +229,7 @@ window-rule {
     // pixel border. It'll get *no border* when the width is 1.
     // So give it an extra pixel.
     focus-ring {
-        width 3
+        width 2
     }
 }
 
