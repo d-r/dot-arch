@@ -9,25 +9,20 @@ export def desktop [] {} {
 
 # List GUI applications
 export def "desktop apps" []: nothing -> table {
-    desktop entries
-        | uniq-by name
-        | where ($it.type == "Application" and $it.is_cli == false)
-        | reject type is_cli
-}
-
-# List relevant entries found on the system
-export def "desktop entries" []: nothing -> table {
-    let $all = [
+    [
         (desktop entries-in ~/.local/share/applications)
         (desktop entries-in /usr/share/applications)
     ]
-    $all | flatten | sort-by name
+    | flatten
+    | sort-by name
+    | uniq-by name
+    | where ($it.type == "Application" and $it.is_cli == false)
+    | reject type is_cli
 }
 
 # List all entries found inside of a folder
 export def "desktop entries-in" [$dir_path: string]: nothing -> table {
-    let $p = ($dir_path | path expand | path join "*.desktop")
-    glob $p | each { desktop open $in }
+    glob ($dir_path | path join "*.desktop") | each { desktop open $in }
 }
 
 # Open a .desktop file and parse it into a record
@@ -37,7 +32,7 @@ export def "desktop open" [$path: string]: nothing -> record {
         name: $e.Name
         comment: ($e.Comment? | default "")
         type: $e.Type
-        is_cli: (($e.Terminal? | default "false") | into bool)
+        is_cli: ($e.Terminal? | default "false" | into bool)
         desktop_file: $path
     }
 }
