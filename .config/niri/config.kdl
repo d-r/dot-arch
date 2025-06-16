@@ -35,7 +35,8 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Backslash { focus-window-down-or-top; }
 
-    Mod+F { maximize-column; }
+    // Mod+F { maximize-column; }
+    Mod+F { switch-preset-column-width; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Ctrl+F { expand-column-to-available-width; }
 
@@ -167,14 +168,13 @@ gestures {
 
 layout {
     gaps 8
-    center-focused-column "never"
+    center-focused-column "on-overflow"
     default-column-display "tabbed"
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.49; }
     preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
+        proportion 0.49
+        proportion 0.98
     }
 
     border {
@@ -243,7 +243,7 @@ window-rule {
     match app-id="obsidian"
     match app-id="Renoise"
 
-    open-maximized true
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
