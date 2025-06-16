@@ -23,6 +23,7 @@ def "main list" [] {
         (project ~/lab)
         (project ~/vault obsidian)
         (projects-in ~/src)
+        (projects-in ~/co)
     ]
     $all | flatten
 }
