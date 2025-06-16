@@ -24,21 +24,3 @@ export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
         | each { [$in.k, $kv_sep, $in.v] | str join }
         | str join $pair_sep
 }
-
-# Because this:
-#
-#    gather [
-#        (entries-in ~/.local/share/application)
-#        (entries-in /usr/share/applications)
-#    ]
-#
-# ...looks better than *this*:
-#
-#    [
-#        (entries-in ~/.local/share/application)
-#        (entries-in /usr/share/applications)
-#    ] | flatten
-#
-export def gather [$xs] {
-    $xs | flatten
-}

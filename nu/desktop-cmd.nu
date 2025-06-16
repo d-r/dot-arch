@@ -10,16 +10,18 @@ export def desktop [] {} {
 # List GUI applications
 export def "desktop apps" []: nothing -> table {
     desktop entries
+        | uniq-by name
         | where ($it.type == "Application" and $it.is_cli == false)
         | reject type is_cli
 }
 
 # List relevant entries found on the system
 export def "desktop entries" []: nothing -> table {
-    gather [
+    let $all = [
         (desktop entries-in ~/.local/share/applications)
         (desktop entries-in /usr/share/applications)
     ]
+    $all | flatten | sort-by name
 }
 
 # List all entries found inside of a folder
