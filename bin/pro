@@ -13,7 +13,7 @@ def main [] {
 
 
 def "main pick" [] {
-    main list | pick name dir
+    main list | pick name dir --match-column name
 }
 
 def "main list" [] {
