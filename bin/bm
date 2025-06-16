@@ -1,9 +1,10 @@
 #!/usr/bin/env nu
 
 use ~/dot/nu/picker.nu *
+use ~/dot/nu/niri.nu *
 
-def main [$cmd = 'xdg-open'] {
-    ^($cmd) (main pick)
+def main [] {
+    ni spawn xdg-open (main pick)
 }
 
 # Open bookmark picker

@@ -4,9 +4,10 @@
 # https://archlinux.org/packages/?name=dex
 
 use ~/dot/nu/picker.nu *
+use ~/dot/nu/niri.nu *
 
 def main [] {
-    niri msg action spawn -- dex (main pick)
+    ni spawn dex (main pick)
 }
 
 def "main pick" [] {
