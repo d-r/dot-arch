@@ -178,20 +178,16 @@ layout {
     }
 
     border {
-        width 2
-
-        // These colors were taken from kitty/tokyonight_night.conf
-        active-color "#7aa2f7"
-        inactive-color "#292e42"
-        urgent-color "#db4b4b"
+        off
     }
 
-    // Borders are always visible, as windows shrink to accommodate their width.
-    // The focus ring spills out into the gaps, and will be clipped if there's
-    // not enough space for it.
-    // That ain't what I want.
     focus-ring {
-        off
+        width 2
+
+        // The default colors
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
     }
 
     tab-indicator {
@@ -228,11 +224,11 @@ window-rule {
 window-rule {
     match app-id="firefox"
 
-    // For some reason, Firefox eats up one pixel of its window border.
+    // For some reason, Firefox eats up one pixel of any border given to it.
     // So if the global border width is 2, a Firefox window will get a single
     // pixel border. It'll get *no border* when the width is 1.
     // So give it an extra pixel.
-    border {
+    focus-ring {
         width 3
     }
 }
@@ -254,6 +250,9 @@ window-rule {
     default-column-width { proportion 0.6; }
     default-window-height { proportion 1.0; }
     border {
+        off
+    }
+    focus-ring {
         off
     }
 }
