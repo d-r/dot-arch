@@ -36,7 +36,8 @@
         "interval": 5,
         "format": "{signalStrength:3}% <span foreground=\"#777\">WI</span>",
         "format-disconnected": "DIS <span foreground=\"#777\">WI</span>",
-        "tooltip-format": "{essid}\n{ipaddr}\n{ifname}"
+        "tooltip-format": "{essid}\n{ipaddr}\n{ifname}",
+        "on-click": "networkmanager_dmenu"
     },
     "battery": {
         "interval": 5,
