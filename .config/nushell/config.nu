@@ -19,6 +19,7 @@ $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 # ALIASES AND COMMANDS
 
 use kit.nu *
+use desktop-cmd.nu *
 use picker.nu *
 use hypr.nu *
 use niri.nu *
