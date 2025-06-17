@@ -334,14 +334,6 @@ window-rule {
     open-focused false
 }
 
-spawn-at-startup "rustrover"
-window-rule {
-    match at-startup=true app-id="rustrover"
-
-    open-on-workspace "dev"
-    open-focused false
-}
-
 spawn-at-startup "renoise"
 window-rule {
     match at-startup=true app-id="Renoise"
