@@ -3,17 +3,9 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
-# Uh...
-def main [] {
-    help main
-}
-
-#-------------------------------------------------------------------------------
-# HIGH-LEVEL
-
 const $ACCENT_COLOR = "#7fc8ff"
 const $ACTIVE_BG_COLOR = "#1a1a1a"
-const $THEME = {
+const $SK_THEME = {
     prompt: "#555555",
     cursor: $ACCENT_COLOR,
     matched: $ACCENT_COLOR,
@@ -23,11 +15,57 @@ const $THEME = {
     current_match_bg: $ACTIVE_BG_COLOR,
 }
 
-let $theme = ($THEME | dict-str ":" ",")
+let $sk_theme = ($SK_THEME | dict-str ":" ",")
+let $sk_options = $"--reverse --no-info --color=($sk_theme)"
 
-let $sk_options = $"--reverse --no-info --color=($theme)"
+# Uh...
+def main [] {
+    help main
+}
 
-# Spawn a terminal
+# Pick something from a menu
+def "main pick" [] {
+    help main pick
+}
+
+# Pick a bookmark
+def "main pick bookmark" [] {
+    main modal bm
+}
+
+# Pick an application
+def "main pick app" [] {
+    main modal app
+}
+
+# Pick a project
+def "main pick project" [] {
+    main modal pro
+}
+
+# Run a Nushell command inside of a modal terminal
+def "main modal" [$cmd: string] {
+    let $pid = (ni windows | where app_id == modal | get pid.0?)
+    if ($pid | is-empty) {
+        main term $cmd --config modal --app-id modal
+    } else {
+        kill $pid
+    }
+}
+
+# Run a Nushell command inside of a terminal
+def "main term" [$cmd: string, --config:string, --app-id:string] {
+    let $config = ($config | default kitty) ++ ".conf"
+    let $config = ("~/.config/kitty" | path expand | path join $config)
+
+    let $app_id = ($app_id | default kitty)
+
+    let $cmd = [nu -c $'SKIM_DEFAULT_OPTIONS="($sk_options)" ($cmd)']
+
+    kitty --config $config --app-id $app_id -- ...$cmd
+}
+
+# Toggle a terminal in the current workspace
 def "main toggle-term" [] {
     let $w = (ni windows-in-focused-workspace | where app_id == term | first?)
     if ($w | is-empty) {
@@ -42,42 +80,4 @@ def "main toggle-term" [] {
 # Run a CLI app inside of a terminal
 def "main spawn-cli-app" [$id: string, ...$cmd] {
     kitty --app-id $id ...$cmd
-}
-
-# Pick something from a menu
-def "main pick" [] {
-    help main pick
-}
-
-# Pick a bookmark
-def "main pick bookmark" [] {
-    modal bm
-}
-
-# Pick an application
-def "main pick app" [] {
-    modal app
-}
-
-# Pick a project
-def "main pick project" [] {
-    modal pro
-}
-
-# Run a command inside of a modal terminal
-def --wrapped modal [...$cmd] {
-    let $pid = (ni windows | where app_id == modal | get pid.0?)
-    if ($pid | is-empty) {
-        let $cmd = (main nu-command ...$cmd)
-        kitty --config ~/.config/kitty/modal.conf --app-id=modal -- ...$cmd
-    } else {
-        kill $pid
-    }
-}
-
-# Generate a [nu -c ...] command to be executed in a terminal
-def "main nu-command" [...$cmd] {
-    let $opt = $'SKIM_DEFAULT_OPTIONS="($sk_options)" '
-    let $cmd = $opt ++ ($cmd | str join " ")
-    [nu -c $cmd]
 }
