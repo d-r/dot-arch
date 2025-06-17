@@ -3,6 +3,8 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
+alias spawn = ni spawn
+
 const $ACCENT_COLOR = "#7fc8ff"
 const $ACTIVE_BG_COLOR = "#1a1a1a"
 const $SK_THEME = {
@@ -43,18 +45,36 @@ def "main pick project" [] {
     main modal pro
 }
 
+# Spawn a terminal in the current context
+def "main term" [] {
+    spawn kitty -d (main cwd)
+}
+
+# Get the working directory for the focused workspace
+def "main cwd" [] {
+    match (ni focused-workspace).name {
+        "media" => "~/media"
+        "vault" => "~/vault"
+        "web" => "~/dl"
+        "dot" => "~/dot"
+        "dev" => "~/src"
+        _ => "~"
+    }
+    | path expand
+}
+
 # Run a Nushell command inside of a modal terminal
 def "main modal" [$cmd: string] {
     let $pid = (ni windows | where app_id == modal | get pid.0?)
     if ($pid | is-empty) {
-        main term $cmd --config modal --app-id modal
+        main nu-term $cmd --config modal --app-id modal
     } else {
         kill $pid
     }
 }
 
 # Run a Nushell command inside of a terminal
-def "main term" [$cmd: string, --config:string, --app-id:string] {
+def "main nu-term" [$cmd: string, --config:string, --app-id:string] {
     let $config = ($config | default kitty) ++ ".conf"
     let $config = ("~/.config/kitty" | path expand | path join $config)
 
@@ -62,14 +82,14 @@ def "main term" [$cmd: string, --config:string, --app-id:string] {
 
     let $cmd = [nu -c $'SKIM_DEFAULT_OPTIONS="($sk_options)" ($cmd)']
 
-    kitty --config $config --app-id $app_id -- ...$cmd
+    spawn kitty --config $config --app-id $app_id -- ...$cmd
 }
 
 # Toggle a terminal in the current workspace
 def "main toggle-term" [] {
     let $w = (ni windows-in-focused-workspace | where app_id == term | first?)
     if ($w | is-empty) {
-        kitty --app-id term
+        spawn kitty --app-id term
     } else if $w.is_focused {
         ni focus-previous-window
     } else {
@@ -79,5 +99,5 @@ def "main toggle-term" [] {
 
 # Run a CLI app inside of a terminal
 def "main spawn-cli-app" [$id: string, ...$cmd] {
-    kitty --app-id $id ...$cmd
+    spawn kitty --app-id $id ...$cmd
 }
