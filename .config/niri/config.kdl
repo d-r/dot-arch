@@ -224,8 +224,12 @@ hotkey-overlay {
 }
 
 environment {
+    BROWSER "firefox"
     ELECTRON_OZONE_PLATFORM_HINT "auto" // Needed by Electron apps
 }
+
+// MIME types
+
 
 // GTK4 dark mode
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
