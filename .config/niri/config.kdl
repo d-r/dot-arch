@@ -16,6 +16,8 @@ binds {
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+Slash { show-hotkey-overlay; }
 
+    Mod+F12 { switch-layout "next"; }
+
     Mod+Backspace { close-window; }
 
     Mod+Return { spawn "uh" "term"; }
@@ -149,7 +151,6 @@ input {
     keyboard {
         xkb {
             layout "us,se"
-            options "grp:alt_shift_toggle" // Switch layout with alt+shift
         }
     }
 
