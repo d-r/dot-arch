@@ -13,14 +13,12 @@
 
 binds {
     Mod+Shift+Delete { quit skip-confirmation=true; }
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
     Mod+Backspace { close-window; }
 
-    Mod+Shift+P { power-off-monitors; }
-
-    Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Grave repeat=false { toggle-overview; }
-
-    Mod+Return hotkey-overlay-title="Open terminal" { spawn "kitty"; }
+    Mod+Return { spawn "kitty"; }
 
     // PICKERS
 
@@ -29,24 +27,19 @@ binds {
     Mod+R { spawn "uh" "pick" "app"; }
     // Mod+R { spawn "fuzzel"; }
 
-    // LAYOUT
+    // TABS
 
-    Mod+W { toggle-column-tabbed-display; }
     Mod+BracketLeft { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Backslash { focus-window-down-or-top; }
 
-    // Mod+F { maximize-column; }
-    Mod+F { switch-preset-column-width; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+Ctrl+F { expand-column-to-available-width; }
+    // LAYOUT
 
-    Mod+Semicolon { switch-preset-column-width; }
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+M { switch-preset-column-width; }
+    Mod+F { fullscreen-window; }
 
     Mod+C { center-column; }
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Shift+C { center-visible-columns; }
 
     Mod+V { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
@@ -66,6 +59,7 @@ binds {
     Mod+Home { focus-column-first; }
     Mod+End { focus-column-last; }
 
+    Mod+Grave repeat=false { toggle-overview; }
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -124,7 +118,14 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // TODO: Learn what this does
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }
