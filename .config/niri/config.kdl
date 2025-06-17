@@ -59,6 +59,8 @@ binds {
     Mod+Home { focus-column-first; }
     Mod+End { focus-column-last; }
 
+    Mod+Tab { focus-window-previous; }
+
     Mod+Grave repeat=false { toggle-overview; }
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
