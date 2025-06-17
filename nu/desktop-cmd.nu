@@ -14,10 +14,10 @@ export def "desktop apps" []: nothing -> table {
         (desktop entries-in /usr/share/applications)
     ]
     | flatten
-    | sort-by name
-    | uniq-by name
     | where ($it.type == "Application" and $it.is_cli == false)
     | reject type is_cli
+    | uniq-by name
+    | sort-by name
 }
 
 # List all entries found inside of a folder
