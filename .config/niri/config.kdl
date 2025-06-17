@@ -238,9 +238,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="rmpc"
     match app-id="firefox"
     match app-id="Brave-browser"
     match app-id="obsidian"
+    match app-id="rustrover"
     match app-id="Renoise"
 
     default-column-width { proportion 0.98; }
@@ -262,7 +264,7 @@ window-rule {
 }
 
 //------------------------------------------------------------------------------
-// STARTUP
+// INIT
 
 hotkey-overlay {
     skip-at-startup
@@ -285,5 +287,60 @@ spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 spawn-at-startup "swaync"
 spawn-at-startup "udiskie"
 
-// Apps
+//------------------------------------------------------------------------------
+// WORKSPACES
+
+workspace "media"
+workspace "vault"
+workspace "web"
+workspace "dot"
+workspace "dev"
+workspace "prod"
+
+spawn-at-startup "kitty" "--app-id" "rmpc" "rmpc"
+window-rule {
+    match at-startup=true app-id="rmpc"
+
+    open-on-workspace "media"
+    open-focused false
+}
+
+spawn-at-startup "obsidian"
+window-rule {
+    match at-startup=true app-id="obsidian"
+
+    open-on-workspace "vault"
+    open-focused false
+}
+
 spawn-at-startup "firefox"
+window-rule {
+    match at-startup=true app-id="firefox"
+
+    open-on-workspace "web"
+    open-focused true
+}
+
+spawn-at-startup "code" "/home/dan/dot"
+window-rule {
+    match at-startup=true app-id="code"
+
+    open-on-workspace "dot"
+    open-focused false
+}
+
+spawn-at-startup "rustrover"
+window-rule {
+    match at-startup=true app-id="rustrover"
+
+    open-on-workspace "dev"
+    open-focused false
+}
+
+spawn-at-startup "renoise"
+window-rule {
+    match at-startup=true app-id="Renoise"
+
+    open-on-workspace "prod"
+    open-focused false
+}
