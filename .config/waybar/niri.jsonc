@@ -50,7 +50,8 @@
     },
     "niri/language": {
         "format-en": "US",
-        "format-sv": "SE"
+        "format-sv": "SE",
+        "on-click": "niri msg action switch-layout next"
     },
     "clock": {
         "interval": 60,
