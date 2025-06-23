@@ -263,20 +263,6 @@ window-rule {
 }
 
 window-rule {
-    match app-id="rmpc"
-    match app-id="Brave-browser"
-    match app-id="obsidian"
-    match app-id="rustrover"
-    match app-id="Renoise"
-
-    // Removed, as it also sets the width of all child windows, such as Downloads,
-    // and the Raindrop save dialog.
-    // match app-id="firefox"
-
-    default-column-width { proportion 0.98; }
-}
-
-window-rule {
     match app-id="modal"
 
     open-floating true
