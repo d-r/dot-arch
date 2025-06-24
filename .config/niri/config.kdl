@@ -241,7 +241,7 @@ spawn-at-startup "waybar" "-c" "/home/dan/.config/waybar/niri.jsonc"
 spawn-at-startup "swaync"
 
 // Applications
-spawn-at-startup "brave"
+spawn-at-startup "firefox"
 
 //------------------------------------------------------------------------------
 // WINDOWS
