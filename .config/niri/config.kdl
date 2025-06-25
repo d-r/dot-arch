@@ -232,6 +232,7 @@ environment {
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
 
 // GTK3 dark mode
+// https://archlinux.org/packages/extra/any/adw-gtk-theme/
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "adw-gtk3-dark"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "adw-gtk3"
 
