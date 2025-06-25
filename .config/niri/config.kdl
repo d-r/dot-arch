@@ -183,11 +183,17 @@ layout {
     }
 
     border {
-        off
+        width 2
+
+        // The default colors
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
     }
 
     focus-ring {
-        width 1
+        off
+        width 2
 
         // The default colors
         active-color "#7fc8ff"
@@ -260,8 +266,8 @@ window-rule {
     // So if the global border width is 2, a Firefox window will get a single
     // pixel border. It'll get *no border* when the width is 1.
     // So give it an extra pixel.
-    focus-ring {
-        width 2
+    border {
+        width 3
     }
 }
 
@@ -273,9 +279,6 @@ window-rule {
     default-column-width { proportion 0.6; }
     default-window-height { proportion 1.0; }
     border {
-        off
-    }
-    focus-ring {
         off
     }
 }
