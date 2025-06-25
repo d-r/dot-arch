@@ -173,6 +173,7 @@ gestures {
 
 layout {
     gaps 8
+    background-color "transparent"
     center-focused-column "on-overflow"
     default-column-display "tabbed"
 
@@ -251,7 +252,15 @@ spawn-at-startup "swaync"
 spawn-at-startup "firefox"
 
 //------------------------------------------------------------------------------
-// WINDOWS
+// RULES
+
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+    // This is for swaybg; change for other wallpaper tools.
+    // Find the right namespace by running niri msg layers.
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
 
 window-rule {
     // Only draw the border *around* the window, don't draw it as a rectangle
