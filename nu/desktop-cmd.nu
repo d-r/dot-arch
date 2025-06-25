@@ -1,5 +1,4 @@
 use kit.nu *
-use picker.nu *
 use niri.nu *
 
 # Read .desktop files

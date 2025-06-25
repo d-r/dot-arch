@@ -4,7 +4,7 @@
 plugin add nu_plugin_formats
 
 use ~/dot/nu/desktop-cmd.nu *
-use ~/dot/nu/picker.nu *
+use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
 # Pick a GUI application and run it
