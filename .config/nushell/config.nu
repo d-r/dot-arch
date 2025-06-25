@@ -34,7 +34,7 @@ alias tt = taskwarrior-tui
 alias yt = yt-dlp
 alias rr = rustrover
 
-alias in = yay -Sy # install
+alias in = yay -S # install
 alias un = yay -Rs # uninstall
 alias up = yay # update
 
