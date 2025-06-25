@@ -54,8 +54,6 @@ def --env y [...args] {
 #-------------------------------------------------------------------------------
 # THIRD-PARTY
 
-source $"($nu.home-path)/.cargo/env.nu"
-
 # zoxide init nushell | save -f zoxide.nu
 source zoxide.nu
 
