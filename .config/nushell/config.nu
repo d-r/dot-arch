@@ -26,7 +26,6 @@ use niri.nu *
 
 alias c = clear
 alias e = ^($env.EDITOR)
-alias hx = helix
 alias l = eza -l --group-directories-first
 alias j = just
 alias t = task
