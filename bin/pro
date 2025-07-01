@@ -58,7 +58,7 @@ def project [$dir, $editor?] {
 
 def editor-for [$dir] {
     if ([$dir, "Cargo.toml"] | path join | path exists) {
-        "rustrover"
+        "/home/dan/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover"
     } else {
         "code"
     }
