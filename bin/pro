@@ -7,7 +7,7 @@ def main [] {
     let $p = (main pick)
 
     let $dir = $p.dir | path expand
-    ni spawn $p.editor $dir
+    wm spawn $p.editor $dir
 }
 
 

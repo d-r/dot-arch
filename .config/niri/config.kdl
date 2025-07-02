@@ -27,7 +27,7 @@ binds {
     Mod+O { spawn "uh" "pick" "bookmark"; }
     Mod+P { spawn "uh" "pick" "project"; }
     Mod+R { spawn "uh" "pick" "app"; }
-    // Mod+R { spawn "fuzzel"; }
+    Mod+Shift+R { spawn "fuzzel"; }
 
     // TABS
 

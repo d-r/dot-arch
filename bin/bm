@@ -4,7 +4,7 @@ use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
 def main [] {
-    ni spawn xdg-open (main pick)
+    wm spawn xdg-open (main pick)
 }
 
 # Open bookmark picker

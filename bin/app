@@ -13,5 +13,5 @@ use ~/dot/nu/niri.nu *
 # https://archlinux.org/packages/?name=dex
 export def main [] {
     let $app = (desktop apps | select desktop_file name | pick name)
-    ni spawn dex $app.desktop_file
+    wm spawn dex $app.desktop_file
 }

@@ -3,7 +3,7 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
-alias spawn = ni spawn
+alias spawn = wm spawn
 
 const $ACCENT_COLOR = "#7fc8ff"
 const $ACTIVE_BG_COLOR = "#1a1a1a"
@@ -52,7 +52,7 @@ def "main term" [] {
 
 # Get the working directory for the focused workspace
 def "main cwd" [] {
-    match (ni focused-workspace).name {
+    match (wm focused-workspace).name {
         "media" => "~/media"
         "vault" => "~/vault"
         "web" => "~/dl"
@@ -65,7 +65,7 @@ def "main cwd" [] {
 
 # Run a Nushell command inside of a modal terminal
 def "main modal" [$cmd: string] {
-    let $pid = (ni windows | where app_id == modal | get pid.0?)
+    let $pid = (wm windows | where app_id == modal | get pid.0?)
     if ($pid | is-empty) {
         main nu-term $cmd --config modal --app-id modal
     } else {
@@ -87,13 +87,13 @@ def "main nu-term" [$cmd: string, --config:string, --app-id:string] {
 
 # Toggle a terminal in the current workspace
 def "main toggle-term" [] {
-    let $w = (ni windows-in-focused-workspace | where app_id == term | first?)
+    let $w = (wm windows-in-focused-workspace | where app_id == term | first?)
     if ($w | is-empty) {
         spawn kitty --app-id term
     } else if $w.is_focused {
-        ni focus-previous-window
+        wm focus-previous-window
     } else {
-        ni focus-window $w.id
+        wm focus-window $w.id
     }
 }
 
