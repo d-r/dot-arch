@@ -249,11 +249,8 @@ spawn-at-startup "swaybg" "--image" "/home/dan/bucket/wallpapers/alena-aenami-al
 spawn-at-startup "waybar"
 spawn-at-startup "swaync"
 
-// Applications
-spawn-at-startup "firefox"
-
 //------------------------------------------------------------------------------
-// RULES
+// WINDOWS
 
 // Make the wallpaper stationary, rather than moving with workspaces.
 layer-rule {
@@ -306,3 +303,39 @@ window-rule {
        draw-behind-window true
    }
 }
+
+//------------------------------------------------------------------------------
+// WORKSPACES
+
+workspace "web"
+workspace "dev"
+workspace "snd"
+workspace "org"
+
+window-rule {
+    match app-id="firefox" at-startup=true
+
+    open-on-workspace "web"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+window-rule {
+    match app-id="Renoise" at-startup=true
+
+    open-on-workspace "snd"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+window-rule {
+    match app-id="obsidian" at-startup=true
+
+    open-on-workspace "org"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+spawn-at-startup "firefox"
+spawn-at-startup "renoise"
+spawn-at-startup "obsidian"
