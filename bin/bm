@@ -3,6 +3,9 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
+const $FILE = '~/bucket/bookmarks.toml' | path expand
+
+# Bookmarks
 def main [] {
     wm spawn xdg-open (main pick)
 }
@@ -36,22 +39,13 @@ def "main set" [$key: string, $url: string] {
 # Edit bookmarks with $EDITOR
 def "main edit" [] {
     let $editor = $env.EDITOR? | default micro
-    ^($editor) (file-path)
-}
-
-#-------------------------------------------------------------------------------
-# PRIVATE
-
-const $FILE_PATH = '~/bucket/bookmarks.toml'
-
-def file-path []: nothing -> string {
-    $FILE_PATH | path expand
+    ^($editor) $FILE
 }
 
 def open-file []: nothing -> record {
-    open (file-path)
+    open $FILE
 }
 
 def save-to-file []: record -> nothing {
-    $in | to toml | save -f (file-path)
+    $in | to toml | save -f $FILE
 }
