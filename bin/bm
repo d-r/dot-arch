@@ -33,7 +33,7 @@ def "main set" [$key: string, $url: string] {
     open-file | update $key $url | save-to-file
 }
 
-# Edit bookmarks.json with $EDITOR
+# Edit bookmarks with $EDITOR
 def "main edit" [] {
     let $editor = $env.EDITOR? | default micro
     ^($editor) (file-path)
@@ -42,7 +42,7 @@ def "main edit" [] {
 #-------------------------------------------------------------------------------
 # PRIVATE
 
-const $FILE_PATH = '~/bucket/bookmarks.json'
+const $FILE_PATH = '~/bucket/bookmarks.toml'
 
 def file-path []: nothing -> string {
     $FILE_PATH | path expand
@@ -53,5 +53,5 @@ def open-file []: nothing -> record {
 }
 
 def save-to-file []: record -> nothing {
-    $in | to json | save -f (file-path)
+    $in | to toml | save -f (file-path)
 }
