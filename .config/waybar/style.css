@@ -22,7 +22,6 @@
 }
 #workspaces button.active {
     color: #7fc8ff;
-    font-weight: bold;
 }
 #workspaces button.urgent {
     color: #c9545d;
