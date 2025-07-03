@@ -33,7 +33,7 @@ alias yt = yt-dlp
 alias rr = rustrover
 
 alias in = yay -S # install
-alias un = yay -Rs # uninstall
+alias un = yay -Rc # uninstall
 alias up = yay # update
 
 # Wrapper for yazi that changes the current working directory on exit.
