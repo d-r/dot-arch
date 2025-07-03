@@ -35,6 +35,7 @@ alias rr = rustrover
 alias in = yay -S # install
 alias un = yay -Rc # uninstall
 alias up = yay # update
+alias cl = yay -Yc # clean
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
