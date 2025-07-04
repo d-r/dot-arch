@@ -311,7 +311,7 @@ workspace "web"
 workspace "dot"
 workspace "dev"
 workspace "snd"
-workspace "org"
+workspace "vlt"
 
 window-rule {
     match app-id="firefox" at-startup=true
@@ -339,7 +339,7 @@ window-rule {
 window-rule {
     match app-id="obsidian" at-startup=true
 
-    open-on-workspace "org"
+    open-on-workspace "vlt"
     open-focused false
     default-column-width { proportion 0.98; }
 }
