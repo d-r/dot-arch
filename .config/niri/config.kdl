@@ -308,6 +308,7 @@ window-rule {
 // WORKSPACES
 
 workspace "web"
+workspace "dot"
 workspace "dev"
 workspace "snd"
 workspace "org"
@@ -318,6 +319,13 @@ window-rule {
     open-on-workspace "web"
     open-focused false
     default-column-width { proportion 0.98; }
+}
+
+window-rule {
+    match app-id="code" at-startup=true
+
+    open-on-workspace "dot"
+    open-focused false
 }
 
 window-rule {
@@ -337,5 +345,6 @@ window-rule {
 }
 
 spawn-at-startup "firefox"
+spawn-at-startup "code" "/home/dan/dot"
 spawn-at-startup "renoise"
 spawn-at-startup "obsidian"
