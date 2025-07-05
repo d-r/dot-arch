@@ -329,7 +329,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Renoise" at-startup=true
+    match app-id="sunvox" at-startup=true
 
     open-on-workspace "snd"
     open-focused false
@@ -346,5 +346,5 @@ window-rule {
 
 spawn-at-startup "firefox"
 spawn-at-startup "code" "/home/dan/dot"
-spawn-at-startup "renoise"
+spawn-at-startup "sunvox"
 spawn-at-startup "obsidian"
