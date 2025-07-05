@@ -1,0 +1,3 @@
+[submodule ".config/qutebrowser/doom_one"]
+	path = .config/qutebrowser/doom_one
+	url = git@github.com:Rehpotsirhc-z/qutebrowser-doom-one.git

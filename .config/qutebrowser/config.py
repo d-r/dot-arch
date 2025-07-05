@@ -124,3 +124,13 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/da
 # image inversion": qutebrowser default settings.
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
+
+# Theme
+import doom_one
+
+doom_one.setup(c, {
+    "spacing": {
+        "vertical": 5,
+        "horizontal": 5
+    }
+})
