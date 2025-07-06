@@ -30,5 +30,3 @@ export MANPAGER='nvim +Man!'
 
 export FZF_DEFAULT_OPTS="--reverse" # Put prompt at the top
 export SKIM_DEFAULT_OPTIONS="--reverse" # Put prompt at the top
-
-export NVIM_APPNAME=lazyvim
