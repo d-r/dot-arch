@@ -2,5 +2,7 @@
 use_pager = true
 
 [updates]
-auto_update = true
-auto_update_interval_hours = 24
+# Disable auto updates as it makes tealdeer chug, which defeats the purpose of
+# using "a very fast implementation of tldr in Rust".
+# I want it to start *instantly* every time I call it.
+auto_update = false
