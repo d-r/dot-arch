@@ -31,6 +31,8 @@ alias t = task
 alias tt = taskwarrior-tui
 alias yt = yt-dlp
 
+alias bw = wm spawn flatpak run com.bitwig.BitwigStudio 
+
 alias in = yay -S # install
 alias un = yay -Rc # uninstall
 alias up = yay # update
