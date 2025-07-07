@@ -30,7 +30,6 @@ alias j = just
 alias t = task
 alias tt = taskwarrior-tui
 alias yt = yt-dlp
-alias rr = rustrover
 
 alias in = yay -S # install
 alias un = yay -Rc # uninstall
