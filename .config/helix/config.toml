@@ -20,3 +20,6 @@ hidden = false # Show dotfiles
 C-s = ":write!"
 C-x = ":write-quit-all!"
 C-q = ":quit-all!"
+
+[keys.insert]
+C-s = ":write!"
