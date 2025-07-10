@@ -217,6 +217,7 @@ require("lazy").setup {
           "ron",
           "rust",
           "toml",
+          "wgsl",
         },
         -- Auto install languages that are not installed
         auto_install = true,
