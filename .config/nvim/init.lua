@@ -4,6 +4,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Enable Nerd Font icons
+vim.g.have_nerd_font = true
+
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
+
 -- Show relative line number
 vim.o.number = true
 vim.o.relativenumber = true
@@ -19,9 +25,6 @@ end)
 -- Case-insensitive search unless one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
--- Enable Nerd Font icons
-vim.g.have_nerd_font = true
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -99,7 +102,27 @@ require("lazy").setup {
         -- Disable icons
         icons = { mappings = false },
       },
-    }
+    },
+
+    -- Collection of various small independent plugins/modules
+    -- https://github.com/echasnovski/mini.nvim
+    {
+      'echasnovski/mini.nvim',
+      config = function()
+        -- File type icons
+        -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
+        require('mini.icons').setup()
+
+        -- Minimal statusline
+        -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
+        local statusline = require 'mini.statusline'
+        statusline.setup()
+        statusline.section_location = function()
+          -- Set location to LINE:COLUMN
+          return '%2l:%-2v'
+        end
+      end,
+    },
   },
 
   -- Theme that will be used when installing plugins
