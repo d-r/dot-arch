@@ -60,6 +60,32 @@ require("lazy").setup {
         }
         vim.cmd.colorscheme "tokyonight-night"
       end
+    },
+
+    -- Snacks - a collection of small quality-of-life plugins
+    -- https://github.com/folke/snacks.nvim
+    {
+      "folke/snacks.nvim",
+      priority = 1000,
+      lazy = false,
+      ---@type snacks.Config
+      opts = {
+        dashboard = { enabled = true },
+        picker = { enabled = true },
+        input = { enabled = true },
+        notifier = { enabled = true },
+        notify = { enabled = true },
+        bigfile = { enabled = true },
+        quickfile = { enabled = true },
+        indent = { enabled = true },
+        scope = { enabled = true },
+      },
+      keys = {
+        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
+        { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
+        { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      },
     }
   },
 
