@@ -1,8 +1,8 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Enable Nerd Font icons
 vim.g.have_nerd_font = true
@@ -19,7 +19,7 @@ vim.o.relativenumber = true
 -- Remove this option if you want your OS clipboard to remain independent.
 -- See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = "unnamedplus"
 end)
 
 -- Case-insensitive search unless one or more capital letters in the search term
@@ -55,7 +55,7 @@ require("lazy").setup {
       lazy = false,
       priority = 1000,
       config = function()
-        require('tokyonight').setup {
+        require("tokyonight").setup {
           styles = {
             comments = { italic = false },
             keywords = { italic = false },
@@ -123,19 +123,19 @@ require("lazy").setup {
     -- Collection of various small independent plugins/modules
     -- https://github.com/echasnovski/mini.nvim
     {
-      'echasnovski/mini.nvim',
+      "echasnovski/mini.nvim",
       config = function()
         -- File type icons
         -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
-        require('mini.icons').setup()
+        require("mini.icons").setup()
 
         -- Minimal statusline
         -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
-        local statusline = require 'mini.statusline'
+        local statusline = require "mini.statusline"
         statusline.setup()
         statusline.section_location = function()
           -- Set location to LINE:COLUMN
-          return '%2l:%-2v'
+          return "%2l:%-2v"
         end
       end,
     },
@@ -189,34 +189,34 @@ require("lazy").setup {
     -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
     -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
     {
-      'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdate',
-      main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+      "nvim-treesitter/nvim-treesitter",
+      build = ":TSUpdate",
+      main = "nvim-treesitter.configs", -- Sets main module to use for opts
       opts = {
         ensure_installed = {
-          'bash',
-          'c',
-          'cpp',
-          'css',
-          'diff',
-          'git_config',
-          'git_rebase',
-          'gitcommit',
-          'gitignore',
-          'html',
-          'ini',
-          'json',
-          'json5',
-          'kdl',
-          'lua',
-          'luadoc',
-          'markdown_inline',
-          'markdown',
-          'nu',
-          'query',
-          'ron',
-          'rust',
-          'toml',
+          "bash",
+          "c",
+          "cpp",
+          "css",
+          "diff",
+          "git_config",
+          "git_rebase",
+          "gitcommit",
+          "gitignore",
+          "html",
+          "ini",
+          "json",
+          "json5",
+          "kdl",
+          "lua",
+          "luadoc",
+          "markdown_inline",
+          "markdown",
+          "nu",
+          "query",
+          "ron",
+          "rust",
+          "toml",
         },
         -- Auto install languages that are not installed
         auto_install = true,
