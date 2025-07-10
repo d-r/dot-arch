@@ -25,13 +25,14 @@ use niri.nu *
 
 alias c = clear
 alias e = ^($env.EDITOR)
+alias nv = nvim
 alias l = eza -l --group-directories-first
 alias j = just
 alias t = task
 alias tt = taskwarrior-tui
 alias yt = yt-dlp
 
-alias bw = wm spawn flatpak run com.bitwig.BitwigStudio 
+alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
 
 alias in = yay -S # install
 alias un = yay -Rc # uninstall
