@@ -45,7 +45,24 @@ vim.opt.rtp:prepend(lazypath)
 -- Manage plugins
 require("lazy").setup {
   spec = {
-    -- Add your plugins here.
+    -- Theme
+    -- https://github.com/folke/tokyonight.nvim
+    {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require('tokyonight').setup {
+          styles = {
+            comments = { italic = false },
+            keywords = { italic = false },
+          },
+        }
+        vim.cmd.colorscheme "tokyonight-night"
+      end
+    }
   },
-  -- Configure any other settings here. See the documentation for more details.
+
+  -- Theme that will be used when installing plugins
+  install = { colorscheme = { "tokyonight-night" } },
 }
