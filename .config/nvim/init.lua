@@ -33,7 +33,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -81,10 +81,23 @@ require("lazy").setup {
         scope = { enabled = true },
       },
       keys = {
-        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
-        { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
-        { "<leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
-        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader><space>", function() Snacks.picker.smart() end,   desc = "Smart find files" },
+        { "<leader>f",       function() Snacks.picker.files() end,   desc = "Find files" },
+        { "<leader>b",       function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>/",       function() Snacks.picker.grep() end,    desc = "Grep" },
+      },
+    },
+
+    -- Show available keybindings as you type
+    -- https://github.com/folke/which-key.nvim
+    {
+      "folke/which-key.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- Single column list in the bottom right corner
+        preset = "helix",
+        -- Disable icons
+        icons = { mappings = false },
       },
     }
   },
