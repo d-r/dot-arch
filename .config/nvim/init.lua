@@ -140,6 +140,57 @@ require("lazy").setup {
         { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
       },
     },
+
+    -- Treesitter
+    -- https://github.com/nvim-treesitter/nvim-treesitter
+    --
+    -- You should have these packages installed:
+    -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
+    -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate',
+      main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+      opts = {
+        ensure_installed = {
+          'bash',
+          'c',
+          'cpp',
+          'css',
+          'diff',
+          'git_config',
+          'git_rebase',
+          'gitcommit',
+          'gitignore',
+          'html',
+          'ini',
+          'json',
+          'json5',
+          'kdl',
+          'lua',
+          'luadoc',
+          'markdown_inline',
+          'markdown',
+          'nu',
+          'query',
+          'ron',
+          'rust',
+          'toml',
+        },
+        -- Auto install languages that are not installed
+        auto_install = true,
+        highlight = {
+          enable = true,
+        },
+        indent = { enable = true },
+      },
+      -- There are additional nvim-treesitter modules that you can use to interact
+      -- with nvim-treesitter. You should go explore a few and see what interests you:
+      --
+      -- - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+      -- - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+      -- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    },
   },
 
   -- Theme that will be used when installing plugins
