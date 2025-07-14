@@ -77,7 +77,7 @@ local plugins = {
       {
         "<leader>f",
         function() Snacks.picker.files() end,
-        desc = "Find files"
+        desc = "Files"
       },
       {
         "<leader>b",
@@ -144,25 +144,25 @@ local plugins = {
         "S",
         mode = { "n", "x", "o" },
         function() require("flash").treesitter() end,
-        desc = "Flash Treesitter"
+        desc = "Flash treesitter"
       },
       {
         "r",
         mode = "o",
         function() require("flash").remote() end,
-        desc = "Remote Flash"
+        desc = "Remote flash"
       },
       {
         "R",
         mode = { "o", "x" },
         function() require("flash").treesitter_search() end,
-        desc = "Treesitter Search"
+        desc = "Treesitter search"
       },
       {
         "<c-s>",
         mode = { "c" },
         function() require("flash").toggle() end,
-        desc = "Toggle Flash Search"
+        desc = "Toggle flash Search"
       },
     },
   },
@@ -217,6 +217,63 @@ local plugins = {
     -- - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     -- - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     -- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+
+  -- LSP configuration
+  -- https://github.com/neovim/nvim-lspconfig
+  --
+  -- nvim-lspconfig is a collection of user-contributed default configurations
+  -- for various LSPs. Installed as a plugin, it doesn't actually *do* anything.
+  -- If you remove the config callback, you'll get an error message on startup,
+  -- as there is no setup() function to call.
+  --
+  -- I could use Mason to to automatically install LSPs, but I prefer to manage
+  -- packages with my system package manager. My text editor has no business
+  -- installing software onto my system.
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      -- A window in the bottom right corner that displays LSP progress messages
+      -- https://github.com/j-hui/fidget.nvim
+      { 'j-hui/fidget.nvim', opts = {} },
+    },
+    opts = {
+      servers = {
+        clangd = {},
+        rust_analyzer = {},
+      },
+    },
+    config = function(_, opts)
+      for server, settings in pairs(opts.servers) do
+        vim.lsp.config(server, settings)
+        vim.lsp.enable(server)
+      end
+
+      -- This function gets run when an LSP attaches to a particular buffer.
+      -- That is to say, every time a new file is opened that is associated with
+      -- an LSP (for example, opening `main.rs` is associated with `rust_analyzer`) this
+      -- function will be executed to configure the current buffer.
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+        callback = function(event)
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
+          end
+
+          map('<leader>s', function() Snacks.picker.lsp_symbols() end, "Symbols")
+          map('<leader>S', function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
+          map('<leader>r', vim.lsp.buf.rename, "Rename symbol")
+          map('<leader>a', vim.lsp.buf.code_action, 'Perform code action', { 'n', 'x' })
+
+          map('gd', function() Snacks.picker.lsp_definitions() end, 'Goto definition')
+          map('gD', function() Snacks.picker.lsp_declarations() end, 'Goto declaration')
+          map('gy', function() Snacks.picker.lsp_implementations() end, 'Goto type definition')
+          map('gr', function() Snacks.picker.lsp_references() end, 'Goto references')
+          map('gi', function() Snacks.picker.lsp_implementations() end, 'Goto implementation')
+        end,
+      })
+    end
   },
 }
 
