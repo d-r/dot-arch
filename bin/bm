@@ -3,7 +3,7 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
-const $FILE = '~/bucket/bookmarks.toml' | path expand
+const $FILE = '~/brain/data/bookmarks.toml' | path expand
 
 # Bookmarks
 def main [] {
