@@ -170,7 +170,7 @@ local plugins = {
   --
   -- nvim-lspconfig is a collection of user-contributed default configurations
   -- for various LSPs. Installed as a plugin, it doesn"t actually *do* anything.
-  -- If you remove the config callback, you"ll get an error message on startup,
+  -- If you remove the config callback, you'll get an error message on startup,
   -- as there is no setup() function to call.
   --
   -- I could use Mason to to automatically install LSPs, but I prefer to manage
