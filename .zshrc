@@ -31,7 +31,6 @@ alias yt='yt-dlp'
 alias qb='qutebrowser'
 
 alias e=$EDITOR
-alias hx='helix'
 alias m='micro'
 alias rr='rustrover'
 
