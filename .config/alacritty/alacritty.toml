@@ -1,0 +1,12 @@
+[terminal]
+shell = { program = "/usr/bin/zsh", args = [ "-c", "nu" ] }
+
+[general]
+import = [ "yo_berry.toml" ]
+
+[window]
+padding= { x = 8, y = 6 }
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }
+size = 11
