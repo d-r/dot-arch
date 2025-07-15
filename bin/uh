@@ -35,6 +35,14 @@ def "main pick bookmark" [] {
     main modal bm
 }
 
+# Save the URL inside the clipboard
+def "main save bookmark" [] {
+    let $url = (wl-paste)
+    if ($url | is-not-empty) {
+        main modal $"bm save ($url)"
+    }
+}
+
 # Pick an application
 def "main pick app" [] {
     main modal app

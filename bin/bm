@@ -20,20 +20,18 @@ def "main list" [] {
     open-file | transpose key url
 }
 
-# Add a URL, prompting the user for a key
-def "main add-url" [$url: string] {
-    let $key = (input 'Key: ')
-    main add $key $url
-}
-
-# Add a bookmark
-def "main add" [$key: string, $url: string] {
-    open-file | insert $key $url | save-to-file
-}
-
-# Set URL by key
-def "main set" [$key: string, $url: string] {
-    open-file | update $key $url | save-to-file
+# Save a URL, prompting the user for a key
+def "main save" [$url: string] {
+    let $key = (gum input --placeholder $"Name for ($url)")
+    let $bs = (open-file)
+    if $key in $bs {
+        let $url = $bs | get $key
+        print $'"($key)" is already assigned to ($url)'
+        gum confirm "Overwrite?"
+        # If the user chose "No", the command terminates here
+    }
+    $bs | insert $key $url | save-to-file
+    notify-send "Bookmark saved"
 }
 
 # Edit bookmarks with $EDITOR
