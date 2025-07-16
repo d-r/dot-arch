@@ -17,25 +17,25 @@ def "main pick" [] {
 
 # Pick a bookmark
 def "main pick bookmark" [] {
-    main modal bm
+    main modal visit bookmark
 }
 
 # Save the URL inside the clipboard
 def "main save bookmark" [] {
     let $url = (wl-paste)
     if ($url | is-not-empty) {
-        main modal bm save url
+        main modal save-url $url
     }
 }
 
 # Pick an application
 def "main pick app" [] {
-    main modal app
+    main modal visit app
 }
 
 # Pick a project
 def "main pick project" [] {
-    main modal pro
+    main modal visit project
 }
 
 # Run a Nushell command inside of a modal terminal

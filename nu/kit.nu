@@ -57,3 +57,7 @@ export def index-of-column [$name: string]: table -> int {
 export def index-of [$v]: list -> int {
     enumerate | where item == $v | get index.0
 }
+
+export def key-of [$v]: record -> any {
+    transpose k v | where v == $v | get k | first?
+}

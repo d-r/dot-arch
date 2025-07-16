@@ -1,0 +1,17 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/kit.nu *
+use ~/dot/nu/niri.nu *
+use ~/dot/nu/me.nu
+
+def main [$url] {
+    let $marks = (me marks)
+    let $key = ($marks | key-of $url) | default ""
+
+    let $key = (gum input --placeholder $"Key for ($url)" --value $key)
+
+    if ($key | is-not-empty) {
+        $marks | upsert $key $url | save-to-file
+        notify-send "Bookmark saved"
+    }
+}

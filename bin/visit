@@ -17,7 +17,7 @@ def "main project" [] {
 }
 
 # Visit bookmark
-def "main mark" [] {
+def "main bookmark" [] {
     wm spawn xdg-open (me marks | pick-item)
 }
 
