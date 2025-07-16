@@ -88,7 +88,7 @@ alias l = eza -l --group-directories-first
 alias gls = ^ls -l --file-type --group-directories-first --human-readable --color
 
 alias c = clear
-alias e = ^($env.EDITOR)
+alias m = micro
 alias nv = nvim
 alias j = just
 alias t = task
