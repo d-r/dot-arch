@@ -3,8 +3,6 @@
 use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
-alias spawn = wm spawn
-
 # Uh...
 def main [] {
     help main
@@ -59,7 +57,7 @@ def "main term" [...$cmd: string, --config:string, --app-id:string] {
     let $config = ($config | default kitty) ++ ".conf"
     let $config = ("~/.config/kitty" | path expand | path join $config)
     let $app_id = ($app_id | default kitty)
-    spawn kitty --config $config --app-id $app_id -d (main cwd) -- ...$cmd
+    wm spawn kitty --config $config --app-id $app_id -d (main cwd) -- ...$cmd
 }
 
 # Get the working directory for the focused workspace
