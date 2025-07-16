@@ -68,10 +68,12 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
+alias l = eza -l --group-directories-first
+alias gls = ^ls -l --file-type --group-directories-first --human-readable --color
+
 alias c = clear
 alias e = ^($env.EDITOR)
 alias nv = nvim
-alias l = eza -l --group-directories-first
 alias j = just
 alias t = task
 alias tt = taskwarrior-tui
