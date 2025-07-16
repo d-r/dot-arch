@@ -1,0 +1,28 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/kit.nu *
+use ~/dot/nu/niri.nu *
+use ~/dot/nu/me.nu
+
+# Visit something
+def main [] {
+    help main
+}
+
+# Visit project
+def "main project" [] {
+    let $pro = (me projects | pick name dir --match-column name)
+    let $dir = ($pro.dir | path expand)
+    wm spawn $pro.editor $dir
+}
+
+# Visit bookmark
+def "main mark" [] {
+    wm spawn xdg-open (me marks | pick-item)
+}
+
+# Visit application
+def "main app" [] {
+    let $app = (me apps | select desktop_file name | pick name)
+    wm spawn dex $app.desktop_file
+}

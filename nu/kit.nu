@@ -5,6 +5,11 @@
 
 const $COLUMN_SEP = "\t"
 
+export def pick-item []: record -> any {
+    let $row = ($in | transpose k v | pick --match-column k)
+    $row.v
+}
+
 export def pick [...$columns: string, --match-column: string]: table -> record {
     let $nth = if ($match_column | is-empty) {
         ""
