@@ -61,3 +61,11 @@ export def index-of [$v]: list -> int {
 export def key-of [$v]: record -> any {
     transpose k v | where v == $v | get k | first?
 }
+
+#------------------------------------------------------------------------------
+# PREDICATES
+
+export def is-url []: any -> bool {
+    let $url = try { url parse }
+    ($url | is-not-empty)
+}

@@ -32,13 +32,11 @@ def "main pick project" [] {
     tui visit project
 }
 
-#-------------------------------------------------------------------------------
-
 # Save the URL inside the clipboard
 def "main save bookmark" [] {
-    let $url = (wl-paste)
-    if ($url | is-not-empty) {
-        tui save-url $url
+    let $s = (wl-paste)
+    if ($s | is-url) {
+        tui save-url $s
     }
 }
 
