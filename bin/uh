@@ -5,21 +5,6 @@ use ~/dot/nu/niri.nu *
 
 alias spawn = wm spawn
 
-const $ACCENT_COLOR = "#7fc8ff"
-const $ACTIVE_BG_COLOR = "#1a1a1a"
-const $SK_THEME = {
-    prompt: "#555555",
-    cursor: $ACCENT_COLOR,
-    matched: $ACCENT_COLOR,
-    current: "#dddddd",
-    current_bg: $ACTIVE_BG_COLOR,
-    current_match: $ACCENT_COLOR,
-    current_match_bg: $ACTIVE_BG_COLOR,
-}
-
-let $sk_theme = ($SK_THEME | dict-str ":" ",")
-let $sk_options = $"--reverse --no-info --color=($sk_theme)"
-
 # Uh...
 def main [] {
     help main
@@ -39,7 +24,7 @@ def "main pick bookmark" [] {
 def "main save bookmark" [] {
     let $url = (wl-paste)
     if ($url | is-not-empty) {
-        main modal $"bm save ($url)"
+        main modal bm save url
     }
 }
 
@@ -53,9 +38,35 @@ def "main pick project" [] {
     main modal pro
 }
 
-# Spawn a terminal in the current context
-def "main term" [] {
-    spawn kitty -d (main cwd)
+# Run a Nushell command inside of a modal terminal
+def "main modal" [...$cmd: string] {
+    let $pid = (wm windows | where app_id == modal | get pid.0?)
+    if ($pid | is-empty) {
+        let $cmd = $cmd | str join " "
+        main term nu "-c" $cmd --config modal --app-id modal
+    } else {
+        kill $pid
+    }
+}
+
+# Spawn or focus a terminal in the current workspace
+def "main toggle-term" [] {
+    let $w = (wm windows-in-focused-workspace | where app_id == term | first?)
+    if ($w | is-empty) {
+        main term --app-id term
+    } else if $w.is_focused {
+        wm focus-previous-window
+    } else {
+        wm focus-window $w.id
+    }
+}
+
+# Spawn a terminal and optionally run a shell command inside of it
+def "main term" [...$cmd: string, --config:string, --app-id:string] {
+    let $config = ($config | default kitty) ++ ".conf"
+    let $config = ("~/.config/kitty" | path expand | path join $config)
+    let $app_id = ($app_id | default kitty)
+    spawn kitty --config $config --app-id $app_id -d (main cwd) -- ...$cmd
 }
 
 # Get the working directory for the focused workspace
@@ -68,43 +79,4 @@ def "main cwd" [] {
         _ => "~"
     }
     | path expand
-}
-
-# Run a Nushell command inside of a modal terminal
-def "main modal" [$cmd: string] {
-    let $pid = (wm windows | where app_id == modal | get pid.0?)
-    if ($pid | is-empty) {
-        main nu-term $cmd --config modal --app-id modal
-    } else {
-        kill $pid
-    }
-}
-
-# Run a Nushell command inside of a terminal
-def "main nu-term" [$cmd: string, --config:string, --app-id:string] {
-    let $config = ($config | default kitty) ++ ".conf"
-    let $config = ("~/.config/kitty" | path expand | path join $config)
-
-    let $app_id = ($app_id | default kitty)
-
-    let $cmd = [nu -c $'SKIM_DEFAULT_OPTIONS="($sk_options)" ($cmd)']
-
-    spawn kitty --config $config --app-id $app_id -- ...$cmd
-}
-
-# Toggle a terminal in the current workspace
-def "main toggle-term" [] {
-    let $w = (wm windows-in-focused-workspace | where app_id == term | first?)
-    if ($w | is-empty) {
-        spawn kitty --app-id term
-    } else if $w.is_focused {
-        wm focus-previous-window
-    } else {
-        wm focus-window $w.id
-    }
-}
-
-# Run a CLI app inside of a terminal
-def "main spawn-cli-app" [$id: string, ...$cmd] {
-    spawn kitty --app-id $id ...$cmd
 }
