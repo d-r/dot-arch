@@ -13,6 +13,9 @@ $env.config.show_banner = false
 $env.config.use_kitty_protocol = true
 $env.config.filesize.unit = "metric"
 
+$env.config.table.mode = 'single' # No rounded corners
+$env.config.color_config.separator = "#555555" # Table borders
+
 $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 
 #-------------------------------------------------------------------------------
