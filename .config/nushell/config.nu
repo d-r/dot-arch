@@ -84,7 +84,7 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
-alias l = eza -l --group-directories-first
+alias e = eza -l --group-directories-first
 alias gls = ^ls -l --file-type --group-directories-first --human-readable --color
 
 alias c = clear
