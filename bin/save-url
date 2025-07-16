@@ -5,7 +5,7 @@ use ~/dot/nu/niri.nu *
 use ~/dot/nu/me.nu
 
 def main [$url] {
-    let $marks = (me marks)
+    let $marks = (me bookmarks)
     let $key = ($marks | key-of $url) | default ""
 
     let $key = (gum input --placeholder $"Key for ($url)" --value $key)

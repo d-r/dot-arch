@@ -33,16 +33,16 @@ def project [$dir, $editor?] {
 #-------------------------------------------------------------------------------
 # BOOKMARKS
 
-const $MARK_FILE = '~/brain/data/bookmarks.toml' | path expand
+const $BOOKMARK_FILE = '~/brain/data/bookmarks.toml' | path expand
 
 # List bookmarks
-export def marks []: nothing -> record {
-    open $MARK_FILE
+export def bookmarks []: nothing -> record {
+    open $BOOKMARK_FILE
 }
 
 # Save bookmarks to disk
-export def save-marks []: record -> nothing {
-    $in | to toml | save -f $MARK_FILE
+export def save-bookmarks []: record -> nothing {
+    $in | to toml | save -f $BOOKMARK_FILE
 }
 
 #-------------------------------------------------------------------------------
