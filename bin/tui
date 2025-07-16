@@ -1,0 +1,15 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/kit.nu *
+use ~/dot/nu/niri.nu *
+
+const $CONFIG_FILE = ("~/.config/kitty/modal.conf" | path expand)
+
+def main [...$cmd] {
+    let $pid = (wm windows | where app_id == modal | get pid.0?)
+    if ($pid | is-empty) {
+        wm spawn kitty --config $CONFIG_FILE --app-id modal -- ...$cmd
+    } else {
+        kill $pid
+    }
+}

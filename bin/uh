@@ -10,44 +10,39 @@ def main [] {
     help main
 }
 
-# Pick something from a menu
+#-------------------------------------------------------------------------------
+
+# Pick something off a menu
 def "main pick" [] {
     help main pick
 }
 
 # Pick a bookmark
 def "main pick bookmark" [] {
-    main modal visit bookmark
+    tui visit bookmark
 }
+
+# Pick an application
+def "main pick app" [] {
+    tui visit app
+}
+
+# Pick a project
+def "main pick project" [] {
+    tui visit project
+}
+
+#-------------------------------------------------------------------------------
 
 # Save the URL inside the clipboard
 def "main save bookmark" [] {
     let $url = (wl-paste)
     if ($url | is-not-empty) {
-        main modal save-url $url
+        tui save-url $url
     }
 }
 
-# Pick an application
-def "main pick app" [] {
-    main modal visit app
-}
-
-# Pick a project
-def "main pick project" [] {
-    main modal visit project
-}
-
-# Run a Nushell command inside of a modal terminal
-def "main modal" [...$cmd: string] {
-    let $pid = (wm windows | where app_id == modal | get pid.0?)
-    if ($pid | is-empty) {
-        let $cmd = $cmd | str join " "
-        main term nu "-c" $cmd --config modal --app-id modal
-    } else {
-        kill $pid
-    }
-}
+#-------------------------------------------------------------------------------
 
 # Spawn or focus a terminal in the current workspace
 def "main toggle-term" [] {
