@@ -23,6 +23,8 @@ use desktop-cmd.nu *
 use mime-types.nu *
 use niri.nu *
 
+use me.nu
+
 alias c = clear
 alias e = ^($env.EDITOR)
 alias nv = nvim
