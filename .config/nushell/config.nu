@@ -68,7 +68,7 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
-alias gls = ^ls -l --file-type --group-directories-first --si --color
+alias gls = ^ls -l -F --group-directories-first --si --color
 
 alias c = clear
 alias m = micro
