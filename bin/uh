@@ -67,6 +67,7 @@ def "main cwd" [] {
         "dot" => "~/dot"
         "dev" => "~/src"
         "vlt" => "~/vault"
+        "snd" => "~/.local/share/Renoise/User Library"
         _ => "~"
     }
     | path expand
