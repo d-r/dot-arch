@@ -85,7 +85,7 @@ use niri.nu *
 use me.nu
 
 alias e = eza -l -F --group-directories-first
-alias gls = ^ls -l --file-type --group-directories-first --human-readable --color
+alias gls = ^ls -l --file-type --group-directories-first --si --color
 
 alias c = clear
 alias m = micro
