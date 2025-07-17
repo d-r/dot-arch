@@ -29,10 +29,11 @@
     keybinds: (
         global: {
             "1":       SwitchToTab("1 Queue"),
-            "2":       SwitchToTab("2 Albums"),
-            "3":       SwitchToTab("3 Artists"),
-            "4":       SwitchToTab("4 Playlists"),
-            "5":       SwitchToTab("5 Search"),
+            "2":       SwitchToTab("2 Directories"),
+            "3":       SwitchToTab("3 Albums"),
+            "4":       SwitchToTab("4 Artists"),
+            "5":       SwitchToTab("5 Playlists"),
+            "6":       SwitchToTab("6 Search"),
             "q":       Quit,
             ":":       CommandMode,
             "p":       TogglePause,
@@ -128,21 +129,24 @@
             ),
         ),
         (
-            name: "2 Albums",
+            name: "2 Directories",
+            pane: Pane(Directories),
+        ),
+        (
+            name: "3 Albums",
             pane: Pane(Albums),
         ),
         (
-            name: "3 Artists",
+            name: "4 Artists",
             pane: Pane(Artists),
         ),
         (
-            name: "4 Playlists",
+            name: "5 Playlists",
             pane: Pane(Playlists),
         ),
         (
-            name: "5 Search",
+            name: "6 Search",
             pane: Pane(Search),
         ),
     ],
 )
-
