@@ -14,7 +14,9 @@ $env.config.use_kitty_protocol = true
 $env.config.filesize.unit = "metric"
 
 $env.config.table.mode = "single" # No rounded corners
-$env.config.color_config.separator = "black" # Table borders
+$env.config.color_config.separator = "dark_gray"
+$env.config.color_config.header = "dark_gray"
+$env.config.color_config.row_index = "dark_gray"
 
 #-------------------------------------------------------------------------------
 # ENVIRONMENT
