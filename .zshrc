@@ -24,7 +24,7 @@ alias rm='rm -v'
 alias ln='ln -v'
 
 alias c='clear'
-alias ls='eza -al --group-directories-first'
+alias ls='ls -l --file-type --group-directories-first --si --color'
 alias j='just'
 alias t='task'
 alias yt='yt-dlp'

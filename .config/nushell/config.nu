@@ -59,22 +59,6 @@ $env.LS_COLORS = ls_colors {
 	or: $RED
 }
 
-$env.EZA_COLORS = "reset:" ++ (ls_colors {
-	da: $WHITE  # date
-
-	uu: $WHITE  # a user that's me
-	un: $YELLOW # a user that’s someone else
-	uR: $RED    # a user that's root
-
-	gu: $WHITE  # a group I'm in
-	gn: $YELLOW # a group I'm not in
-	gR: $RED    # a group related to root
-
-	ur: $WHITE  # user read permissions
-	gr: $WHITE  # group read permission
-	tr: $WHITE  # other's read permissions
-})
-
 $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 
 #-------------------------------------------------------------------------------
@@ -84,7 +68,6 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
-alias e = eza -l -F --group-directories-first
 alias gls = ^ls -l --file-type --group-directories-first --si --color
 
 alias c = clear
