@@ -11,7 +11,7 @@ def main [$url] {
     let $key = (gum input --placeholder $"Key for ($url)" --value $key)
 
     if ($key | is-not-empty) {
-        $marks | upsert $key $url | save-to-file
+        $marks | upsert $key $url | me save-bookmarks
         notify-send "Bookmark saved"
     }
 }
