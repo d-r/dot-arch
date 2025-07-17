@@ -70,7 +70,7 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
-alias gls = ^ls -l -F --group-directories-first --si --color
+alias gls = ^ls -lAF --group-directories-first --si --color
 alias tree = ^tree -F --dirsfirst --noreport
 
 alias c = clear

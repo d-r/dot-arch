@@ -24,7 +24,7 @@ alias rm='rm -v'
 alias ln='ln -v'
 
 alias c='clear'
-alias ls='ls -l -F --group-directories-first --si --color'
+alias ls='ls -lAF --group-directories-first --si --color'
 alias j='just'
 alias t='task'
 alias yt='yt-dlp'
