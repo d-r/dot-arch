@@ -1,15 +1,16 @@
 #!/usr/bin/env nu
 
 # Brightness
-def main []: nothing -> int {
+def main [] {
     main get
 }
 
 # Get the current brightness in percent
-def "main get" []: nothing -> int {
-    let v = brightnessctl get | into float
-    # Convert 0..255 to percentage
-    ($v / 255) * 100 | math round
+def "main get" [] {
+    let $v = (brightnessctl g | into int)
+    let $max = (brightnessctl m | into int)
+    let $p = ((($v / $max) * 100) | math round)
+    $"($v) / ($max) \(($p)%\)"
 }
 
 # Decrease brightness by 5%
@@ -25,5 +26,5 @@ def "main inc" [] {
 }
 
 def notify [] {
-    msg "brightness" $"Brightness: (main get)%"
+    msg "brightness" $"Brightness: (main get)"
 }
