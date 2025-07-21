@@ -49,8 +49,8 @@
         "tooltip": false
     },
     "niri/language": {
-        "format-en": "US",
-        "format-sv": "SE",
+        "format-en": " US ",
+        "format-sv": " SE ",
         "on-click": "niri msg action switch-layout next"
     },
     "clock": {
