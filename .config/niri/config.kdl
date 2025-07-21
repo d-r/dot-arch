@@ -39,7 +39,7 @@ binds {
 
     // LAYOUT
 
-    Mod+F { switch-preset-column-width; }
+    Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
     Mod+C { center-column; }
@@ -184,7 +184,7 @@ layout {
     center-focused-column "never"
     default-column-display "tabbed"
 
-    default-column-width { proportion 0.49; }
+    default-column-width { proportion 0.5; }
     preset-column-widths {
         proportion 0.49
         proportion 0.98
@@ -325,7 +325,7 @@ window-rule {
 
     open-on-workspace "web"
     open-focused false
-    default-column-width { proportion 0.98; }
+    open-maximized true
 }
 
 window-rule {
@@ -342,7 +342,7 @@ window-rule {
 
     open-on-workspace "snd"
     open-focused false
-    default-column-width { proportion 0.98; }
+    open-maximized true
 }
 
 window-rule {
@@ -350,7 +350,7 @@ window-rule {
 
     open-on-workspace "vlt"
     open-focused false
-    default-column-width { proportion 0.98; }
+    open-maximized true
 }
 
 spawn-at-startup "firefox"
