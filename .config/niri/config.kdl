@@ -180,7 +180,8 @@ gestures {
 layout {
     gaps 8
     background-color "transparent"
-    center-focused-column "on-overflow"
+    // center-focused-column "on-overflow"
+    center-focused-column "never"
     default-column-display "tabbed"
 
     default-column-width { proportion 0.49; }
