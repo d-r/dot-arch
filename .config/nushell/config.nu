@@ -81,6 +81,7 @@ alias t = task
 alias tt = taskwarrior-tui
 alias yt = yt-dlp
 alias xo = xdg-open
+alias say = notify-send
 
 alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
 
