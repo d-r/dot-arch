@@ -23,14 +23,15 @@
         "format": "{title} ({app_id})",
         "separate-outputs": true
     },
+
+    "backlight": {
+        "format": "{percent:03} <span foreground=\"#777\">L</span>",
+        "tooltip": false
+    },
     "pulseaudio": {
         "format": "{volume:03} <span foreground=\"#777\">V</span>",
         "format-muted": "<s>{volume:03}</s> <span foreground=\"#777\">V</span>",
         "on-click": "pkill pavucontrol || pavucontrol"
-    },
-    "backlight": {
-        "format": "{percent:03} <span foreground=\"#777\">L</span>",
-        "tooltip": false
     },
     "network": {
         "interval": 5,
