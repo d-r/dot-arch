@@ -4,6 +4,8 @@ use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 use ~/dot/nu/me.nu
 
+$env.SKIM_DEFAULT_OPTIONS = "--reverse --no-info"
+
 # Visit something
 def main [] {
     help main
