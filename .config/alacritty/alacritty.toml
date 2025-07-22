@@ -8,5 +8,5 @@ import = [ "yo_berry.toml" ]
 padding= { x = 8, y = 6 }
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font" }
+normal = { family = "JetBrains Mono" }
 size = 11
