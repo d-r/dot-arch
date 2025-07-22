@@ -254,7 +254,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "a
 // Utilities
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar"
-spawn-at-startup "swaync"
+spawn-at-startup "mako"
 
 //------------------------------------------------------------------------------
 // WINDOWS
