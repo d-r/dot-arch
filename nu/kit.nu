@@ -44,6 +44,8 @@ export alias first? = try { first }
 
 export alias last? = try { last }
 
+export alias kv = transpose k v
+
 # Rename the special `#` column to `index`, to make it part of the table proper.
 # See https://www.nushell.sh/book/working_with_tables.html#the-index-column
 export def indexed []: table -> table {
