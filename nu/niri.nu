@@ -44,7 +44,7 @@ export def "wm focus-workspace" [$ref] {
 #-------------------------------------------------------------------------------
 # QUERIES
 
-export def --wrapped msg [...$args] {
+def --wrapped msg [...$args] {
     niri msg -j ...$args | from json
 }
 
