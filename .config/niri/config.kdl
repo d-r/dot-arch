@@ -167,6 +167,11 @@ input {
     }
 }
 
+// Disable middle-click paste
+clipboard {
+    disable-primary
+}
+
 cursor {
     hide-when-typing
 }
