@@ -18,7 +18,8 @@ def "main project" [] {
 
 # Visit bookmark
 def "main bookmark" [] {
-    wm spawn xdg-open (me bookmarks | pick-item)
+    # wm spawn xdg-open (me bookmarks | pick-item)
+    wm spawn qutebrowser (me bookmarks | pick-item)
 }
 
 # Visit application
