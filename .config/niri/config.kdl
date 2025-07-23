@@ -117,6 +117,8 @@ binds {
 
     XF86MonBrightnessDown { spawn "bri" "dec"; }
     XF86MonBrightnessUp { spawn "bri" "inc"; }
+    Mod+XF86MonBrightnessDown { spawn "bri" "set" "0%"; }
+    Mod+XF86MonBrightnessUp { spawn "bri" "set" "100%"; }
 
     // SCREENSHOTS
 

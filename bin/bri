@@ -13,16 +13,20 @@ def "main get" [] {
     $"($v) / ($max) \(($p)%\)"
 }
 
+# Set brightness
+def "main set" [$v: string] {
+    brightnessctl set $v
+    notify
+}
+
 # Decrease brightness by 5%
 def "main dec" [] {
-    brightnessctl set 5%-
-    notify
+    main set "10%-"
 }
 
 # Increase brightness by 5%
 def "main inc" [] {
-    brightnessctl set 5%+
-    notify
+    main set "10%+"
 }
 
 def notify [] {
