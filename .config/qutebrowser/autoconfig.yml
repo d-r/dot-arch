@@ -6,7 +6,5 @@
 
 config_version: 2
 settings:
-  bindings.commands:
-    global:
-      normal:
-        <Ctrl+s>: spawn --userscript save-bookmark
+  auto_save.session:
+    global: true
