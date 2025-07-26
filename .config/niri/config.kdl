@@ -24,6 +24,7 @@ binds {
     Mod+Y { spawn "uh" "term" "yazi"; }
     Mod+S { spawn "uh" "save" "bookmark"; }
     Mod+Comma { spawn "better-control"; }
+    Mod+Shift+Comma { spawn "pavucontrol"; }
 
     // PICKERS
 
