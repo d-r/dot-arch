@@ -21,7 +21,7 @@ binds {
     Mod+Backspace { close-window; }
 
     Mod+Return { spawn "uh" "spawn-term"; }
-    Mod+Y { spawn "uh" "term" "yazi"; }
+    Mod+Y { spawn "uh" "spawn-term" "yazi"; }
     Mod+S { spawn "uh" "save" "bookmark"; }
     Mod+Comma { spawn "better-control"; }
     Mod+Shift+Comma { spawn "pavucontrol"; }
