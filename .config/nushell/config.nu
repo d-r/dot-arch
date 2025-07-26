@@ -75,7 +75,7 @@ alias tree = ^tree -F --dirsfirst --noreport
 
 alias c = clear
 alias m = micro
-alias nv = nvim
+alias v = nvim
 alias j = just
 alias t = task
 alias tt = taskwarrior-tui
