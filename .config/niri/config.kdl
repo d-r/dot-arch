@@ -23,6 +23,7 @@ binds {
     Mod+Return { spawn "uh" "spawn-term"; }
     Mod+Y { spawn "uh" "term" "yazi"; }
     Mod+S { spawn "uh" "save" "bookmark"; }
+    Mod+Comma { spawn "better-control"; }
 
     // PICKERS
 
@@ -33,9 +34,9 @@ binds {
 
     // TABS
 
-    Mod+Comma { consume-or-expel-window-left; }
-    Mod+Period { consume-or-expel-window-right; }
-    Mod+Slash { focus-window-down-or-top; }
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Backslash { focus-window-down-or-top; }
 
     // LAYOUT
 
