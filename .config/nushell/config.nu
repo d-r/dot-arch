@@ -85,10 +85,17 @@ alias say = notify-send
 
 alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
 
-alias in = yay -S # install
-alias un = yay -Rc # uninstall
-alias up = yay # update
-alias cl = yay -Yc # clean
+# Install a package
+alias in = paru -S
+
+# Uninstall a package
+alias un = paru -Rs
+
+# Update outdated packages
+alias up = paru
+
+# List outdated packages
+alias out = paru -Qu
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
