@@ -26,19 +26,20 @@
 
     "backlight": {
         "format": "{percent:03} <span foreground=\"#777\">L</span>",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "pkill better-control || better-control -m --display"
     },
     "pulseaudio": {
         "format": "{volume:03} <span foreground=\"#777\">V</span>",
         "format-muted": "<s>{volume:03}</s> <span foreground=\"#777\">V</span>",
-        "on-click": "pkill pavucontrol || pavucontrol"
+        "on-click": "pkill better-control || better-control -m --volume"
     },
     "network": {
         "interval": 5,
         "format": "{signalStrength:03} <span foreground=\"#777\">W</span>",
         "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
         "tooltip-format": "{essid}\n{ipaddr}\n{ifname}",
-        "on-click": "networkmanager_dmenu"
+        "on-click": "pkill better-control || better-control -m --wifi"
     },
     "battery": {
         "interval": 5,
@@ -47,7 +48,8 @@
             "critical": 10
         },
         "format": "{capacity:03} <span foreground=\"#777\">B</span>",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "pkill better-control || better-control -m --battery"
     },
     "niri/language": {
         "format-en": "<span foreground=\"#7fc8ff\">US</span>",
