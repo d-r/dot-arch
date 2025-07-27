@@ -326,7 +326,6 @@ window-rule {
 // WORKSPACES
 
 workspace "web"
-workspace "dot"
 workspace "dev"
 workspace "snd"
 workspace "vlt"
@@ -342,7 +341,7 @@ window-rule {
 window-rule {
     match app-id="code" at-startup=true
 
-    open-on-workspace "dot"
+    open-on-workspace "dev"
     open-focused false
 }
 

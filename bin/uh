@@ -64,8 +64,7 @@ def "main spawn-term" [...$cmd: string, --config:string, --app-id:string] {
 def "main cwd" [] {
     match (wm focused-workspace).name {
         "web" => "~/dl"
-        "dot" => "~/dot"
-        "dev" => "~/src"
+        "dev" => "~/dot"
         "vlt" => "~/vault"
         "snd" => "~/.local/share/Renoise/User Library"
         _ => "~"
