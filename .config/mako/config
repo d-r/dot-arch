@@ -1,6 +1,6 @@
 layer=overlay
 anchor=top-right
-width=600
+width=500
 height=10000
 margin=8
 padding=16
