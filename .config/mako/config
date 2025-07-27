@@ -10,7 +10,7 @@ text-color=#bbbbbb
 border-size=1
 border-radius=0
 border-color=#222222
-default-timeout=2000
+default-timeout=5000
 max-history=100
 icons=true
 
