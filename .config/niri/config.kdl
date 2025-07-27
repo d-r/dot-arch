@@ -176,10 +176,6 @@ clipboard {
     disable-primary
 }
 
-cursor {
-    hide-when-typing
-}
-
 gestures {
     hot-corners {
         off
