@@ -6,7 +6,40 @@
 
 config_version: 2
 settings:
+  aliases:
+    global:
+      q: close
+      qa: quit
+      w: session-save
+      wq: quit --save
+      wqa: quit --save
   auto_save.session:
     global: true
+  colors.webpage.preferred_color_scheme:
+    global: dark
+  content.blocking.method:
+    global: both
+  content.default_encoding:
+    global: utf-8
+  content.geolocation:
+    global: false
   content.javascript.clipboard:
     global: access
+  content.media.audio_capture:
+    global: false
+  content.media.audio_video_capture:
+    global: false
+  content.media.video_capture:
+    global: false
+  content.mouse_lock:
+    global: false
+  content.mute:
+    global: true
+  content.pdfjs:
+    global: true
+  downloads.location.directory:
+    global: ~/dl
+  hints.dictionary:
+    global: /usr/share/dict/words
+  hints.radius:
+    global: 0
