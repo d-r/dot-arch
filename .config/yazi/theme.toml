@@ -1,0 +1,9 @@
+[filetype]
+rules = [
+    # Directories
+    { name = "*/", fg = "blue" },
+    # Executables
+	{ name = "*", is = "exec", fg = "green" },
+	# Broken symlinks
+	{ name = "*", is = "orphan", fg = "red" },
+]
