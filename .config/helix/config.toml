@@ -16,6 +16,9 @@ select = "underline"
 [editor.file-picker]
 hidden = false # Show dotfiles
 
+[editor.lsp]
+display-inlay-hints = true
+
 [keys.normal]
 C-s = ":write!"
 C-x = ":write-quit-all!"

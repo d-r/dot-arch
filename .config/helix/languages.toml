@@ -1,0 +1,7 @@
+[language-server.iwe]
+command = "iwes"
+
+[[language]]
+name = "markdown"
+language-servers = [ "iwe", "marksman" ]
+auto-format = true
