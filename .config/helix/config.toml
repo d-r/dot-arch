@@ -16,8 +16,8 @@ select = "underline"
 [editor.file-picker]
 hidden = false # Show dotfiles
 
-[editor.lsp]
-display-inlay-hints = true
+# [editor.lsp]
+# display-inlay-hints = true
 
 [keys.normal]
 "ret" = "goto_word"
