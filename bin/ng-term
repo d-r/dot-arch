@@ -1,0 +1,8 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/niri.nu *
+
+# Run Neogit inside of a new terminal
+def main [] {
+    wm spawn kitty --app-id "neogit" -d (pwd) -- nvim +Neogit
+}
