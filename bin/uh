@@ -64,7 +64,8 @@ def "main term" [...$cmd: string, --config:string, --app-id:string] {
 def "main cwd" [] {
     match (wm focused-workspace).name {
         "web" => "~/dl"
-        "dev" => "~/dot"
+        "dot" => "~/dot"
+        "dev" => "~/src/eeva"
         "vlt" => "~/vault"
         "snd" => "~/.local/share/Renoise/User Library"
         _ => "~"
