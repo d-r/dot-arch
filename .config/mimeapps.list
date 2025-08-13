@@ -1,0 +1,9 @@
+[Default Applications]
+image/jpeg=firefox.desktop
+image/gif=firefox.desktop
+image/png=firefox.desktop
+application/pdf=firefox.desktop
+application/x-renoise-tool=renoise.desktop
+
+[Added Associations]
+application/x-renoise-tool=renoise.desktop;
