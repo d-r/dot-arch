@@ -1,6 +1,5 @@
 export PATH="$PATH:$HOME/lab"
 export PATH="$PATH:$HOME/dot/bin"
-export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts/"
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME="$HOME/.config"
