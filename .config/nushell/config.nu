@@ -73,9 +73,11 @@ use me.nu
 alias l = ^ls -lAF --group-directories-first --si --color
 alias tree = ^tree -F --dirsfirst --noreport
 
-alias c = clear
 alias m = micro
 alias v = nvim
+alias ng = nvim +Neogit
+
+alias c = clear
 alias j = just
 alias t = task
 alias tt = taskwarrior-tui
