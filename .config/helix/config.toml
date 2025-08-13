@@ -20,10 +20,11 @@ hidden = false # Show dotfiles
 display-inlay-hints = true
 
 [keys.normal]
+"ret" = "goto_word"
 C-s = ":write!"
 C-x = ":write-quit-all!"
 C-q = ":quit-all!"
-"ret" = "goto_word"
+C-g = [ ":sh ng-term" ]
 
 [keys.insert]
 C-s = ":write!"
