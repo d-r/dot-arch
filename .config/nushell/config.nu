@@ -99,6 +99,9 @@ alias up = paru
 # List outdated packages
 alias out = paru -Qu
 
+# Sync package database
+alias syn = paru -Fy
+
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
 def --env y [...args] {
