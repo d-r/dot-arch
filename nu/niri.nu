@@ -25,6 +25,11 @@ export def "wm focus-window" [$id] {
     act focus-window --id $id
 }
 
+# Close a window by ID
+export def "wm close-window" [$id] {
+    act close-window --id $id
+}
+
 # Focus the previously focused workspace
 export def "wm focus-previous-workspace" [] {
     act focus-workspace-previous
