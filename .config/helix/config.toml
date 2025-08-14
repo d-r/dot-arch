@@ -20,7 +20,6 @@ hidden = false # Show dotfiles
 # display-inlay-hints = true
 
 [keys.normal]
-"ret" = "goto_word"
 C-s = ":write!"
 C-x = ":write-quit-all!"
 C-q = ":quit-all!"
