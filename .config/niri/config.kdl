@@ -146,7 +146,7 @@ binds {
 
 prefer-no-csd // Remove window decorations
 
-screenshot-path "~/screenshots/niri-%Y-%m-%d-%H-%M-%S.png"
+screenshot-path "~/dl/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
 output "eDP-1" {
     scale 1
