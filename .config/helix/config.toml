@@ -24,7 +24,12 @@ hidden = false # Show dotfiles
 C-s = ":write!"
 C-x = ":write-quit-all!"
 C-q = ":quit-all!"
-C-g = [ ":sh ng-term" ]
+C-g = [
+    ":write-all",
+    ":insert-output lazygit >/dev/tty",
+    ":redraw",
+    ":reload-all"
+]
 
 [keys.insert]
 C-s = ":write!"
