@@ -25,6 +25,7 @@ binds {
     Mod+S { spawn "uh" "save" "bookmark"; }
     Mod+Comma { spawn "better-control"; }
     Mod+Shift+Comma { spawn "pavucontrol"; }
+    Mod+T { spawn "uh" "term" "taskwarrior-tui"; }
 
     // PICKERS
 
