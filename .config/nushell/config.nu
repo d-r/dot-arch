@@ -79,11 +79,13 @@ alias ng = nvim +Neogit
 
 alias c = clear
 alias j = just
-alias t = task
-alias tt = taskwarrior-tui
 alias yt = yt-dlp
 alias xo = xdg-open
 alias say = notify-send
+
+alias t = task
+alias ta = task add
+alias tt = taskwarrior-tui
 
 alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
 
