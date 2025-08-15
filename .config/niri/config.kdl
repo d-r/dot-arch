@@ -288,25 +288,22 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 
-//------------------------------------------------------------------------------
-// INIT
-
 hotkey-overlay {
     skip-at-startup
 }
+
+//------------------------------------------------------------------------------
+// INFRASTRUCTURE
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     GTK_THEME "Adwaita:dark"
 }
 
-// GTK4 dark mode
+// GTK 3 and 4 dark mode
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
-
-// GTK3 dark mode
-// https://archlinux.org/packages/extra/any/adw-gtk-theme/
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "adw-gtk3-dark"
-spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "adw-gtk3"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Adwaita-dark"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "Adwaita"
 
 // Utilities
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
