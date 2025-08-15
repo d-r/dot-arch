@@ -8,8 +8,6 @@ def main [] {
     help main
 }
 
-#-------------------------------------------------------------------------------
-
 # Pick something off a menu
 def "main pick" [] {
     help main pick
@@ -29,16 +27,6 @@ def "main pick app" [] {
 def "main pick project" [] {
     tui visit project
 }
-
-# Save the URL inside the clipboard
-def "main save bookmark" [] {
-    let $s = (wl-paste)
-    if ($s | is-url) {
-        tui save-url $s
-    }
-}
-
-#-------------------------------------------------------------------------------
 
 # Spawn or focus a terminal in the current workspace
 def "main spawn-or-focus-term" [] {
