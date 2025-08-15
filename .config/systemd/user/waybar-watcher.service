@@ -1,0 +1,9 @@
+[Unit]
+Description=Auto-reload Waybar on config/style changes
+
+[Service]
+ExecStart=%h/dot/bin/waybar-watcher
+Restart=always
+
+[Install]
+WantedBy=default.target

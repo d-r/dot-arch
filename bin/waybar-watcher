@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# systemctl --user daemon-reload
+# systemctl --user enable --now waybar-watcher.service
+
+CONFIG_DIR="$HOME/.config/waybar"
+
+while inotifywait -e close_write "$CONFIG_DIR"/config.jsonc "$CONFIG_DIR"/style.css; do
+    pkill -SIGUSR2 waybar
+done
