@@ -20,12 +20,17 @@ binds {
 
     Mod+Backspace { close-window; }
 
+    // APPLICATIONS
+
     Mod+Return { spawn "trm"; }
+
+    Mod+A { spawn "webapp" "https://chatgpt.com/"; }
     Mod+Y { spawn "trm" "yazi"; }
     Mod+S { spawn "uh" "save" "bookmark"; }
+    Mod+T { spawn "trm" "taskwarrior-tui"; }
+
     Mod+Comma { spawn "better-control"; }
     Mod+Shift+Comma { spawn "pavucontrol"; }
-    Mod+T { spawn "trm" "taskwarrior-tui"; }
 
     // PICKERS
 
