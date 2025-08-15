@@ -8,7 +8,7 @@
         "niri/workspaces"
     ],
     "modules-center": [
-        "niri/window"
+        "clock"
     ],
     "modules-right": [
         "backlight",
@@ -16,15 +16,18 @@
         "network",
         "battery",
         "niri/language",
-        "clock"
     ],
 
     "niri/workspaces": {
         "format": "{value}"
     },
-    "niri/window": {
-        "format": "{title} ({app_id})",
-        "separate-outputs": true
+
+    "clock": {
+        "interval": 60,
+        "format": "{:%A %B %d %H:%M} ",
+        "tooltip-format": "Week {:%W}",
+        "tooltip": true,
+        "on-click": "xdg-open https://calendar.google.com/"
     },
 
     "backlight": {
@@ -58,12 +61,5 @@
         "format-en": "<span foreground=\"#7fc8ff\">US</span>",
         "format-sv": "<span foreground=\"red\">SE</span>",
         "on-click": "niri msg action switch-layout next"
-    },
-    "clock": {
-        "interval": 60,
-        "format": "{:%a %b %d %H:%M} ",
-        "tooltip-format": "Week {:%W}",
-        "tooltip": true,
-        "on-click": "xdg-open https://calendar.google.com/"
     }
 }
