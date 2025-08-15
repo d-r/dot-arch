@@ -34,9 +34,9 @@ binds {
 
     // PICKERS
 
-    Mod+O { spawn "uh" "pick" "bookmark"; }
-    Mod+P { spawn "uh" "pick" "project"; }
-    Mod+R { spawn "uh" "pick" "app"; }
+    Mod+O { spawn "tui" "visit" "bookmark"; }
+    Mod+P { spawn "tui" "visit" "project"; }
+    Mod+R { spawn "tui" "visit" "app"; }
     Mod+Shift+R { spawn "fuzzel"; }
 
     // TABS
