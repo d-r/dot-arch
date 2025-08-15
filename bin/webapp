@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
 # Open the given URL in Chromium's app mode
-def main [$url] {
-    chromium --new-window --ozone-platform=wayland --app=($url)
+def main [$app_id, $url] {
+    chromium --class=($app_id) --app=($url)
 }

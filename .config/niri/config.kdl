@@ -24,7 +24,7 @@ binds {
 
     Mod+Return { spawn "trm"; }
 
-    Mod+A { spawn "webapp" "https://chatgpt.com/"; }
+    Mod+A { spawn "webapp" "chatgpt" "https://chatgpt.com/"; }
     Mod+Y { spawn "trm" "yazi"; }
     Mod+S { spawn "save-bookmark"; }
     Mod+T { spawn "trm" "taskwarrior-tui"; }
