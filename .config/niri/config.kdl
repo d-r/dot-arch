@@ -111,17 +111,17 @@ binds {
 
     // VOLUME KEYS
 
-    XF86AudioLowerVolume { spawn "vol" "dec"; }
-    XF86AudioRaiseVolume { spawn "vol" "inc"; }
-    XF86AudioMute { spawn "vol" "toggle"; }
-    XF86AudioMicMute { spawn "vol" "toggle-mic"; }
+    XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioMute { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
     // BRIGHTNESS KEYS
 
-    XF86MonBrightnessDown { spawn "bri" "dec"; }
-    XF86MonBrightnessUp { spawn "bri" "inc"; }
-    Mod+XF86MonBrightnessDown { spawn "bri" "set" "0%"; }
-    Mod+XF86MonBrightnessUp { spawn "bri" "set" "100%"; }
+    XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
+    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
+    Mod+XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "0"; }
+    Mod+XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "100"; }
 
     // SCREENSHOTS
 
@@ -261,6 +261,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "a
 spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
+spawn-at-startup "swayosd-server"
 
 //------------------------------------------------------------------------------
 // WINDOWS
