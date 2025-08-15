@@ -14,8 +14,7 @@ def main [...$cmd: string, --config:string, --app-id:string] {
 def cwd [] {
     match (wm focused-workspace).name {
         "web" => "~/dl"
-        "dot" => "~/dot"
-        "dev" => "~/src/eeva"
+        "dev" => "~/dot"
         "vlt" => "~/vault"
         "snd" => "~/snd"
         _ => "~"
