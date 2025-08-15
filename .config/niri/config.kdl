@@ -40,26 +40,14 @@ binds {
     Mod+T hotkey-overlay-title="Tasks" {
         spawn "trm" "taskwarrior-tui";
     }
-
     Mod+D hotkey-overlay-title="DAW (Bitwig Studio)" {
         spawn "flatpak" "run" "com.bitwig.BitwigStudio";
     }
-
     Mod+B hotkey-overlay-title="Browser (Firefox)" {
         spawn "firefox";
     }
     Mod+Shift+B hotkey-overlay-title="Browser (qutebrowser)" {
         spawn "qutebrowser";
-    }
-
-    Mod+A hotkey-overlay-title="AI" {
-        spawn "webapp" "chatgpt" "https://chatgpt.com/";
-    }
-    Mod+M hotkey-overlay-title="Mail" {
-        spawn "webapp" "mail" "https://mail.google.com/";
-    }
-    Mod+W hotkey-overlay-title="WhatsApp" {
-        spawn "webapp" "whatsapp" "https://web.whatsapp.com/";
     }
 
     // PICKERS
