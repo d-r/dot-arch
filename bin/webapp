@@ -5,12 +5,5 @@ use ~/dot/nu/niri.nu *
 
 # Open the given URL in Chromium's app mode
 def main [$app_id, $url] {
-    let $w = (wm windows | where app_id == $app_id | first?)
-    if ($w | is-empty) {
-        chromium --class=($app_id) --app=($url)
-    } else if $w.is_focused {
-        wm focus-previous-window
-    } else {
-        wm focus-window $w.id
-    }
+    wm spawn-or-focus $app_id chromium --class=($app_id) --app=($url)
 }

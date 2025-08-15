@@ -15,6 +15,18 @@ export def --wrapped "wm spawn" [...$cmd] {
     act spawn -- ...$cmd
 }
 
+# Spawn a command or focus existing window
+export def --wrapped "wm spawn-or-focus" [$app_id, ...$cmd] {
+    let $w = (wm windows | where app_id == $app_id | first?)
+    if ($w | is-empty) {
+        act spawn -- ...$cmd
+    } else if $w.is_focused {
+        wm focus-previous-window
+    } else {
+        wm focus-window $w.id
+    }
+}
+
 # Focus the previously focused window
 export def "wm focus-previous-window" [] {
     act focus-window-previous
