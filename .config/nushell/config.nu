@@ -70,6 +70,11 @@ use kit.nu *
 use niri.nu *
 use me.nu
 
+alias cls = clear
+alias yt = yt-dlp
+alias xo = xdg-open
+alias say = notify-send
+
 alias l = ^ls -lAF --group-directories-first --si --color
 alias tree = ^tree -F --dirsfirst --noreport
 
@@ -77,11 +82,8 @@ alias m = micro
 alias v = nvim
 alias ng = nvim +Neogit
 
-alias cls = clear
+alias c = cargo
 alias j = just
-alias yt = yt-dlp
-alias xo = xdg-open
-alias say = notify-send
 
 alias t = task
 alias ta = task add
