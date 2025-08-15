@@ -1,0 +1,3 @@
+#!/usr/bin/env nu
+
+webapp calendar https://calendar.google.com/
