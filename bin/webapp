@@ -4,5 +4,9 @@ use ~/dot/nu/niri.nu *
 
 # Open the given URL in Chromium's app mode
 def main [$app_id, $url] {
-    wm spawn-or-focus $app_id chromium --class=($app_id) --app=($url)
+    let $state_dir = ($env.XDG_STATE_HOME)
+    let $data_dir = $"($state_dir)/webapps/($app_id)"
+    mkdir $data_dir
+    print $data_dir
+    wm spawn-or-focus $app_id chromium --user-data-dir=($data_dir) --app=($url) --class=($app_id)
 }
