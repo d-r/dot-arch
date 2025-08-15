@@ -20,12 +20,12 @@ binds {
 
     Mod+Backspace { close-window; }
 
-    Mod+Return { spawn "uh" "term"; }
-    Mod+Y { spawn "uh" "term" "yazi"; }
+    Mod+Return { spawn "trm"; }
+    Mod+Y { spawn "trm" "yazi"; }
     Mod+S { spawn "uh" "save" "bookmark"; }
     Mod+Comma { spawn "better-control"; }
     Mod+Shift+Comma { spawn "pavucontrol"; }
-    Mod+T { spawn "uh" "term" "taskwarrior-tui"; }
+    Mod+T { spawn "trm" "taskwarrior-tui"; }
 
     // PICKERS
 

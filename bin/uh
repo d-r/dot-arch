@@ -44,31 +44,10 @@ def "main save bookmark" [] {
 def "main spawn-or-focus-term" [] {
     let $w = (wm windows-in-focused-workspace | where app_id == term | first?)
     if ($w | is-empty) {
-        main term --app-id term
+        trm --app-id term
     } else if $w.is_focused {
         wm focus-previous-window
     } else {
         wm focus-window $w.id
     }
-}
-
-# Spawn a terminal and optionally run a shell command inside of it
-def "main term" [...$cmd: string, --config:string, --app-id:string] {
-    let $config = ($config | default kitty) ++ ".conf"
-    let $config = ("~/.config/kitty" | path expand | path join $config)
-    let $app_id = ($app_id | default kitty)
-    wm spawn kitty --config $config --app-id $app_id -d (main cwd) -- ...$cmd
-}
-
-# Get the working directory for the focused workspace
-def "main cwd" [] {
-    match (wm focused-workspace).name {
-        "web" => "~/dl"
-        "dot" => "~/dot"
-        "dev" => "~/src/eeva"
-        "vlt" => "~/vault"
-        "snd" => "~/.local/share/Renoise/User Library"
-        _ => "~"
-    }
-    | path expand
 }
