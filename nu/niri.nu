@@ -15,7 +15,7 @@ export def --wrapped "wm spawn" [...$cmd] {
     act spawn -- ...$cmd
 }
 
-# Spawn a command or focus existing window
+# Spawn a command or toggle focus of existing window
 export def --wrapped "wm spawn-or-focus" [$app_id, ...$cmd] {
     let $w = (wm windows | where app_id == $app_id | first?)
     if ($w | is-empty) {
