@@ -393,7 +393,7 @@ window-rule {
 workspace "web"
 workspace "dev"
 workspace "snd"
-workspace "vlt"
+workspace "brn"
 
 window-rule {
     match app-id="firefox" at-startup=true
@@ -432,7 +432,7 @@ window-rule {
 window-rule {
     match app-id="obsidian" at-startup=true
 
-    open-on-workspace "vlt"
+    open-on-workspace "brn"
     open-focused false
     open-maximized true
 }

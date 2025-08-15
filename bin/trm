@@ -15,7 +15,7 @@ def cwd [] {
     match (wm focused-workspace).name {
         "web" => "~/dl"
         "dev" => "~/dot"
-        "vlt" => "~/vault"
+        "brn" => "~/brain"
         "snd" => "~/snd"
         _ => "~"
     }
