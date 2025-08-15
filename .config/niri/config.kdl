@@ -247,6 +247,7 @@ hotkey-overlay {
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto" // Needed by Electron apps
+    GTK_THEME "Adwaita:dark"
 }
 
 // GTK4 dark mode
