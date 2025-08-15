@@ -26,7 +26,8 @@ export LC_NUMERIC=$LANG
 export LC_TIME=$LANG
 
 export EDITOR="micro"
-export MANPAGER='nvim +Man!'
+export MANPAGER="most"
+export MANROFFOPT=-c # Enable colours in man pages
 
 export FZF_DEFAULT_OPTS="--reverse" # Put prompt at the top
 export SKIM_DEFAULT_OPTIONS="--reverse" # Put prompt at the top
