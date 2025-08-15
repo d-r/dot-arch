@@ -348,6 +348,13 @@ window-rule {
 }
 
 window-rule {
+    match app-id="chatgpt"
+
+    open-on-workspace "web"
+    open-focused true
+}
+
+window-rule {
     match app-id="code" at-startup=true
 
     open-on-workspace "dot"
