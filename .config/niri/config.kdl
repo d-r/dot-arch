@@ -13,24 +13,39 @@
 
 binds {
     Mod+Shift+Delete { quit skip-confirmation=true; }
-    Mod+Shift+P { power-off-monitors; }
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Backspace { close-window; }
+
+    // CONTROL
 
     Mod+F12 { switch-layout "next"; }
 
-    Mod+Backspace { close-window; }
+    Mod+Shift+P {power-off-monitors; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Comma hotkey-overlay-title="Settings" {
+        spawn "better-control";
+    }
+    Mod+Shift+Comma hotkey-overlay-title="Audio settings" {
+        spawn "pavucontrol";
+    }
 
     // APPLICATIONS
 
-    Mod+Return { spawn "trm"; }
-
-    Mod+A { spawn "webapp" "chatgpt" "https://chatgpt.com/"; }
-    Mod+Y { spawn "trm" "yazi"; }
-    Mod+S { spawn "save-bookmark"; }
-    Mod+T { spawn "trm" "taskwarrior-tui"; }
-
-    Mod+Comma { spawn "better-control"; }
-    Mod+Shift+Comma { spawn "pavucontrol"; }
+    Mod+Return hotkey-overlay-title="Terminal" {
+        spawn "trm";
+    }
+    Mod+A hotkey-overlay-title="AI" {
+        spawn "webapp" "chatgpt" "https://chatgpt.com/";
+    }
+    Mod+Y hotkey-overlay-title="yazi" {
+        spawn "trm" "yazi";
+    }
+    Mod+S hotkey-overlay-title="Bookmark URL in clipboard" {
+        spawn "bookmark";
+    }
+    Mod+T hotkey-overlay-title="Tasks" {
+        spawn "trm" "taskwarrior-tui";
+    }
 
     // PICKERS
 
