@@ -77,7 +77,7 @@ alias m = micro
 alias v = nvim
 alias ng = nvim +Neogit
 
-alias c = clear
+alias cls = clear
 alias j = just
 alias yt = yt-dlp
 alias xo = xdg-open
