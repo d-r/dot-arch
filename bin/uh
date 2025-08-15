@@ -27,15 +27,3 @@ def "main pick app" [] {
 def "main pick project" [] {
     tui visit project
 }
-
-# Spawn or focus a terminal in the current workspace
-def "main spawn-or-focus-term" [] {
-    let $w = (wm windows-in-focused-workspace | where app_id == term | first?)
-    if ($w | is-empty) {
-        trm --app-id term
-    } else if $w.is_focused {
-        wm focus-previous-window
-    } else {
-        wm focus-window $w.id
-    }
-}
