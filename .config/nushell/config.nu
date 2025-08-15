@@ -130,4 +130,4 @@ def --env y [...args] {
 source zoxide.nu
 
 # carapace _carapace nushell | save -f carapace.nu
-source carapace.nu
+# source carapace.nu
