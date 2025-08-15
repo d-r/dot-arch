@@ -1,6 +1,5 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
 # Open the given URL in Chromium's app mode

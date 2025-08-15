@@ -1,15 +1,14 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/kit.nu *
 use ~/dot/nu/niri.nu *
 
-const $CONFIG_FILE = ("~/.config/kitty/modal.conf" | path expand)
+const $APP_ID = "modal"
 
 def main [...$cmd] {
-    let $pid = (wm windows | where app_id == modal | get pid.0?)
-    if ($pid | is-empty) {
-        wm spawn kitty --config $CONFIG_FILE --app-id modal -- ...$cmd
+    let $w = (wm window-with-app-id $APP_ID)
+    if ($w | is-empty) {
+        trm --config $APP_ID --app-id $APP_ID ...$cmd
     } else {
-        kill $pid
+        wm close-window $w.id
     }
 }
