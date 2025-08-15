@@ -390,10 +390,28 @@ window-rule {
 //------------------------------------------------------------------------------
 // WORKSPACES
 
+workspace "brn"
 workspace "web"
 workspace "dev"
 workspace "snd"
-workspace "brn"
+
+spawn-at-startup "niri" "msg" "action" "focus-workspace" "web"
+
+// BRN
+
+spawn-at-startup "obsidian"
+
+window-rule {
+    match app-id="obsidian" at-startup=true
+
+    open-on-workspace "brn"
+    open-focused false
+    open-maximized true
+}
+
+// WEB
+
+spawn-at-startup "firefox"
 
 window-rule {
     match app-id="firefox" at-startup=true
@@ -412,12 +430,20 @@ window-rule {
     open-focused true
 }
 
+// DEV
+
+spawn-at-startup "code" "/home/dan/dot"
+
 window-rule {
     match app-id="code" at-startup=true
 
     open-on-workspace "dev"
     open-focused false
 }
+
+// SND
+
+spawn-at-startup "flatpak" "run" "com.bitwig.BitwigStudio"
 
 window-rule {
     match app-id="Renoise" at-startup=true
@@ -428,16 +454,3 @@ window-rule {
     open-focused false
     open-maximized true
 }
-
-window-rule {
-    match app-id="obsidian" at-startup=true
-
-    open-on-workspace "brn"
-    open-focused false
-    open-maximized true
-}
-
-spawn-at-startup "firefox"
-spawn-at-startup "code" "/home/dan/dot"
-spawn-at-startup "flatpak" "run" "com.bitwig.BitwigStudio"
-spawn-at-startup "obsidian"
