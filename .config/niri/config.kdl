@@ -116,17 +116,33 @@ binds {
 
     // VOLUME KEYS
 
-    XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume" "lower"; }
-    XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume" "raise"; }
-    XF86AudioMute { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    XF86AudioMicMute { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86AudioLowerVolume hotkey-overlay-title="Decrease volume" {
+        spawn "swayosd-client" "--output-volume" "lower";
+    }
+    XF86AudioRaiseVolume hotkey-overlay-title="Increase volume" {
+        spawn "swayosd-client" "--output-volume" "raise";
+    }
+    XF86AudioMute hotkey-overlay-title="Mute/unmute sound" {
+        spawn "swayosd-client" "--output-volume" "mute-toggle";
+    }
+    XF86AudioMicMute hotkey-overlay-title="Mute/unmute microphone" {
+        spawn "swayosd-client" "--input-volume" "mute-toggle";
+    }
 
     // BRIGHTNESS KEYS
 
-    XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
-    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
-    Mod+XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "0"; }
-    Mod+XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "100"; }
+    XF86MonBrightnessDown hotkey-overlay-title="Decrease brightness" {
+        spawn "swayosd-client" "--brightness" "lower";
+    }
+    XF86MonBrightnessUp hotkey-overlay-title="Increase brightness" {
+        spawn "swayosd-client" "--brightness" "raise";
+    }
+    Mod+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
+        spawn "swayosd-client" "--brightness" "0";
+    }
+    Mod+XF86MonBrightnessUp hotkey-overlay-title="Set maximum brightness" {
+        spawn "swayosd-client" "--brightness" "100";
+    }
 
     // SCREENSHOTS
 
