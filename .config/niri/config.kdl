@@ -359,20 +359,6 @@ window-rule {
     }
 }
 
-// Dim inactive window
-window-rule {
-   match is-focused=false
-   opacity 0.8
-   shadow {
-       on
-       inactive-color "#1D1D1FEB"
-       spread 0
-       softness 0
-       offset x=0 y=0
-       draw-behind-window true
-   }
-}
-
 window-rule {
     match app-id="Renoise"
 
