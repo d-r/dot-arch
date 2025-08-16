@@ -1,0 +1,18 @@
+#!/usr/bin/env nu
+
+def --wrapped main [$profile, ...$args] {
+    let $profile_dir = [$env.XDG_DATA_HOME, "qutebrowser-profiles", $profile] | path join
+    let $config_file = "~/.config/qutebrowser/config.py" | path expand
+
+    # Symlink userscripts/ to $profile_dir/data/userscripts/,
+    # as qutebrowser will look for scripts there.
+    # It won't look in ~/.config/qutebrowser/userscripts/.
+    let $data_dir = ($profile_dir | path join "data")
+    mkdir $data_dir
+    let $userscripts = ($data_dir | path join "userscripts")
+    if not ($userscripts | path exists) {
+        ln -sf ~/.config/qutebrowser/userscripts $userscripts
+    }
+
+    qutebrowser --basedir $profile_dir --config-py $config_file ...$args
+}
