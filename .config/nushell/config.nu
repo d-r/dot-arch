@@ -85,9 +85,6 @@ alias ng = nvim +Neogit
 alias c = cargo
 alias j = just
 
-alias g = git
-alias gs = git st
-alias gc = git clone
 alias lg = lazygit
 
 alias t = task
