@@ -247,8 +247,7 @@ layout {
     }
 
     border {
-        off
-        width 2
+        width 1
 
         // The default colors
         active-color "#7fc8ff"
@@ -337,7 +336,7 @@ window-rule {
     // pixel border. It'll get *no border* when the width is 1.
     // So give it an extra pixel.
     border {
-        width 3
+        width 2
     }
 }
 
@@ -371,6 +370,12 @@ window-rule {
     match app-id="Renoise"
 
     open-maximized true
+}
+
+window-rule {
+    match app-id="float"
+
+    open-floating true
 }
 
 //------------------------------------------------------------------------------
