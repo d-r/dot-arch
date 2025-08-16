@@ -309,7 +309,9 @@ spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-nee
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
-spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+
+// Disabled because it keeps breaking shit:
+// spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 
 //------------------------------------------------------------------------------
 // WINDOWS
