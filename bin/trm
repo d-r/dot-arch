@@ -3,7 +3,7 @@
 use ~/dot/nu/niri.nu *
 
 # Spawn a terminal and optionally run a shell command inside of it
-def main [...$cmd: string, --config:string, --app-id:string] {
+def --wrapped main [...$cmd: string, --config:string, --app-id:string] {
     let $config = ($config | default kitty) ++ ".conf"
     let $config = ("~/.config/kitty" | path expand | path join $config)
     let $app_id = ($app_id | default kitty)

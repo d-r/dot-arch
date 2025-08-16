@@ -15,6 +15,14 @@ binds {
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Backspace { close-window; }
 
+    Mod+Return hotkey-overlay-title="Terminal" {
+        spawn "trm";
+    }
+
+    Mod+Apostrophe hotkey-overlay-title="Console" {
+        spawn "console";
+    }
+
     // CONTROL
 
     Mod+F12 { switch-layout "next"; }
@@ -31,9 +39,6 @@ binds {
 
     // APPLICATIONS
 
-    Mod+Return hotkey-overlay-title="Terminal" {
-        spawn "trm";
-    }
     Mod+Y hotkey-overlay-title="yazi" {
         spawn "trm" "yazi";
     }
@@ -375,7 +380,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="float"
+    match app-id="console"
 
     open-floating true
 }

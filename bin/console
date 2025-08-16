@@ -1,0 +1,15 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/niri.nu *
+
+const $APP_ID = "console"
+
+def main [] {
+    let $w = (wm window-with-app-id $APP_ID)
+    if ($w | is-empty) {
+        # Attach to existing session, or create a new one if none exists
+        trm --app-id $APP_ID tmux new -A -s $APP_ID
+    } else {
+        wm close-window $w.id
+    }
+}
