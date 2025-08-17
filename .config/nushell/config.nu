@@ -129,7 +129,17 @@ def new [$path] {
 
 # Returns the current year
 def year []: nothing -> string {
-	(date now | format date "%Y")
+    (date now | format date "%Y")
+}
+
+# Returns the MIT license
+def mit []: nothing -> string {
+    (open ~/dot/assets/mit.txt | str replace "%YEAR" (year))
+}
+
+# Saves the MIT license to LICENSE
+def "mit save" []: nothing -> nothing {
+    (mit) | save -f LICENSE
 }
 
 #-------------------------------------------------------------------------------
