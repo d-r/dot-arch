@@ -22,16 +22,18 @@ binds {
     Mod+Return hotkey-overlay-title="Terminal" {
         spawn "trm";
     }
-
     Mod+Apostrophe hotkey-overlay-title="Console" {
         spawn "console";
+    }
+    Mod+Semicolon hotkey-overlay-title="Music player" {
+        spawn "music";
     }
 
     // CONTROL
 
     Mod+F12 { switch-layout "next"; }
 
-    Mod+Shift+P {power-off-monitors; }
+    Mod+Shift+P { power-off-monitors; }
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Comma hotkey-overlay-title="Settings" {
