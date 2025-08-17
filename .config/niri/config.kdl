@@ -15,6 +15,10 @@ binds {
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Backspace { close-window; }
 
+    Mod+Space {
+        spawn "wlr-which-key";
+    }
+
     Mod+Return hotkey-overlay-title="Terminal" {
         spawn "trm";
     }
