@@ -1,0 +1,12 @@
+#!/usr/bin/env nu
+
+xdg-settings set default-web-browser firefox.desktop
+
+xdg-mime default firefox.desktop image/jpeg
+xdg-mime default firefox.desktop image/png
+xdg-mime default firefox.desktop image/gif
+xdg-mime default firefox.desktop application/pdf
+
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.desktop.interface icon-theme Adwaita
