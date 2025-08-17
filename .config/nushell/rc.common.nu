@@ -23,14 +23,14 @@ def --env y [...args] {
 }
 
 # Create all directories on the path to the given file
-def mktrail [$p: path]: nothing -> nothing {
-    mkdir ($p | path dirname)
+def mktrail [$file: path]: nothing -> nothing {
+    mkdir ($file | path dirname)
 }
 
 # Like `touch`, but creates missing directories
-def poke [$p: path]: nothing -> nothing {
-    mktrail $p
-	touch $p
+def poke [$file: path]: nothing -> nothing {
+    mktrail $file
+    touch $file
 }
 
 # Return the current year
@@ -48,14 +48,9 @@ def "mit save" []: nothing -> nothing {
     (mit) | save -f LICENSE
 }
 
-# Create a new file
-def new []: nothing -> nothing {
-    help new
-}
-
 # Create a new Nushell script
-def "new script" [$p: path]: nothing -> nothing {
-    mktrail $p
-    cp ~/dot/assets/script.nu $p
-    chmod +x $p
+def nusc [$file: path]: nothing -> nothing {
+    mktrail $file
+    cp ~/dot/assets/script.nu $file
+    chmod +x $file
 }
