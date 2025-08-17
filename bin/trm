@@ -2,12 +2,10 @@
 
 use ~/dot/nu/niri.nu *
 
-# Spawn a terminal and optionally run a shell command inside of it
-def --wrapped main [...$cmd: string, --config:string, --app-id:string] {
-    let $config = ($config | default kitty) ++ ".conf"
-    let $config = ("~/.config/kitty" | path expand | path join $config)
-    let $app_id = ($app_id | default kitty)
-    wm spawn kitty --config $config --app-id $app_id -d (cwd) -- ...$cmd
+# Spawn a terminal and optionally run a command inside of it
+def --wrapped main [...$cmd, --class:string] {
+    let $class = ($class | default kitty)
+    wm spawn kitty --class $class -d (cwd) -- ...$cmd
 }
 
 # Get the working directory for the focused workspace

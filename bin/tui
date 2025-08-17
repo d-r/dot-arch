@@ -2,12 +2,14 @@
 
 use ~/dot/nu/niri.nu *
 
-const $APP_ID = "modal"
+const $CLASS = "modal"
+const $CONFIG = ("~/.config/kitty/modal.conf" | path expand)
 
-def main [...$cmd] {
-    let $w = (wm window-with-app-id $APP_ID)
+# Run a command inside of a modal terminal window
+def main [$cmd, ...$args] {
+    let $w = (wm window-with-app-id $CLASS)
     if ($w | is-empty) {
-        trm --config $APP_ID --app-id $APP_ID ...$cmd
+        wm spawn kitty --config $CONFIG --class $CLASS -- $cmd ...$args
     } else {
         wm close-window $w.id
     }
