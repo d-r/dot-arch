@@ -1,0 +1,31 @@
+font: JetBrainsMono Nerd Font 16
+background: "#1a1b26"
+color: "#c0caf5"
+border: "#7fc8ff"
+separator: "    "
+border_width: 1
+corner_r: 0
+padding: 20
+anchor: center
+menu:
+  - key: "a"
+    desc: AI (ChatGPT)
+    cmd: webapp ai https://chatgpt.com
+  - key: "c"
+    desc: Chat (WhatsApp)
+    cmd: webapp chat https://web.whatsapp.com/
+  - key: "e"
+    desc: Email (Google Mail)
+    cmd: webapp email https://mail.google.com
+  - key: "p"
+    desc: Power
+    submenu:
+      - key: "s"
+        desc: Sleep
+        cmd: systemctl suspend
+      - key: "r"
+        desc: Reboot
+        cmd: reboot
+      - key: "o"
+        desc: Off
+        cmd: poweroff
