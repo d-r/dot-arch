@@ -1,3 +1,5 @@
+set shell := ["nu", "-c"]
+
 # Install (create/update symlinks)
 in:
     stow -t ~ -v 2 -R .
