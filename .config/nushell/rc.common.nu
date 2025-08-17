@@ -40,7 +40,7 @@ def year []: nothing -> string {
 
 # Return the MIT license
 def mit []: nothing -> string {
-    (open ~/dot/assets/mit.txt | str replace "%YEAR" (year))
+    (open ~/dot/assets/mit.txt | str replace "$YEAR" (year))
 }
 
 # Create a new file
