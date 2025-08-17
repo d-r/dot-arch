@@ -245,10 +245,10 @@ layout {
     center-focused-column "never"
     default-column-display "tabbed"
 
-    default-column-width { proportion 0.495; }
+    default-column-width { proportion 0.49; }
     preset-column-widths {
-        proportion 0.495
-        proportion 0.99
+        proportion 0.49
+        proportion 0.98
     }
 
     border {
@@ -345,7 +345,7 @@ window-rule {
 window-rule {
     match app-id="Renoise"
 
-    default-column-width { proportion 0.99; }
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
@@ -377,7 +377,7 @@ window-rule {
 
     open-on-workspace "brn"
     open-focused false
-    default-column-width { proportion 0.99; }
+    default-column-width { proportion 0.98; }
 }
 
 // WEB
@@ -389,7 +389,7 @@ window-rule {
 
     open-on-workspace "web"
     open-focused false
-    default-column-width { proportion 0.99; }
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
@@ -423,5 +423,5 @@ window-rule {
 
     open-on-workspace "snd"
     open-focused false
-    default-column-width { proportion 0.99; }
+    default-column-width { proportion 0.98; }
 }
