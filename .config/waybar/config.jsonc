@@ -23,7 +23,7 @@
         "format": "{value}"
     },
     "niri/window": {
-        "format": "{title} ({app_id})",
+        "format": "{app_id}",
         "separate-outputs": true
     },
 
