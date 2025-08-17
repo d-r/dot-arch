@@ -121,8 +121,8 @@ def --env y [...args] {
 }
 
 # Like `touch`, but creates missing directories
-def new [$path] {
-	let $p = ($path | path expand)
+def poke [$p: path]: nothing -> nothing {
+	let $p = ($p | path expand)
 	mkdir ($p | path dirname)
 	touch $p
 }
