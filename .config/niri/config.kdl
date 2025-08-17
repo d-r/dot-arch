@@ -358,6 +358,7 @@ window-rule {
 
 window-rule {
     match app-id="modal"
+    match app-id="console"
 
     open-floating true
     default-column-width { proportion 0.9; }

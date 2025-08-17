@@ -2,9 +2,9 @@
 
 use ~/dot/nu/niri.nu *
 
-const $APP_ID = "modal"
+const $APP_ID = "console"
 
 def main [] {
     # Attach to existing tmux session, or create a new one if none exists
-    wm toggle $APP_ID kitty --app-id $APP_ID tmux new -A -s console
+    wm toggle $APP_ID kitty --app-id $APP_ID tmux new -A -s $APP_ID
 }
