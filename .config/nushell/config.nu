@@ -3,7 +3,7 @@ const NU_LIB_DIRS = [
     ~/dot/nu
 ]
 
-use kit.nu *
+use base.nu *
 use niri.nu *
 use me.nu
 

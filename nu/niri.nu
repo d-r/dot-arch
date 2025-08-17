@@ -1,4 +1,4 @@
-use kit.nu *
+use base.nu *
 
 # Communicate with niri
 export def wm [] {
