@@ -300,9 +300,12 @@ hotkey-overlay {
 // INFRASTRUCTURE
 
 environment {
+    BROWSER "firefox"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     GTK_THEME "Adwaita:dark"
 }
+
+spawn-at-startup "xdg-settings" "set" "default-web-browser" "firefox.desktop"
 
 // GTK 3 and 4 dark mode
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
