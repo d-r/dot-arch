@@ -12,7 +12,8 @@ def --wrapped main [...$cmd, --class:string] {
 def cwd [] {
     match (wm focused-workspace).name {
         "web" => "~/dl"
-        "dev" => "~/dot"
+        "dot" => "~/dot"
+        "dev" => "~/src"
         "brn" => "~/brain"
         "snd" => "~/snd"
         _ => "~"

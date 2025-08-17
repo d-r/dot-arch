@@ -367,6 +367,7 @@ window-rule {
 
 workspace "brn"
 workspace "web"
+workspace "dot"
 workspace "dev"
 workspace "snd"
 
@@ -405,14 +406,14 @@ window-rule {
     open-focused true
 }
 
-// DEV
+// DOT
 
 spawn-at-startup "code" "/home/dan/dot"
 
 window-rule {
     match app-id="code" at-startup=true
 
-    open-on-workspace "dev"
+    open-on-workspace "dot"
     open-focused false
 }
 
