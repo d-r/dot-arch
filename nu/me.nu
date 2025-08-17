@@ -92,7 +92,7 @@ def desktop-entry [$path: string]: nothing -> record {
 
 # List MIME types
 export def mime-types []: nothing -> list {
-    open ~/dot/nu/mime-types.txt | lines
+    open ~/dot/assets/mime-types.txt | lines
 }
 
 # List MIME associations (MIME type -> application)
