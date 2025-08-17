@@ -2,8 +2,8 @@
 
 use ~/dot/nu/niri.nu *
 
+const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 const $CLASS = "modal"
-const $CONFIG = ("~/.config/kitty/modal.conf" | path expand)
 
 # Run a command inside of a modal terminal window
 def main [$cmd, ...$args] {
