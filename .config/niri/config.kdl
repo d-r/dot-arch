@@ -81,7 +81,7 @@ binds {
 
     // LAYOUT
 
-    Mod+F { maximize-column; }
+    Mod+F { switch-preset-column-width; }
     Mod+Shift+F { fullscreen-window; }
 
     Mod+C { center-column; }
@@ -245,7 +245,7 @@ layout {
     center-focused-column "never"
     default-column-display "tabbed"
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.49; }
     preset-column-widths {
         proportion 0.49
         proportion 0.98
@@ -353,7 +353,7 @@ window-rule {
 window-rule {
     match app-id="Renoise"
 
-    open-maximized true
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
@@ -384,7 +384,7 @@ window-rule {
 
     open-on-workspace "brn"
     open-focused false
-    open-maximized true
+    default-column-width { proportion 0.98; }
 }
 
 // WEB
@@ -396,7 +396,7 @@ window-rule {
 
     open-on-workspace "web"
     open-focused false
-    open-maximized true
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
@@ -430,5 +430,5 @@ window-rule {
 
     open-on-workspace "snd"
     open-focused false
-    open-maximized true
+    default-column-width { proportion 0.98; }
 }
