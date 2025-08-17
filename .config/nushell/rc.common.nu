@@ -1,4 +1,3 @@
-alias cls = clear
 alias m = micro
 alias v = nvim
 alias ng = nvim +Neogit
