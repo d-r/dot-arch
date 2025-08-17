@@ -22,24 +22,40 @@ def --env y [...args] {
 	rm -fp $tmp
 }
 
+# Create all directories on the path to the given file
+def mktrail [$p: path]: nothing -> nothing {
+    mkdir ($p | path dirname)
+}
+
 # Like `touch`, but creates missing directories
 def poke [$p: path]: nothing -> nothing {
-	let $p = ($p | path expand)
-	mkdir ($p | path dirname)
+    mktrail $p
 	touch $p
 }
 
-# Returns the current year
+# Return the current year
 def year []: nothing -> string {
     (date now | format date "%Y")
 }
 
-# Returns the MIT license
+# Return the MIT license
 def mit []: nothing -> string {
     (open ~/dot/assets/mit.txt | str replace "%YEAR" (year))
 }
 
-# Saves the MIT license to LICENSE
-def "mit save" []: nothing -> nothing {
+# Create a new file
+def new []: nothing -> nothing {
+    help new
+}
+
+# Create a new Nushell script
+def "new script" [$p: path]: nothing -> nothing {
+    mktrail $p
+    cp ~/dot/assets/script.nu $p
+    chmod +x $p
+}
+
+# Write the MIT license to LICENSE
+def "new license" []: nothing -> nothing {
     (mit) | save -f LICENSE
 }
