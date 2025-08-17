@@ -43,6 +43,11 @@ def mit []: nothing -> string {
     (open ~/dot/assets/mit.txt | str replace "$YEAR" (year))
 }
 
+# Save the MIT license to LICENSE
+def "mit save" []: nothing -> nothing {
+    (mit) | save -f LICENSE
+}
+
 # Create a new file
 def new []: nothing -> nothing {
     help new
@@ -53,9 +58,4 @@ def "new script" [$p: path]: nothing -> nothing {
     mktrail $p
     cp ~/dot/assets/script.nu $p
     chmod +x $p
-}
-
-# Write the MIT license to LICENSE
-def "new license" []: nothing -> nothing {
-    (mit) | save -f LICENSE
 }
