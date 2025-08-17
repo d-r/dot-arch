@@ -130,8 +130,7 @@ def new [$path] {
 #-------------------------------------------------------------------------------
 # THIRD-PARTY
 
-# zoxide init nushell | save -f zoxide.nu
-source zoxide.nu
+source ~/.cache/zoxide.nu
 
 # carapace _carapace nushell | save -f carapace.nu
 # source carapace.nu
