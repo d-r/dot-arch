@@ -127,6 +127,11 @@ def new [$path] {
 	touch $p
 }
 
+# Returns the current year
+def year []: nothing -> string {
+	(date now | format date "%Y")
+}
+
 #-------------------------------------------------------------------------------
 # THIRD-PARTY
 
