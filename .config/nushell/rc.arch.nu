@@ -1,0 +1,17 @@
+# Install a package
+alias in = paru -S
+
+# Uninstall a package
+alias un = paru -Rs
+
+# Update outdated packages
+alias up = paru
+
+# List outdated packages
+alias out = paru -Qu
+
+# Sync package database
+alias syn = paru -Fy
+
+# Bitwig Studio
+alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
