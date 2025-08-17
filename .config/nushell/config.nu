@@ -120,6 +120,13 @@ def --env y [...args] {
 	rm -fp $tmp
 }
 
+# Like `touch`, but creates missing directories
+def new [$path] {
+	let $p = ($path | path expand)
+	mkdir ($p | path dirname)
+	touch $p
+}
+
 #-------------------------------------------------------------------------------
 # THIRD-PARTY
 
