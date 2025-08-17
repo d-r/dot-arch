@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/niri.nu *
+
+wm toggle modal kitty --app-id modal -- rmpc
