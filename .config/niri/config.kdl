@@ -351,30 +351,18 @@ window-rule {
 }
 
 window-rule {
-    match app-id="modal"
-
-    open-floating true
-    // default-floating-position x=0 y=0 relative-to="top"
-    default-column-width { proportion 0.5; }
-    default-window-height { proportion 0.8; }
-    border {
-        off
-    }
-}
-
-window-rule {
     match app-id="Renoise"
 
     open-maximized true
 }
 
 window-rule {
-    match app-id="console"
+    match app-id="modal"
 
     open-floating true
     default-column-width { proportion 0.9; }
     default-window-height { proportion 0.9; }
-    opacity 0.9
+    opacity 0.95
 }
 
 //------------------------------------------------------------------------------
