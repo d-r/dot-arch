@@ -5,11 +5,6 @@ use ~/dot/nu/niri.nu *
 const $APP_ID = "console"
 
 def main [] {
-    let $w = (wm window-with-app-id $APP_ID)
-    if ($w | is-empty) {
-        # Attach to existing session, or create a new one if none exists
-        wm spawn kitty --app-id $APP_ID tmux new -A -s $APP_ID
-    } else {
-        wm close-window $w.id
-    }
+    # Attach to existing tmux session, or create a new one if none exists
+    wm toggle $APP_ID kitty --app-id $APP_ID tmux new -A -s $APP_ID
 }
