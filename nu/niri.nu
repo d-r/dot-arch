@@ -72,6 +72,11 @@ export def "wm focus-workspace" [$ref] {
     act focus-workspace $ref
 }
 
+# Move a window to a workspace
+export def "wm move-window-to-workspace" [$id, $ws] {
+    act move-window-to-workspace $ws --window-id $id
+}
+
 #-------------------------------------------------------------------------------
 # QUERIES
 
