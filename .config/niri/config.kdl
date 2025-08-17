@@ -281,7 +281,7 @@ layout {
 }
 
 overview {
-    zoom 0.3
+    // zoom 0.3
 }
 
 debug {
