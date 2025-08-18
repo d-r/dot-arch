@@ -42,11 +42,6 @@ def "main music" [] {
     cli --toggle music
 }
 
-# Run a program
-def "main run" [] {
-    tui run
-}
-
 # Visit a bookmarked URL
 def "main visit" [] {
     tui visit

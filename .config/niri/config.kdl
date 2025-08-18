@@ -57,6 +57,9 @@ binds {
 
     // MODALS
 
+    Mod+R {
+        spawn "fuzzel";
+    }
     Mod+O {
         spawn "uh" "visit";
     }
@@ -65,12 +68,6 @@ binds {
     }
     Mod+P {
         spawn "uh" "edit";
-    }
-    Mod+R {
-        spawn "uh" "run";
-    }
-    Mod+Shift+R {
-        spawn "fuzzel";
     }
 
     // TABS
