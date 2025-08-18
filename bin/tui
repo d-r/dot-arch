@@ -5,7 +5,7 @@ use ~/dot/nu/all.nu *
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 
 # Present a TUI dialog box
-def main [$name: string] {
-    let $cmd = $"tui.($name)"
-    wm toggle $cmd kitty --config $CONFIG --app-id $cmd -- $cmd
+def main [$cmd: string, ...$args] {
+    let $cmd = $"tui.($cmd)"
+    wm toggle $cmd kitty --config $CONFIG --app-id $cmd -- $cmd ...$args
 }

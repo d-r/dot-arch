@@ -1,8 +1,6 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/base.nu *
-use ~/dot/nu/niri.nu *
-use ~/dot/nu/me.nu
+use ~/dot/nu/all.nu *
 
 def main [$url] {
     let $marks = (me bookmarks)

@@ -1,5 +1,7 @@
 # As set of useful tools
 
+export alias say = notify-send
+
 #------------------------------------------------------------------------------
 # COLLECTIONS
 

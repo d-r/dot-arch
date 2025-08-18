@@ -1,0 +1,86 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+const $QB_ID = "org.qutebrowser.qutebrowser"
+const $BITWIG_ID = "com.bitwig.BitwigStudio"
+
+# Uh...
+def main [] {
+    help main
+}
+
+# Spawn a browser
+def "main browser" [] {
+    wm spawn-or-focus-in-ws $QB_ID qb (main ws-name)
+}
+
+# Spawn a file manager
+def "main file-manager" [] {
+    cli yazi
+}
+
+# Spawn a DAW
+def "main daw" [] {
+    wm spawn-or-focus $BITWIG_ID flatpak run $BITWIG_ID
+}
+
+# Spawn a terminal
+def "main term" [] {
+    wm spawn kitty -d (main cwd) --class term
+}
+
+# Toggle console
+def "main console" [] {
+    cli --toggle console
+}
+
+# Toggle music player
+def "main music" [] {
+    cli --toggle music
+}
+
+# Run a program
+def "main run" [] {
+    tui run
+}
+
+# Visit a bookmarked URL
+def "main visit" [] {
+    tui visit
+}
+
+# Bookmark the URL inside of the clipboard, if there is one
+def "main bookmark" [] {
+    let $s = (wl-paste)
+    if ($s | is-url) {
+        tui bookmark $s
+    } else if ($s | is-empty) {
+        say "The clipboard is empty"
+    } else {
+        say $'"($s)" is not a valid URL'
+    }
+}
+
+# Edit a project
+def "main edit" [] {
+    tui edit
+}
+
+# Get the current working directory for the focused workspace
+def "main cwd" [] {
+    match (main ws-name) {
+        "web" => "~/dl"
+        "dot" => "~/dot"
+        "dev" => "~/src"
+        "brn" => "~/brain"
+        "snd" => "~/snd"
+        _ => "~"
+    }
+    | path expand
+}
+
+# Get the name of the current workspace
+def "main ws-name" [] {
+    (wm focused-workspace).name
+}

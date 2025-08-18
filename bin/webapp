@@ -7,5 +7,5 @@ def main [$id: string, $url: string] {
     let $state_dir = ($env.XDG_STATE_HOME)
     let $data_dir = $"($state_dir)/webapp"
     mkdir $data_dir
-    wm spawn-or-focus $id chromium --user-data-dir=($data_dir) --app=($url) --class=($id)
+    wm spawn-or-focus-in-ws $id chromium --user-data-dir=($data_dir) --app=($url) --class=($id)
 }

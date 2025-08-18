@@ -7,6 +7,6 @@ def main [$cmd: string, --toggle] {
     if $toggle {
         wm toggle $cmd kitty --app-id $cmd -- $cmd
     } else {
-        wm spawn-or-focus $cmd kitty --app-id $cmd -- $cmd
+        wm spawn $cmd kitty --app-id $cmd -- $cmd
     }
 }

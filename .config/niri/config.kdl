@@ -20,13 +20,13 @@ binds {
     }
 
     Mod+Return hotkey-overlay-title="Terminal" {
-        spawn "trm";
+        spawn "uh" "term";
     }
     Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn "cli" "--toggle" "console";
+        spawn "uh" "console";
     }
     Mod+Semicolon hotkey-overlay-title="Music player" {
-        spawn "cli" "--toggle" "music";
+        spawn "uh" "music";
     }
 
     // CONTROL
@@ -45,35 +45,29 @@ binds {
 
     // APPLICATIONS
 
-    Mod+Y hotkey-overlay-title="yazi" {
-        spawn "cli" "yazi";
+    Mod+B hotkey-overlay-title="Browser" {
+        spawn "uh" "browser";
     }
-    Mod+T hotkey-overlay-title="Tasks" {
-        spawn "cli" "taskwarrior-tui";
+    Mod+D hotkey-overlay-title="DAW" {
+        spawn "uh" "daw"
     }
-    Mod+D hotkey-overlay-title="DAW (Bitwig Studio)" {
-        spawn "flatpak" "run" "com.bitwig.BitwigStudio";
-    }
-    Mod+B hotkey-overlay-title="Browser (Firefox)" {
-        spawn "firefox";
-    }
-    Mod+Shift+B hotkey-overlay-title="Browser (qutebrowser)" {
-        spawn "qutebrowser";
+    Mod+Y hotkey-overlay-title="File manager" {
+        spawn "uh" "file-manager";
     }
 
-    // PICKERS
+    // MODALS
 
     Mod+O {
-        spawn "tui" "visit";
+        spawn "uh" "visit";
     }
-    Mod+S hotkey-overlay-title="Save URL in clipboard as bookmark" {
-        spawn "bookmark";
+    Mod+S {
+        spawn "uh" "bookmark";
     }
     Mod+P {
-        spawn "tui" "edit";
+        spawn "uh" "edit";
     }
     Mod+R {
-        spawn "tui" "run";
+        spawn "uh" "run";
     }
     Mod+Shift+R {
         spawn "fuzzel";
