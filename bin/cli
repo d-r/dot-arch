@@ -1,0 +1,12 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+# Run a CLI application
+def main [$cmd: string, --toggle] {
+    if $toggle {
+        wm toggle $cmd kitty --app-id $cmd -- $cmd
+    } else {
+        wm spawn-or-focus $cmd kitty --app-id $cmd -- $cmd
+    }
+}

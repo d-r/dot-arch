@@ -1,7 +1,3 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/all.nu *
-
-const $APP_ID = "music"
-
-wm toggle $APP_ID kitty --app-id $APP_ID -- rmpc
+rmpc

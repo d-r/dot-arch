@@ -23,10 +23,10 @@ binds {
         spawn "trm";
     }
     Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn "console";
+        spawn "cli" "--toggle" "console";
     }
     Mod+Semicolon hotkey-overlay-title="Music player" {
-        spawn "music";
+        spawn "cli" "--toggle" "music";
     }
 
     // CONTROL
@@ -46,10 +46,10 @@ binds {
     // APPLICATIONS
 
     Mod+Y hotkey-overlay-title="yazi" {
-        spawn "trm" "yazi";
+        spawn "cli" "yazi";
     }
     Mod+T hotkey-overlay-title="Tasks" {
-        spawn "trm" "taskwarrior-tui";
+        spawn "cli" "taskwarrior-tui";
     }
     Mod+D hotkey-overlay-title="DAW (Bitwig Studio)" {
         spawn "flatpak" "run" "com.bitwig.BitwigStudio";

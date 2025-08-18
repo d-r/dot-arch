@@ -17,35 +17,17 @@ export def --wrapped "wm spawn" [...$cmd] {
 
 # Spawn a command or toggle focus of existing window
 export def --wrapped "wm spawn-or-focus" [$app_id, $cmd, ...$args] {
-    let $w = (wm window-with-app-id $app_id)
+    let $w = (wm windows-in-focused-workspace | where app_id == $app_id | first?)
     if ($w | is-empty) {
         wm spawn $cmd ...$args
-    } else if $w.is_focused {
-        wm focus-previous-window
     } else {
-        wm focus-window $w.id
-    }
-}
-
-# Spawn a command or move existing window to the current workspace and focus it
-export def --wrapped "wm spawn-or-grab" [$app_id, $cmd, ...$args, --grab] {
-    let $w = (wm window-with-app-id $app_id)
-    if ($w | is-empty) {
-        wm spawn $cmd ...$args
-    } else if $w.is_focused {
-        wm focus-previous-window
-    } else {
-        let $ws_id = (wm focused-workspace).id
-        if ($w.workspace_id != $ws_id) {
-            wm move-window-to-workspace $w.id $ws_id
-        }
         wm focus-window $w.id
     }
 }
 
 # Spawn a command or close existing window
 export def --wrapped "wm toggle" [$app_id, $cmd, ...$args] {
-    let $w = (wm window-with-app-id $app_id)
+    let $w = (wm windows-in-focused-workspace | where app_id == $app_id | first?)
     if ($w | is-empty) {
         wm spawn $cmd ...$args
     } else {
