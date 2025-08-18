@@ -2,18 +2,10 @@
 
 use ~/dot/nu/all.nu *
 
-const $BIN = ("~/dot/bin" | path expand)
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 
-# Run a script inside of a modal terminal window
+# Present a TUI dialog box
 def main [$name: string] {
-    let $id = $"tui.($name)"
-
-    let $script = ($BIN | path join $id)
-    if not ($script | path exists) {
-        notify-send -u critical -i dialog-error "Error" $"Script ($script) not found"
-        exit 1
-    }
-
-    wm toggle $id kitty --config $CONFIG --app-id $id -- $script
+    let $cmd = $"tui.($name)"
+    wm toggle $cmd kitty --config $CONFIG --app-id $cmd -- $cmd
 }
