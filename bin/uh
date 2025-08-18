@@ -32,7 +32,9 @@ def "main term" [] {
 
 # Toggle console
 def "main console" [] {
-    cli --toggle console
+    let $name = (main ws-name)
+    let $id = $"console.($name)"
+    wm toggle $id kitty -d (main cwd) --app-id $id -- tmux new -A -s $"c_($name)"
 }
 
 # Toggle music player
