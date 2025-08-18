@@ -52,10 +52,6 @@ def "main bookmark" [] {
     let $s = (wl-paste)
     if ($s | is-url) {
         tui bookmark $s
-    } else if ($s | is-empty) {
-        say "The clipboard is empty"
-    } else {
-        say $'"($s)" is not a valid URL'
     }
 }
 
