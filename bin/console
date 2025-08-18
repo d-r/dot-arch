@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/niri.nu *
+use ~/dot/nu/all.nu *
 
 const $APP_ID = "console"
 

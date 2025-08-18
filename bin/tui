@@ -1,16 +1,19 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/niri.nu *
+use ~/dot/nu/all.nu *
 
+const $BIN = ("~/dot/bin" | path expand)
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
-const $CLASS = "modal"
 
-# Run a command inside of a modal terminal window
-def main [$cmd, ...$args] {
-    let $w = (wm window-with-app-id $CLASS)
-    if ($w | is-empty) {
-        wm spawn kitty --config $CONFIG --class $CLASS -- $cmd ...$args
-    } else {
-        wm close-window $w.id
+# Run a script inside of a modal terminal window
+def main [$name: string] {
+    let $id = $"tui.($name)"
+
+    let $script = ($BIN | path join $id)
+    if not ($script | path exists) {
+        notify-send -u critical -i dialog-error "Error" $"Script ($script) not found"
+        exit 1
     }
+
+    wm toggle $id kitty --config $CONFIG --app-id $id -- $script
 }

@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/niri.nu *
+use ~/dot/nu/all.nu *
 
-wm toggle modal kitty --app-id modal -- rmpc
+const $APP_ID = "music"
+
+wm toggle $APP_ID kitty --app-id $APP_ID -- rmpc

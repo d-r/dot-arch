@@ -64,16 +64,16 @@ binds {
     // PICKERS
 
     Mod+O {
-        spawn "tui" "visit" "bookmark";
+        spawn "tui" "visit";
     }
     Mod+S hotkey-overlay-title="Save URL in clipboard as bookmark" {
         spawn "bookmark";
     }
     Mod+P {
-        spawn "tui" "visit" "project";
+        spawn "tui" "edit";
     }
     Mod+R {
-        spawn "tui" "visit" "app";
+        spawn "tui" "run";
     }
     Mod+Shift+R {
         spawn "fuzzel";
@@ -355,8 +355,9 @@ window-rule {
 }
 
 window-rule {
-    match app-id="modal"
+    match app-id="tui"
     match app-id="console"
+    match app-id="music"
 
     open-floating true
     default-column-width { proportion 0.9; }

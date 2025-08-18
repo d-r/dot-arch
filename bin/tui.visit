@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+wm spawn xdg-open (me bookmarks | pick-item)
