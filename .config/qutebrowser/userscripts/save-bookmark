@@ -1,3 +1,3 @@
 #!/usr/bin/env nu
 
-tui save-url $env.QUTE_URL
+tui bookmark $env.QUTE_URL

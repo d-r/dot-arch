@@ -63,9 +63,9 @@ binds {
     Mod+O {
         spawn "uh" "visit";
     }
-    Mod+S {
-        spawn "uh" "bookmark";
-    }
+    // Mod+S {
+    //     spawn "uh" "bookmark";
+    // }
     Mod+P {
         spawn "uh" "edit";
     }
@@ -351,9 +351,16 @@ window-rule {
     match app-id="music"
 
     open-floating true
-    default-column-width { proportion 0.9; }
     default-window-height { proportion 0.9; }
+    default-column-width { proportion 0.9; }
     opacity 0.9
+}
+
+window-rule {
+    match app-id="tui.bookmark"
+    match app-id="tui.edit"
+
+    default-column-width { proportion 0.5; }
 }
 
 //------------------------------------------------------------------------------

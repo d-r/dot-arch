@@ -15,6 +15,10 @@ settings:
       wqa: quit --save
   auto_save.session:
     global: true
+  bindings.commands:
+    global:
+      normal:
+        <Meta+s>: spawn --userscript save-bookmark
   colors.webpage.preferred_color_scheme:
     global: dark
   content.blocking.method:
@@ -43,3 +47,9 @@ settings:
     global: /usr/share/dict/words
   hints.radius:
     global: 0
+  tabs.focus_stack_size:
+    global: 10
+  tabs.mode_on_change:
+    global: normal
+  tabs.position:
+    global: top
