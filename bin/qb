@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-def --wrapped main [$profile, ...$args] {
+def main [$profile] {
     let $profile_dir = [$env.XDG_DATA_HOME, "qutebrowser-profiles", $profile] | path join
     let $config_file = "~/.config/qutebrowser/config.py" | path expand
 
@@ -14,5 +14,5 @@ def --wrapped main [$profile, ...$args] {
         ln -sf ~/.config/qutebrowser/userscripts $userscripts
     }
 
-    qutebrowser --basedir $profile_dir --config-py $config_file ...$args
+    qutebrowser --basedir $profile_dir --config-py $config_file
 }
