@@ -17,6 +17,9 @@ vim.o.showmode = false
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'yes'
+
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 -- Remove this option if you want your OS clipboard to remain independent.
