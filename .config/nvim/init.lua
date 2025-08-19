@@ -158,17 +158,6 @@ local plugins = {
     -- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
-  -- LSP configurations
-  -- https://github.com/neovim/nvim-lspconfig
-  --
-  -- nvim-lspconfig is a collection of user-contributed default configurations
-  -- for various LSPs. Installed as a plugin, it doesn"t actually *do* anything.
-  --
-  -- I could use Mason to to automatically install LSPs, but I prefer to manage
-  -- packages with my system package manager. My text editor has no business
-  -- installing software onto my system.
-  { "neovim/nvim-lspconfig" },
-
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
   { "j-hui/fidget.nvim", opts = {} },
