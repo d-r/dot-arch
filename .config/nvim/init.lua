@@ -10,9 +10,6 @@ vim.g.maplocalleader = " "
 -- Enable Nerd Font icons
 vim.g.have_nerd_font = true
 
--- Don"t show the mode, since it"s already in the status line
-vim.o.showmode = false
-
 -- Show relative line numbers
 vim.o.number = true
 vim.o.relativenumber = true
@@ -77,26 +74,6 @@ local plugins = {
       -- Disable icons
       icons = { mappings = false },
     },
-  },
-
-  -- Collection of various small independent plugins/modules
-  -- https://github.com/echasnovski/mini.nvim
-  {
-    "echasnovski/mini.nvim",
-    config = function()
-      -- File type icons
-      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
-      require("mini.icons").setup()
-
-      -- Minimal statusline
-      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
-      local statusline = require "mini.statusline"
-      statusline.setup()
-      statusline.section_location = function()
-        -- Set location to LINE:COLUMN
-        return "%2l:%-2v"
-      end
-    end,
   },
 
   -- Jump around
