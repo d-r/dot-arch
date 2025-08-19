@@ -158,46 +158,29 @@ local plugins = {
     -- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
-  -- LSP configuration
+  -- LSP configurations
   -- https://github.com/neovim/nvim-lspconfig
   --
   -- nvim-lspconfig is a collection of user-contributed default configurations
   -- for various LSPs. Installed as a plugin, it doesn"t actually *do* anything.
-  -- If you remove the config callback, you'll get an error message on startup,
-  -- as there is no setup() function to call.
   --
   -- I could use Mason to to automatically install LSPs, but I prefer to manage
   -- packages with my system package manager. My text editor has no business
   -- installing software onto my system.
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      -- A window in the bottom right corner that displays LSP progress messages
-      -- https://github.com/j-hui/fidget.nvim
-      { "j-hui/fidget.nvim", opts = {} },
-    },
-    opts = {
-      servers = {
-        clangd = {},
-        rust_analyzer = {},
-      },
-    },
-    config = function(_, opts)
-      for server, settings in pairs(opts.servers) do
-        vim.lsp.config(server, settings)
-        vim.lsp.enable(server)
-      end
-    end
-  },
+  { "neovim/nvim-lspconfig" },
+
+  -- A window in the bottom right corner that displays LSP progress messages
+  -- https://github.com/j-hui/fidget.nvim
+  { "j-hui/fidget.nvim", opts = {} },
 
   -- Magit for nvim
   -- https://github.com/NeogitOrg/neogit
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",  -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
-      "folke/snacks.nvim",    -- optional
+      "folke/snacks.nvim",      -- optional
     },
   }
 }
@@ -226,6 +209,14 @@ require("lazy").setup {
   spec = plugins,
   -- Theme that will be used when installing plugins
   install = { colorscheme = { "tokyonight-night" } },
+}
+
+--------------------------------------------------------------------------------
+-- LSPs
+
+vim.lsp.enable {
+  "clangd",
+  "rust_analyzer",
 }
 
 --------------------------------------------------------------------------------
