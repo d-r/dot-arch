@@ -57,13 +57,13 @@ binds {
 
     // MODALS
 
-    // Mod+O {
-    //     spawn "uh" "visit";
-    // }
+    Mod+O {
+        spawn "uh" "visit";
+    }
 
-    // Mod+S {
-    //     spawn "uh" "bookmark";
-    // }
+    Mod+S {
+        spawn "uh" "bookmark";
+    }
 
     Mod+R {
         spawn "fuzzel";
