@@ -18,6 +18,7 @@ settings:
   bindings.commands:
     global:
       normal:
+        <Meta+o>: spawn --userscript open-bookmark
         <Meta+s>: spawn --userscript save-bookmark
   colors.webpage.preferred_color_scheme:
     global: dark

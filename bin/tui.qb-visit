@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+(me bookmarks | pick-item) o> /tmp/qb-url
