@@ -158,6 +158,20 @@ local plugins = {
     -- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
+  -- Properly configures Lua Language Server for editing the Neovim config
+  -- https://github.com/folke/lazydev.nvim
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
   { "j-hui/fidget.nvim", opts = {} },
@@ -171,7 +185,7 @@ local plugins = {
       "sindrets/diffview.nvim", -- optional - Diff integration
       "folke/snacks.nvim",      -- optional
     },
-  }
+  },
 }
 
 -- Bootstrap lazy.nvim package manager
@@ -206,6 +220,7 @@ require("lazy").setup {
 vim.lsp.enable {
   "clangd",
   "rust_analyzer",
+  "lua_ls",
 }
 
 --------------------------------------------------------------------------------
