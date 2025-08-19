@@ -1,8 +1,11 @@
 #!/usr/bin/env nu
 
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
+const $URL_FILE = "/tmp/qb-url"
 
 kitty --config $CONFIG --app-id tui.visit tui.qb-visit
 
-let $url = (open /tmp/qb-url)
-echo $"open ($url)" o> $env.QUTE_FIFO
+if ($URL_FILE | path exists) {
+    let $url = (open $URL_FILE)
+    echo $"open ($url)" o> $env.QUTE_FIFO
+}
