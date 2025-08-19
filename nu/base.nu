@@ -47,7 +47,7 @@ export def pick [...$columns: string, --match-column: string]: table -> record {
     }
     let $menu = ($in | select ...$columns | indexed | table-str)
     let $choice = $menu | (
-        sk
+        fzf
         --delimiter $COLUMN_SEP
         --with-nth 2.. # Exclude the index column
         --nth $nth
