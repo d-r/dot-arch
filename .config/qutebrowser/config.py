@@ -11,7 +11,21 @@
 #   qute://help/settings.html
 
 # Change the argument to True to still load settings configured via autoconfig.yml
-config.load_autoconfig(True)
+config.load_autoconfig(False)
+
+# Aliases for commands. The keys of the given dictionary are the
+# aliases, while the values are the commands they map to.
+# Type: Dict
+c.aliases = {'q': 'close', 'qa': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'wqa': 'quit --save'}
+
+# Always restore open sites when qutebrowser is reopened. Without this
+# option set, `:wq` (`:quit --save`) needs to be used to save open tabs
+# (and restore them), while quitting qutebrowser in any other way will
+# not save/restore the session. By default, this will save to the
+# session which was last loaded. This behavior can be customized via the
+# `session.default_name` setting.
+# Type: Bool
+c.auto_save.session = True
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -61,6 +75,27 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
 
+# Default encoding to use for websites. The encoding must be a string
+# describing an encoding such as _utf-8_, _iso-8859-1_, etc.
+# Type: String
+c.content.default_encoding = 'utf-8'
+
+# Allow websites to request geolocations.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.geolocation = False
+
+# Allow websites to lock your mouse pointer.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.mouse_lock = False
+
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
@@ -83,6 +118,19 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:136.0) Gecko/20100101 Firefox/139.0', 'https://accounts.google.com/*')
 
+# Which method of blocking ads should be used.  Support for Adblock Plus
+# (ABP) syntax blocklists using Brave's Rust library requires the
+# `adblock` Python package to be installed, which is an optional
+# dependency of qutebrowser. It is required when either `adblock` or
+# `both` are selected.
+# Type: String
+# Valid values:
+#   - auto: Use Brave's ABP-style adblocker if available, host blocking otherwise
+#   - adblock: Use Brave's ABP-style adblocker
+#   - hosts: Use hosts blocking
+#   - both: Use both hosts blocking and Brave's ABP-style adblocker
+c.content.blocking.method = 'both'
+
 # Load images automatically in web pages.
 # Type: Bool
 config.set('content.images', True, 'chrome-devtools://*')
@@ -90,6 +138,18 @@ config.set('content.images', True, 'chrome-devtools://*')
 # Load images automatically in web pages.
 # Type: Bool
 config.set('content.images', True, 'devtools://*')
+
+# Allow JavaScript to read from or write to the clipboard. With
+# QtWebEngine, writing the clipboard as response to a user interaction
+# is always allowed. On Qt < 6.8, the `ask` setting is equivalent to
+# `none` and permission needs to be granted manually via this setting.
+# Type: JSClipboardPermission
+# Valid values:
+#   - none: Disable access to clipboard.
+#   - access: Allow reading from and writing to the clipboard.
+#   - access-paste: Allow accessing the clipboard and pasting clipboard content.
+#   - ask: Prompt when requested (grants 'access-paste' permission).
+c.content.javascript.clipboard = 'access'
 
 # Enable JavaScript.
 # Type: Bool
@@ -115,6 +175,478 @@ config.set('content.local_content_can_access_remote_urls', True, 'file:///home/d
 # Type: Bool
 config.set('content.local_content_can_access_file_urls', False, 'file:///home/dan/.local/share/qutebrowser/userscripts/*')
 
+# Allow websites to record audio.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.media.audio_capture = False
+
+# Allow websites to record audio and video.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.media.audio_video_capture = False
+
+# Allow websites to record video.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.media.video_capture = False
+
+# Display PDF files via PDF.js in the browser without showing a download
+# prompt. Note that the files can still be downloaded by clicking the
+# download button in the pdf.js viewer. With this set to `false`, the
+# `:prompt-open-download --pdfjs` command (bound to `<Ctrl-p>` by
+# default) can be used in the download prompt.
+# Type: Bool
+c.content.pdfjs = True
+
+# Automatically mute tabs. Note that if the `:tab-mute` command is used,
+# the mute status for the affected tab is now controlled manually, and
+# this setting doesn't have any effect.
+# Type: Bool
+c.content.mute = True
+
+# Directory to save downloads to. If unset, a sensible OS-specific
+# default is used.
+# Type: Directory
+c.downloads.location.directory = '~/dl'
+
+# CSS border value for hints.
+# Type: String
+c.hints.border = '1px solid #21242b'
+
+# Rounding radius (in pixels) for the edges of hints.
+# Type: Int
+c.hints.radius = 0
+
+# Dictionary file to be used by the word hints.
+# Type: File
+c.hints.dictionary = '/usr/share/dict/words'
+
+# Padding (in pixels) for the statusbar.
+# Type: Padding
+c.statusbar.padding = {'top': 5, 'right': 5, 'bottom': 5, 'left': 5}
+
+# Scaling factor for favicons in the tab bar. The tab size is unchanged,
+# so big favicons also require extra `tabs.padding`.
+# Type: Float
+c.tabs.favicons.scale = 1
+
+# Padding (in pixels) around text for tabs.
+# Type: Padding
+c.tabs.padding = {'top': 5, 'right': 5, 'bottom': 5, 'left': 5}
+
+# When switching tabs, what input mode is applied.
+# Type: String
+# Valid values:
+#   - persist: Retain the current mode.
+#   - restore: Restore previously saved mode.
+#   - normal: Always revert to normal mode.
+c.tabs.mode_on_change = 'normal'
+
+# Position of the tab bar.
+# Type: Position
+# Valid values:
+#   - top
+#   - bottom
+#   - left
+#   - right
+c.tabs.position = 'top'
+
+# Width (in pixels) of the progress indicator (0 to disable).
+# Type: Int
+c.tabs.indicator.width = 3
+
+# Maximum stack size to remember for tab switches (-1 for no maximum).
+# Type: Int
+c.tabs.focus_stack_size = 10
+
+# Text color of the completion widget. May be a single color to use for
+# all columns or a list of three colors, one for each column.
+# Type: List of QtColor, or QtColor
+c.colors.completion.fg = '#dfdfdf'
+
+# Background color of the completion widget for odd rows.
+# Type: QssColor
+c.colors.completion.odd.bg = '#21242b'
+
+# Background color of the completion widget for even rows.
+# Type: QssColor
+c.colors.completion.even.bg = '#282c34'
+
+# Foreground color of completion widget category headers.
+# Type: QtColor
+c.colors.completion.category.fg = '#51afef'
+
+# Background color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.bg = '#3b404d'
+
+# Top border color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.border.top = '#21242b'
+
+# Bottom border color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.border.bottom = '#21242b'
+
+# Foreground color of the selected completion item.
+# Type: QtColor
+c.colors.completion.item.selected.fg = '#dfdfdf'
+
+# Background color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.bg = '#3f444a'
+
+# Top border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.top = '#3f444a'
+
+# Bottom border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.bottom = '#3f444a'
+
+# Foreground color of the matched text in the selected completion item.
+# Type: QtColor
+c.colors.completion.item.selected.match.fg = '#7bb6e2'
+
+# Foreground color of the matched text in the completion.
+# Type: QtColor
+c.colors.completion.match.fg = '#c678dd'
+
+# Color of the scrollbar handle in the completion view.
+# Type: QssColor
+c.colors.completion.scrollbar.fg = '#5b6268'
+
+# Color of the scrollbar in the completion view.
+# Type: QssColor
+c.colors.completion.scrollbar.bg = '#3f444a'
+
+# Background color for the download bar.
+# Type: QssColor
+c.colors.downloads.bar.bg = '#21242b'
+
+# Color gradient start for download text.
+# Type: QtColor
+c.colors.downloads.start.fg = '#ffffff'
+
+# Color gradient start for download backgrounds.
+# Type: QtColor
+c.colors.downloads.start.bg = '#51afef'
+
+# Color gradient end for download text.
+# Type: QtColor
+c.colors.downloads.stop.fg = '#ffffff'
+
+# Color gradient stop for download backgrounds.
+# Type: QtColor
+c.colors.downloads.stop.bg = '#668044'
+
+# Color gradient interpolation system for download text.
+# Type: ColorSystem
+# Valid values:
+#   - rgb: Interpolate in the RGB color system.
+#   - hsv: Interpolate in the HSV color system.
+#   - hsl: Interpolate in the HSL color system.
+#   - none: Don't show a gradient.
+c.colors.downloads.system.fg = 'rgb'
+
+# Color gradient interpolation system for download backgrounds.
+# Type: ColorSystem
+# Valid values:
+#   - rgb: Interpolate in the RGB color system.
+#   - hsv: Interpolate in the HSV color system.
+#   - hsl: Interpolate in the HSL color system.
+#   - none: Don't show a gradient.
+c.colors.downloads.system.bg = 'rgb'
+
+# Foreground color for downloads with errors.
+# Type: QtColor
+c.colors.downloads.error.fg = '#ffffff'
+
+# Background color for downloads with errors.
+# Type: QtColor
+c.colors.downloads.error.bg = '#ff6c6b'
+
+# Font color for hints.
+# Type: QssColor
+c.colors.hints.fg = '#282c34'
+
+# Background color for hints. Note that you can use a `rgba(...)` value
+# for transparency.
+# Type: QssColor
+c.colors.hints.bg = '#ecbe7b'
+
+# Font color for the matched part of hints.
+# Type: QtColor
+c.colors.hints.match.fg = '#668044'
+
+# Text color for the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.fg = '#51afef'
+
+# Highlight color for keys to complete the current keychain.
+# Type: QssColor
+c.colors.keyhint.suffix.fg = '#98be65'
+
+# Background color of the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.bg = '#21242b'
+
+# Foreground color of an error message.
+# Type: QssColor
+c.colors.messages.error.fg = '#ff6c6b'
+
+# Background color of an error message.
+# Type: QssColor
+c.colors.messages.error.bg = '#21242b'
+
+# Border color of an error message.
+# Type: QssColor
+c.colors.messages.error.border = '#5b6268'
+
+# Foreground color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.fg = '#ff6c6b'
+
+# Background color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.bg = '#282c34'
+
+# Border color of a warning message.
+# Type: QssColor
+c.colors.messages.warning.border = '#5b6268'
+
+# Foreground color of an info message.
+# Type: QssColor
+c.colors.messages.info.fg = '#dfdfdf'
+
+# Background color of an info message.
+# Type: QssColor
+c.colors.messages.info.bg = '#282c34'
+
+# Border color of an info message.
+# Type: QssColor
+c.colors.messages.info.border = '#5b6268'
+
+# Foreground color for prompts.
+# Type: QssColor
+c.colors.prompts.fg = '#dfdfdf'
+
+# Border used around UI elements in prompts.
+# Type: String
+c.colors.prompts.border = '1px solid #5b6268'
+
+# Background color for prompts.
+# Type: QssColor
+c.colors.prompts.bg = '#282c34'
+
+# Background color for the selected item in filename prompts.
+# Type: QssColor
+c.colors.prompts.selected.bg = '#5b6268'
+
+# Foreground color of the statusbar.
+# Type: QssColor
+c.colors.statusbar.normal.fg = '#dfdfdf'
+
+# Background color of the statusbar.
+# Type: QssColor
+c.colors.statusbar.normal.bg = '#282c34'
+
+# Foreground color of the statusbar in insert mode.
+# Type: QssColor
+c.colors.statusbar.insert.fg = '#dfdfdf'
+
+# Background color of the statusbar in insert mode.
+# Type: QssColor
+c.colors.statusbar.insert.bg = '#2257a0'
+
+# Foreground color of the statusbar in passthrough mode.
+# Type: QssColor
+c.colors.statusbar.passthrough.fg = '#dfdfdf'
+
+# Background color of the statusbar in passthrough mode.
+# Type: QssColor
+c.colors.statusbar.passthrough.bg = '#5b3766'
+
+# Foreground color of the statusbar in private browsing mode.
+# Type: QssColor
+c.colors.statusbar.private.fg = '#dfdfdf'
+
+# Background color of the statusbar in private browsing mode.
+# Type: QssColor
+c.colors.statusbar.private.bg = '#5b6268'
+
+# Foreground color of the statusbar in command mode.
+# Type: QssColor
+c.colors.statusbar.command.fg = '#dfdfdf'
+
+# Background color of the statusbar in command mode.
+# Type: QssColor
+c.colors.statusbar.command.bg = '#282c34'
+
+# Foreground color of the statusbar in private browsing + command mode.
+# Type: QssColor
+c.colors.statusbar.command.private.fg = '#dfdfdf'
+
+# Background color of the statusbar in private browsing + command mode.
+# Type: QssColor
+c.colors.statusbar.command.private.bg = '#282c34'
+
+# Foreground color of the statusbar in caret mode.
+# Type: QssColor
+c.colors.statusbar.caret.fg = '#dfdfdf'
+
+# Background color of the statusbar in caret mode.
+# Type: QssColor
+c.colors.statusbar.caret.bg = '#615c80'
+
+# Foreground color of the statusbar in caret mode with a selection.
+# Type: QssColor
+c.colors.statusbar.caret.selection.fg = '#dfdfdf'
+
+# Background color of the statusbar in caret mode with a selection.
+# Type: QssColor
+c.colors.statusbar.caret.selection.bg = '#945aa6'
+
+# Background color of the progress bar.
+# Type: QssColor
+c.colors.statusbar.progress.bg = '#282c34'
+
+# Default foreground color of the URL in the statusbar.
+# Type: QssColor
+c.colors.statusbar.url.fg = '#dfdfdf'
+
+# Foreground color of the URL in the statusbar on error.
+# Type: QssColor
+c.colors.statusbar.url.error.fg = '#ff6c6b'
+
+# Foreground color of the URL in the statusbar for hovered links.
+# Type: QssColor
+c.colors.statusbar.url.hover.fg = '#46d9ff'
+
+# Foreground color of the URL in the statusbar on successful load
+# (http).
+# Type: QssColor
+c.colors.statusbar.url.success.http.fg = '#98be65'
+
+# Foreground color of the URL in the statusbar on successful load
+# (https).
+# Type: QssColor
+c.colors.statusbar.url.success.https.fg = '#98be65'
+
+# Foreground color of the URL in the statusbar when there's a warning.
+# Type: QssColor
+c.colors.statusbar.url.warn.fg = '#ecbe7b'
+
+# Background color of the tab bar.
+# Type: QssColor
+c.colors.tabs.bar.bg = '#5b6268'
+
+# Color gradient start for the tab indicator.
+# Type: QtColor
+c.colors.tabs.indicator.start = '#51afef'
+
+# Color gradient end for the tab indicator.
+# Type: QtColor
+c.colors.tabs.indicator.stop = '#98be65'
+
+# Color for the tab indicator on errors.
+# Type: QtColor
+c.colors.tabs.indicator.error = '#ff6c6b'
+
+# Color gradient interpolation system for the tab indicator.
+# Type: ColorSystem
+# Valid values:
+#   - rgb: Interpolate in the RGB color system.
+#   - hsv: Interpolate in the HSV color system.
+#   - hsl: Interpolate in the HSL color system.
+#   - none: Don't show a gradient.
+c.colors.tabs.indicator.system = 'rgb'
+
+# Foreground color of unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.odd.fg = '#fefefe'
+
+# Background color of unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.odd.bg = '#73797e'
+
+# Foreground color of unselected even tabs.
+# Type: QtColor
+c.colors.tabs.even.fg = '#fefefe'
+
+# Background color of unselected even tabs.
+# Type: QtColor
+c.colors.tabs.even.bg = '#9ca0a4'
+
+# Foreground color of selected odd tabs.
+# Type: QtColor
+c.colors.tabs.selected.odd.fg = '#fefefe'
+
+# Background color of selected odd tabs.
+# Type: QtColor
+c.colors.tabs.selected.odd.bg = '#282c34'
+
+# Foreground color of selected even tabs.
+# Type: QtColor
+c.colors.tabs.selected.even.fg = '#fefefe'
+
+# Background color of selected even tabs.
+# Type: QtColor
+c.colors.tabs.selected.even.bg = '#282c34'
+
+# Foreground color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.fg = '#fefefe'
+
+# Background color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.bg = '#73797e'
+
+# Foreground color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.fg = '#fefefe'
+
+# Background color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.bg = '#9ca0a4'
+
+# Foreground color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.fg = '#fefefe'
+
+# Background color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.bg = '#282c34'
+
+# Foreground color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.fg = '#fefefe'
+
+# Background color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.bg = '#282c34'
+
+# Value to use for `prefers-color-scheme:` for websites. The "light"
+# value is only available with QtWebEngine 5.15.2+. On older versions,
+# it is the same as "auto". The "auto" value is broken on QtWebEngine
+# 5.15.2 due to a Qt bug. There, it will fall back to "light"
+# unconditionally.
+# Type: String
+# Valid values:
+#   - auto: Use the system-wide color scheme setting.
+#   - light: Force a light theme.
+#   - dark: Force a dark theme.
+c.colors.webpage.preferred_color_scheme = 'dark'
+
 # Render all web contents using a dark theme. On QtWebEngine < 6.7, this
 # setting requires a restart and does not support URL patterns, only the
 # global setting is applied. Example configurations from Chromium's
@@ -125,12 +657,6 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/da
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
 
-# Theme
-import doom_one
-
-doom_one.setup(c, {
-    "spacing": {
-        "vertical": 5,
-        "horizontal": 5
-    }
-})
+# Bindings for normal mode
+config.bind('<Ctrl+m>', 'spawn --userscript ~/.config/qutebrowser/userscripts/save-bookmark')
+config.bind('<Ctrl+o>', 'spawn --userscript ~/.config/qutebrowser/userscripts/open-bookmark')
