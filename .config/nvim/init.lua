@@ -60,13 +60,6 @@ local plugins = {
     opts = {
       dashboard = { enabled = true },
       picker = { enabled = true },
-      input = { enabled = true },
-      notifier = { enabled = true },
-      notify = { enabled = true },
-      bigfile = { enabled = true },
-      quickfile = { enabled = true },
-      indent = { enabled = true },
-      scope = { enabled = true },
     },
   },
 
