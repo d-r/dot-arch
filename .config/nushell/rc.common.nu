@@ -8,6 +8,7 @@ alias lg = lazygit
 alias t = task
 alias ta = task add
 alias tt = taskwarrior-tui
+alias resume = job unfreeze
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
