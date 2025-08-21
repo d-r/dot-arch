@@ -1,21 +1,15 @@
 --------------------------------------------------------------------------------
 -- OPTIONS
 
--- Set <space> as the leader key
--- See `:help mapleader`
--- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Enable Nerd Font icons
 vim.g.have_nerd_font = true
 
--- Show relative line numbers
 vim.o.number = true
 vim.o.relativenumber = true
-
--- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -25,11 +19,6 @@ vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
--- Case-insensitive search unless one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Enable LSPs
 vim.lsp.enable {
   "bashls",
   "clangd",
