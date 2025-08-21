@@ -59,7 +59,14 @@ local plugins = {
     ---@type snacks.Config
     opts = {
       dashboard = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        sources = {
+          files = {
+            hidden = true,
+          },
+        },
+      },
     },
   },
 
