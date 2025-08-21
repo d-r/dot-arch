@@ -29,6 +29,19 @@ end)
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Enable LSPs
+vim.lsp.enable {
+  "bashls",
+  "clangd",
+  "janet_lsp",
+  "lua_ls",
+  "marksman",
+  "nushell",
+  "rust_analyzer",
+  "wgsl_analyzer",
+  "zk",
+}
+
 --------------------------------------------------------------------------------
 -- PLUGINS
 
@@ -199,15 +212,6 @@ require("lazy").setup {
   spec = plugins,
   -- Theme that will be used when installing plugins
   install = { colorscheme = { "tokyonight-night" } },
-}
-
---------------------------------------------------------------------------------
--- LSPs
-
-vim.lsp.enable {
-  "clangd",
-  "rust_analyzer",
-  "lua_ls",
 }
 
 --------------------------------------------------------------------------------
