@@ -1,0 +1,70 @@
+#-------------------------------------------------------------------------------
+# UI
+
+"ui.text" = { fg = "fg" }
+"ui.background" = { bg = "bg", fg = "fg" }
+"ui.selection" = { bg = "#333333" }
+
+# DIAGNOSTICS
+
+error = { fg = "error" }
+warning = { fg = "warning" }
+info = { fg = "info" }
+hint = { fg = "info" }
+
+"diagnostic.error" = { fg = "error" }
+"diagnostic.warning" = { fg = "warning" }
+"diagnostic.info" = { fg = "info" }
+"diagnostic.hint" = { fg = "info" }
+
+#-------------------------------------------------------------------------------
+# CODE
+
+keyword = { fg = "keyword" }
+"type.builtin" = "keyword"
+"variable.builtin" = "keyword"
+# "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
+
+comment = { fg = "info" }
+attribute = { fg = "fg" } # highlight?
+
+"constant.builtin" = { fg = "constant" }
+"constant.numeric" = { fg = "constant" }
+"constant.character" = { fg = "constant" }
+string = { fg = "constant" }
+"string.special.symbol" = { fg = "constant" }
+"type.parameter" = { fg = "constant" }
+
+operator = { fg = "fg" }
+punctuation = { fg = "fg" }
+"punctuation.delimiter" = { fg = "fg" }
+variable = { fg = "fg" }
+namespace = { fg = "fg" }
+function = { fg = "fg" }
+"function.macro" = "fg"
+"function.builtin" = "fg"
+tag = { fg = "fg" }
+label = { fg = "fg" }
+constructor = { fg = "fg" }
+type = { fg = "fg" }
+
+# MARKUP
+
+"markup.heading" = { fg = "white", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+
+#-------------------------------------------------------------------------------
+[palette]
+
+bg = "#1a1a1a"
+fg = "#c6c6c6"
+keyword = "#7fa396"
+info = "#98c379"
+constant = "#de8ade"
+error = "#ee518a"
+warning = "#ffff57"
+
+black = "#000000"
+white = "#ffffff"

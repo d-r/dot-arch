@@ -1,4 +1,5 @@
-theme = "yo_berry"
+# theme = "yo_berry"
+theme = "glum"
 
 [editor]
 bufferline = "multiple"
@@ -17,7 +18,7 @@ select = "underline"
 hidden = false # Show dotfiles
 
 # [editor.lsp]
-# display-inlay-hints = true
+# display-inlay-hints = false
 
 [keys.normal]
 C-s = ":write!"
@@ -29,6 +30,8 @@ C-g = [
     ":redraw",
     ":reload-all"
 ]
+C-r = ":config-reload"
+"C-/" = ":tree-sitter-highlight-name"
 
 [keys.insert]
 C-s = ":write!"
