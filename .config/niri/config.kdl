@@ -25,9 +25,9 @@ binds {
     Mod+Apostrophe hotkey-overlay-title="Console" {
         spawn "uh" "console";
     }
-    Mod+Semicolon hotkey-overlay-title="Music player" {
-        spawn "uh" "music";
-    }
+    // Mod+Semicolon hotkey-overlay-title="Music player" {
+    //     spawn "uh" "music";
+    // }
 
     // CONTROL
 
