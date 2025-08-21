@@ -8,6 +8,7 @@ line-number = "relative"
 rulers = [80]
 color-modes = true
 true-color = true
+end-of-line-diagnostics = "disable"
 
 [editor.cursor-shape]
 insert = "bar"
