@@ -36,7 +36,7 @@ vim.lsp.enable {
 --------------------------------------------------------------------------------
 -- PLUGINS
 
-local plugins = {
+kit.init_lazy {
   -- Theme
   -- https://github.com/folke/tokyonight.nvim
   {
@@ -175,15 +175,7 @@ local plugins = {
   },
 }
 
-local theme = "tokyonight-night"
-
-kit.init_lazy {
-  spec = plugins,
-  -- Theme that will be used when installing plugins
-  install = { colorscheme = { theme } },
-}
-
-vim.cmd.colorscheme(theme)
+vim.cmd.colorschem "tokyonight-night"
 
 --------------------------------------------------------------------------------
 -- KEYBINDINGS
