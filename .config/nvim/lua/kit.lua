@@ -22,4 +22,19 @@ function M.init_lazy(plugins)
   require("lazy").setup(plugins)
 end
 
+function M.chars(s)
+  local t = {}
+  for i = 1, #s do
+      t[i] = s:sub(i, i)
+  end
+  return t
+end
+
+function M.bind(mode, key, desc, cmd, options)
+  mode = M.chars(mode)
+  options = options or {}
+  options["desc"] = desc
+  vim.keymap.set(mode, key, cmd, options)
+end
+
 return M

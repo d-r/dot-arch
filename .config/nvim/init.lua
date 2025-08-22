@@ -180,33 +180,31 @@ vim.cmd.colorscheme "tokyonight-night"
 --------------------------------------------------------------------------------
 -- BINDS
 
-local bind = vim.keymap.set
+local bind = kit.bind
 local picker = Snacks.picker
 local lsp = vim.lsp.buf
 
--- LEADER - navigation
-bind("n", "<leader><space>", picker.smart, { desc = "Smart find files" })
-bind("n", "<leader>f", picker.files, { desc = "Files" })
-bind("n", "<leader>b", picker.buffers, { desc = "Buffers" })
-bind("n", "<leader>s", picker.lsp_symbols, { desc = "Symbols" })
-bind("n", "<leader>S", picker.lsp_workspace_symbols, { desc = "Workspace symbols" })
+-- <leader>
+bind("n", "<leader><space>", "Smart find files", picker.smart)
+bind("n", "<leader>f", "Files", picker.files)
+bind("n", "<leader>b", "Buffers", picker.buffers)
+bind("n", "<leader>s", "Symbols", picker.lsp_symbols)
+bind("n", "<leader>S", "Workspace symbols", picker.lsp_workspace_symbols)
+bind("n", "<leader>r", "Rename symbol", lsp.rename)
+bind("nx", "<leader>a", "Perform code action", lsp.code_action)
+bind("n", "<leader>=", "Format buffer", lsp.format)
+bind("n", "<leader>g", "Neogit", ":Neogit kind=replace<CR>")
 
--- LEADER - actions
-bind("n", "<leader>r", lsp.rename, { desc = "Rename symbol" })
-bind({ "n", "x" }, "<leader>a", lsp.code_action, { desc = "Perform code action" })
-bind("n", "<leader>=", lsp.format, { desc = "Format buffer" })
-bind("n", "<leader>g", ":Neogit kind=replace<CR>", { desc = "Neogit" })
+-- g (goto)
+bind("n", "gd", "Goto definition", picker.lsp_definitions)
+bind("n", "gD", "Goto declaration", picker.lsp_declarations)
+bind("n", "gy", "Goto type definition", picker.lsp_type_definitions)
+bind("n", "gr", "Goto references", picker.lsp_references, { nowait = true })
+bind("n", "gi", "Goto implementation", picker.lsp_implementations)
 
--- GOTO
-bind("n", "gd", picker.lsp_definitions, { desc = "Goto definition" })
-bind("n", "gD", picker.lsp_declarations, { desc = "Goto declaration" })
-bind("n", "gy", picker.lsp_type_definitions, { desc = "Goto type definition" })
-bind("n", "gr", picker.lsp_references, { desc = "Goto references", nowait = true })
-bind("n", "gi", picker.lsp_implementations, { desc = "Goto implementation" })
-
--- FLASH
-bind({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
-bind({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash treesitter" })
-bind("o", "r", function() require("flash").remote() end, { desc = "Remote flash" })
-bind({ "o", "x" }, "r", function() require("flash").treesitter_search() end, { desc = "Treesitter search" })
-bind("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle flash search" })
+-- s (flash)
+bind("nxo", "s", "Flash", function() require("flash").jump() end)
+bind("nxo", "S", "Flash treesitter", function() require("flash").treesitter() end)
+bind("o", "r", "Remote flash", function() require("flash").remote() end)
+bind("ox", "R", "Treesitter search", function() require("flash").treesitter_search() end)
+bind("c", "<c-s>", "Toggle flash search", function() require("flash").toggle() end)
