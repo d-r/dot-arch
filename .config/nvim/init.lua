@@ -130,6 +130,8 @@ kit.init_lazy {
         "ron",
         "rust",
         "toml",
+        "vim",
+        "vimdoc",
         "wgsl",
       },
       -- Auto install languages that are not installed
