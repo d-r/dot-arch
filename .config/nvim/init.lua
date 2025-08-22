@@ -175,7 +175,7 @@ kit.init_lazy {
   },
 }
 
-vim.cmd.colorschem "tokyonight-night"
+vim.cmd.colorscheme "tokyonight-night"
 
 --------------------------------------------------------------------------------
 -- KEYBINDINGS
