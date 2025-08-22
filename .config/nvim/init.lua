@@ -182,6 +182,7 @@ vim.cmd.colorscheme "tokyonight-night"
 
 local bind = vim.keymap.set
 local picker = Snacks.picker
+local lsp = vim.lsp.buf
 
 -- LEADER - navigation
 bind("n", "<leader><space>", picker.smart, { desc = "Smart find files" })
@@ -191,9 +192,10 @@ bind("n", "<leader>s", picker.lsp_symbols, { desc = "Symbols" })
 bind("n", "<leader>S", picker.lsp_workspace_symbols, { desc = "Workspace symbols" })
 
 -- LEADER - actions
-bind("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
-bind({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code action" })
-bind('n', '<leader>=', vim.lsp.buf.format, { desc = "Format buffer" })
+bind("n", "<leader>r", lsp.rename, { desc = "Rename symbol" })
+bind({ "n", "x" }, "<leader>a", lsp.code_action, { desc = "Perform code action" })
+bind("n", "<leader>=", lsp.format, { desc = "Format buffer" })
+bind("n", "<leader>g", ":Neogit kind=replace<CR>", { desc = "Neogit" })
 
 -- GOTO
 bind("n", "gd", picker.lsp_definitions, { desc = "Goto definition" })
