@@ -10,6 +10,13 @@ alias ta = task add
 alias tt = taskwarrior-tui
 alias resume = job unfreeze
 
+# Clear all nvim state
+def clear-nvim [] {
+    rm -rfv ($env.XDG_CACHE_HOME | path join nvim)
+    rm -rfv ($env.XDG_STATE_HOME | path join nvim)
+    rm -rfv ($env.XDG_DATA_HOME | path join nvim)
+}
+
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
 def --env y [...args] {
