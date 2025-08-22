@@ -217,6 +217,7 @@ map("n", "<leader>S", function() Snacks.picker.lsp_workspace_symbols() end, { de
 -- LEADER - actions
 map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code action" })
+map('n', '<leader>=', vim.lsp.buf.format, { desc = "Format buffer" })
 
 -- GOTO
 map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto definition" })
