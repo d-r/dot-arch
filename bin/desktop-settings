@@ -1,12 +1,39 @@
 #!/usr/bin/env nu
 
+# Default browser
 xdg-settings set default-web-browser firefox.desktop
+xdg-mime default firefox.desktop x-scheme-handler/http
+xdg-mime default firefox.desktop x-scheme-handler/https
 
-xdg-mime default firefox.desktop image/jpeg
-xdg-mime default firefox.desktop image/png
-xdg-mime default firefox.desktop image/gif
+# Documents
 xdg-mime default firefox.desktop application/pdf
 
+# Images
+xdg-mime default firefox.desktop image/png
+xdg-mime default firefox.desktop image/jpeg
+xdg-mime default firefox.desktop image/gif
+xdg-mime default firefox.desktop image/webp
+xdg-mime default firefox.desktop image/bmp
+xdg-mime default firefox.desktop image/tiff
+
+# Videos
+xdg-mime default mpv.desktop video/mp4
+xdg-mime default mpv.desktop video/x-msvideo
+xdg-mime default mpv.desktop video/x-matroska
+xdg-mime default mpv.desktop video/x-flv
+xdg-mime default mpv.desktop video/x-ms-wmv
+xdg-mime default mpv.desktop video/mpeg
+xdg-mime default mpv.desktop video/ogg
+xdg-mime default mpv.desktop video/webm
+xdg-mime default mpv.desktop video/quicktime
+xdg-mime default mpv.desktop video/3gpp
+xdg-mime default mpv.desktop video/3gpp2
+xdg-mime default mpv.desktop video/x-ms-asf
+xdg-mime default mpv.desktop video/x-ogm+ogg
+xdg-mime default mpv.desktop video/x-theora+ogg
+xdg-mime default mpv.desktop application/ogg
+
+# GTK
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 gsettings set org.gnome.desktop.interface icon-theme Adwaita
