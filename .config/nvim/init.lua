@@ -13,6 +13,9 @@ vim.o.signcolumn = 'yes'
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Don"t show the mode, since it"s already in the status line
+vim.o.showmode = false
+
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 -- Remove this option if you want your OS clipboard to remain independent.
@@ -93,6 +96,25 @@ kit.init_lazy {
     ---@type Flash.Config
     opts = {},
     -- stylua: ignore
+  },
+
+  -- A collection of small, focused plugins
+  -- https://github.com/echasnovski/mini.nvim
+  {
+    'echasnovski/mini.nvim',
+    config = function()
+      -- File type icons
+      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
+      require("mini.icons").setup()
+
+      -- Statusline
+      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
+      local sl = require "mini.statusline"
+      sl.setup()
+      sl.section_location = function()
+        return "%2l:%-2v" -- LINE:COLUMN
+      end
+    end,
   },
 
   -- Treesitter
