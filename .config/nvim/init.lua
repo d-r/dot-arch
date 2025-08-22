@@ -178,32 +178,33 @@ kit.init_lazy {
 vim.cmd.colorscheme "tokyonight-night"
 
 --------------------------------------------------------------------------------
--- KEYBINDINGS
+-- BINDS
 
-local map = vim.keymap.set
+local bind = vim.keymap.set
+local picker = Snacks.picker
 
 -- LEADER - navigation
-map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart find files" })
-map("n", "<leader>f", function() Snacks.picker.files() end, { desc = "Files" })
-map("n", "<leader>b", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-map("n", "<leader>s", function() Snacks.picker.lsp_symbols() end, { desc = "Symbols" })
-map("n", "<leader>S", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "Workspace symbols" })
+bind("n", "<leader><space>", picker.smart, { desc = "Smart find files" })
+bind("n", "<leader>f", picker.files, { desc = "Files" })
+bind("n", "<leader>b", picker.buffers, { desc = "Buffers" })
+bind("n", "<leader>s", picker.lsp_symbols, { desc = "Symbols" })
+bind("n", "<leader>S", picker.lsp_workspace_symbols, { desc = "Workspace symbols" })
 
 -- LEADER - actions
-map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
-map({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code action" })
-map('n', '<leader>=', vim.lsp.buf.format, { desc = "Format buffer" })
+bind("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
+bind({ "n", "x" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code action" })
+bind('n', '<leader>=', vim.lsp.buf.format, { desc = "Format buffer" })
 
 -- GOTO
-map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto definition" })
-map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto declaration" })
-map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type definition" })
-map("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Goto references", nowait = true })
-map("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementation" })
+bind("n", "gd", picker.lsp_definitions, { desc = "Goto definition" })
+bind("n", "gD", picker.lsp_declarations, { desc = "Goto declaration" })
+bind("n", "gy", picker.lsp_type_definitions, { desc = "Goto type definition" })
+bind("n", "gr", picker.lsp_references, { desc = "Goto references", nowait = true })
+bind("n", "gi", picker.lsp_implementations, { desc = "Goto implementation" })
 
 -- FLASH
-map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
-map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash treesitter" })
-map("o", "r", function() require("flash").remote() end, { desc = "Remote flash" })
-map({ "o", "x" }, "r", function() require("flash").treesitter_search() end, { desc = "Treesitter search" })
-map("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle flash search" })
+bind({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
+bind({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash treesitter" })
+bind("o", "r", function() require("flash").remote() end, { desc = "Remote flash" })
+bind({ "o", "x" }, "r", function() require("flash").treesitter_search() end, { desc = "Treesitter search" })
+bind("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle flash search" })
