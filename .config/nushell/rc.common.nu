@@ -11,7 +11,7 @@ alias tt = taskwarrior-tui
 alias resume = job unfreeze
 
 # Clear all nvim state
-def clear-nvim [] {
+def nvim-clear [] {
     rm -rfv ($env.XDG_CACHE_HOME | path join nvim)
     rm -rfv ($env.XDG_STATE_HOME | path join nvim)
     rm -rfv ($env.XDG_DATA_HOME | path join nvim)
