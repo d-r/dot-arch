@@ -1,3 +1,5 @@
+local kit = require "kit"
+
 --------------------------------------------------------------------------------
 -- OPTIONS
 
@@ -41,15 +43,12 @@ local plugins = {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("tokyonight").setup {
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-        },
-      }
-      vim.cmd.colorscheme "tokyonight-night"
-    end
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
   },
 
   -- Snacks - a collection of small quality-of-life plugins
@@ -176,31 +175,15 @@ local plugins = {
   },
 }
 
--- Bootstrap lazy.nvim package manager
+local theme = "tokyonight-night"
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system {
-    "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
-  }
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup {
+kit.init_lazy {
   spec = plugins,
   -- Theme that will be used when installing plugins
-  install = { colorscheme = { "tokyonight-night" } },
+  install = { colorscheme = { theme } },
 }
+
+vim.cmd.colorscheme(theme)
 
 --------------------------------------------------------------------------------
 -- KEYBINDINGS
