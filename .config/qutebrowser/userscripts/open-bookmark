@@ -8,4 +8,5 @@ kitty --config $CONFIG --app-id tui.visit tui.qb-visit
 if ($URL_FILE | path exists) {
     let $url = (open $URL_FILE)
     echo $"open ($url)" o> $env.QUTE_FIFO
+    rm $URL_FILE
 }

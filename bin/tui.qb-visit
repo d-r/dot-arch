@@ -2,5 +2,4 @@
 
 use ~/dot/nu/all.nu *
 
-rm /tmp/qb-url
 (me bookmarks | pick-item) o> /tmp/qb-url
