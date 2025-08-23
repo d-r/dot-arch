@@ -62,8 +62,6 @@ kit.init_lazy {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      notifier = { enable = true },
-      notify = { enable = true },
       picker = {
         enabled = true,
         sources = {
