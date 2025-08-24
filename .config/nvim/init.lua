@@ -197,6 +197,13 @@ kit.init_lazy {
       "folke/snacks.nvim",      -- optional
     },
   },
+
+  -- Pin buffers
+  -- https://github.com/iofq/dart.nvim
+  {
+    'iofq/dart.nvim',
+    opts = {}
+  }
 }
 
 vim.cmd.colorscheme "tokyonight-night"
