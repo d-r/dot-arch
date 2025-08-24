@@ -211,7 +211,7 @@ c.content.pdfjs = True
 # the mute status for the affected tab is now controlled manually, and
 # this setting doesn't have any effect.
 # Type: Bool
-c.content.mute = True
+c.content.mute = False
 
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
