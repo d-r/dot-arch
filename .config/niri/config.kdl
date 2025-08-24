@@ -170,10 +170,10 @@ binds {
     XF86MonBrightnessUp hotkey-overlay-title="Increase brightness" {
         spawn "swayosd-client" "--brightness" "raise";
     }
-    Mod+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
+    Shift+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
         spawn "swayosd-client" "--brightness" "0";
     }
-    Mod+XF86MonBrightnessUp hotkey-overlay-title="Set maximum brightness" {
+    Shift+XF86MonBrightnessUp hotkey-overlay-title="Set maximum brightness" {
         spawn "swayosd-client" "--brightness" "100";
     }
 
