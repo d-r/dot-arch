@@ -9,12 +9,12 @@ xdg-mime default firefox.desktop x-scheme-handler/https
 xdg-mime default firefox.desktop application/pdf
 
 # Images
-xdg-mime default firefox.desktop image/png
-xdg-mime default firefox.desktop image/jpeg
-xdg-mime default firefox.desktop image/gif
-xdg-mime default firefox.desktop image/webp
-xdg-mime default firefox.desktop image/bmp
-xdg-mime default firefox.desktop image/tiff
+xdg-mime default imv.desktop image/png
+xdg-mime default imv.desktop image/jpeg
+xdg-mime default imv.desktop image/gif
+xdg-mime default imv.desktop image/webp
+xdg-mime default imv.desktop image/bmp
+xdg-mime default imv.desktop image/tiff
 
 # Videos
 xdg-mime default mpv.desktop video/mp4
