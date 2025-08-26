@@ -40,18 +40,17 @@ export def pick-item []: record -> any {
 }
 
 export def pick [...$columns: string, --match-column: string]: table -> record {
-    let $nth = if ($match_column | is-empty) {
-        ""
+    let $table = $in
+    let $menu = ($table | select ...$columns | indexed | table-str)
+
+    # TODO: DRY this up
+    let $choice = if ($match_column | is-empty) {
+        $menu | fzf --delimiter $COLUMN_SEP --with-nth 2..
     } else {
-        ($in | index-of-column $match_column) + 1
+        let $n = ($table | index-of-column $match_column) + 1
+        $menu | fzf --delimiter $COLUMN_SEP --with-nth 2.. --nth $n
     }
-    let $menu = ($in | select ...$columns | indexed | table-str)
-    let $choice = $menu | (
-        fzf
-        --delimiter $COLUMN_SEP
-        --with-nth 2.. # Exclude the index column
-        --nth $nth
-    )
+
     let $i = $choice | split row -r $COLUMN_SEP | first | into int
     $in | get $i
 }
