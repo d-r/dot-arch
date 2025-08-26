@@ -10,6 +10,11 @@ def main [] {
     help main
 }
 
+# Run a program
+def "main run" [] {
+    tui run
+}
+
 # Spawn a browser
 def "main browser" [] {
     wm spawn-or-focus-in-ws $QB_ID qb (main ws-name)

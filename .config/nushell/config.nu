@@ -12,3 +12,5 @@ source rc.common.nu
 source rc.linux.nu
 source rc.arch.nu
 source ~/.cache/zoxide.nu
+
+plugin add nu_plugin_formats
