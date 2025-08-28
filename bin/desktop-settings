@@ -1,37 +1,41 @@
 #!/usr/bin/env nu
 
+const $BROWSER = "firefox.desktop"
+const $IMAGE_VIEWER = "imv.desktop"
+const $VIDEO_PLAYER = "mpv.desktop"
+
 # Default browser
-xdg-settings set default-web-browser firefox.desktop
-xdg-mime default firefox.desktop x-scheme-handler/http
-xdg-mime default firefox.desktop x-scheme-handler/https
+xdg-settings set default-web-browser $BROWSER
+xdg-mime default $BROWSER x-scheme-handler/http
+xdg-mime default $BROWSER x-scheme-handler/https
 
 # Documents
-xdg-mime default firefox.desktop application/pdf
+xdg-mime default $BROWSER application/pdf
 
 # Images
-xdg-mime default imv.desktop image/png
-xdg-mime default imv.desktop image/jpeg
-xdg-mime default imv.desktop image/gif
-xdg-mime default imv.desktop image/webp
-xdg-mime default imv.desktop image/bmp
-xdg-mime default imv.desktop image/tiff
+xdg-mime default $IMAGE_VIEWER image/png
+xdg-mime default $IMAGE_VIEWER image/jpeg
+xdg-mime default $IMAGE_VIEWER image/gif
+xdg-mime default $IMAGE_VIEWER image/webp
+xdg-mime default $IMAGE_VIEWER image/bmp
+xdg-mime default $IMAGE_VIEWER image/tiff
 
 # Videos
-xdg-mime default mpv.desktop video/mp4
-xdg-mime default mpv.desktop video/x-msvideo
-xdg-mime default mpv.desktop video/x-matroska
-xdg-mime default mpv.desktop video/x-flv
-xdg-mime default mpv.desktop video/x-ms-wmv
-xdg-mime default mpv.desktop video/mpeg
-xdg-mime default mpv.desktop video/ogg
-xdg-mime default mpv.desktop video/webm
-xdg-mime default mpv.desktop video/quicktime
-xdg-mime default mpv.desktop video/3gpp
-xdg-mime default mpv.desktop video/3gpp2
-xdg-mime default mpv.desktop video/x-ms-asf
-xdg-mime default mpv.desktop video/x-ogm+ogg
-xdg-mime default mpv.desktop video/x-theora+ogg
-xdg-mime default mpv.desktop application/ogg
+xdg-mime default $VIDEO_PLAYER video/mp4
+xdg-mime default $VIDEO_PLAYER video/x-msvideo
+xdg-mime default $VIDEO_PLAYER video/x-matroska
+xdg-mime default $VIDEO_PLAYER video/x-flv
+xdg-mime default $VIDEO_PLAYER video/x-ms-wmv
+xdg-mime default $VIDEO_PLAYER video/mpeg
+xdg-mime default $VIDEO_PLAYER video/ogg
+xdg-mime default $VIDEO_PLAYER video/webm
+xdg-mime default $VIDEO_PLAYER video/quicktime
+xdg-mime default $VIDEO_PLAYER video/3gpp
+xdg-mime default $VIDEO_PLAYER video/3gpp2
+xdg-mime default $VIDEO_PLAYER video/x-ms-asf
+xdg-mime default $VIDEO_PLAYER video/x-ogm+ogg
+xdg-mime default $VIDEO_PLAYER video/x-theora+ogg
+xdg-mime default $VIDEO_PLAYER application/ogg
 
 # GTK
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
