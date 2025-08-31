@@ -20,10 +20,10 @@ binds {
     }
 
     Mod+Return hotkey-overlay-title="Terminal" {
-        spawn "uh" "term";
+        spawn-sh "uh term";
     }
     Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn "uh" "console";
+        spawn-sh "uh console";
     }
     // Mod+Semicolon hotkey-overlay-title="Music player" {
     //     spawn "uh" "music";
@@ -46,30 +46,30 @@ binds {
     // APPLICATIONS
 
     Mod+B hotkey-overlay-title="Browser" {
-        spawn "uh" "browser";
+        spawn-sh "uh browser";
     }
     Mod+D hotkey-overlay-title="DAW" {
-        spawn "uh" "daw"
+        spawn-sh "uh daw"
     }
     Mod+Y hotkey-overlay-title="File manager" {
-        spawn "uh" "file-manager";
+        spawn-sh "uh file-manager";
     }
 
     // MODALS
 
     Mod+O {
-        spawn "uh" "visit";
+        spawn-sh "uh visit";
     }
 
     Mod+S {
-        spawn "uh" "bookmark";
+        spawn-sh "uh bookmark";
     }
 
     Mod+R {
         spawn "fuzzel";
     }
     Mod+P {
-        spawn "uh" "edit";
+        spawn-sh "uh edit";
     }
 
     // TABS
@@ -150,31 +150,31 @@ binds {
     // VOLUME KEYS
 
     XF86AudioLowerVolume hotkey-overlay-title="Decrease volume" {
-        spawn "swayosd-client" "--output-volume" "lower";
+        spawn-sh "swayosd-client --output-volume lower";
     }
     XF86AudioRaiseVolume hotkey-overlay-title="Increase volume" {
-        spawn "swayosd-client" "--output-volume" "raise";
+        spawn-sh "swayosd-client --output-volume raise";
     }
     XF86AudioMute hotkey-overlay-title="Mute/unmute sound" {
-        spawn "swayosd-client" "--output-volume" "mute-toggle";
+        spawn-sh "swayosd-client --output-volume mute-toggle";
     }
     XF86AudioMicMute hotkey-overlay-title="Mute/unmute microphone" {
-        spawn "swayosd-client" "--input-volume" "mute-toggle";
+        spawn-sh "swayosd-client --input-volume mute-toggle";
     }
 
     // BRIGHTNESS KEYS
 
     XF86MonBrightnessDown hotkey-overlay-title="Decrease brightness" {
-        spawn "swayosd-client" "--brightness" "lower";
+        spawn-sh "swayosd-client --brightness lower";
     }
     XF86MonBrightnessUp hotkey-overlay-title="Increase brightness" {
-        spawn "swayosd-client" "--brightness" "raise";
+        spawn-sh "swayosd-client --brightness raise";
     }
     Shift+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
-        spawn "swayosd-client" "--brightness" "0";
+        spawn-sh "swayosd-client --brightness 0";
     }
     Shift+XF86MonBrightnessUp hotkey-overlay-title="Set maximum brightness" {
-        spawn "swayosd-client" "--brightness" "100";
+        spawn-sh "swayosd-client --brightness 100";
     }
 
     // SCREENSHOTS
@@ -304,7 +304,7 @@ environment {
 }
 
 spawn-at-startup "desktop-settings"
-spawn-at-startup "swaybg" "--image" "/home/dan/wallpapers/alena-aenami-all-i-need-1080p.jpg"
+spawn-sh-at-startup "swaybg --image ~/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
@@ -367,7 +367,7 @@ workspace "dot"
 workspace "dev"
 workspace "snd"
 
-spawn-at-startup "niri" "msg" "action" "focus-workspace" "web"
+spawn-sh-at-startup "niri msg action focus-workspace web"
 
 // BRN
 
@@ -404,7 +404,7 @@ window-rule {
 
 // DOT
 
-spawn-at-startup "code" "/home/dan/dot"
+spawn-sh-at-startup "code ~/dot"
 
 window-rule {
     match app-id="code" at-startup=true
@@ -415,7 +415,7 @@ window-rule {
 
 // SND
 
-spawn-at-startup "flatpak" "run" "com.bitwig.BitwigStudio"
+spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
 
 window-rule {
     match app-id="Renoise" at-startup=true
