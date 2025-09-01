@@ -24,6 +24,9 @@ menu:
         desc: Sleep
         cmd: systemctl suspend
       - key: "r"
+        desc: Soft reboot
+        cmd: systemctl soft-reboot
+      - key: "R"
         desc: Reboot
         cmd: reboot
       - key: "o"
