@@ -12,6 +12,7 @@
 //   { spawn "sh" "-c" "notify-send Hello \"OH, HAI!\""" }
 
 binds {
+    Mod+Delete { spawn-sh "wlr-which-key --initial-keys p"; }
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Backspace { close-window; }
 
