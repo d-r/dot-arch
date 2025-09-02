@@ -1,0 +1,8 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+def main [$q = ""] {
+    cd ~
+    yazi (fd -t d | fzf --query $q)
+}
