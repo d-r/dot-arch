@@ -3,10 +3,7 @@
 use ~/dot/nu/all.nu *
 
 # Run a CLI application
-def main [$cmd: string, --toggle] {
-    if $toggle {
-        wm toggle $cmd kitty --app-id $cmd -- $cmd
-    } else {
-        wm spawn $cmd kitty --app-id $cmd -- $cmd
-    }
+def main [$cmd: string, ...$args] {
+    let $cmd = $"cli.($cmd)"
+    wm spawn kitty --app-id $cmd - $cmd ...$args
 }
