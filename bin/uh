@@ -17,12 +17,12 @@ def "main run" [] {
 
 # Spawn a browser
 def "main browser" [] {
-    wm spawn-or-focus-in-ws $QB_ID qb (main ws-name)
+    wm spawn-or-focus-in-ws $QB_ID qb (wm ws-name)
 }
 
 # Spawn a file manager
 def "main file-manager" [] {
-    let $dir = ((main cwd) | str replace "/home/dan/" "")
+    let $dir = ((wm cwd) | str replace "/home/dan/" "")
     cli yazi $dir
 }
 
@@ -33,14 +33,14 @@ def "main daw" [] {
 
 # Spawn a terminal
 def "main term" [] {
-    wm spawn kitty -d (main cwd) --class term
+    wm spawn kitty -d (wm cwd) --class term
 }
 
 # Toggle console
 def "main console" [] {
-    let $name = (main ws-name)
+    let $name = (wm ws-name)
     let $id = $"console.($name)"
-    wm toggle $id kitty -d (main cwd) --app-id $id -- tmux new -A -s $"c_($name)"
+    wm toggle $id kitty -d (wm cwd) --app-id $id -- tmux new -A -s $"c_($name)"
 }
 
 # Toggle music player
@@ -64,22 +64,4 @@ def "main bookmark" [] {
 # Edit a project
 def "main edit" [] {
     tui edit
-}
-
-# Get the current working directory for the focused workspace
-def "main cwd" [] {
-    match (main ws-name) {
-        "web" => "~/dl"
-        "dot" => "~/dot"
-        "dev" => "~/src"
-        "brn" => "~/brain"
-        "snd" => "~/snd"
-        _ => "~"
-    }
-    | path expand
-}
-
-# Get the name of the current workspace
-def "main ws-name" [] {
-    (wm focused-workspace).name
 }

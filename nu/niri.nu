@@ -112,7 +112,25 @@ export def "wm focused-workspace" [] {
     wm workspaces | where is_focused == true | first
 }
 
+# Get the name of the current workspace
+export def "wm ws-name" [] {
+    (wm focused-workspace).name
+}
+
 # List workspaces
 export def "wm workspaces" [] {
     msg workspaces | sort-by idx
+}
+
+# Get the current working directory for the focused workspace
+export def "wm cwd" [] {
+    match (wm ws-name) {
+        "web" => "~/dl"
+        "dot" => "~/dot"
+        "dev" => "~/src"
+        "brn" => "~/brain"
+        "snd" => "~/snd"
+        _ => "~"
+    }
+    | path expand
 }
