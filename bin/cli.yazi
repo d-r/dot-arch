@@ -2,7 +2,11 @@
 
 use ~/dot/nu/all.nu *
 
-def main [] {
-    cd ~
-    yazi (fd -t d | fzf)
+def main [$dir = ""] {
+    if ($dir | is-empty) {
+        cd ~
+        yazi (fd -t d | fzf)
+    } else {
+        yazi $dir
+    }
 }
