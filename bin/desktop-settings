@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-const $BROWSER = "firefox-nightly.desktop"
+const $BROWSER = "chromium.desktop"
 const $IMAGE_VIEWER = "imv.desktop"
 const $VIDEO_PLAYER = "mpv.desktop"
 
