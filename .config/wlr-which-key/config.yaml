@@ -17,6 +17,9 @@ menu:
   - key: "e"
     desc: Email (Google Mail)
     cmd: webapp email https://mail.google.com
+  - key: "k"
+    desc: keybr.com
+    cmd: webapp keybr https://www.keybr.com/
   - key: "p"
     desc: Power
     submenu:
