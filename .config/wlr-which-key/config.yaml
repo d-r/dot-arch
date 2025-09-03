@@ -9,14 +9,17 @@ padding: 20
 anchor: center
 menu:
   - key: "a"
-    desc: AI (ChatGPT)
-    cmd: webapp ai https://chatgpt.com
+    desc: ChatGPT (AI)
+    cmd: webapp chatgpt https://chatgpt.com
+  - key: "A"
+    desc: Claude (AI)
+    cmd: webapp claude https://claude.ai/new
   - key: "c"
-    desc: Chat (WhatsApp)
-    cmd: webapp chat https://web.whatsapp.com/
+    desc: WhatsApp (chat)
+    cmd: webapp whatsapp https://web.whatsapp.com/
   - key: "e"
-    desc: Email (Google Mail)
-    cmd: webapp email https://mail.google.com
+    desc: Gmail (email)
+    cmd: webapp gmail https://mail.google.com
   - key: "k"
     desc: keybr.com
     cmd: webapp keybr https://www.keybr.com/
