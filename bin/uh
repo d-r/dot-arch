@@ -22,8 +22,7 @@ def "main browser" [] {
 
 # Spawn a file manager
 def "main file-manager" [] {
-    let $dir = ((wm cwd) | str replace "/home/dan/" "")
-    cli yazi $dir
+    cli yazi
 }
 
 # Spawn a DAW
