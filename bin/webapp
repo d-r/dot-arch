@@ -3,7 +3,8 @@
 use ~/dot/nu/niri.nu *
 
 # Open the given URL in Chromium's app mode
-def main [$id: string, $url: string] {
+def main [$name: string, $url: string] {
+    let $id = $"web.($name)"
     let $state_dir = ($env.XDG_STATE_HOME)
     let $data_dir = $"($state_dir)/webapp"
     mkdir $data_dir
