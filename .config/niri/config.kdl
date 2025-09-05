@@ -396,15 +396,6 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-window-rule {
-    match app-id="chatgpt"
-    match app-id="whatsapp"
-    match app-id="mail"
-
-    open-on-workspace "web"
-    open-focused true
-}
-
 // DOT
 
 spawn-sh-at-startup "code ~/dot"
