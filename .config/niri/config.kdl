@@ -344,7 +344,7 @@ window-rule {
 
 // "Maximize"
 window-rule {
-    match app-id="web."
+    match app-id=r#"^web\."#
 
     default-column-width { proportion 0.98; }
 }
