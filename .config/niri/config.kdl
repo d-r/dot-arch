@@ -344,7 +344,6 @@ window-rule {
 
 // "Maximize"
 window-rule {
-    match app-id="Renoise"
     match app-id="web."
 
     default-column-width { proportion 0.98; }
