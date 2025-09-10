@@ -385,10 +385,12 @@ window-rule {
 
 // WEB
 
-spawn-at-startup "firefox"
+// spawn-at-startup "firefox"
+spawn-at-startup "chromium"
 
 window-rule {
     match app-id="firefox" at-startup=true
+    match app-id="Chromium" at-startup=true
 
     open-on-workspace "web"
     open-focused false
