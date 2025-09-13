@@ -10,6 +10,11 @@ alias ta = task add
 alias tt = taskwarrior-tui
 alias resume = job unfreeze
 
+# Set context
+def --env cx [$context:string = ""]: nothing -> nothing {
+    $env.CONTEXT = $context
+}
+
 # Clear all nvim state
 def nvim-clear [] {
     rm -rfv ($env.XDG_CACHE_HOME | path join nvim)
