@@ -3,28 +3,39 @@ local kit = require "kit"
 --------------------------------------------------------------------------------
 -- OPTIONS
 
+-- Set leader key to <space>
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- kitty has builtin Nerd Font support
 vim.g.have_nerd_font = true
 
+-- Disable swap file, as it's just annoying
 vim.opt.swapfile = false
+
+-- Enable relative line numbers
 vim.o.number = true
 vim.o.relativenumber = true
+
+-- Enable gutter space for LSP info on the left
 vim.o.signcolumn = 'yes'
+
+-- Perform case insensitive search, *unless* the search term contains at least
+-- one uppercase character
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Don"t show the mode, since it"s already in the status line
+-- Don't show the current mode, since it's already in the status line provided
+-- by mini.statusline
 vim.o.showmode = false
 
--- Sync clipboard between OS and Neovim.
--- Schedule the setting after `UiEnter` because it can increase startup-time.
--- Remove this option if you want your OS clipboard to remain independent.
--- See `:help "clipboard"`
+-- Sync clipboard between the OS and Neovim
+-- Schedule the setting after `UiEnter` because it can increase startup-time
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
+-- Enable LSPs
 vim.lsp.enable {
   "bashls",
   "clangd",
