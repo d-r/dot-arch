@@ -52,7 +52,10 @@ binds {
     Mod+D hotkey-overlay-title="DAW" {
         spawn-sh "uh daw"
     }
-    Mod+Y hotkey-overlay-title="File manager" {
+    Mod+Y hotkey-overlay-title="Open CWD" {
+        spawn-sh "uh file-manager-cwd";
+    }
+    Mod+Shift+Y hotkey-overlay-title="Open directory" {
         spawn-sh "uh file-manager";
     }
 

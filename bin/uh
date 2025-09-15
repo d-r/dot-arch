@@ -25,6 +25,11 @@ def "main file-manager" [] {
     cli yazi
 }
 
+# Spawn a file manager
+def "main file-manager-cwd" [] {
+    cli yazi (wm cwd)
+}
+
 # Spawn a DAW
 def "main daw" [] {
     wm spawn-or-focus $BITWIG_ID flatpak run $BITWIG_ID
