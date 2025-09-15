@@ -44,14 +44,8 @@ binds {
         spawn "pavucontrol";
     }
 
-    // APPLICATIONS
+    // FILE MANAGER
 
-    Mod+B hotkey-overlay-title="Browser" {
-        spawn-sh "uh browser";
-    }
-    Mod+D hotkey-overlay-title="DAW" {
-        spawn-sh "uh daw"
-    }
     Mod+Y hotkey-overlay-title="Open CWD" {
         spawn-sh "uh file-manager-cwd";
     }
