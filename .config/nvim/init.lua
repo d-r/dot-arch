@@ -106,6 +106,10 @@ kit.init_lazy {
       -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
       require("mini.icons").setup()
 
+      -- Extend f, F, t, T to work on multiple lines
+      -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump.md
+      require("mini.jump").setup()
+
       -- Statusline
       -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
       local sl = require "mini.statusline"
