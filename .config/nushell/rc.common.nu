@@ -10,6 +10,8 @@ alias ta = task add
 alias tt = taskwarrior-tui
 alias resume = job unfreeze
 
+alias cr = cargo run
+
 # Set context
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
