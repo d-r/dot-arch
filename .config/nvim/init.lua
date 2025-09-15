@@ -125,7 +125,8 @@ kit.init_lazy {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs", -- Sets main module to use for opts
+    event = { "BufReadPre", "BufNewFile" },
+    main = "nvim-treesitter.configs", -- Sets module to use for opts
     opts = {
       ensure_installed = {
         "bash",
@@ -161,11 +162,78 @@ kit.init_lazy {
         enable = true,
       },
       indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<M-k>",
+          node_incremental = "<M-k>",
+          scope_incremental = false,
+          node_decremental = "<M-j>",
+        },
+      },
     },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
     }
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
+    main = "nvim-treesitter.configs", -- Sets module to use for opts
+    opts = {
+      textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj, similar to targets.vim
+          -- TODO: Find out what that means.
+          lookahead = true,
+
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
+            ["i="] = { query = "@assignment.inner", desc = "Select inner part of assignment" },
+            ["l="] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
+            ["r="] = { query = "@assignment.rhs", desc = "Select right side of assignment" },
+
+            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of parameter/argument" },
+            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of parameter/argument" },
+
+            ["af"] = { query = "@function.outer", desc = "Select function" },
+            ["if"] = { query = "@function.inner", desc = "Select function body" },
+
+            ["ac"] = { query = "@class.outer", desc = "Select class" },
+            ["ic"] = { query = "@class.inner", desc = "Select class body" },
+          },
+        },
+
+        move = {
+          enable = true,
+          set_jumps = true, -- Whether to set jumps in the jumplist
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function" },
+            ["]t"] = { query = "@class.outer", desc = "Next type" },
+          },
+          goto_previous_start = {
+            ["[f"] = { query = "@function.outer", desc = "Previous function" },
+            ["[t"] = { query = "@class.outer", desc = "Previous type" },
+          },
+        },
+
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
+            ["<leader>nf"] = "@function.outer",  -- swap function with next
+          },
+          swap_previous = {
+            ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
+            ["<leader>pf"] = "@function.outer",  -- swap function with previous
+          },
+        },
+      },
+    },
   },
 
   -- Properly configures Lua Language Server for editing the Neovim config
@@ -238,3 +306,8 @@ bind("nxo", "S", "Flash treesitter", function() require("flash").treesitter() en
 bind("o", "r", "Remote flash", function() require("flash").remote() end)
 bind("ox", "R", "Treesitter search", function() require("flash").treesitter_search() end)
 bind("c", "<c-s>", "Toggle flash search", function() require("flash").toggle() end)
+
+-- TODO: Not sure about these...
+-- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+-- bind("nxo", ";", "Repeat last move", ts_repeat_move.repeat_last_move)
+-- bind("nxo", ",", "Repeat last move, reversed", ts_repeat_move.repeat_last_move_opposite)
