@@ -30,11 +30,10 @@ function M.chars(s)
   return t
 end
 
-function M.bind(mode, key, desc, cmd, options)
-  mode = M.chars(mode)
+function M.bind(key, mode, desc, cmd, options)
   options = options or {}
   options["desc"] = desc
-  vim.keymap.set(mode, key, cmd, options)
+  vim.keymap.set(M.chars(mode), key, cmd, options)
 end
 
 return M
