@@ -74,56 +74,56 @@ local plugins = {
       -- <leader>
       {
         "<leader><space>",
+        desc = "Smart find files",
         function() Snacks.picker.smart() end,
-        desc = "Smart find files"
       },
       {
         "<leader>f",
+        desc = "Files",
         function() Snacks.picker.files() end,
-        desc = "Files"
       },
       {
         "<leader>b",
+        desc = "Buffers",
         function() Snacks.picker.buffers() end,
-        desc = "Buffers"
       },
       {
         "<leader>s",
+        desc = "Symbols",
         function() Snacks.picker.lsp_symbols() end,
-        desc = "Symbols"
       },
       {
         "<leader>S",
+        desc = "Workspace symbols",
         function() Snacks.picker.lsp_workspace_symbols() end,
-        desc = "Workspace symbols"
       },
 
       -- g (goto)
       {
         "gd",
+        desc = "Goto definition",
         function() Snacks.picker.lsp_definitions() end,
-        desc = "Goto definition"
       },
       {
         "gD",
+        desc = "Goto declaration",
         function() Snacks.picker.lsp_declarations() end,
-        desc = "Goto declaration"
       },
       {
         "gy",
+        desc = "Goto type definition",
         function() Snacks.picker.lsp_type_definitions() end,
-        desc = "Goto type definition"
       },
       {
         "gr",
-        function() Snacks.picker.lsp_references() end,
         desc = "Goto references",
-        nowait = true
+        nowait = true,
+        function() Snacks.picker.lsp_references() end,
       },
       {
         "gi",
+        desc = "Goto implementation",
         function() Snacks.picker.lsp_implementations() end,
-        desc = "Goto implementation"
       },
     },
   },
@@ -138,33 +138,33 @@ local plugins = {
       -- s is for "seek"
       {
         "s",
-        function() require("flash").jump() end,
+        desc = "Flash",
         mode = kit.chars("nxo"),
-        desc = "Flash"
+        function() require("flash").jump() end,
       },
       {
         "S",
-        function() require("flash").treesitter() end,
+        desc = "Flash treesitter",
         mode = kit.chars("nxo"),
-        desc = "Flash treesitter"
+        function() require("flash").treesitter() end,
       },
       {
         "r",
-        function() require("flash").remote() end,
+        desc = "Remote flash",
         mode = "o",
-        desc = "Remote flash"
+        function() require("flash").remote() end,
       },
       {
         "R",
-        function() require("flash").treesitter_search() end,
+        desc = "Treesitter search",
         mode = kit.chars("ox"),
-        desc = "Treesitter search"
+        function() require("flash").treesitter_search() end,
       },
       {
         "<c-s>",
-        function() require("flash").toggle() end,
+        desc = "Toggle flash search",
         mode = "c",
-        desc = "Toggle flash search"
+        function() require("flash").toggle() end,
       },
     }
   },
