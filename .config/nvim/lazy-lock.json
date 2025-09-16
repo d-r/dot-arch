@@ -6,6 +6,7 @@
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "mini.clue": { "branch": "main", "commit": "2d361459de6a5fd7ea20a14ee4b95c6caec383b9" },
+  "mini.comment": { "branch": "main", "commit": "a9474da9175b27a5c32ee712433c23b9b0f7f139" },
   "mini.icons": { "branch": "main", "commit": "f9a177c11daa7829389b7b6eaaec8b8a5c47052d" },
   "mini.jump": { "branch": "main", "commit": "bb5895c9ae4d25fd95c0431ece2bb8f5e3909911" },
   "mini.statusline": { "branch": "main", "commit": "3c86b8a1cb67e347e91815b21662c28fd52ac144" },
