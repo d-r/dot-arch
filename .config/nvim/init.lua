@@ -67,6 +67,7 @@ local plugins = {
   },
 
   -- Snacks - a collection of small quality-of-life plugins
+  -- I only use the picker. It's better than mini.pick.
   -- https://github.com/folke/snacks.nvim
   {
     "folke/snacks.nvim",
@@ -99,7 +100,7 @@ local plugins = {
     opts = {},
   },
 
-  -- Statusline
+  -- Minimal and fast statusline with opinionated default look
   -- https://github.com/nvim-mini/mini.statusline
   {
     "nvim-mini/mini.statusline",
@@ -170,7 +171,7 @@ local plugins = {
           mc.gen_clues.z(),
         },
         window = {
-          delay = 100,
+          delay = 100, -- Milliseconds
           config = {
             width = "auto",
           },
@@ -179,17 +180,17 @@ local plugins = {
     end,
   },
 
-  -- Treesitter
+  -- Treesitter integration
   -- https://github.com/nvim-treesitter/nvim-treesitter
   --
-  -- You should have these packages installed:
+  -- You should have these packages installed on the system:
   -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
   -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
-    main = "nvim-treesitter.configs", -- Sets module to use for opts
+    main = "nvim-treesitter.configs", -- Module to use for opts
     opts = {
       ensure_installed = {
         "bash",
@@ -227,16 +228,16 @@ local plugins = {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<M-k>",
-          node_incremental = "<M-k>",
-          scope_incremental = false,
-          node_decremental = "<M-j>",
+          init_selection = "<M-o>",
+          node_incremental = "<M-o>",
+          scope_incremental = false, -- TODO: What is this?
+          node_decremental = "<M-i>",
         },
       },
     },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
+      "nvim-treesitter/nvim-treesitter-context", -- TODO: What is this?
     }
   },
 
@@ -245,16 +246,13 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     lazy = true,
-    main = "nvim-treesitter.configs", -- Sets module to use for opts
+    main = "nvim-treesitter.configs", -- Module to use for opts
     opts = {
       textobjects = {
         select = {
           enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
-          -- TODO: Find out what that means.
-          lookahead = true,
+          lookahead = true, -- TODO: What is this?
           keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
             ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
             ["i="] = { query = "@assignment.inner", desc = "Select inner part of assignment" },
             ["l="] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
@@ -272,7 +270,7 @@ local plugins = {
         },
         move = {
           enable = true,
-          set_jumps = true, -- Whether to set jumps in the jumplist
+          set_jumps = true, -- Write to jump list
           goto_next_start = {
             ["]f"] = { query = "@function.outer", desc = "Next function" },
             ["]t"] = { query = "@class.outer", desc = "Next type" },
@@ -285,12 +283,12 @@ local plugins = {
         swap = {
           enable = true,
           swap_next = {
-            ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
-            ["<leader>nf"] = "@function.outer",  -- swap function with next
+            ["<leader>na"] = "@parameter.inner",
+            ["<leader>nf"] = "@function.outer",
           },
           swap_previous = {
-            ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
-            ["<leader>pf"] = "@function.outer",  -- swap function with previous
+            ["<leader>pa"] = "@parameter.inner",
+            ["<leader>pf"] = "@function.outer",
           },
         },
       },
@@ -301,10 +299,9 @@ local plugins = {
   -- https://github.com/folke/lazydev.nvim
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    ft = "lua", -- Only load on lua files
     opts = {
       library = {
-        -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
@@ -313,7 +310,10 @@ local plugins = {
 
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
-  { "j-hui/fidget.nvim", opts = {} },
+  {
+    "j-hui/fidget.nvim",
+    opts = {}
+  },
 
   -- Magit for nvim
   -- https://github.com/NeogitOrg/neogit
