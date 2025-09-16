@@ -34,6 +34,7 @@ function M.init_lazy(opts)
   require("lazy").setup(opts)
 end
 
+-- Convert a string into a list of characters
 function M.chars(s)
   local t = {}
   for i = 1, #s do
@@ -42,6 +43,7 @@ function M.chars(s)
   return t
 end
 
+-- Bind a key
 function M.bind(key, mode, desc, cmd, options)
   options = options or {}
   options["desc"] = desc
