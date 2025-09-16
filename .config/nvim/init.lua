@@ -35,19 +35,6 @@ vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
--- Enable LSPs
-vim.lsp.enable {
-  "bashls",
-  "clangd",
-  "janet_lsp",
-  "lua_ls",
-  "marksman",
-  "nushell",
-  "rust_analyzer",
-  "wgsl_analyzer",
-  "zk",
-}
-
 --------------------------------------------------------------------------------
 -- PLUGINS
 
@@ -83,6 +70,62 @@ local plugins = {
         },
       },
     },
+    keys = {
+      -- <leader>
+      {
+        "<leader><space>",
+        function() Snacks.picker.smart() end,
+        desc = "Smart find files"
+      },
+      {
+        "<leader>f",
+        function() Snacks.picker.files() end,
+        desc = "Files"
+      },
+      {
+        "<leader>b",
+        function() Snacks.picker.buffers() end,
+        desc = "Buffers"
+      },
+      {
+        "<leader>s",
+        function() Snacks.picker.lsp_symbols() end,
+        desc = "Symbols"
+      },
+      {
+        "<leader>S",
+        function() Snacks.picker.lsp_workspace_symbols() end,
+        desc = "Workspace symbols"
+      },
+
+      -- g (goto)
+      {
+        "gd",
+        function() Snacks.picker.lsp_definitions() end,
+        desc = "Goto definition"
+      },
+      {
+        "gD",
+        function() Snacks.picker.lsp_declarations() end,
+        desc = "Goto declaration"
+      },
+      {
+        "gy",
+        function() Snacks.picker.lsp_type_definitions() end,
+        desc = "Goto type definition"
+      },
+      {
+        "gr",
+        function() Snacks.picker.lsp_references() end,
+        desc = "Goto references",
+        nowait = true
+      },
+      {
+        "gi",
+        function() Snacks.picker.lsp_implementations() end,
+        desc = "Goto implementation"
+      },
+    },
   },
 
   -- Jump around
@@ -91,6 +134,39 @@ local plugins = {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
+    keys = {
+      -- s is for "seek"
+      {
+        "s",
+        function() require("flash").jump() end,
+        mode = kit.chars("nxo"),
+        desc = "Flash"
+      },
+      {
+        "S",
+        function() require("flash").treesitter() end,
+        mode = kit.chars("nxo"),
+        desc = "Flash treesitter"
+      },
+      {
+        "r",
+        function() require("flash").remote() end,
+        mode = "o",
+        desc = "Remote flash"
+      },
+      {
+        "R",
+        function() require("flash").treesitter_search() end,
+        mode = kit.chars("ox"),
+        desc = "Treesitter search"
+      },
+      {
+        "<c-s>",
+        function() require("flash").toggle() end,
+        mode = "c",
+        desc = "Toggle flash search"
+      },
+    }
   },
 
   -- Extend f, F, t, T to jump across multiple lines
@@ -324,6 +400,9 @@ local plugins = {
       "sindrets/diffview.nvim", -- Diff integration
       "folke/snacks.nvim",      -- Picker
     },
+    keys = {
+      { "<leader>g", ":Neogit kind=replace<CR>", desc = "Neogit" }
+    }
   },
 
   -- Pin buffers
@@ -344,38 +423,20 @@ kit.init_lazy {
 vim.cmd.colorscheme(theme)
 
 --------------------------------------------------------------------------------
--- BINDS
+-- LSPs
 
-local bind = kit.bind
-local picker = Snacks.picker
-local lsp = vim.lsp.buf
+vim.lsp.enable {
+  "bashls",
+  "clangd",
+  "janet_lsp",
+  "lua_ls",
+  "marksman",
+  "nushell",
+  "rust_analyzer",
+  "wgsl_analyzer",
+  "zk",
+}
 
--- <leader>
-bind("<leader><space>", "n", "Smart find files", picker.smart)
-bind("<leader>f", "n", "Files", picker.files)
-bind("<leader>b", "n", "Buffers", picker.buffers)
-bind("<leader>s", "n", "Symbols", picker.lsp_symbols)
-bind("<leader>S", "n", "Workspace symbols", picker.lsp_workspace_symbols)
-bind("<leader>r", "n", "Rename symbol", lsp.rename)
-bind("<leader>a", "nx", "Perform code action", lsp.code_action)
-bind("<leader>=", "n", "Format buffer", lsp.format)
-bind("<leader>g", "n", "Neogit", ":Neogit kind=replace<CR>")
-
--- g (goto)
-bind("gd", "n", "Goto definition", picker.lsp_definitions)
-bind("gD", "n", "Goto declaration", picker.lsp_declarations)
-bind("gy", "n", "Goto type definition", picker.lsp_type_definitions)
-bind("gr", "n", "Goto references", picker.lsp_references, { nowait = true })
-bind("gi", "n", "Goto implementation", picker.lsp_implementations)
-
--- s ("seek" with flash)
-bind("s", "nxo", "Flash", function() require("flash").jump() end)
-bind("S", "nxo", "Flash treesitter", function() require("flash").treesitter() end)
-bind("r", "o", "Remote flash", function() require("flash").remote() end)
-bind("R", "ox", "Treesitter search", function() require("flash").treesitter_search() end)
-bind("<c-s>", "c", "Toggle flash search", function() require("flash").toggle() end)
-
--- TODO: Not sure about these...
--- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
--- bind("nxo", ";", "Repeat last move", ts_repeat_move.repeat_last_move)
--- bind("nxo", ",", "Repeat last move, reversed", ts_repeat_move.repeat_last_move_opposite)
+kit.bind("<leader>r", "n", "Rename symbol", vim.lsp.buf.rename)
+kit.bind("<leader>a", "nx", "Code action", vim.lsp.buf.code_action)
+kit.bind("<leader>=", "n", "Format buffer", vim.lsp.buf.format)
