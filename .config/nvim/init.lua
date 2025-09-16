@@ -139,13 +139,13 @@ local plugins = {
       {
         "s",
         desc = "Flash",
-        mode = kit.chars("nxo"),
+        mode = { "n", "x", "o" },
         function() require("flash").jump() end,
       },
       {
         "S",
         desc = "Flash treesitter",
-        mode = kit.chars("nxo"),
+        mode = { "n", "x", "o" },
         function() require("flash").treesitter() end,
       },
       {
@@ -157,7 +157,7 @@ local plugins = {
       {
         "R",
         desc = "Treesitter search",
-        mode = kit.chars("ox"),
+        mode = { "o", "x" },
         function() require("flash").treesitter_search() end,
       },
       {
