@@ -72,7 +72,6 @@ kit.init_lazy {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
       picker = {
         enabled = true,
@@ -90,34 +89,37 @@ kit.init_lazy {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {},
-    -- stylua: ignore
   },
 
-  -- A collection of small, focused plugins
-  -- https://github.com/echasnovski/mini.nvim
+  -- Extend f, F, t, T to jump across multiple lines
+  -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump.md
   {
-    'echasnovski/mini.nvim',
+    "nvim-mini/mini.jump",
+    opts = {},
+  },
+
+  -- Statusline
+  -- https://github.com/nvim-mini/mini.statusline
+  {
+    "nvim-mini/mini.statusline",
+    dependencies = {
+      "nvim-mini/mini.icons"
+    },
     config = function()
-      -- File type icons
-      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-icons.md
-      require("mini.icons").setup()
-
-      -- Extend f, F, t, T to work on multiple lines
-      -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump.md
-      require("mini.jump").setup()
-
-      -- Statusline
-      -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-statusline.md
       local sl = require "mini.statusline"
       sl.setup()
       sl.section_location = function()
-        return "%2l:%-2v" -- LINE:COLUMN
+        return "%2l:%-2v" -- line:column
       end
+    end
+  },
 
-      -- which-key replacement
-      -- https://github.com/nvim-mini/mini.clue
+  -- Show next key clues (like which-key)
+  -- https://github.com/nvim-mini/mini.clue
+  {
+    'nvim-mini/mini.clue',
+    config = function()
       local mc = require('mini.clue')
       mc.setup {
         triggers = {
@@ -217,7 +219,6 @@ kit.init_lazy {
         "vimdoc",
         "wgsl",
       },
-      -- Auto install languages that are not installed
       auto_install = true,
       highlight = {
         enable = true,
@@ -239,6 +240,8 @@ kit.init_lazy {
     }
   },
 
+  -- Syntax aware text-objects, select, move, swap, and peek support
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     lazy = true,
@@ -250,7 +253,6 @@ kit.init_lazy {
           -- Automatically jump forward to textobj, similar to targets.vim
           -- TODO: Find out what that means.
           lookahead = true,
-
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
             ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
@@ -268,7 +270,6 @@ kit.init_lazy {
             ["ic"] = { query = "@class.inner", desc = "Select class body" },
           },
         },
-
         move = {
           enable = true,
           set_jumps = true, -- Whether to set jumps in the jumplist
@@ -281,7 +282,6 @@ kit.init_lazy {
             ["[t"] = { query = "@class.outer", desc = "Previous type" },
           },
         },
-
         swap = {
           enable = true,
           swap_next = {
@@ -320,9 +320,9 @@ kit.init_lazy {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-      "folke/snacks.nvim",      -- optional
+      "nvim-lua/plenary.nvim",  -- Required for... *something*
+      "sindrets/diffview.nvim", -- Diff integration
+      "folke/snacks.nvim",      -- Picker
     },
   },
 
