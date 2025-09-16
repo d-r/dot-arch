@@ -1,11 +1,20 @@
 local M = {}
 
+-- Bootstrap and configure the lazy.nvim package manager.
+-- See https://lazy.folke.io/configuration for what goes in `opts`.
 function M.init_lazy(opts)
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+  -- Clone the lazy repo into the data directory (typically ~/.local/share/nvim/),
+  -- if it's not already in there.
+  if not (vim.uv or vim.loop).fs_stat(lazy_path) then
     local out = vim.fn.system {
-      "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--branch=stable",
+      "https://github.com/folke/lazy.nvim.git",
+      lazy_path
     }
     if vim.v.shell_error ~= 0 then
       vim.api.nvim_echo({
@@ -17,15 +26,18 @@ function M.init_lazy(opts)
       os.exit(1)
     end
   end
-  vim.opt.rtp:prepend(lazypath)
 
+  -- Add lazy to the runtime path, so that that can we `require` it.
+  vim.opt.rtp:prepend(lazy_path)
+
+  -- Configure lazy and sync plugins.
   require("lazy").setup(opts)
 end
 
 function M.chars(s)
   local t = {}
   for i = 1, #s do
-      t[i] = s:sub(i, i)
+    t[i] = s:sub(i, i)
   end
   return t
 end
