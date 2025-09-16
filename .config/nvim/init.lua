@@ -169,13 +169,6 @@ local plugins = {
     }
   },
 
-  -- Extend f, F, t, T to jump across multiple lines
-  -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-jump.md
-  {
-    "nvim-mini/mini.jump",
-    opts = {},
-  },
-
   -- Comment lines
   -- https://github.com/nvim-mini/mini.comment
   {
