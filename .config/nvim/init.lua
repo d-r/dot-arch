@@ -334,9 +334,14 @@ local plugins = {
   }
 }
 
-kit.init_lazy(plugins)
+local theme = "tokyonight-night"
 
-vim.cmd.colorscheme "tokyonight-night"
+kit.init_lazy {
+  spec = plugins,
+  install = { colorscheme = { theme } } -- Theme to use when installing plugins
+}
+
+vim.cmd.colorscheme(theme)
 
 --------------------------------------------------------------------------------
 -- BINDS

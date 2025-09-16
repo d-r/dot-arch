@@ -1,6 +1,6 @@
 local M = {}
 
-function M.init_lazy(plugins)
+function M.init_lazy(opts)
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -19,7 +19,7 @@ function M.init_lazy(plugins)
   end
   vim.opt.rtp:prepend(lazypath)
 
-  require("lazy").setup(plugins)
+  require("lazy").setup(opts)
 end
 
 function M.chars(s)
