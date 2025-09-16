@@ -382,8 +382,7 @@ window-rule {
 
 // WEB
 
-// spawn-at-startup "firefox"
-spawn-at-startup "chromium"
+spawn-at-startup "firefox-nightly"
 
 window-rule {
     match app-id="firefox" at-startup=true
