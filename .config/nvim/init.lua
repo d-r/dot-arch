@@ -428,6 +428,7 @@ vim.lsp.enable {
 }
 
 kit.bind_keys {
+  -- <leader>
   {
     "<leader>r",
     desc = "Rename symbol",
@@ -443,5 +444,13 @@ kit.bind_keys {
     "<leader>=",
     desc = "Format buffer",
     vim.lsp.buf.format
+  },
+
+  -- <C>
+  {
+    "<C-.>",
+    desc = "Code action",
+    mode = { "n", "x" },
+    vim.lsp.buf.code_action
   },
 }
