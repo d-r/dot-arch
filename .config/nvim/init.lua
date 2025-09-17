@@ -337,7 +337,9 @@ local plugins = {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      char = { enable = false } -- Don't override f, t, F, T
+    },
     keys = {
       -- s is for "seek"
       {
