@@ -39,310 +39,6 @@ end)
 -- PLUGINS
 
 local plugins = {
-  -- Theme
-  -- https://github.com/folke/tokyonight.nvim
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-      },
-    },
-  },
-
-  -- Snacks - a collection of small quality-of-life plugins
-  -- I only use the picker. It's better than mini.pick.
-  -- https://github.com/folke/snacks.nvim
-  {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      picker = {
-        enabled = true,
-        sources = {
-          files = {
-            hidden = true,
-          },
-        },
-      },
-    },
-    keys = {
-      {
-        "<leader><space>",
-        desc = "Smart find files",
-        function() Snacks.picker.smart() end,
-      },
-      {
-        "<leader>f",
-        desc = "Files",
-        function() Snacks.picker.files() end,
-      },
-      {
-        "<leader>b",
-        desc = "Buffers",
-        function() Snacks.picker.buffers() end,
-      },
-    },
-  },
-
-  -- Jump around
-  -- https://github.com/folke/flash.nvim
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      -- s is for "seek"
-      {
-        "s",
-        desc = "Flash",
-        mode = { "n", "x", "o" },
-        function() require("flash").jump() end,
-      },
-      {
-        "S",
-        desc = "Flash treesitter",
-        mode = { "n", "x", "o" },
-        function() require("flash").treesitter() end,
-      },
-      {
-        "r",
-        desc = "Remote flash",
-        mode = "o",
-        function() require("flash").remote() end,
-      },
-      {
-        "R",
-        desc = "Treesitter search",
-        mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-      },
-      {
-        "<c-s>",
-        desc = "Toggle flash search",
-        mode = "c",
-        function() require("flash").toggle() end,
-      },
-    }
-  },
-
-  -- Comment lines
-  -- https://github.com/nvim-mini/mini.comment
-  {
-    "nvim-mini/mini.comment",
-    opts = {
-      mappings = {
-        -- Toggle comment (like `gcip` - comment inner paragraph) for both
-        -- Normal and Visual modes
-        comment = "",
-
-        -- Toggle comment on current line
-        comment_line = "<c-/>",
-
-        -- Toggle comment on visual selection
-        comment_visual = "<c-/>",
-
-        -- Define 'comment' textobject (like `dgc` - delete whole comment block)
-        -- Works also in Visual mode if mapping differs from `comment_visual`
-        textobject = "gc",
-      },
-    },
-  },
-
-  -- Minimal and fast statusline with opinionated default look
-  -- https://github.com/nvim-mini/mini.statusline
-  {
-    "nvim-mini/mini.statusline",
-    dependencies = {
-      "nvim-mini/mini.icons"
-    },
-    config = function()
-      local sl = require "mini.statusline"
-      sl.setup()
-      sl.section_location = function()
-        return "%4l:%-3v" -- line:column
-      end
-    end
-  },
-
-  -- Show next key clues (like which-key)
-  -- https://github.com/nvim-mini/mini.clue
-  {
-    'nvim-mini/mini.clue',
-    config = function()
-      local mc = require('mini.clue')
-      mc.setup {
-        triggers = kit.triggers {
-          { '<leader>', 'nx' },
-          { '<c-x>',    'i' },
-          { '<c-w>',    'n' },
-          { '<c-r>',    'ic' },
-          { "'",        'nx' },
-          { '`',        'nx' },
-          { '"',        'nx' },
-          { 'g',        'nx' },
-          { 'z',        'nx' },
-          { '[',        'nx' },
-          { ']',        'nx' },
-        },
-        clues = {
-          mc.gen_clues.builtin_completion(),
-          mc.gen_clues.windows(),
-          mc.gen_clues.registers(),
-          mc.gen_clues.marks(),
-          mc.gen_clues.g(),
-          mc.gen_clues.z(),
-        },
-        window = {
-          delay = 100, -- Milliseconds
-          config = {
-            width = "auto",
-          },
-        },
-      }
-    end,
-  },
-
-  -- Treesitter integration
-  -- https://github.com/nvim-treesitter/nvim-treesitter
-  --
-  -- You should have these packages installed on the system:
-  -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
-  -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
-    main = "nvim-treesitter.configs", -- Module to use for opts
-    opts = {
-      ensure_installed = {
-        "bash",
-        "c",
-        "cpp",
-        "css",
-        "diff",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "gitignore",
-        "html",
-        "ini",
-        "json",
-        "json5",
-        "kdl",
-        "lua",
-        "luadoc",
-        "markdown_inline",
-        "markdown",
-        "nu",
-        "query",
-        "ron",
-        "rust",
-        "toml",
-        "vim",
-        "vimdoc",
-        "wgsl",
-      },
-      auto_install = true,
-      highlight = {
-        enable = true,
-      },
-      indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<m-o>",
-          node_incremental = "<m-o>",
-          scope_incremental = false, -- TODO: What is this?
-          node_decremental = "<m-i>",
-        },
-      },
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context", -- TODO: What is this?
-    }
-  },
-
-  -- Syntax aware text-objects, select, move, swap, and peek support
-  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = true,
-    main = "nvim-treesitter.configs", -- Module to use for opts
-    opts = {
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true, -- TODO: What is this?
-          keymaps = {
-            ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
-            ["i="] = { query = "@assignment.inner", desc = "Select inner part of assignment" },
-            ["l="] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
-            ["r="] = { query = "@assignment.rhs", desc = "Select right side of assignment" },
-
-            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of parameter/argument" },
-            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of parameter/argument" },
-
-            ["af"] = { query = "@function.outer", desc = "Select function" },
-            ["if"] = { query = "@function.inner", desc = "Select function body" },
-
-            ["ac"] = { query = "@class.outer", desc = "Select class" },
-            ["ic"] = { query = "@class.inner", desc = "Select class body" },
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true, -- Write to jump list
-          goto_next_start = {
-            ["]f"] = { query = "@function.outer", desc = "Next function" },
-            ["]t"] = { query = "@class.outer", desc = "Next type" },
-          },
-          goto_previous_start = {
-            ["[f"] = { query = "@function.outer", desc = "Previous function" },
-            ["[t"] = { query = "@class.outer", desc = "Previous type" },
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>na"] = "@parameter.inner",
-            ["<leader>nf"] = "@function.outer",
-          },
-          swap_previous = {
-            ["<leader>pa"] = "@parameter.inner",
-            ["<leader>pf"] = "@function.outer",
-          },
-        },
-      },
-    },
-  },
-
-  -- Magit for nvim
-  -- https://github.com/NeogitOrg/neogit
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",  -- Required for... *something*
-      "sindrets/diffview.nvim", -- Diff integration
-      "folke/snacks.nvim",      -- Picker
-    },
-    keys = {
-      { "<leader>g", ":Neogit kind=replace<CR>", desc = "Neogit" }
-    }
-  },
-
-  -- Pin buffers
-  -- https://github.com/iofq/dart.nvim
-  {
-    'iofq/dart.nvim',
-    opts = {}
-  },
-
   -- LSP setup
   -- https://github.com/neovim/nvim-lspconfig
   --
@@ -463,6 +159,310 @@ local plugins = {
         -- Load luvit types when the `vim.uv` word is found
         -- (whatever that means)
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
+  -- Treesitter integration
+  -- https://github.com/nvim-treesitter/nvim-treesitter
+  --
+  -- You should have these packages installed on the system:
+  -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
+  -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPre", "BufNewFile" },
+    main = "nvim-treesitter.configs", -- Module to use for opts
+    opts = {
+      ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "css",
+        "diff",
+        "git_config",
+        "git_rebase",
+        "gitcommit",
+        "gitignore",
+        "html",
+        "ini",
+        "json",
+        "json5",
+        "kdl",
+        "lua",
+        "luadoc",
+        "markdown_inline",
+        "markdown",
+        "nu",
+        "query",
+        "ron",
+        "rust",
+        "toml",
+        "vim",
+        "vimdoc",
+        "wgsl",
+      },
+      auto_install = true,
+      highlight = {
+        enable = true,
+      },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<m-o>",
+          node_incremental = "<m-o>",
+          scope_incremental = false, -- TODO: What is this?
+          node_decremental = "<m-i>",
+        },
+      },
+    },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context", -- TODO: What is this?
+    }
+  },
+
+  -- Syntax aware text-objects, select, move, swap, and peek support
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
+    main = "nvim-treesitter.configs", -- Module to use for opts
+    opts = {
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true, -- TODO: What is this?
+          keymaps = {
+            ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
+            ["i="] = { query = "@assignment.inner", desc = "Select inner part of assignment" },
+            ["l="] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
+            ["r="] = { query = "@assignment.rhs", desc = "Select right side of assignment" },
+
+            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of parameter/argument" },
+            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of parameter/argument" },
+
+            ["af"] = { query = "@function.outer", desc = "Select function" },
+            ["if"] = { query = "@function.inner", desc = "Select function body" },
+
+            ["ac"] = { query = "@class.outer", desc = "Select class" },
+            ["ic"] = { query = "@class.inner", desc = "Select class body" },
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true, -- Write to jump list
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function" },
+            ["]t"] = { query = "@class.outer", desc = "Next type" },
+          },
+          goto_previous_start = {
+            ["[f"] = { query = "@function.outer", desc = "Previous function" },
+            ["[t"] = { query = "@class.outer", desc = "Previous type" },
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>na"] = "@parameter.inner",
+            ["<leader>nf"] = "@function.outer",
+          },
+          swap_previous = {
+            ["<leader>pa"] = "@parameter.inner",
+            ["<leader>pf"] = "@function.outer",
+          },
+        },
+      },
+    },
+  },
+
+  -- Comment lines
+  -- https://github.com/nvim-mini/mini.comment
+  {
+    "nvim-mini/mini.comment",
+    opts = {
+      mappings = {
+        -- Toggle comment (like `gcip` - comment inner paragraph) for both
+        -- Normal and Visual modes
+        comment = "",
+
+        -- Toggle comment on current line
+        comment_line = "<c-/>",
+
+        -- Toggle comment on visual selection
+        comment_visual = "<c-/>",
+
+        -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+        -- Works also in Visual mode if mapping differs from `comment_visual`
+        textobject = "gc",
+      },
+    },
+  },
+
+  -- Jump around
+  -- https://github.com/folke/flash.nvim
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      -- s is for "seek"
+      {
+        "s",
+        desc = "Flash",
+        mode = { "n", "x", "o" },
+        function() require("flash").jump() end,
+      },
+      {
+        "S",
+        desc = "Flash treesitter",
+        mode = { "n", "x", "o" },
+        function() require("flash").treesitter() end,
+      },
+      {
+        "r",
+        desc = "Remote flash",
+        mode = "o",
+        function() require("flash").remote() end,
+      },
+      {
+        "R",
+        desc = "Treesitter search",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+      },
+      {
+        "<c-s>",
+        desc = "Toggle flash search",
+        mode = "c",
+        function() require("flash").toggle() end,
+      },
+    }
+  },
+
+  -- Snacks - a collection of small quality-of-life plugins
+  -- I only use the picker. It's better than mini.pick.
+  -- https://github.com/folke/snacks.nvim
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      picker = {
+        enabled = true,
+        sources = {
+          files = {
+            hidden = true,
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader><space>",
+        desc = "Smart find files",
+        function() Snacks.picker.smart() end,
+      },
+      {
+        "<leader>f",
+        desc = "Files",
+        function() Snacks.picker.files() end,
+      },
+      {
+        "<leader>b",
+        desc = "Buffers",
+        function() Snacks.picker.buffers() end,
+      },
+    },
+  },
+
+  -- Show next key clues (like which-key)
+  -- https://github.com/nvim-mini/mini.clue
+  {
+    'nvim-mini/mini.clue',
+    config = function()
+      local mc = require('mini.clue')
+      mc.setup {
+        triggers = kit.triggers {
+          { '<leader>', 'nx' },
+          { '<c-x>',    'i' },
+          { '<c-w>',    'n' },
+          { '<c-r>',    'ic' },
+          { "'",        'nx' },
+          { '`',        'nx' },
+          { '"',        'nx' },
+          { 'g',        'nx' },
+          { 'z',        'nx' },
+          { '[',        'nx' },
+          { ']',        'nx' },
+        },
+        clues = {
+          mc.gen_clues.builtin_completion(),
+          mc.gen_clues.windows(),
+          mc.gen_clues.registers(),
+          mc.gen_clues.marks(),
+          mc.gen_clues.g(),
+          mc.gen_clues.z(),
+        },
+        window = {
+          delay = 100, -- Milliseconds
+          config = {
+            width = "auto",
+          },
+        },
+      }
+    end,
+  },
+
+  -- Minimal and fast statusline with opinionated default look
+  -- https://github.com/nvim-mini/mini.statusline
+  {
+    "nvim-mini/mini.statusline",
+    dependencies = {
+      "nvim-mini/mini.icons"
+    },
+    config = function()
+      local sl = require "mini.statusline"
+      sl.setup()
+      sl.section_location = function()
+        return "%4l:%-3v" -- line:column
+      end
+    end
+  },
+
+  -- Pin buffers
+  -- https://github.com/iofq/dart.nvim
+  {
+    'iofq/dart.nvim',
+    opts = {}
+  },
+
+  -- Magit for nvim
+  -- https://github.com/NeogitOrg/neogit
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- Required for... *something*
+      "sindrets/diffview.nvim", -- Diff integration
+      "folke/snacks.nvim",      -- Picker
+    },
+    keys = {
+      { "<leader>g", ":Neogit kind=replace<CR>", desc = "Neogit" }
+    }
+  },
+
+  -- Theme
+  -- https://github.com/folke/tokyonight.nvim
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
       },
     },
   },
