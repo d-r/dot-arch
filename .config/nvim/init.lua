@@ -60,13 +60,14 @@ local plugins = {
     },
     opts = {
       servers = {
+        -- rust_analyzer is not included here, to let rustaceanvim configure it
+        -- the way it wants to.
         "bashls",
         "clangd",
         "janet_lsp",
         "lua_ls",
         "marksman",
         "nushell",
-        "rust_analyzer",
         "wgsl_analyzer",
         "zk",
       },
@@ -147,6 +148,14 @@ local plugins = {
         end
       })
     end,
+  },
+
+  -- Rust IDE
+  -- https://github.com/mrcjkb/rustaceanvim
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6',
+    lazy = false, -- This plugin is already lazy
   },
 
   -- Lua Language Server setup for editing the Neovim config
