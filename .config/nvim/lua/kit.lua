@@ -34,11 +34,17 @@ function M.init_lazy(opts)
   require("lazy").setup(opts)
 end
 
--- Bind a key
-function M.bind(key, mode, desc, cmd, options)
-  options = options or {}
-  options["desc"] = desc
-  vim.keymap.set(M.chars(mode), key, cmd, options)
+-- Helper for defining mini.clue triggers
+function M.triggers(entries)
+  local triggers = {}
+  for _, e in ipairs(entries) do
+    local keys = e[1]
+    local modes = M.chars(e[2])
+    for _, mode in ipairs(modes) do
+      table.insert(triggers, { mode = mode, keys = keys } )
+    end
+  end
+  return triggers
 end
 
 -- Bind a set of vim keys, specified in the same way as in the `keys` field of
@@ -54,6 +60,13 @@ function M.bind_keys(entries)
 
     vim.keymap.set(mode, key, cmd, e)
   end
+end
+
+-- Bind a key
+function M.bind(key, mode, desc, cmd, options)
+  options = options or {}
+  options["desc"] = desc
+  vim.keymap.set(M.chars(mode), key, cmd, options)
 end
 
 -- Convert a string into a list of characters

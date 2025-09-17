@@ -215,50 +215,24 @@ local plugins = {
     config = function()
       local mc = require('mini.clue')
       mc.setup {
-        triggers = {
-          -- Leader
-          { mode = 'n', keys = '<Leader>' },
-          { mode = 'x', keys = '<Leader>' },
-
-          -- Built-in completion
-          { mode = 'i', keys = '<C-x>' },
-
-          -- Marks
-          { mode = 'n', keys = "'" },
-          { mode = 'n', keys = '`' },
-          { mode = 'x', keys = "'" },
-          { mode = 'x', keys = '`' },
-
-          -- Registers
-          { mode = 'n', keys = '"' },
-          { mode = 'x', keys = '"' },
-          { mode = 'i', keys = '<C-r>' },
-          { mode = 'c', keys = '<C-r>' },
-
-          -- Window commands
-          { mode = 'n', keys = '<C-w>' },
-
-          -- g
-          { mode = 'n', keys = 'g' },
-          { mode = 'x', keys = 'g' },
-
-          -- z
-          { mode = 'n', keys = 'z' },
-          { mode = 'x', keys = 'z' },
-
-          -- [
-          { mode = 'n', keys = '[' },
-          { mode = 'x', keys = '[' },
-
-          -- ]
-          { mode = 'n', keys = ']' },
-          { mode = 'x', keys = ']' },
+        triggers = kit.triggers {
+          { '<Leader>', 'nx' },
+          { '<C-x>', 'i' },
+          { '<C-w>', 'n' },
+          { '<C-r>', 'ic' },
+          { "'", 'nx' },
+          { '`', 'nx' },
+          { '"', 'nx' },
+          { 'g', 'nx' },
+          { 'z', 'nx' },
+          { '[', 'nx' },
+          { ']', 'nx' },
         },
         clues = {
           mc.gen_clues.builtin_completion(),
-          mc.gen_clues.marks(),
-          mc.gen_clues.registers(),
           mc.gen_clues.windows(),
+          mc.gen_clues.registers(),
+          mc.gen_clues.marks(),
           mc.gen_clues.g(),
           mc.gen_clues.z(),
         },
