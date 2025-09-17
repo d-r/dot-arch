@@ -53,7 +53,7 @@ function M.bind_keys(entries)
   for _, e in ipairs(entries) do
     local key = e[1]
     local cmd = e[2]
-    local mode = e["mode"] or "n"
+    local mode = e.mode or "n"
 
     -- Leave only the options
     M.delete_keys(e, { 1, 2, "mode" })
@@ -65,7 +65,7 @@ end
 -- Bind a key
 function M.bind(key, mode, desc, cmd, options)
   options = options or {}
-  options["desc"] = desc
+  options.desc = desc
   vim.keymap.set(M.chars(mode), key, cmd, options)
 end
 
