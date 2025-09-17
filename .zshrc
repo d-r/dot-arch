@@ -17,6 +17,8 @@ PROMPT="%F{blue}%~>%f " # the current path in blue
 #-------------------------------------------------------------------------------
 # ALIASES
 
+alias n='niri-session'
+
 # Be verbose. I like getting feedback on my actions.
 alias cp='cp -v'
 alias mv='mv -v'
