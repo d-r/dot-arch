@@ -84,10 +84,10 @@ local plugins = {
       -- https://github.com/j-hui/fidget.nvim
       { "j-hui/fidget.nvim", opts = {} },
     },
-    opts = {
-      servers = {
+    config = function()
+      vim.lsp.enable {
         -- rust_analyzer is not included here, to let rustaceanvim configure it
-        -- the way it wants to.
+        -- how it wants to.
         "bashls",
         "clangd",
         "janet_lsp",
@@ -96,81 +96,77 @@ local plugins = {
         "nushell",
         "wgsl_analyzer",
         "zk",
-      },
-      keys = {
-        -- <c>
-        {
-          "<c-.>",
-          desc = "Code action",
-          mode = { "n", "x" },
-          vim.lsp.buf.code_action
-        },
-
-        -- <leader>
-        {
-          "<leader>a",
-          desc = "Code action",
-          mode = { "n", "x" },
-          vim.lsp.buf.code_action
-        },
-        {
-          "<leader>r",
-          desc = "Rename symbol",
-          vim.lsp.buf.rename
-        },
-        {
-          "<leader>=",
-          desc = "Format buffer",
-          vim.lsp.buf.format
-        },
-        {
-          "<leader>s",
-          desc = "Symbols",
-          function() Snacks.picker.lsp_symbols() end,
-        },
-        {
-          "<leader>S",
-          desc = "Workspace symbols",
-          function() Snacks.picker.lsp_workspace_symbols() end,
-        },
-
-        -- g (goto)
-        {
-          "gd",
-          desc = "Goto definition",
-          function() Snacks.picker.lsp_definitions() end,
-        },
-        {
-          "gD",
-          desc = "Goto declaration",
-          function() Snacks.picker.lsp_declarations() end,
-        },
-        {
-          "gy",
-          desc = "Goto type definition",
-          function() Snacks.picker.lsp_type_definitions() end,
-        },
-        {
-          "gr",
-          desc = "Goto references",
-          nowait = true,
-          function() Snacks.picker.lsp_references() end,
-        },
-        {
-          "gi",
-          desc = "Goto implementation",
-          function() Snacks.picker.lsp_implementations() end,
-        },
-      },
-    },
-    config = function(_, opts)
-      vim.lsp.enable(opts.servers)
+      }
 
       -- Call this function when an LSP attaches to a buffer
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
         callback = function(event)
-          kit.bind_keys(opts.keys)
+          kit.bind_keys {
+            -- <c>
+            {
+              "<c-.>",
+              desc = "Code action",
+              mode = { "n", "x" },
+              vim.lsp.buf.code_action
+            },
+
+            -- <leader>
+            {
+              "<leader>a",
+              desc = "Code action",
+              mode = { "n", "x" },
+              vim.lsp.buf.code_action
+            },
+            {
+              "<leader>r",
+              desc = "Rename symbol",
+              vim.lsp.buf.rename
+            },
+            {
+              "<leader>=",
+              desc = "Format buffer",
+              vim.lsp.buf.format
+            },
+            {
+              "<leader>s",
+              desc = "Symbols",
+              function() Snacks.picker.lsp_symbols() end,
+            },
+            {
+              "<leader>S",
+              desc = "Workspace symbols",
+              function() Snacks.picker.lsp_workspace_symbols() end,
+            },
+
+            -- g (goto)
+            {
+              "gd",
+              desc = "Goto definition",
+              function() Snacks.picker.lsp_definitions() end,
+            },
+            {
+              "gD",
+              desc = "Goto declaration",
+              function() Snacks.picker.lsp_declarations() end,
+            },
+            {
+              "gy",
+              desc = "Goto type definition",
+              function() Snacks.picker.lsp_type_definitions() end,
+            },
+            {
+              "gr",
+              desc = "Goto references",
+              nowait = true,
+              function() Snacks.picker.lsp_references() end,
+            },
+            {
+              "gi",
+              desc = "Goto implementation",
+              function() Snacks.picker.lsp_implementations() end,
+            },
+          }
         end
       })
     end,
