@@ -322,26 +322,6 @@ local plugins = {
     },
   },
 
-  -- Properly configures Lua Language Server for editing the Neovim config
-  -- https://github.com/folke/lazydev.nvim
-  {
-    "folke/lazydev.nvim",
-    ft = "lua", -- Only load on lua files
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-
-  -- A window in the bottom right corner that displays LSP progress messages
-  -- https://github.com/j-hui/fidget.nvim
-  {
-    "j-hui/fidget.nvim",
-    opts = {}
-  },
-
   -- Magit for nvim
   -- https://github.com/NeogitOrg/neogit
   {
@@ -361,7 +341,131 @@ local plugins = {
   {
     'iofq/dart.nvim',
     opts = {}
-  }
+  },
+
+  -- LSP setup
+  -- https://github.com/neovim/nvim-lspconfig
+  --
+  -- nvim-lspconfig is a "data only" repo. As a plugin, it doesn't actually *do*
+  -- anything, and it has no setup() function.
+  --
+  -- All it does is provide a bunch of community contributed LSP configurations
+  -- that can be enabled with vim.lsp.enable().
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    dependencies = {
+      -- For the picker
+      "folke/snacks.nvim",
+
+      -- A window in the bottom right corner that displays LSP progress messages
+      -- https://github.com/j-hui/fidget.nvim
+      { "j-hui/fidget.nvim", opts = {} },
+    },
+    opts = {
+      servers = {
+        "bashls",
+        "clangd",
+        "janet_lsp",
+        "lua_ls",
+        "marksman",
+        "nushell",
+        "rust_analyzer",
+        "wgsl_analyzer",
+        "zk",
+      },
+      keys = {
+        -- <c>
+        {
+          "<c-.>",
+          desc = "Code action",
+          mode = { "n", "x" },
+          vim.lsp.buf.code_action
+        },
+
+        -- <leader>
+        {
+          "<leader>a",
+          desc = "Code action",
+          mode = { "n", "x" },
+          vim.lsp.buf.code_action
+        },
+        {
+          "<leader>r",
+          desc = "Rename symbol",
+          vim.lsp.buf.rename
+        },
+        {
+          "<leader>=",
+          desc = "Format buffer",
+          vim.lsp.buf.format
+        },
+        {
+          "<leader>s",
+          desc = "Symbols",
+          function() Snacks.picker.lsp_symbols() end,
+        },
+        {
+          "<leader>S",
+          desc = "Workspace symbols",
+          function() Snacks.picker.lsp_workspace_symbols() end,
+        },
+
+        -- g (goto)
+        {
+          "gd",
+          desc = "Goto definition",
+          function() Snacks.picker.lsp_definitions() end,
+        },
+        {
+          "gD",
+          desc = "Goto declaration",
+          function() Snacks.picker.lsp_declarations() end,
+        },
+        {
+          "gy",
+          desc = "Goto type definition",
+          function() Snacks.picker.lsp_type_definitions() end,
+        },
+        {
+          "gr",
+          desc = "Goto references",
+          nowait = true,
+          function() Snacks.picker.lsp_references() end,
+        },
+        {
+          "gi",
+          desc = "Goto implementation",
+          function() Snacks.picker.lsp_implementations() end,
+        },
+      },
+    },
+    config = function(_, opts)
+      vim.lsp.enable(opts.servers)
+
+      -- Call this function when an LSP attaches to a buffer
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
+        callback = function(event)
+          kit.bind_keys(opts.keys)
+        end
+      })
+    end,
+  },
+
+  -- Lua Language Server setup for editing the Neovim config
+  -- https://github.com/folke/lazydev.nvim
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- Only enable for lua files
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        -- (whatever that means)
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
 }
 
 local theme = "tokyonight-night"
@@ -372,89 +476,3 @@ kit.init_lazy {
 }
 
 vim.cmd.colorscheme(theme)
-
---------------------------------------------------------------------------------
--- LSPs
-
-vim.lsp.enable {
-  "bashls",
-  "clangd",
-  "janet_lsp",
-  "lua_ls",
-  "marksman",
-  "nushell",
-  "rust_analyzer",
-  "wgsl_analyzer",
-  "zk",
-}
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
-  callback = function(event)
-    kit.bind_keys {
-      -- <c>
-      {
-        "<c-.>",
-        desc = "Code action",
-        mode = { "n", "x" },
-        vim.lsp.buf.code_action
-      },
-
-      -- <leader>
-      {
-        "<leader>a",
-        desc = "Code action",
-        mode = { "n", "x" },
-        vim.lsp.buf.code_action
-      },
-      {
-        "<leader>r",
-        desc = "Rename symbol",
-        vim.lsp.buf.rename
-      },
-      {
-        "<leader>=",
-        desc = "Format buffer",
-        vim.lsp.buf.format
-      },
-      {
-        "<leader>s",
-        desc = "Symbols",
-        function() Snacks.picker.lsp_symbols() end,
-      },
-      {
-        "<leader>S",
-        desc = "Workspace symbols",
-        function() Snacks.picker.lsp_workspace_symbols() end,
-      },
-
-      -- g (goto)
-      {
-        "gd",
-        desc = "Goto definition",
-        function() Snacks.picker.lsp_definitions() end,
-      },
-      {
-        "gD",
-        desc = "Goto declaration",
-        function() Snacks.picker.lsp_declarations() end,
-      },
-      {
-        "gy",
-        desc = "Goto type definition",
-        function() Snacks.picker.lsp_type_definitions() end,
-      },
-      {
-        "gr",
-        desc = "Goto references",
-        nowait = true,
-        function() Snacks.picker.lsp_references() end,
-      },
-      {
-        "gi",
-        desc = "Goto implementation",
-        function() Snacks.picker.lsp_implementations() end,
-      },
-    }
-  end
-})
