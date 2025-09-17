@@ -141,10 +141,10 @@ local plugins = {
         comment = "",
 
         -- Toggle comment on current line
-        comment_line = "<C-/>",
+        comment_line = "<c-/>",
 
         -- Toggle comment on visual selection
-        comment_visual = "<C-/>",
+        comment_visual = "<c-/>",
 
         -- Define 'comment' textobject (like `dgc` - delete whole comment block)
         -- Works also in Visual mode if mapping differs from `comment_visual`
@@ -177,10 +177,10 @@ local plugins = {
       local mc = require('mini.clue')
       mc.setup {
         triggers = kit.triggers {
-          { '<Leader>', 'nx' },
-          { '<C-x>',    'i' },
-          { '<C-w>',    'n' },
-          { '<C-r>',    'ic' },
+          { '<leader>', 'nx' },
+          { '<c-x>',    'i' },
+          { '<c-w>',    'n' },
+          { '<c-r>',    'ic' },
           { "'",        'nx' },
           { '`',        'nx' },
           { '"',        'nx' },
@@ -255,10 +255,10 @@ local plugins = {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<M-o>",
-          node_incremental = "<M-o>",
+          init_selection = "<m-o>",
+          node_incremental = "<m-o>",
           scope_incremental = false, -- TODO: What is this?
-          node_decremental = "<M-i>",
+          node_decremental = "<m-i>",
         },
       },
     },
