@@ -1,8 +1,5 @@
 local M = {}
 
---------------------------------------------------------------------------------
--- LAZY + PLUGINS
-
 -- Bootstrap and configure the lazy.nvim package manager.
 -- See https://lazy.folke.io/configuration for what goes in `opts`.
 function M.init_lazy(opts)
@@ -36,22 +33,6 @@ function M.init_lazy(opts)
   require("lazy").setup(opts)
 end
 
--- Helper for defining mini.clue triggers.
-function M.triggers(entries)
-  local triggers = {}
-  for _, e in ipairs(entries) do
-    local keys = e[1]
-    local modes = M.chars(e[2])
-    for _, mode in ipairs(modes) do
-      table.insert(triggers, { mode = mode, keys = keys } )
-    end
-  end
-  return triggers
-end
-
---------------------------------------------------------------------------------
--- VIM
-
 -- Bind a set of vim keys, specified in the same way as in the `keys` field of
 -- lazy's plugin spec format.
 function M.bind_keys(entries)
@@ -74,9 +55,6 @@ function M.bind(key, mode, desc, cmd, options)
   vim.keymap.set(M.chars(mode), key, cmd, options)
 end
 
---------------------------------------------------------------------------------
--- GENERAL
-
 -- Convert a string into a list of characters.
 function M.chars(s)
   local t = {}
@@ -93,5 +71,4 @@ function M.delete_keys(t, keys)
   end
 end
 
---------------------------------------------------------------------------------
 return M

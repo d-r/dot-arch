@@ -414,42 +414,15 @@ local plugins = {
     },
   },
 
-  -- Show next key clues (like which-key)
-  -- https://github.com/nvim-mini/mini.clue
+  -- Show available keybindings in a popup as you type
+  -- https://github.com/folke/which-key.nvim
   {
-    'nvim-mini/mini.clue',
-    config = function()
-      local mc = require('mini.clue')
-      mc.setup {
-        triggers = kit.triggers {
-          { '<leader>', 'nx' },
-          { '<c-x>',    'i' },
-          { '<c-w>',    'n' },
-          { '<c-r>',    'ic' },
-          { "'",        'nx' },
-          { '`',        'nx' },
-          { '"',        'nx' },
-          { 'g',        'nx' },
-          { 'z',        'nx' },
-          { '[',        'nx' },
-          { ']',        'nx' },
-        },
-        clues = {
-          mc.gen_clues.builtin_completion(),
-          mc.gen_clues.windows(),
-          mc.gen_clues.registers(),
-          mc.gen_clues.marks(),
-          mc.gen_clues.g(),
-          mc.gen_clues.z(),
-        },
-        window = {
-          delay = 100, -- Milliseconds
-          config = {
-            width = "auto",
-          },
-        },
-      }
-    end,
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      preset = "helix", -- Single column list in the bottom right corner
+      icons = { mappings = false }, -- Disable icons
+    },
   },
 
   -- Minimal and fast statusline with opinionated default look
