@@ -1,12 +1,14 @@
 local M = {}
 
+--------------------------------------------------------------------------------
+-- LAZY + PLUGINS
+
 -- Bootstrap and configure the lazy.nvim package manager.
 -- See https://lazy.folke.io/configuration for what goes in `opts`.
 function M.init_lazy(opts)
-  local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-  -- Clone the lazy repo into the data directory (typically ~/.local/share/nvim/),
+  -- Clone the repo into the data directory (typically ~/.local/share/nvim/)
   -- if it's not already in there.
+  local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not (vim.uv or vim.loop).fs_stat(lazy_path) then
     local out = vim.fn.system {
       "git",
@@ -27,14 +29,14 @@ function M.init_lazy(opts)
     end
   end
 
-  -- Add lazy to the runtime path, so that that can we `require` it.
+  -- Add lazy to the runtime path so that can we `require` it.
   vim.opt.rtp:prepend(lazy_path)
 
   -- Configure lazy and sync plugins.
   require("lazy").setup(opts)
 end
 
--- Helper for defining mini.clue triggers
+-- Helper for defining mini.clue triggers.
 function M.triggers(entries)
   local triggers = {}
   for _, e in ipairs(entries) do
@@ -47,29 +49,35 @@ function M.triggers(entries)
   return triggers
 end
 
+--------------------------------------------------------------------------------
+-- VIM
+
 -- Bind a set of vim keys, specified in the same way as in the `keys` field of
--- Lazy's plugin spec format.
+-- lazy's plugin spec format.
 function M.bind_keys(entries)
   for _, e in ipairs(entries) do
     local key = e[1]
     local cmd = e[2]
     local mode = e.mode or "n"
 
-    -- Leave only the options
+    -- Leave only the options.
     M.delete_keys(e, { 1, 2, "mode" })
 
     vim.keymap.set(mode, key, cmd, e)
   end
 end
 
--- Bind a key
+-- Bind a vim key.
 function M.bind(key, mode, desc, cmd, options)
   options = options or {}
   options.desc = desc
   vim.keymap.set(M.chars(mode), key, cmd, options)
 end
 
--- Convert a string into a list of characters
+--------------------------------------------------------------------------------
+-- GENERAL
+
+-- Convert a string into a list of characters.
 function M.chars(s)
   local t = {}
   for i = 1, #s do
@@ -78,11 +86,12 @@ function M.chars(s)
   return t
 end
 
--- Delete a set of keys from the given table
-function M.delete_keys(xs, keys)
+-- Delete a set of keys from the given table.
+function M.delete_keys(t, keys)
   for _, k in ipairs(keys) do
-    xs[k] = nil
+    t[k] = nil
   end
 end
 
+--------------------------------------------------------------------------------
 return M
