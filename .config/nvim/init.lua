@@ -32,6 +32,9 @@ vim.o.scrolloff = 10
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Don't highlight the matches of the previous search
+vim.opt.hlsearch = false
+
 -- Transform tabs to spaces
 vim.o.expandtab = true
 
