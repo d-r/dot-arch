@@ -71,7 +71,6 @@ local plugins = {
       },
     },
     keys = {
-      -- <leader>
       {
         "<leader><space>",
         desc = "Smart find files",
@@ -86,44 +85,6 @@ local plugins = {
         "<leader>b",
         desc = "Buffers",
         function() Snacks.picker.buffers() end,
-      },
-      {
-        "<leader>s",
-        desc = "Symbols",
-        function() Snacks.picker.lsp_symbols() end,
-      },
-      {
-        "<leader>S",
-        desc = "Workspace symbols",
-        function() Snacks.picker.lsp_workspace_symbols() end,
-      },
-
-      -- g (goto)
-      {
-        "gd",
-        desc = "Goto definition",
-        function() Snacks.picker.lsp_definitions() end,
-      },
-      {
-        "gD",
-        desc = "Goto declaration",
-        function() Snacks.picker.lsp_declarations() end,
-      },
-      {
-        "gy",
-        desc = "Goto type definition",
-        function() Snacks.picker.lsp_type_definitions() end,
-      },
-      {
-        "gr",
-        desc = "Goto references",
-        nowait = true,
-        function() Snacks.picker.lsp_references() end,
-      },
-      {
-        "gi",
-        desc = "Goto implementation",
-        function() Snacks.picker.lsp_implementations() end,
       },
     },
   },
@@ -427,30 +388,73 @@ vim.lsp.enable {
   "zk",
 }
 
-kit.bind_keys {
-  -- <leader>
-  {
-    "<leader>r",
-    desc = "Rename symbol",
-    vim.lsp.buf.rename
-  },
-  {
-    "<leader>a",
-    desc = "Code action",
-    mode = { "n", "x" },
-    vim.lsp.buf.code_action
-  },
-  {
-    "<leader>=",
-    desc = "Format buffer",
-    vim.lsp.buf.format
-  },
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
+  callback = function(event)
+    kit.bind_keys {
+      -- <c>
+      {
+        "<c-.>",
+        desc = "Code action",
+        mode = { "n", "x" },
+        vim.lsp.buf.code_action
+      },
 
-  -- <C>
-  {
-    "<C-.>",
-    desc = "Code action",
-    mode = { "n", "x" },
-    vim.lsp.buf.code_action
-  },
-}
+      -- <leader>
+      {
+        "<leader>a",
+        desc = "Code action",
+        mode = { "n", "x" },
+        vim.lsp.buf.code_action
+      },
+      {
+        "<leader>r",
+        desc = "Rename symbol",
+        vim.lsp.buf.rename
+      },
+      {
+        "<leader>=",
+        desc = "Format buffer",
+        vim.lsp.buf.format
+      },
+      {
+        "<leader>s",
+        desc = "Symbols",
+        function() Snacks.picker.lsp_symbols() end,
+      },
+      {
+        "<leader>S",
+        desc = "Workspace symbols",
+        function() Snacks.picker.lsp_workspace_symbols() end,
+      },
+
+      -- g (goto)
+      {
+        "gd",
+        desc = "Goto definition",
+        function() Snacks.picker.lsp_definitions() end,
+      },
+      {
+        "gD",
+        desc = "Goto declaration",
+        function() Snacks.picker.lsp_declarations() end,
+      },
+      {
+        "gy",
+        desc = "Goto type definition",
+        function() Snacks.picker.lsp_type_definitions() end,
+      },
+      {
+        "gr",
+        desc = "Goto references",
+        nowait = true,
+        function() Snacks.picker.lsp_references() end,
+      },
+      {
+        "gi",
+        desc = "Goto implementation",
+        function() Snacks.picker.lsp_implementations() end,
+      },
+    }
+  end
+})
