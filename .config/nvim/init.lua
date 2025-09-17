@@ -10,24 +10,39 @@ vim.g.maplocalleader = " "
 -- kitty has builtin Nerd Font support
 vim.g.have_nerd_font = true
 
--- Disable swap file, as it's just annoying
-vim.opt.swapfile = false
+-- Don't show the current mode, since it's already in the statusline provided
+-- by mini.statusline
+vim.o.showmode = false
+
+-- Enable gutter space for LSP info on the left
+vim.o.signcolumn = 'yes'
 
 -- Enable relative line numbers
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Enable gutter space for LSP info on the left
-vim.o.signcolumn = 'yes'
+-- Highlight the line that the cursor is on
+vim.o.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor
+vim.o.scrolloff = 10
 
 -- Perform case insensitive search, *unless* the search term contains at least
 -- one uppercase character
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Don't show the current mode, since it's already in the status line provided
--- by mini.statusline
-vim.o.showmode = false
+-- Transform tabs to spaces
+vim.o.expandtab = true
+
+-- Disable swap file, as it's just annoying
+vim.o.swapfile = false
+
+-- Auto reload files on change
+vim.o.autoread = true
+
+-- Save undo history to disk
+vim.o.undofile = true
 
 -- Sync clipboard between the OS and Neovim
 -- Schedule the setting after `UiEnter` because it can increase startup-time
