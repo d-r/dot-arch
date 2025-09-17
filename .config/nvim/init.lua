@@ -164,7 +164,7 @@ local plugins = {
       local sl = require "mini.statusline"
       sl.setup()
       sl.section_location = function()
-        return "%2l:%-2v" -- line:column
+        return "%4l:%-3v" -- line:column
       end
     end
   },
