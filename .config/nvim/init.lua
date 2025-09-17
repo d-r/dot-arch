@@ -453,6 +453,21 @@ vim.lsp.enable {
   "zk",
 }
 
-kit.bind("<leader>r", "n", "Rename symbol", vim.lsp.buf.rename)
-kit.bind("<leader>a", "nx", "Code action", vim.lsp.buf.code_action)
-kit.bind("<leader>=", "n", "Format buffer", vim.lsp.buf.format)
+kit.bind_keys {
+  {
+    "<leader>r",
+    desc = "Rename symbol",
+    vim.lsp.buf.rename
+  },
+  {
+    "<leader>a",
+    desc = "Code action",
+    mode = { "n", "x" },
+    vim.lsp.buf.code_action
+  },
+  {
+    "<leader>=",
+    desc = "Format buffer",
+    vim.lsp.buf.format
+  },
+}

@@ -34,6 +34,28 @@ function M.init_lazy(opts)
   require("lazy").setup(opts)
 end
 
+-- Bind a key
+function M.bind(key, mode, desc, cmd, options)
+  options = options or {}
+  options["desc"] = desc
+  vim.keymap.set(M.chars(mode), key, cmd, options)
+end
+
+-- Bind a set of vim keys, specified in the same way as in the `keys` field of
+-- Lazy's plugin spec format.
+function M.bind_keys(entries)
+  for _, e in ipairs(entries) do
+    local key = e[1]
+    local cmd = e[2]
+    local mode = e["mode"] or "n"
+
+    -- Leave only the options
+    M.delete_keys(e, { 1, 2, "mode" })
+
+    vim.keymap.set(mode, key, cmd, e)
+  end
+end
+
 -- Convert a string into a list of characters
 function M.chars(s)
   local t = {}
@@ -43,11 +65,11 @@ function M.chars(s)
   return t
 end
 
--- Bind a key
-function M.bind(key, mode, desc, cmd, options)
-  options = options or {}
-  options["desc"] = desc
-  vim.keymap.set(M.chars(mode), key, cmd, options)
+-- Delete a set of keys from the given table
+function M.delete_keys(xs, keys)
+  for _, k in ipairs(keys) do
+    xs[k] = nil
+  end
 end
 
 return M
