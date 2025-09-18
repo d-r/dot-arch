@@ -605,6 +605,7 @@ local plugins = {
   -- https://github.com/iofq/dart.nvim
   {
     'iofq/dart.nvim',
+    enabled = false,
     opts = {}
   },
 
