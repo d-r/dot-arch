@@ -448,13 +448,37 @@ local plugins = {
     },
   },
 
+  -- Detect TODO comments
+  -- https://github.com/folke/todo-comments.nvim
+  {
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "folke/snacks.nvim", -- For the picker
+    },
+    opts = {
+      signs = false,    -- Don't put icons in the sign column
+      highlight = {
+        keyword = "fg", -- Colorize the keyword
+        -- after = "",     -- Don't colorize the rest of the line
+      },
+    },
+    keys = {
+      {
+        "<leader>t",
+        desc = "TODO comments",
+        function() Snacks.picker.todo_comments() end,
+      },
+    },
+  },
+
   -- Show available keybindings in a popup as you type
   -- https://github.com/folke/which-key.nvim
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      preset = "helix", -- Single column list in the bottom right corner
+      preset = "helix",             -- Single column list in the bottom right corner
       icons = { mappings = false }, -- Disable icons
     },
   },
