@@ -381,6 +381,7 @@ local plugins = {
   -- Snacks - a collection of small quality-of-life plugins
   -- I only use the picker. It's better than mini.pick.
   -- https://github.com/folke/snacks.nvim
+  -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -396,6 +397,14 @@ local plugins = {
       },
     },
     keys = {
+      -- <c>
+      {
+        "<c-p>",
+        desc = "Command palette",
+        function() Snacks.picker.commands() end,
+      },
+
+      -- <leader>
       {
         "<leader><space>",
         desc = "Smart find files",
@@ -410,6 +419,31 @@ local plugins = {
         "<leader>b",
         desc = "Buffers",
         function() Snacks.picker.buffers() end,
+      },
+      {
+        "<leader>c",
+        desc = "Commands",
+        function() Snacks.picker.commands() end,
+      },
+      {
+        "<leader>d",
+        desc = "Diagnostics (buffer)",
+        function() Snacks.picker.diagnostics_buffer() end,
+      },
+      {
+        "<leader>D",
+        desc = "Diagnostics (global)",
+        function() Snacks.picker.diagnostics() end,
+      },
+      {
+        "<leader>h",
+        desc = "Help",
+        function() Snacks.picker.help() end,
+      },
+      {
+        "<leader>k",
+        desc = "Keymaps",
+        function() Snacks.picker.keymaps() end,
       },
     },
   },
