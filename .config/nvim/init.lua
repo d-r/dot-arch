@@ -13,15 +13,14 @@ local xo = { "x", "o" }
 --------------------------------------------------------------------------------
 -- OPTIONS
 
--- Set leader key to <space>
+-- Set <leader> key to <space>
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- kitty has builtin Nerd Font support
 vim.g.have_nerd_font = true
 
--- Don't show the current mode, since it's already in the statusline provided
--- by mini.statusline
+-- Don't show the current mode, since mini.statusline already does that
 vim.o.showmode = false
 
 -- Enable gutter space for LSP info on the left
@@ -34,7 +33,7 @@ vim.o.relativenumber = true
 -- Highlight the line that the cursor is on
 vim.o.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor
+-- Minimum number of screen lines to keep above and below the cursor
 vim.o.scrolloff = 10
 
 -- Perform case insensitive search, *unless* the search term contains at least
@@ -43,22 +42,22 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Don't highlight the matches of the previous search
-vim.opt.hlsearch = false
+vim.o.hlsearch = false
 
 -- Transform tabs to spaces
 vim.o.expandtab = true
 
--- Disable swap file, as it's just annoying
+-- Disable the swap file, as it's a source of pointless error messages
 vim.o.swapfile = false
 
--- Auto reload files on change
+-- Auto reload files whey they change on disk
 vim.o.autoread = true
 
 -- Save undo history to disk
 vim.o.undofile = true
 
--- Sync clipboard between the OS and Neovim
--- Schedule the setting after `UiEnter` because it can increase startup-time
+-- Use the system clipboard
+-- Schedule the setting after `UiEnter` because it can increase startup time
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
@@ -68,7 +67,7 @@ end)
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight yanked text',
-  group = vim.api.nvim_create_augroup('config-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('user-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
@@ -99,9 +98,7 @@ local plugins = {
     },
     config = function()
       vim.lsp.enable {
-        -- rust_analyzer is not included here, to let rustaceanvim configure it
-        -- how it wants to.
-        "bashls",
+        -- rust_analyzer is left for rustaceanvim to configure
         "clangd",
         "janet_lsp",
         "lua_ls",
@@ -111,9 +108,9 @@ local plugins = {
         "zk",
       }
 
-      -- Call this function when an LSP attaches to a buffer
       vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
+        desc = 'Add LSP-related keybinds when an LSP attaches to a buffer',
+        group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
         callback = function(event)
           kit.bind_keys {
             -- <c>
@@ -152,7 +149,7 @@ local plugins = {
               function() Snacks.picker.lsp_workspace_symbols() end,
             },
 
-            -- g (goto)
+            -- g
             {
               "gd",
               desc = "Goto definition",
@@ -193,11 +190,11 @@ local plugins = {
     lazy = false, -- This plugin is already lazy
   },
 
-  -- Lua Language Server setup for editing the Neovim config
+  -- Lua Language Server setup for the Neovim config
   -- https://github.com/folke/lazydev.nvim
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- Only enable for lua files
+    ft = "lua", -- Only enable for .lua files
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
@@ -208,7 +205,7 @@ local plugins = {
   },
 
   -- Treesitter integration
-  -- https://github.com/nvim-treesitter/nvim-treesitter
+  -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main
   --
   -- You should have these packages installed on the system:
   -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
@@ -271,7 +268,7 @@ local plugins = {
   },
 
   -- Syntax aware text-objects, select, move, swap, and peek support
-  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
@@ -349,7 +346,7 @@ local plugins = {
           select("@function.inner"),
         },
 
-        -- Move
+        -- Goto
         {
           "[c",
           desc = "Previous class",
@@ -477,7 +474,7 @@ local plugins = {
   },
 
   -- Snacks - a collection of small quality-of-life plugins
-  -- I only use the picker. It's better than mini.pick.
+  -- I only use the picker. It's the best one I've tried.
   -- https://github.com/folke/snacks.nvim
   -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
   {
@@ -570,7 +567,7 @@ local plugins = {
     },
   },
 
-  -- Show available keybindings in a popup as you type
+  -- Show available keybinds in a popup as you type
   -- https://github.com/folke/which-key.nvim
   {
     "folke/which-key.nvim",
@@ -618,7 +615,12 @@ local plugins = {
     }
   },
 
-  -- Theme
+  -- An "angry fruit salad" color scheme that insists on giving every single
+  -- fucking token a different color.
+  -- But all the major themes do that, and I prefer this one to most.
+  --
+  -- TODO: Replace this with my own theme.
+  --
   -- https://github.com/folke/tokyonight.nvim
   {
     "folke/tokyonight.nvim",
