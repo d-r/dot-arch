@@ -489,6 +489,13 @@ local plugins = {
             hidden = true,
           },
         },
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+            },
+          }
+        }
       },
     },
     keys = {
