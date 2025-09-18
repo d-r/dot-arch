@@ -1,5 +1,15 @@
 local kit = require "kit"
 
+-- n = normal mode
+-- x = visual mode
+-- o = operator-pending
+-- i = insert mode
+-- s = selection mode
+-- v = visual + selection mode
+local nxo = { "n", "x", "o" }
+local nx = { "n", "x" }
+local xo = { "x", "o" }
+
 --------------------------------------------------------------------------------
 -- OPTIONS
 
@@ -110,7 +120,7 @@ local plugins = {
             {
               "<c-.>",
               desc = "Code action",
-              mode = { "n", "x" },
+              mode = nx,
               vim.lsp.buf.code_action
             },
 
@@ -118,7 +128,7 @@ local plugins = {
             {
               "<leader>a",
               desc = "Code action",
-              mode = { "n", "x" },
+              mode = nx,
               vim.lsp.buf.code_action
             },
             {
@@ -205,11 +215,18 @@ local plugins = {
   -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile" },
-    main = "nvim-treesitter.configs", -- Module to use for opts
-    opts = {
-      ensure_installed = {
+    config = function()
+      local ts = require("nvim-treesitter")
+
+      ts.setup {
+        -- Directory to install parsers and queries to
+        install_dir = vim.fn.stdpath('data') .. '/treesitter'
+      }
+
+      ts.install {
         "bash",
         "c",
         "cpp",
@@ -236,80 +253,161 @@ local plugins = {
         "vim",
         "vimdoc",
         "wgsl",
-      },
-      auto_install = true,
-      highlight = {
-        enable = true,
-      },
-      indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<m-o>",
-          node_incremental = "<m-o>",
-          scope_incremental = false, -- TODO: What is this?
-          node_decremental = "<m-i>",
-        },
-      },
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context", -- TODO: What is this?
-    }
+      }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        desc = 'Enable treesitter highlighting',
+        callback = function(event)
+          if pcall(vim.treesitter.start, event.buf) then
+            -- Enable folding and indentation.
+            -- TODO: Verify that it works.
+            -- I don't know what these incantations mean.
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+    end,
   },
 
   -- Syntax aware text-objects, select, move, swap, and peek support
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = true,
-    main = "nvim-treesitter.configs", -- Module to use for opts
-    opts = {
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true, -- TODO: What is this?
-          keymaps = {
-            ["a="] = { query = "@assignment.outer", desc = "Select outer part of assignment" },
-            ["i="] = { query = "@assignment.inner", desc = "Select inner part of assignment" },
-            ["l="] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
-            ["r="] = { query = "@assignment.rhs", desc = "Select right side of assignment" },
-
-            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of parameter/argument" },
-            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of parameter/argument" },
-
-            ["af"] = { query = "@function.outer", desc = "Select function" },
-            ["if"] = { query = "@function.inner", desc = "Select function body" },
-
-            ["ac"] = { query = "@class.outer", desc = "Select class" },
-            ["ic"] = { query = "@class.inner", desc = "Select class body" },
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true, -- Write to jump list
-          goto_next_start = {
-            ["]f"] = { query = "@function.outer", desc = "Next function" },
-            ["]t"] = { query = "@class.outer", desc = "Next type" },
-          },
-          goto_previous_start = {
-            ["[f"] = { query = "@function.outer", desc = "Previous function" },
-            ["[t"] = { query = "@class.outer", desc = "Previous type" },
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>na"] = "@parameter.inner",
-            ["<leader>nf"] = "@function.outer",
-          },
-          swap_previous = {
-            ["<leader>pa"] = "@parameter.inner",
-            ["<leader>pf"] = "@function.outer",
-          },
-        },
-      },
+    branch = "main",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
     },
+    opts = {},
+    keys = function()
+      local select = function(o)
+        return function()
+          require("nvim-treesitter-textobjects.select").select_textobject(o, "textobjects")
+        end
+      end
+
+      local goto_prev = function(o)
+        return function()
+          require("nvim-treesitter-textobjects.move").goto_previous_start(o, "textobjects")
+        end
+      end
+
+      local goto_next = function(o)
+        return function()
+          require("nvim-treesitter-textobjects.move").goto_next_start(o, "textobjects")
+        end
+      end
+
+      local swap_prev = function(o)
+        return function()
+          require("nvim-treesitter-textobjects.swap").swap_previous(o)
+        end
+      end
+
+      local swap_next = function(o)
+        return function()
+          require("nvim-treesitter-textobjects.swap").swap_next(o)
+        end
+      end
+
+      return {
+        -- Select
+        {
+          "aa",
+          desc = "Argument",
+          mode = xo,
+          select("@parameter.outer"),
+        },
+        {
+          "ia",
+          desc = "Argument",
+          mode = xo,
+          select("@parameter.inner"),
+        },
+        {
+          "ac",
+          desc = "Class",
+          mode = xo,
+          select("@class.outer"),
+        },
+        {
+          "ic",
+          desc = "Class",
+          mode = xo,
+          select("@class.inner"),
+        },
+        {
+          "af",
+          desc = "Function",
+          mode = xo,
+          select("@function.outer"),
+        },
+        {
+          "if",
+          desc = "Function",
+          mode = xo,
+          select("@function.inner"),
+        },
+
+        -- Move
+        {
+          "[c",
+          desc = "Previous class",
+          mode = nxo,
+          goto_prev("@class.outer"),
+        },
+        {
+          "]c",
+          desc = "Next class",
+          mode = nxo,
+          goto_next("@class.outer"),
+        },
+        {
+          "[f",
+          desc = "Previous function",
+          mode = nxo,
+          goto_prev("@function.outer"),
+        },
+        {
+          "]f",
+          desc = "Next function",
+          mode = nxo,
+          goto_next("@function.outer"),
+        },
+
+        -- Swap
+        {
+          "<leader>pa",
+          desc = "Swap previous argument",
+          swap_prev("@parameter.outer"),
+        },
+        {
+          "<leader>na",
+          desc = "Swap next argument",
+          swap_next("@parameter.outer"),
+        },
+        {
+          "<leader>pf",
+          desc = "Swap previous function",
+          swap_prev("@function.outer"),
+        },
+        {
+          "<leader>nf",
+          desc = "Swap next function",
+          swap_next("@function.outer"),
+        },
+        {
+          "<leader>pc",
+          desc = "Swap previous class",
+          swap_prev("@class.outer"),
+        },
+        {
+          "<leader>nc",
+          desc = "Swap next class",
+          swap_next("@class.outer"),
+        },
+      }
+    end,
   },
 
   -- Comment lines
@@ -348,13 +446,13 @@ local plugins = {
       {
         "s",
         desc = "Flash",
-        mode = { "n", "x", "o" },
+        mode = nxo,
         function() require("flash").jump() end,
       },
       {
         "S",
         desc = "Flash treesitter",
-        mode = { "n", "x", "o" },
+        mode = nxo,
         function() require("flash").treesitter() end,
       },
       {
@@ -366,7 +464,7 @@ local plugins = {
       {
         "R",
         desc = "Treesitter search",
-        mode = { "o", "x" },
+        mode = xo,
         function() require("flash").treesitter_search() end,
       },
       {
