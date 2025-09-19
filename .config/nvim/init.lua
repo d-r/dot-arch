@@ -1,5 +1,8 @@
 local kit = require 'kit'
 
+local picker = kit.proxy(function() return Snacks.picker end)
+local flash = kit.proxy(function() return require 'flash' end)
+
 -- n = normal mode
 -- x = visual mode
 -- o = operator-pending
@@ -71,17 +74,13 @@ vim.o.winborder = 'rounded'
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight yanked text',
   group = vim.api.nvim_create_augroup('user-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Format on save',
   group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
-  callback = function(args)
-    require('conform').format { bufnr = args.buf }
-  end,
+  callback = function(args) require('conform').format { bufnr = args.buf } end,
 })
 
 --------------------------------------------------------------------------------
@@ -170,9 +169,7 @@ local plugins = {
       {
         '<leader>=',
         desc = 'Format buffer',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
+        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
       },
     },
   },
@@ -269,113 +266,34 @@ local plugins = {
       end
 
       local function swap_prev(o)
-        return function()
-          require('nvim-treesitter-textobjects.swap').swap_previous(o)
-        end
+        return function() require('nvim-treesitter-textobjects.swap').swap_previous(o) end
       end
 
       local function swap_next(o)
-        return function()
-          require('nvim-treesitter-textobjects.swap').swap_next(o)
-        end
+        return function() require('nvim-treesitter-textobjects.swap').swap_next(o) end
       end
 
       return {
         -- Select
-        {
-          'aa',
-          desc = 'Argument',
-          mode = xo,
-          select '@parameter.outer',
-        },
-        {
-          'ia',
-          desc = 'Argument',
-          mode = xo,
-          select '@parameter.inner',
-        },
-        {
-          'ac',
-          desc = 'Class',
-          mode = xo,
-          select '@class.outer',
-        },
-        {
-          'ic',
-          desc = 'Class',
-          mode = xo,
-          select '@class.inner',
-        },
-        {
-          'af',
-          desc = 'Function',
-          mode = xo,
-          select '@function.outer',
-        },
-        {
-          'if',
-          desc = 'Function',
-          mode = xo,
-          select '@function.inner',
-        },
+        { 'aa', desc = 'Argument', mode = xo, select '@parameter.outer' },
+        { 'ia', desc = 'Argument', mode = xo, select '@parameter.inner' },
+        { 'ac', desc = 'Class', mode = xo, select '@class.outer' },
+        { 'ic', desc = 'Class', mode = xo, select '@class.inner' },
+        { 'af', desc = 'Function', mode = xo, select '@function.outer' },
+        { 'if', desc = 'Function', mode = xo, select '@function.inner' },
 
         -- Goto
-        {
-          '[c',
-          desc = 'Previous class',
-          mode = nxo,
-          goto_prev '@class.outer',
-        },
-        {
-          ']c',
-          desc = 'Next class',
-          mode = nxo,
-          goto_next '@class.outer',
-        },
-        {
-          '[f',
-          desc = 'Previous function',
-          mode = nxo,
-          goto_prev '@function.outer',
-        },
-        {
-          ']f',
-          desc = 'Next function',
-          mode = nxo,
-          goto_next '@function.outer',
-        },
+        { '[c', desc = 'Previous class', mode = nxo, goto_prev '@class.outer' },
+        { ']c', desc = 'Next class', mode = nxo, goto_next '@class.outer' },
+        { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
+        { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
 
         -- Swap
-        {
-          '<leader>pa',
-          desc = 'Swap previous argument',
-          swap_prev '@parameter.outer',
-        },
-        {
-          '<leader>na',
-          desc = 'Swap next argument',
-          swap_next '@parameter.outer',
-        },
-        {
-          '<leader>pf',
-          desc = 'Swap previous function',
-          swap_prev '@function.outer',
-        },
-        {
-          '<leader>nf',
-          desc = 'Swap next function',
-          swap_next '@function.outer',
-        },
-        {
-          '<leader>pc',
-          desc = 'Swap previous class',
-          swap_prev '@class.outer',
-        },
-        {
-          '<leader>nc',
-          desc = 'Swap next class',
-          swap_next '@class.outer',
-        },
+        { '<leader>pa', desc = 'Swap previous argument', swap_prev '@parameter.outer' },
+        { '<leader>na', desc = 'Swap next argument', swap_next '@parameter.outer' },
+        { '<leader>pf', desc = 'Swap previous function', swap_prev '@function.outer' },
+        { '<leader>nf', desc = 'Swap next function', swap_next '@function.outer' },
+        { '<leader>pc', desc = 'Swap previous class', swap_prev '@class.outer' },
       }
     end,
   },
@@ -420,46 +338,11 @@ local plugins = {
     },
     keys = {
       -- s is for "seek"
-      {
-        's',
-        desc = 'Flash',
-        mode = nxo,
-        function()
-          require('flash').jump()
-        end,
-      },
-      {
-        'S',
-        desc = 'Flash treesitter',
-        mode = nxo,
-        function()
-          require('flash').treesitter()
-        end,
-      },
-      {
-        'r',
-        desc = 'Remote flash',
-        mode = 'o',
-        function()
-          require('flash').remote()
-        end,
-      },
-      {
-        'R',
-        desc = 'Treesitter search',
-        mode = xo,
-        function()
-          require('flash').treesitter_search()
-        end,
-      },
-      {
-        '<c-s>',
-        desc = 'Toggle flash search',
-        mode = 'c',
-        function()
-          require('flash').toggle()
-        end,
-      },
+      { 's', desc = 'Flash', mode = nxo, flash.jump },
+      { 'S', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
+      { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
+      { 'R', desc = 'Treesitter search', mode = xo, flash.treesitter_search },
+      { '<c-s>', desc = 'Toggle flash search', mode = 'c', flash.toggle },
     },
   },
 
@@ -488,74 +371,19 @@ local plugins = {
         },
       },
     },
-    keys = {
-      -- <c>
-      {
-        '<c-p>',
-        desc = 'Command palette',
-        function()
-          Snacks.picker.commands()
-        end,
-      },
-
-      -- <leader>
-      {
-        '<leader><space>',
-        desc = 'Smart find files',
-        function()
-          Snacks.picker.smart()
-        end,
-      },
-      {
-        '<leader>f',
-        desc = 'Files',
-        function()
-          Snacks.picker.files()
-        end,
-      },
-      {
-        '<leader>b',
-        desc = 'Buffers',
-        function()
-          Snacks.picker.buffers()
-        end,
-      },
-      {
-        '<leader>c',
-        desc = 'Commands',
-        function()
-          Snacks.picker.commands()
-        end,
-      },
-      {
-        '<leader>d',
-        desc = 'Diagnostics (buffer)',
-        function()
-          Snacks.picker.diagnostics_buffer()
-        end,
-      },
-      {
-        '<leader>D',
-        desc = 'Diagnostics (global)',
-        function()
-          Snacks.picker.diagnostics()
-        end,
-      },
-      {
-        '<leader>h',
-        desc = 'Help',
-        function()
-          Snacks.picker.help()
-        end,
-      },
-      {
-        '<leader>k',
-        desc = 'Keymaps',
-        function()
-          Snacks.picker.keymaps()
-        end,
-      },
-    },
+    keys = function()
+      return {
+        { '<c-p>', desc = 'Command palette', picker.commands },
+        { '<leader><space>', desc = 'Smart find files', picker.smart },
+        { '<leader>f', desc = 'Files', picker.files },
+        { '<leader>b', desc = 'Buffers', picker.buffers },
+        { '<leader>c', desc = 'Commands', picker.commands },
+        { '<leader>d', desc = 'Diagnostics (buffer)', picker.diagnostics_buffer },
+        { '<leader>D', desc = 'Diagnostics (global)', picker.diagnostics },
+        { '<leader>h', desc = 'Help', picker.help },
+        { '<leader>k', desc = 'Keymaps', picker.keymaps },
+      }
+    end,
   },
 
   -- Detect TODO comments
@@ -574,13 +402,7 @@ local plugins = {
       },
     },
     keys = {
-      {
-        '<leader>t',
-        desc = 'TODO comments',
-        function()
-          Snacks.picker.todo_comments()
-        end,
-      },
+      { '<leader>t', desc = 'TODO comments', picker.todo_comments },
     },
   },
 
@@ -681,72 +503,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'Add LSP-related keybinds when an LSP attaches to a buffer',
   group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
   callback = function(_)
-    local picker = Snacks.picker
-
     kit.bind_keys {
-      -- <c>
-      {
-        '<c-.>',
-        desc = 'Code action',
-        mode = nx,
-        vim.lsp.buf.code_action,
-      },
+      { '<c-.>', desc = 'Code action', mode = nx, vim.lsp.buf.code_action },
 
-      -- <leader>
-      {
-        '<leader>a',
-        desc = 'Code action',
-        mode = nx,
-        vim.lsp.buf.code_action,
-      },
-      {
-        '<leader>r',
-        desc = 'Rename symbol',
-        vim.lsp.buf.rename,
-      },
-      {
-        '<leader>=',
-        desc = 'Format buffer',
-        vim.lsp.buf.format,
-      },
-      {
-        '<leader>s',
-        desc = 'Symbols',
-        picker.lsp_symbols,
-      },
-      {
-        '<leader>S',
-        desc = 'Workspace symbols',
-        picker.lsp_workspace_symbols,
-      },
+      { '<leader>a', desc = 'Code action', mode = nx, vim.lsp.buf.code_action },
+      { '<leader>r', desc = 'Rename symbol', vim.lsp.buf.rename },
+      { '<leader>=', desc = 'Format buffer', vim.lsp.buf.format },
+      { '<leader>s', desc = 'Symbols', picker.lsp_symbols },
+      { '<leader>S', desc = 'Workspace symbols', picker.lsp_workspace_symbols },
 
-      -- g
-      {
-        'gd',
-        desc = 'Goto definition',
-        picker.lsp_definitions,
-      },
-      {
-        'gD',
-        desc = 'Goto declaration',
-        picker.lsp_declarations,
-      },
-      {
-        'gy',
-        desc = 'Goto type definition',
-        picker.lsp_type_definitions,
-      },
-      {
-        'gr',
-        desc = 'Goto references',
-        nowait = true,
-        picker.lsp_references,
-      },
-      {
-        'gi',
-        desc = 'Goto implementation',
-        picker.lsp_implementations,
-      },
+      { 'gd', desc = 'Goto definition', picker.lsp_definitions },
+      { 'gD', desc = 'Goto declaration', picker.lsp_declarations },
+      { 'gy', desc = 'Goto type definition', picker.lsp_type_definitions },
+      { 'gr', desc = 'Goto references', nowait = true, picker.lsp_references },
+      { 'gi', desc = 'Goto implementation', picker.lsp_implementations },
     }
   end,
 })

@@ -71,4 +71,19 @@ function M.delete_keys(t, keys)
   end
 end
 
+-- TODO: Rename and document
+function M.proxy(load)
+  local proxy = { load = load }
+  setmetatable(proxy, {
+    __index = function(self, key)
+      return function()
+        local o = self.load()
+        local f = o[key]
+        return f()
+      end
+    end,
+  })
+  return proxy
+end
+
 return M
