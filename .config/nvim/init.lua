@@ -73,6 +73,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  desc = 'Format on save',
+  group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
+  callback = function(args)
+    require("conform").format { bufnr = args.buf }
+  end,
+})
+
 --------------------------------------------------------------------------------
 -- PLUGINS
 
@@ -99,6 +107,27 @@ local plugins = {
         -- Load luvit types when the `vim.uv` word is found
         -- (whatever that means)
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
+  -- Intelligent code formatting
+  -- https://github.com/stevearc/conform.nvim
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        rust = { 'rusfmt', lsp_format = 'fallback' },
+      },
+    },
+    keys = {
+      {
+        '<leader>=',
+        desc = 'Format buffer',
+        function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+        end,
       },
     },
   },
