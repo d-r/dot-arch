@@ -65,9 +65,6 @@ o.undofile = true
 -- Use the system clipboard
 o.clipboard = 'unnamedplus'
 
--- Put borders around popup windows, to make them more visually distinct
-vim.o.winborder = 'rounded'
-
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
 
