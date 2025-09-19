@@ -5,21 +5,21 @@ local M = {}
 function M.init_lazy(opts)
   -- Clone the repo into the data directory (typically ~/.local/share/nvim/)
   -- if it's not already in there.
-  local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  local lazy_path = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
   if not (vim.uv or vim.loop).fs_stat(lazy_path) then
     local out = vim.fn.system {
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "--branch=stable",
-      "https://github.com/folke/lazy.nvim.git",
-      lazy_path
+      'git',
+      'clone',
+      '--filter=blob:none',
+      '--branch=stable',
+      'https://github.com/folke/lazy.nvim.git',
+      lazy_path,
     }
     if vim.v.shell_error ~= 0 then
       vim.api.nvim_echo({
-        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-        { out,                            "WarningMsg" },
-        { "\nPress any key to exit..." },
+        { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+        { out, 'WarningMsg' },
+        { '\nPress any key to exit...' },
       }, true, {})
       vim.fn.getchar()
       os.exit(1)
@@ -30,7 +30,7 @@ function M.init_lazy(opts)
   vim.opt.rtp:prepend(lazy_path)
 
   -- Configure lazy and sync plugins.
-  require("lazy").setup(opts)
+  require('lazy').setup(opts)
 end
 
 -- Bind a set of vim keys, specified in the same way as in the `keys` field of
@@ -39,10 +39,10 @@ function M.bind_keys(entries)
   for _, e in ipairs(entries) do
     local key = e[1]
     local cmd = e[2]
-    local mode = e.mode or "n"
+    local mode = e.mode or 'n'
 
     -- Leave only the options.
-    M.delete_keys(e, { 1, 2, "mode" })
+    M.delete_keys(e, { 1, 2, 'mode' })
 
     vim.keymap.set(mode, key, cmd, e)
   end

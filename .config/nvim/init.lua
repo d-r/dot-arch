@@ -1,4 +1,4 @@
-local kit = require "kit"
+local kit = require 'kit'
 
 -- n = normal mode
 -- x = visual mode
@@ -6,16 +6,16 @@ local kit = require "kit"
 -- i = insert mode
 -- s = selection mode
 -- v = visual + selection mode
-local nxo = { "n", "x", "o" }
-local nx = { "n", "x" }
-local xo = { "x", "o" }
+local nxo = { 'n', 'x', 'o' }
+local nx = { 'n', 'x' }
+local xo = { 'x', 'o' }
 
 --------------------------------------------------------------------------------
 -- OPTIONS
 
 -- Set <leader> key to <space>
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- kitty has builtin Nerd Font support
 vim.g.have_nerd_font = true
@@ -59,7 +59,7 @@ vim.o.undofile = true
 -- Use the system clipboard
 -- Schedule the setting after `UiEnter` because it can increase startup time
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 --------------------------------------------------------------------------------
@@ -73,11 +73,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Format on save',
   group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
   callback = function(args)
-    require("conform").format { bufnr = args.buf }
+    require('conform').format { bufnr = args.buf }
   end,
 })
 
@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 local plugins = {
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
-  { "j-hui/fidget.nvim", opts = {} },
+  { 'j-hui/fidget.nvim', opts = {} },
 
   -- Rust IDE
   -- https://github.com/mrcjkb/rustaceanvim
@@ -100,13 +100,13 @@ local plugins = {
   -- Lua Language Server setup for the Neovim config
   -- https://github.com/folke/lazydev.nvim
   {
-    "folke/lazydev.nvim",
-    ft = "lua", -- Only enable for .lua files
+    'folke/lazydev.nvim',
+    ft = 'lua', -- Only enable for .lua files
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
         -- (whatever that means)
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
   },
@@ -139,45 +139,45 @@ local plugins = {
   -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
   -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     lazy = false,
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     config = function()
-      local ts = require("nvim-treesitter")
+      local ts = require 'nvim-treesitter'
 
       ts.setup {
         -- Directory to install parsers and queries to
-        install_dir = vim.fn.stdpath('data') .. '/treesitter'
+        install_dir = vim.fn.stdpath 'data' .. '/treesitter',
       }
 
       ts.install {
-        "bash",
-        "c",
-        "cpp",
-        "css",
-        "diff",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "gitignore",
-        "html",
-        "ini",
-        "json",
-        "json5",
-        "kdl",
-        "lua",
-        "luadoc",
-        "markdown_inline",
-        "markdown",
-        "nu",
-        "query",
-        "ron",
-        "rust",
-        "toml",
-        "vim",
-        "vimdoc",
-        "wgsl",
+        'bash',
+        'c',
+        'cpp',
+        'css',
+        'diff',
+        'git_config',
+        'git_rebase',
+        'gitcommit',
+        'gitignore',
+        'html',
+        'ini',
+        'json',
+        'json5',
+        'kdl',
+        'lua',
+        'luadoc',
+        'markdown_inline',
+        'markdown',
+        'nu',
+        'query',
+        'ron',
+        'rust',
+        'toml',
+        'vim',
+        'vimdoc',
+        'wgsl',
       }
 
       vim.api.nvim_create_autocmd('FileType', {
@@ -187,7 +187,7 @@ local plugins = {
             -- Enable folding and indentation.
             -- TODO: Verify that it works.
             -- I don't know what these incantations mean.
-            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
         end,
@@ -198,138 +198,138 @@ local plugins = {
   -- Syntax aware text-objects, select, move, swap, and peek support
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    branch = "main",
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
     dependencies = {
-      "nvim-treesitter/nvim-treesitter"
+      'nvim-treesitter/nvim-treesitter',
     },
     opts = {},
     keys = function()
       local function select(o)
         return function()
-          require("nvim-treesitter-textobjects.select").select_textobject(o, "textobjects")
+          require('nvim-treesitter-textobjects.select').select_textobject(o, 'textobjects')
         end
       end
 
       local function goto_prev(o)
         return function()
-          require("nvim-treesitter-textobjects.move").goto_previous_start(o, "textobjects")
+          require('nvim-treesitter-textobjects.move').goto_previous_start(o, 'textobjects')
         end
       end
 
       local function goto_next(o)
         return function()
-          require("nvim-treesitter-textobjects.move").goto_next_start(o, "textobjects")
+          require('nvim-treesitter-textobjects.move').goto_next_start(o, 'textobjects')
         end
       end
 
       local function swap_prev(o)
         return function()
-          require("nvim-treesitter-textobjects.swap").swap_previous(o)
+          require('nvim-treesitter-textobjects.swap').swap_previous(o)
         end
       end
 
       local function swap_next(o)
         return function()
-          require("nvim-treesitter-textobjects.swap").swap_next(o)
+          require('nvim-treesitter-textobjects.swap').swap_next(o)
         end
       end
 
       return {
         -- Select
         {
-          "aa",
-          desc = "Argument",
+          'aa',
+          desc = 'Argument',
           mode = xo,
-          select("@parameter.outer"),
+          select '@parameter.outer',
         },
         {
-          "ia",
-          desc = "Argument",
+          'ia',
+          desc = 'Argument',
           mode = xo,
-          select("@parameter.inner"),
+          select '@parameter.inner',
         },
         {
-          "ac",
-          desc = "Class",
+          'ac',
+          desc = 'Class',
           mode = xo,
-          select("@class.outer"),
+          select '@class.outer',
         },
         {
-          "ic",
-          desc = "Class",
+          'ic',
+          desc = 'Class',
           mode = xo,
-          select("@class.inner"),
+          select '@class.inner',
         },
         {
-          "af",
-          desc = "Function",
+          'af',
+          desc = 'Function',
           mode = xo,
-          select("@function.outer"),
+          select '@function.outer',
         },
         {
-          "if",
-          desc = "Function",
+          'if',
+          desc = 'Function',
           mode = xo,
-          select("@function.inner"),
+          select '@function.inner',
         },
 
         -- Goto
         {
-          "[c",
-          desc = "Previous class",
+          '[c',
+          desc = 'Previous class',
           mode = nxo,
-          goto_prev("@class.outer"),
+          goto_prev '@class.outer',
         },
         {
-          "]c",
-          desc = "Next class",
+          ']c',
+          desc = 'Next class',
           mode = nxo,
-          goto_next("@class.outer"),
+          goto_next '@class.outer',
         },
         {
-          "[f",
-          desc = "Previous function",
+          '[f',
+          desc = 'Previous function',
           mode = nxo,
-          goto_prev("@function.outer"),
+          goto_prev '@function.outer',
         },
         {
-          "]f",
-          desc = "Next function",
+          ']f',
+          desc = 'Next function',
           mode = nxo,
-          goto_next("@function.outer"),
+          goto_next '@function.outer',
         },
 
         -- Swap
         {
-          "<leader>pa",
-          desc = "Swap previous argument",
-          swap_prev("@parameter.outer"),
+          '<leader>pa',
+          desc = 'Swap previous argument',
+          swap_prev '@parameter.outer',
         },
         {
-          "<leader>na",
-          desc = "Swap next argument",
-          swap_next("@parameter.outer"),
+          '<leader>na',
+          desc = 'Swap next argument',
+          swap_next '@parameter.outer',
         },
         {
-          "<leader>pf",
-          desc = "Swap previous function",
-          swap_prev("@function.outer"),
+          '<leader>pf',
+          desc = 'Swap previous function',
+          swap_prev '@function.outer',
         },
         {
-          "<leader>nf",
-          desc = "Swap next function",
-          swap_next("@function.outer"),
+          '<leader>nf',
+          desc = 'Swap next function',
+          swap_next '@function.outer',
         },
         {
-          "<leader>pc",
-          desc = "Swap previous class",
-          swap_prev("@class.outer"),
+          '<leader>pc',
+          desc = 'Swap previous class',
+          swap_prev '@class.outer',
         },
         {
-          "<leader>nc",
-          desc = "Swap next class",
-          swap_next("@class.outer"),
+          '<leader>nc',
+          desc = 'Swap next class',
+          swap_next '@class.outer',
         },
       }
     end,
@@ -338,22 +338,22 @@ local plugins = {
   -- Comment lines
   -- https://github.com/nvim-mini/mini.comment
   {
-    "nvim-mini/mini.comment",
+    'nvim-mini/mini.comment',
     opts = {
       mappings = {
         -- Toggle comment (like `gcip` - comment inner paragraph) for both
         -- Normal and Visual modes
-        comment = "",
+        comment = '',
 
         -- Toggle comment on current line
-        comment_line = "<c-/>",
+        comment_line = '<c-/>',
 
         -- Toggle comment on visual selection
-        comment_visual = "<c-/>",
+        comment_visual = '<c-/>',
 
         -- Define 'comment' textobject (like `dgc` - delete whole comment block)
         -- Works also in Visual mode if mapping differs from `comment_visual`
-        textobject = "gc",
+        textobject = 'gc',
       },
     },
   },
@@ -361,44 +361,54 @@ local plugins = {
   -- Jump around
   -- https://github.com/folke/flash.nvim
   {
-    "folke/flash.nvim",
-    event = "VeryLazy",
+    'folke/flash.nvim',
+    event = 'VeryLazy',
     opts = {
-      char = { enable = false } -- Don't override f, t, F, T
+      char = { enable = false }, -- Don't override f, t, F, T
     },
     keys = {
       -- s is for "seek"
       {
-        "s",
-        desc = "Flash",
+        's',
+        desc = 'Flash',
         mode = nxo,
-        function() require("flash").jump() end,
+        function()
+          require('flash').jump()
+        end,
       },
       {
-        "S",
-        desc = "Flash treesitter",
+        'S',
+        desc = 'Flash treesitter',
         mode = nxo,
-        function() require("flash").treesitter() end,
+        function()
+          require('flash').treesitter()
+        end,
       },
       {
-        "r",
-        desc = "Remote flash",
-        mode = "o",
-        function() require("flash").remote() end,
+        'r',
+        desc = 'Remote flash',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
       },
       {
-        "R",
-        desc = "Treesitter search",
+        'R',
+        desc = 'Treesitter search',
         mode = xo,
-        function() require("flash").treesitter_search() end,
+        function()
+          require('flash').treesitter_search()
+        end,
       },
       {
-        "<c-s>",
-        desc = "Toggle flash search",
-        mode = "c",
-        function() require("flash").toggle() end,
+        '<c-s>',
+        desc = 'Toggle flash search',
+        mode = 'c',
+        function()
+          require('flash').toggle()
+        end,
       },
-    }
+    },
   },
 
   -- Snacks - a collection of small quality-of-life plugins
@@ -406,7 +416,7 @@ local plugins = {
   -- https://github.com/folke/snacks.nvim
   -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
   {
-    "folke/snacks.nvim",
+    'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
     opts = {
@@ -420,60 +430,78 @@ local plugins = {
         win = {
           input = {
             keys = {
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
             },
-          }
-        }
+          },
+        },
       },
     },
     keys = {
       -- <c>
       {
-        "<c-p>",
-        desc = "Command palette",
-        function() Snacks.picker.commands() end,
+        '<c-p>',
+        desc = 'Command palette',
+        function()
+          Snacks.picker.commands()
+        end,
       },
 
       -- <leader>
       {
-        "<leader><space>",
-        desc = "Smart find files",
-        function() Snacks.picker.smart() end,
+        '<leader><space>',
+        desc = 'Smart find files',
+        function()
+          Snacks.picker.smart()
+        end,
       },
       {
-        "<leader>f",
-        desc = "Files",
-        function() Snacks.picker.files() end,
+        '<leader>f',
+        desc = 'Files',
+        function()
+          Snacks.picker.files()
+        end,
       },
       {
-        "<leader>b",
-        desc = "Buffers",
-        function() Snacks.picker.buffers() end,
+        '<leader>b',
+        desc = 'Buffers',
+        function()
+          Snacks.picker.buffers()
+        end,
       },
       {
-        "<leader>c",
-        desc = "Commands",
-        function() Snacks.picker.commands() end,
+        '<leader>c',
+        desc = 'Commands',
+        function()
+          Snacks.picker.commands()
+        end,
       },
       {
-        "<leader>d",
-        desc = "Diagnostics (buffer)",
-        function() Snacks.picker.diagnostics_buffer() end,
+        '<leader>d',
+        desc = 'Diagnostics (buffer)',
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
       },
       {
-        "<leader>D",
-        desc = "Diagnostics (global)",
-        function() Snacks.picker.diagnostics() end,
+        '<leader>D',
+        desc = 'Diagnostics (global)',
+        function()
+          Snacks.picker.diagnostics()
+        end,
       },
       {
-        "<leader>h",
-        desc = "Help",
-        function() Snacks.picker.help() end,
+        '<leader>h',
+        desc = 'Help',
+        function()
+          Snacks.picker.help()
+        end,
       },
       {
-        "<leader>k",
-        desc = "Keymaps",
-        function() Snacks.picker.keymaps() end,
+        '<leader>k',
+        desc = 'Keymaps',
+        function()
+          Snacks.picker.keymaps()
+        end,
       },
     },
   },
@@ -481,23 +509,25 @@ local plugins = {
   -- Detect TODO comments
   -- https://github.com/folke/todo-comments.nvim
   {
-    "folke/todo-comments.nvim",
+    'folke/todo-comments.nvim',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "folke/snacks.nvim", -- For the picker
+      'nvim-lua/plenary.nvim',
+      'folke/snacks.nvim', -- For the picker
     },
     opts = {
-      signs = false,    -- Don't put icons in the sign column
+      signs = false, -- Don't put icons in the sign column
       highlight = {
-        keyword = "fg", -- Colorize the keyword
+        keyword = 'fg', -- Colorize the keyword
         -- after = "",     -- Don't colorize the rest of the line
       },
     },
     keys = {
       {
-        "<leader>t",
-        desc = "TODO comments",
-        function() Snacks.picker.todo_comments() end,
+        '<leader>t',
+        desc = 'TODO comments',
+        function()
+          Snacks.picker.todo_comments()
+        end,
       },
     },
   },
@@ -505,10 +535,10 @@ local plugins = {
   -- Show available keybinds in a popup as you type
   -- https://github.com/folke/which-key.nvim
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
     opts = {
-      preset = "helix",             -- Single column list in the bottom right corner
+      preset = 'helix', -- Single column list in the bottom right corner
       icons = { mappings = false }, -- Disable icons
     },
   },
@@ -516,17 +546,17 @@ local plugins = {
   -- Minimal and fast statusline with opinionated default look
   -- https://github.com/nvim-mini/mini.statusline
   {
-    "nvim-mini/mini.statusline",
+    'nvim-mini/mini.statusline',
     dependencies = {
-      "nvim-mini/mini.icons"
+      'nvim-mini/mini.icons',
     },
     config = function()
-      local sl = require "mini.statusline"
+      local sl = require 'mini.statusline'
       sl.setup()
       sl.section_location = function()
-        return "%4l:%-3v" -- line:column
+        return '%4l:%-3v' -- line:column
       end
-    end
+    end,
   },
 
   -- Pin buffers
@@ -534,21 +564,21 @@ local plugins = {
   {
     'iofq/dart.nvim',
     enabled = false,
-    opts = {}
+    opts = {},
   },
 
   -- Magit for nvim
   -- https://github.com/NeogitOrg/neogit
   {
-    "NeogitOrg/neogit",
+    'NeogitOrg/neogit',
     dependencies = {
-      "nvim-lua/plenary.nvim",  -- Required for... *something*
-      "sindrets/diffview.nvim", -- Diff integration
-      "folke/snacks.nvim",      -- Picker
+      'nvim-lua/plenary.nvim', -- Required for... *something*
+      'sindrets/diffview.nvim', -- Diff integration
+      'folke/snacks.nvim', -- Picker
     },
     keys = {
-      { "<leader>g", ":Neogit kind=replace<CR>", desc = "Neogit" }
-    }
+      { '<leader>g', ':Neogit kind=replace<CR>', desc = 'Neogit' },
+    },
   },
 
   -- An "angry fruit salad" color scheme that insists on giving every single
@@ -559,7 +589,7 @@ local plugins = {
   --
   -- https://github.com/folke/tokyonight.nvim
   {
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {
@@ -571,11 +601,11 @@ local plugins = {
   },
 }
 
-local theme = "tokyonight-night"
+local theme = 'tokyonight-night'
 
 kit.init_lazy {
   spec = plugins,
-  install = { colorscheme = { theme } } -- Theme to use when installing plugins
+  install = { colorscheme = { theme } }, -- Theme to use when installing plugins
 }
 
 vim.cmd.colorscheme(theme)
@@ -585,13 +615,13 @@ vim.cmd.colorscheme(theme)
 
 vim.lsp.enable {
   -- rust_analyzer is left for rustaceanvim to configure
-  "clangd",
-  "janet_lsp",
-  "lua_ls",
-  "marksman",
-  "nushell",
-  "wgsl_analyzer",
-  "zk",
+  'clangd',
+  'janet_lsp',
+  'lua_ls',
+  'marksman',
+  'nushell',
+  'wgsl_analyzer',
+  'zk',
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -603,67 +633,67 @@ vim.api.nvim_create_autocmd('LspAttach', {
     kit.bind_keys {
       -- <c>
       {
-        "<c-.>",
-        desc = "Code action",
+        '<c-.>',
+        desc = 'Code action',
         mode = nx,
-        vim.lsp.buf.code_action
+        vim.lsp.buf.code_action,
       },
 
       -- <leader>
       {
-        "<leader>a",
-        desc = "Code action",
+        '<leader>a',
+        desc = 'Code action',
         mode = nx,
-        vim.lsp.buf.code_action
+        vim.lsp.buf.code_action,
       },
       {
-        "<leader>r",
-        desc = "Rename symbol",
-        vim.lsp.buf.rename
+        '<leader>r',
+        desc = 'Rename symbol',
+        vim.lsp.buf.rename,
       },
       {
-        "<leader>=",
-        desc = "Format buffer",
-        vim.lsp.buf.format
+        '<leader>=',
+        desc = 'Format buffer',
+        vim.lsp.buf.format,
       },
       {
-        "<leader>s",
-        desc = "Symbols",
+        '<leader>s',
+        desc = 'Symbols',
         picker.lsp_symbols,
       },
       {
-        "<leader>S",
-        desc = "Workspace symbols",
+        '<leader>S',
+        desc = 'Workspace symbols',
         picker.lsp_workspace_symbols,
       },
 
       -- g
       {
-        "gd",
-        desc = "Goto definition",
+        'gd',
+        desc = 'Goto definition',
         picker.lsp_definitions,
       },
       {
-        "gD",
-        desc = "Goto declaration",
+        'gD',
+        desc = 'Goto declaration',
         picker.lsp_declarations,
       },
       {
-        "gy",
-        desc = "Goto type definition",
+        'gy',
+        desc = 'Goto type definition',
         picker.lsp_type_definitions,
       },
       {
-        "gr",
-        desc = "Goto references",
+        'gr',
+        desc = 'Goto references',
         nowait = true,
         picker.lsp_references,
       },
       {
-        "gi",
-        desc = "Goto implementation",
+        'gi',
+        desc = 'Goto implementation',
         picker.lsp_implementations,
       },
     }
-  end
+  end,
 })
