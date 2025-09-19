@@ -277,31 +277,31 @@ local plugins = {
     },
     opts = {},
     keys = function()
-      local select = function(o)
+      local function select(o)
         return function()
           require("nvim-treesitter-textobjects.select").select_textobject(o, "textobjects")
         end
       end
 
-      local goto_prev = function(o)
+      local function goto_prev(o)
         return function()
           require("nvim-treesitter-textobjects.move").goto_previous_start(o, "textobjects")
         end
       end
 
-      local goto_next = function(o)
+      local function goto_next(o)
         return function()
           require("nvim-treesitter-textobjects.move").goto_next_start(o, "textobjects")
         end
       end
 
-      local swap_prev = function(o)
+      local function swap_prev(o)
         return function()
           require("nvim-treesitter-textobjects.swap").swap_previous(o)
         end
       end
 
-      local swap_next = function(o)
+      local function swap_next(o)
         return function()
           require("nvim-treesitter-textobjects.swap").swap_next(o)
         end
