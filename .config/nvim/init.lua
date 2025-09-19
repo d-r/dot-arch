@@ -13,54 +13,57 @@ local xo = { 'x', 'o' }
 --------------------------------------------------------------------------------
 -- OPTIONS
 
+local g = vim.g
+local o = vim.o
+
 -- Set <leader> key to <space>
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+g.mapleader = ' '
+g.maplocalleader = ' '
 
 -- kitty has builtin Nerd Font support
-vim.g.have_nerd_font = true
+g.have_nerd_font = true
 
 -- Don't show the current mode, since mini.statusline already does that
 -- vim.o.showmode = false
 
 -- Enable gutter space for LSP info on the left
-vim.o.signcolumn = 'yes'
+o.signcolumn = 'yes'
 
 -- Enable relative line numbers
-vim.o.number = true
-vim.o.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- Highlight the line that the cursor is on
-vim.o.cursorline = true
+o.cursorline = true
 
 -- Minimum number of screen lines to keep above and below the cursor
-vim.o.scrolloff = 10
+o.scrolloff = 4
 
 -- Perform case insensitive search, *unless* the search term contains at least
--- one uppercase character
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- one capital letter
+o.ignorecase = true
+o.smartcase = true
 
 -- Don't highlight the matches of the previous search
-vim.o.hlsearch = false
+o.hlsearch = false
 
 -- Transform tabs to spaces
-vim.o.expandtab = true
+o.expandtab = true
 
 -- Disable the swap file, as it's a source of pointless error messages
-vim.o.swapfile = false
+o.swapfile = false
 
 -- Auto reload files whey they change on disk
-vim.o.autoread = true
+o.autoread = true
 
 -- Save undo history to disk
-vim.o.undofile = true
+o.undofile = true
 
 -- Use the system clipboard
--- Schedule the setting after `UiEnter` because it can increase startup time
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+o.clipboard = 'unnamedplus'
+
+-- Put borders around popup windows, to make them more visually distinct
+vim.o.winborder = 'rounded'
 
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
@@ -755,3 +758,4 @@ kit.bind_keys {
   { "<c-s>", desc = "Save", ":write<CR>" },
   { "<c-q>", desc = "Quit", ":quit!<CR>" },
 }
+
