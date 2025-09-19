@@ -344,14 +344,14 @@ local plugins = {
   },
 
   -- Snacks - a collection of small quality-of-life plugins
-  -- I only use the picker. It's the best one I've tried.
   -- https://github.com/folke/snacks.nvim
-  -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
   {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
+      indent = { enabled = true },
       picker = {
         enabled = true,
         sources = {
