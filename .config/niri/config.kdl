@@ -79,7 +79,6 @@ binds {
     // LAYOUT
 
     Mod+F { switch-preset-column-width; }
-    Mod+Shift+F { fullscreen-window; }
 
     Mod+C { center-column; }
     Mod+Shift+C { center-visible-columns; }
