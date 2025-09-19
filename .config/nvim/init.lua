@@ -377,6 +377,13 @@ local plugins = {
     end,
   },
 
+  -- Auto pair delimiters
+  -- https://github.com/nvim-mini/mini.pairs
+  {
+    'nvim-mini/mini.pairs',
+    opts = {},
+  },
+
   -- Comment lines
   -- https://github.com/nvim-mini/mini.comment
   {
