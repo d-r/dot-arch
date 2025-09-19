@@ -302,6 +302,13 @@ local plugins = {
     opts = {},
   },
 
+  -- Add/delete/replace/find surrounding characters
+  -- https://github.com/nvim-mini/mini.pairs
+  {
+    'nvim-mini/mini.surround',
+    opts = {},
+  },
+
   -- Comment lines
   -- https://github.com/nvim-mini/mini.comment
   {
