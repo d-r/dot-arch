@@ -417,14 +417,18 @@ local plugins = {
     },
   },
 
+  -- File type icons
+  -- https://github.com/nvim-mini/mini.icons
+  {
+    'nvim-mini/mini.icons',
+    opts = {}
+  },
+
   -- Minimal and fast statusline with opinionated default look
   -- https://github.com/nvim-mini/mini.statusline
   {
     'nvim-mini/mini.statusline',
     enabled = false,
-    dependencies = {
-      { 'nvim-mini/mini.icons', opts = {} },
-    },
     config = function()
       local sl = require 'mini.statusline'
       sl.setup()
