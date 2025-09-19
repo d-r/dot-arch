@@ -30,3 +30,4 @@ export LC_TIME=$LANG
 export EDITOR="micro"
 export MANPAGER='nvim +Man!'
 export FZF_DEFAULT_OPTS="--style=minimal --reverse"
+export FD_OPTS="--hidden"
