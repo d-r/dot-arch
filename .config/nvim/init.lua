@@ -21,7 +21,7 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- Don't show the current mode, since mini.statusline already does that
-vim.o.showmode = false
+-- vim.o.showmode = false
 
 -- Enable gutter space for LSP info on the left
 vim.o.signcolumn = 'yes'
@@ -589,6 +589,7 @@ local plugins = {
   -- https://github.com/nvim-mini/mini.statusline
   {
     'nvim-mini/mini.statusline',
+    enabled = false,
     dependencies = {
       { 'nvim-mini/mini.icons', opts = {} },
     },
