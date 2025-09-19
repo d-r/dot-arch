@@ -590,7 +590,7 @@ local plugins = {
   {
     'nvim-mini/mini.statusline',
     dependencies = {
-      'nvim-mini/mini.icons',
+      { 'nvim-mini/mini.icons', opts = {} },
     },
     config = function()
       local sl = require 'mini.statusline'
