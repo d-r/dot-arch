@@ -739,3 +739,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     }
   end,
 })
+
+--------------------------------------------------------------------------------
+-- BINDS
+
+kit.bind_keys {
+  { "<c-s>", desc = "Save", ":write<CR>" },
+  { "<c-q>", desc = "Quit", ":quit!<CR>" },
+}
