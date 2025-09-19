@@ -77,110 +77,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- PLUGINS
 
 local plugins = {
-  -- LSP setup
-  -- https://github.com/neovim/nvim-lspconfig
-  --
-  -- nvim-lspconfig is a "data only" repo. As a plugin, it doesn't actually *do*
-  -- anything, and it has no setup() function.
-  --
-  -- All it does is provide a bunch of community contributed LSP configurations
-  -- that can be enabled with vim.lsp.enable().
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    dependencies = {
-      -- For the picker
-      "folke/snacks.nvim",
-
-      -- A window in the bottom right corner that displays LSP progress messages
-      -- https://github.com/j-hui/fidget.nvim
-      { "j-hui/fidget.nvim", opts = {} },
-    },
-    config = function()
-      vim.lsp.enable {
-        -- rust_analyzer is left for rustaceanvim to configure
-        "clangd",
-        "janet_lsp",
-        "lua_ls",
-        "marksman",
-        "nushell",
-        "wgsl_analyzer",
-        "zk",
-      }
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'Add LSP-related keybinds when an LSP attaches to a buffer',
-        group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
-        callback = function(event)
-          kit.bind_keys {
-            -- <c>
-            {
-              "<c-.>",
-              desc = "Code action",
-              mode = nx,
-              vim.lsp.buf.code_action
-            },
-
-            -- <leader>
-            {
-              "<leader>a",
-              desc = "Code action",
-              mode = nx,
-              vim.lsp.buf.code_action
-            },
-            {
-              "<leader>r",
-              desc = "Rename symbol",
-              vim.lsp.buf.rename
-            },
-            {
-              "<leader>=",
-              desc = "Format buffer",
-              vim.lsp.buf.format
-            },
-            {
-              "<leader>s",
-              desc = "Symbols",
-              function() Snacks.picker.lsp_symbols() end,
-            },
-            {
-              "<leader>S",
-              desc = "Workspace symbols",
-              function() Snacks.picker.lsp_workspace_symbols() end,
-            },
-
-            -- g
-            {
-              "gd",
-              desc = "Goto definition",
-              function() Snacks.picker.lsp_definitions() end,
-            },
-            {
-              "gD",
-              desc = "Goto declaration",
-              function() Snacks.picker.lsp_declarations() end,
-            },
-            {
-              "gy",
-              desc = "Goto type definition",
-              function() Snacks.picker.lsp_type_definitions() end,
-            },
-            {
-              "gr",
-              desc = "Goto references",
-              nowait = true,
-              function() Snacks.picker.lsp_references() end,
-            },
-            {
-              "gi",
-              desc = "Goto implementation",
-              function() Snacks.picker.lsp_implementations() end,
-            },
-          }
-        end
-      })
-    end,
-  },
+  -- A window in the bottom right corner that displays LSP progress messages
+  -- https://github.com/j-hui/fidget.nvim
+  { "j-hui/fidget.nvim", opts = {} },
 
   -- Rust IDE
   -- https://github.com/mrcjkb/rustaceanvim
@@ -651,3 +550,91 @@ kit.init_lazy {
 }
 
 vim.cmd.colorscheme(theme)
+
+--------------------------------------------------------------------------------
+-- LSP
+
+vim.lsp.enable {
+  -- rust_analyzer is left for rustaceanvim to configure
+  "clangd",
+  "janet_lsp",
+  "lua_ls",
+  "marksman",
+  "nushell",
+  "wgsl_analyzer",
+  "zk",
+}
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Add LSP-related keybinds when an LSP attaches to a buffer',
+  group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
+  callback = function(_)
+    local picker = Snacks.picker
+
+    kit.bind_keys {
+      -- <c>
+      {
+        "<c-.>",
+        desc = "Code action",
+        mode = nx,
+        vim.lsp.buf.code_action
+      },
+
+      -- <leader>
+      {
+        "<leader>a",
+        desc = "Code action",
+        mode = nx,
+        vim.lsp.buf.code_action
+      },
+      {
+        "<leader>r",
+        desc = "Rename symbol",
+        vim.lsp.buf.rename
+      },
+      {
+        "<leader>=",
+        desc = "Format buffer",
+        vim.lsp.buf.format
+      },
+      {
+        "<leader>s",
+        desc = "Symbols",
+        picker.lsp_symbols,
+      },
+      {
+        "<leader>S",
+        desc = "Workspace symbols",
+        picker.lsp_workspace_symbols,
+      },
+
+      -- g
+      {
+        "gd",
+        desc = "Goto definition",
+        picker.lsp_definitions,
+      },
+      {
+        "gD",
+        desc = "Goto declaration",
+        picker.lsp_declarations,
+      },
+      {
+        "gy",
+        desc = "Goto type definition",
+        picker.lsp_type_definitions,
+      },
+      {
+        "gr",
+        desc = "Goto references",
+        nowait = true,
+        picker.lsp_references,
+      },
+      {
+        "gi",
+        desc = "Goto implementation",
+        picker.lsp_implementations,
+      },
+    }
+  end
+})
