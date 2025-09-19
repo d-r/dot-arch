@@ -754,8 +754,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --------------------------------------------------------------------------------
 -- BINDS
 
-kit.bind_keys {
-  { "<c-s>", desc = "Save", ":write<CR>" },
-  { "<c-q>", desc = "Quit", ":quit!<CR>" },
-}
+-- Make ESC close floating windows
+vim.keymap.set('n', '<esc>', function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative == 'win' then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end)
 
+kit.bind_keys {
+  { '<c-s>', desc = 'Save', ':write<CR>' },
+  { '<c-q>', desc = 'Quit', ':quit!<CR>' },
+}
