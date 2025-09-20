@@ -372,8 +372,13 @@ local plugins = {
     event = 'VeryLazy',
     opts = {
       modes = {
+        search = {
+          -- Extend /
+          enabled = true,
+          highlight = { backdrop = true }, -- Dim
+        },
         char = {
-          -- Override f, t, F, T
+          -- Extend f, t, F, T
           enabled = true,
           jump_labels = true,
         },
