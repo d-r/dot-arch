@@ -157,7 +157,7 @@ local plugins = {
     opts = {
       formatters_by_ft = {
         lua = { 'stylua' },
-        rust = { 'rusfmt', lsp_format = 'fallback' },
+        rust = { 'rusfmt' },
       },
     },
     keys = {
