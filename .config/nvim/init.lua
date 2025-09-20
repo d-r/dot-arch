@@ -385,7 +385,6 @@ local plugins = {
       { 'S', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
       { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
       { 'R', desc = 'Treesitter search', mode = xo, flash.treesitter_search },
-      { '<c-s>', desc = 'Toggle flash search', mode = 'c', flash.toggle },
     },
   },
 
