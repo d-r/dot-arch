@@ -351,7 +351,11 @@ local plugins = {
     event = 'VeryLazy',
     opts = {
       modes = {
-        char = { enabled = false }, -- Don't override f, t, F, T
+        char = {
+          -- Override f, t, F, T
+          enabled = true,
+          jump_labels = true,
+        },
       },
     },
     keys = {
@@ -545,14 +549,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --------------------------------------------------------------------------------
 -- BINDS
 
+-- Disabled because it inteferes with flash
 -- Make ESC close floating windows
-vim.keymap.set('n', '<esc>', function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_config(win).relative == 'win' then
-      vim.api.nvim_win_close(win, false)
-    end
-  end
-end)
+-- vim.keymap.set('n', '<esc>', function()
+--   for _, win in ipairs(vim.api.nvim_list_wins()) do
+--     if vim.api.nvim_win_get_config(win).relative == 'win' then
+--       vim.api.nvim_win_close(win, false)
+--     end
+--   end
+-- end)
 
 kit.bind_keys {
   { '<c-s>', desc = 'Save', ':write<CR>' },
