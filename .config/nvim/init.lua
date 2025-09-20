@@ -430,6 +430,7 @@ local plugins = {
         { '<leader>D', desc = 'Diagnostics (global)', picker.diagnostics },
         { '<leader>h', desc = 'Help', picker.help },
         { '<leader>k', desc = 'Keymaps', picker.keymaps },
+        { '<leader>/', desc = 'Grep in workspace', picker.grep },
       }
     end,
   },
