@@ -327,6 +327,7 @@ local plugins = {
   -- https://github.com/nvim-mini/mini.pairs
   {
     'nvim-mini/mini.surround',
+    enabled = false,
     opts = {
       mappings = {
         add = 'ma', -- Add surrounding in Normal and Visual modes
