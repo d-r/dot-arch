@@ -276,25 +276,40 @@ local plugins = {
 
       return {
         -- Select
+
         { 'aa', desc = 'Argument', mode = xo, select '@parameter.outer' },
         { 'ia', desc = 'Argument', mode = xo, select '@parameter.inner' },
-        { 'ac', desc = 'Class', mode = xo, select '@class.outer' },
-        { 'ic', desc = 'Class', mode = xo, select '@class.inner' },
+
+        { 'at', desc = 'Type', mode = xo, select '@class.outer' },
+        { 'it', desc = 'Type', mode = xo, select '@class.inner' },
+
         { 'af', desc = 'Function', mode = xo, select '@function.outer' },
         { 'if', desc = 'Function', mode = xo, select '@function.inner' },
 
+        { 'ac', desc = 'Comment', mode = xo, select '@comment.outer' },
+        { 'ic', desc = 'Comment', mode = xo, select '@comment.inner' },
+
         -- Goto
-        { '[c', desc = 'Previous class', mode = nxo, goto_prev '@class.outer' },
-        { ']c', desc = 'Next class', mode = nxo, goto_next '@class.outer' },
+
+        { '[t', desc = 'Previous type', mode = nxo, goto_prev '@class.outer' },
+        { ']t', desc = 'Next type', mode = nxo, goto_next '@class.outer' },
+
         { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
         { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
 
+        { '[c', desc = 'Previous comment', mode = nxo, goto_prev '@comment.outer' },
+        { ']c', desc = 'Next comment', mode = nxo, goto_next '@comment.outer' },
+
         -- Swap
+
         { '<leader>pa', desc = 'Swap previous argument', swap_prev '@parameter.outer' },
         { '<leader>na', desc = 'Swap next argument', swap_next '@parameter.outer' },
+
         { '<leader>pf', desc = 'Swap previous function', swap_prev '@function.outer' },
         { '<leader>nf', desc = 'Swap next function', swap_next '@function.outer' },
-        { '<leader>pc', desc = 'Swap previous class', swap_prev '@class.outer' },
+
+        { '<leader>pt', desc = 'Swap previous type', swap_prev '@class.outer' },
+        { '<leader>nt', desc = 'Swap next type', swap_next '@class.outer' },
       }
     end,
   },
