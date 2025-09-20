@@ -78,12 +78,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  desc = 'Format on save',
-  group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
-  callback = function(args) require('conform').format { bufnr = args.buf } end,
-})
-
 --------------------------------------------------------------------------------
 -- PLUGINS
 
@@ -173,6 +167,13 @@ local plugins = {
         function() require('conform').format { async = true, lsp_format = 'fallback' } end,
       },
     },
+    init = function()
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        desc = 'Format on save',
+        group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
+        callback = function(args) require('conform').format { bufnr = args.buf } end,
+      })
+    end,
   },
 
   -- Treesitter integration
