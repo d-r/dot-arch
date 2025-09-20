@@ -499,7 +499,6 @@ vim.cmd.colorscheme(theme)
 vim.lsp.enable {
   -- rust_analyzer is left for rustaceanvim to configure
   'clangd',
-  'janet_lsp',
   'lua_ls',
   'marksman',
   'nushell',
