@@ -66,6 +66,9 @@ vim.o.undofile = true
 -- Use the system clipboard
 vim.o.clipboard = 'unnamedplus'
 
+-- Enable mouse support
+vim.o.mouse = 'a'
+
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
 
