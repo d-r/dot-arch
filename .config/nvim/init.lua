@@ -50,8 +50,12 @@ o.smartcase = true
 -- Don't highlight the matches of the previous search
 o.hlsearch = false
 
--- Transform tabs to spaces
+-- Indent using 4 spaces by default
+o.shiftwidth = 4
+o.tabstop = 4
+o.softtabstop = 4
 o.expandtab = true
+o.autoindent = true
 
 -- Disable the swap file, as it's a source of pointless error messages
 o.swapfile = false
