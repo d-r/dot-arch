@@ -16,58 +16,55 @@ local xo = { 'x', 'o' }
 --------------------------------------------------------------------------------
 -- OPTIONS
 
-local g = vim.g
-local o = vim.o
-
 -- Set <leader> key to <space>
-g.mapleader = ' '
-g.maplocalleader = ' '
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- kitty has builtin Nerd Font support
-g.have_nerd_font = true
+vim.g.have_nerd_font = true
 
 -- Don't show the current mode, since mini.statusline already does that
 -- vim.o.showmode = false
 
 -- Enable gutter space for LSP info on the left
-o.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Enable relative line numbers
-o.number = true
-o.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Highlight the line that the cursor is on
-o.cursorline = true
+vim.o.cursorline = true
 
 -- Minimum number of screen lines to keep above and below the cursor
-o.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- Perform case insensitive search, *unless* the search term contains at least
 -- one capital letter
-o.ignorecase = true
-o.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Don't highlight the matches of the previous search
-o.hlsearch = false
+vim.o.hlsearch = false
 
 -- Indent using 4 spaces by default
-o.shiftwidth = 4
-o.tabstop = 4
-o.softtabstop = 4
-o.expandtab = true
-o.autoindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.autoindent = true
 
 -- Disable the swap file, as it's a source of pointless error messages
-o.swapfile = false
+vim.o.swapfile = false
 
 -- Auto reload files whey they change on disk
-o.autoread = true
+vim.o.autoread = true
 
 -- Save undo history to disk
-o.undofile = true
+vim.o.undofile = true
 
 -- Use the system clipboard
-o.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
