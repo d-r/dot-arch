@@ -40,7 +40,7 @@ o.relativenumber = true
 o.cursorline = true
 
 -- Minimum number of screen lines to keep above and below the cursor
-o.scrolloff = 4
+o.scrolloff = 10
 
 -- Perform case insensitive search, *unless* the search term contains at least
 -- one capital letter
