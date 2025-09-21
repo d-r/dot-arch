@@ -9,9 +9,11 @@ local flash = kit.proxy(function() return require 'flash' end)
 -- i = insert mode
 -- s = selection mode
 -- v = visual + selection mode
+-- c = command mode
 local nxo = { 'n', 'x', 'o' }
 local nx = { 'n', 'x' }
 local xo = { 'x', 'o' }
+local all_modes = { 'n', 'x', 'o', 's', 'v', 'c' }
 
 --------------------------------------------------------------------------------
 -- OPTIONS
@@ -575,6 +577,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- end)
 
 kit.bind_keys {
-  { '<c-s>', desc = 'Save', ':write<CR>' },
-  { '<c-q>', desc = 'Quit', ':quit!<CR>' },
+  { '<c-s>', desc = 'Save', mode = all_modes, ':write<CR>' },
+  { '<c-q>', desc = 'Quit', mode = all_modes, ':quit!<CR>' },
 }
