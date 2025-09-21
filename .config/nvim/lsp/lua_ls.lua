@@ -15,23 +15,27 @@ return {
   },
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT" },
+      runtime = { version = 'LuaJIT' },
       telemetry = { enable = false },
       diagnostics = {
-        globals = { "vim", "require", "pcall", "pairs" },
+        globals = { 'vim', 'require', 'pcall', 'pairs' },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = {
+          vim.api.nvim_get_runtime_file('', true),
+          vim.fn.stdpath 'data' .. '/lazy',
+          '${3rd}/luv/library',
+        },
         checkThirdParty = false,
       },
       completion = {
         workspaceWord = true,
-        callSnippet = "Replace",
+        callSnippet = 'Replace',
       },
       hint = {
         enable = true,
       },
       format = { enable = false }, -- Leave formatting to stylua
     },
-  }
+  },
 }

@@ -96,19 +96,19 @@ local plugins = {
     lazy = false, -- This plugin is already lazy
   },
 
-  -- Lua Language Server setup for the Neovim config
-  -- https://github.com/folke/lazydev.nvim
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua', -- Only enable for .lua files
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        -- (whatever that means)
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
+  -- -- Lua Language Server setup for the Neovim config
+  -- -- https://github.com/folke/lazydev.nvim
+  -- {
+  --   'folke/lazydev.nvim',
+  --   ft = 'lua', -- Only enable for .lua files
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       -- (whatever that means)
+  --       { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  --     },
+  --   },
+  -- },
 
   -- Completion
   -- https://cmp.saghen.dev/
