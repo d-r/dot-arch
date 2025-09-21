@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- PLUGINS
 
 local plugins = {
-  -- A window in the bottom right corner that displays LSP progress messages
+ -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
   { 'j-hui/fidget.nvim', opts = {} },
 
@@ -176,6 +176,13 @@ local plugins = {
         callback = function(args) require('conform').format { bufnr = args.buf } end,
       })
     end,
+  },
+
+  -- Auto detect indentation size
+  -- https://github.com/NMAC427/guess-indent.nvim
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {},
   },
 
   -- Treesitter integration
