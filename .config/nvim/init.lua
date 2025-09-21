@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- PLUGINS
 
 local plugins = {
- -- A window in the bottom right corner that displays LSP progress messages
+  -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
   { 'j-hui/fidget.nvim', opts = {} },
 
@@ -583,6 +583,17 @@ local plugins = {
     },
     keys = {
       { '<leader>g', ':Neogit kind=replace<CR>', desc = 'Neogit' },
+    },
+  },
+
+  -- File bookmarks
+  -- https://github.com/otavioschwanck/arrow.nvim
+  {
+    'otavioschwanck/arrow.nvim',
+    opts = {
+      show_icons = false,
+      leader_key = '\\',
+      buffer_leader_key = '<leader>\\',
     },
   },
 
