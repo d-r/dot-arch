@@ -344,7 +344,7 @@ local plugins = {
   -- Add/delete/replace/find surrounding characters
   -- https://github.com/nvim-mini/mini.pairs
   --
-  -- FIXME: Having to type *at least* four characters to wrap something is
+  -- FIXME: Having to type *at least* three characters to wrap something is
   -- cumbersome as hell.
   {
     'nvim-mini/mini.surround',
@@ -364,6 +364,7 @@ local plugins = {
         suffix_next = 'n', -- Suffix to search with "next" method
       },
     },
+    init = function() vim.keymap.set(nx, 's', '<Nop>') end,
   },
 
   -- Comment lines
@@ -409,6 +410,7 @@ local plugins = {
       { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
       { 'R', desc = 'Treesitter search', mode = xo, flash.treesitter_search },
     },
+    init = function() vim.keymap.set('n', 'm', '<Nop>') end,
   },
 
   -- Snacks - a collection of small quality-of-life plugins
