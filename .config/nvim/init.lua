@@ -486,7 +486,7 @@ local plugins = {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    enabled = false,
+    enabled = true,
     opts = {
       preset = 'helix', -- Single column list in the bottom right corner
       icons = { mappings = false }, -- Disable icons
@@ -495,6 +495,7 @@ local plugins = {
 
   {
     'nvim-mini/mini.clue',
+    enabled = false,
     config = function()
       local mc = require 'mini.clue'
       mc.setup {
