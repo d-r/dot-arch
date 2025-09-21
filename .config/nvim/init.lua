@@ -302,14 +302,14 @@ local plugins = {
 
         -- Goto
 
-        { '[t', desc = 'Previous type', mode = nxo, goto_prev '@class.outer' },
-        { ']t', desc = 'Next type', mode = nxo, goto_next '@class.outer' },
+        { '[t', desc = 'Previous type', goto_prev '@class.outer' },
+        { ']t', desc = 'Next type', goto_next '@class.outer' },
 
-        { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
-        { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
+        { '[f', desc = 'Previous function', goto_prev '@function.outer' },
+        { ']f', desc = 'Next function', goto_next '@function.outer' },
 
-        { '[c', desc = 'Previous comment', mode = nxo, goto_prev '@comment.outer' },
-        { ']c', desc = 'Next comment', mode = nxo, goto_next '@comment.outer' },
+        { '[c', desc = 'Previous comment', goto_prev '@comment.outer' },
+        { ']c', desc = 'Next comment', goto_next '@comment.outer' },
 
         -- Swap
 
