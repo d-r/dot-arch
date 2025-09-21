@@ -254,9 +254,7 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'main',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {},
     keys = function()
       local function select(o)
@@ -323,6 +321,14 @@ local plugins = {
         { '<leader>nt', desc = 'Swap next type', swap_next '@class.outer' },
       }
     end,
+  },
+
+  -- Show the context of the currently visible buffer contents
+  -- https://github.com/nvim-treesitter/nvim-treesitter-context
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {},
   },
 
   -- Auto pair delimiters
