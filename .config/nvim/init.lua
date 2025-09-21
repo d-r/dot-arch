@@ -479,10 +479,56 @@ local plugins = {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
+    enabled = false,
     opts = {
       preset = 'helix', -- Single column list in the bottom right corner
       icons = { mappings = false }, -- Disable icons
     },
+  },
+
+  {
+    'nvim-mini/mini.clue',
+    config = function()
+      local mc = require 'mini.clue'
+      mc.setup {
+        triggers = kit.triggers {
+          { '<Leader>', 'nx' },
+          { 'g', 'nx' },
+          { 's', 'nx' },
+          { 'z', 'nx' },
+          { '[', 'n' },
+          { ']', 'n' },
+
+          -- Completion
+          { '<C-x>', 'i' },
+
+          -- Window commands
+          { '<C-w>', 'n' },
+
+          -- Marks
+          { '`', 'nx' },
+          { '"', 'nx' },
+
+          -- Registers
+          { '<C-r>', 'ic' },
+          { "'", 'nx' },
+        },
+        clues = {
+          mc.gen_clues.builtin_completion(),
+          mc.gen_clues.marks(),
+          mc.gen_clues.registers(),
+          mc.gen_clues.windows(),
+          mc.gen_clues.g(),
+          mc.gen_clues.z(),
+        },
+        window = {
+          delay = 200, -- ms
+          config = {
+            width = 'auto',
+          },
+        },
+      }
+    end,
   },
 
   -- File type icons

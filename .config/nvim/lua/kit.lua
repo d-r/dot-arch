@@ -33,6 +33,19 @@ function M.init_lazy(opts)
   require('lazy').setup(opts)
 end
 
+-- Helper for specifying mini.clue triggers more concisely
+function M.triggers(entries)
+  local triggers = {}
+  for _, e in ipairs(entries) do
+    local keys = e[1]
+    local modes = M.chars(e[2])
+    for _, mode in ipairs(modes) do
+      table.insert(triggers, { mode = mode, keys = keys })
+    end
+  end
+  return triggers
+end
+
 -- Bind a set of vim keys, specified in the same way as in the `keys` field of
 -- lazy's plugin spec format.
 function M.bind_keys(entries)
