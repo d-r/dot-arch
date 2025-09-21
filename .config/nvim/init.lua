@@ -235,6 +235,7 @@ local plugins = {
 
       vim.api.nvim_create_autocmd('FileType', {
         desc = 'Enable treesitter highlighting',
+        group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
         callback = function(event)
           if pcall(vim.treesitter.start) then
             -- Enable folding and indentation.
