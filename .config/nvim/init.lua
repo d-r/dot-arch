@@ -254,7 +254,6 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'main',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {},
     keys = function()
       local function select(o)
@@ -327,7 +326,6 @@ local plugins = {
   -- https://github.com/nvim-treesitter/nvim-treesitter-context
   {
     'nvim-treesitter/nvim-treesitter-context',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {},
   },
 
