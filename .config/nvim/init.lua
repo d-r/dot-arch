@@ -350,13 +350,18 @@ local plugins = {
     'nvim-mini/mini.surround',
     enabled = true,
     opts = {
+      -- Module mappings. Use `''` (empty string) to disable one.
+      -- These are the defaults. Duplicated here for reference.
       mappings = {
-        add = 'gsa',
-        delete = 'gsd',
-        find = 'gsf',
-        find_left = 'gsF',
-        highlight = 'gsh',
-        replace = 'gsr',
+        add = 'sa', -- Add surrounding in Normal and Visual modes
+        delete = 'sd', -- Delete surrounding
+        find = 'sf', -- Find surrounding (to the right)
+        find_left = 'sF', -- Find surrounding (to the left)
+        highlight = 'sh', -- Highlight surrounding
+        replace = 'sr', -- Replace surrounding
+
+        suffix_last = 'l', -- Suffix to search with "prev" method
+        suffix_next = 'n', -- Suffix to search with "next" method
       },
     },
   },
@@ -395,9 +400,10 @@ local plugins = {
       },
     },
     keys = {
-      -- s is for "seek"
-      { 's', desc = 'Flash', mode = nxo, flash.jump },
-      { 'S', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
+      -- m is for "move"
+      -- This overwrites the "set mark" bind.
+      { 'm', desc = 'Flash', mode = nxo, flash.jump },
+      { 'M', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
 
       -- TODO: Find out what these do:
       { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
