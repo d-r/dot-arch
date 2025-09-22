@@ -89,7 +89,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local plugins = {
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
-  { 'j-hui/fidget.nvim', opts = {} },
+  {
+    'j-hui/fidget.nvim',
+    opts = {
+      notification = {
+        window = {
+          max_width = 0,
+        },
+      },
+    },
+  },
 
   -- Rust IDE
   -- https://github.com/mrcjkb/rustaceanvim
