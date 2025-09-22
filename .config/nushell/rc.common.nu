@@ -12,6 +12,9 @@ alias resume = job unfreeze
 
 alias cr = cargo run
 
+alias cp = cp -v
+alias mv = mv -v
+
 # Set context
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
