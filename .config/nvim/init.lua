@@ -339,30 +339,10 @@ local plugins = {
     opts = {},
   },
 
-  -- Surround selection with delimiters in visual mode
-  -- https://github.com/NStefan002/visual-surround.nvim
-  --
-  -- FIXME: There is a delay when wrapping in [].
-  -- TODO: Set use_default_keymaps to false, and bind my own keys?
-  -- TODO: I would like to have an "auto unwrap" that just finds the nearest
-  -- surrounding characters of whatever is under the cursor, and deletes them.
-  {
-    'NStefan002/visual-surround.nvim',
-    event = 'VeryLazy',
-    opts = {
-      enable_wrapped_deletion = true,
-      exit_visual_mode = true,
-    },
-  },
-
   -- Add/delete/replace/find surrounding characters
-  -- https://github.com/nvim-mini/mini.pairs
-  --
-  -- FIXME: Having to type *at least* three characters to wrap something is
-  -- cumbersome as hell.
+  -- https://github.com/nvim-mini/mini.surround
   {
     'nvim-mini/mini.surround',
-    enabled = true,
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
       -- These are the defaults. Duplicated here for reference.
