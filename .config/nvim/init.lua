@@ -675,6 +675,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- end)
 
 kit.bind_keys {
-  { '<c-s>', desc = 'Save', mode = ni, ':write<CR>' },
-  { '<c-q>', desc = 'Quit', mode = ni, ':quit!<CR>' },
+  { '<c-s>', desc = 'Save', mode = ni, '<cmd>write<CR>' },
+  { '<c-q>', desc = 'Quit', mode = ni, '<cmd>quit!<CR>' },
 }
