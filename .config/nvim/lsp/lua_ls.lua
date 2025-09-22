@@ -1,4 +1,5 @@
 -- https://github.com/luals/lua-language-server
+-- https://github.com/LuaLS/lua-language-server/wiki/Settings
 ---@type vim.lsp.Config
 return {
   cmd = { 'lua-language-server' },
