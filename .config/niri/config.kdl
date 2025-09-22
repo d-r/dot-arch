@@ -56,7 +56,7 @@ binds {
     // MODALS
 
     Mod+O {
-        spawn-sh "uh visit";
+        spawn-sh "tui visit";
     }
 
     Mod+S {
@@ -67,7 +67,7 @@ binds {
         spawn "fuzzel";
     }
     Mod+P {
-        spawn-sh "uh edit";
+        spawn-sh "tui edit";
     }
 
     // TABS
