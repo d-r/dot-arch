@@ -36,7 +36,6 @@ impala
 imv
 inotify-tools
 inter-font
-iwe-bin
 janet-lang
 jetbrains-toolbox
 just
@@ -50,6 +49,7 @@ libresprite
 linux
 linux-firmware
 linux-rt
+linux-rt-headers
 lua-language-server
 mako
 man-db
@@ -86,10 +86,13 @@ realtime-generic-setup
 ripdrag-git
 ripgrep
 rmpc-git
+rtcqs
 schismtracker-git
 screen
 scummvm
+skim
 stow
+stylua
 sudo
 sunvox
 surge-xt
@@ -109,7 +112,10 @@ tree-sitter-javascript
 tree-sitter-python
 tree-sitter-rust
 ttf-atkinson-hyperlegible
+ttf-input
+ttf-input-nerd
 ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
 ttf-nerd-fonts-symbols-mono
 unzip
 vim
@@ -121,7 +127,6 @@ wezterm-git
 wget
 wgsl-analyzer-bin
 wl-clipboard
-wl-clip-persist
 wlr-which-key
 xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
@@ -129,6 +134,7 @@ xdg-user-dirs
 xwayland-satellite-git
 yay
 yazi
+yt-dlp
 zathura-pdf-mupdf
 zk
 zoxide
