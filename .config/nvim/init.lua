@@ -470,20 +470,9 @@ local plugins = {
   },
 
   -- Show available keybinds in a popup as you type
-  -- https://github.com/folke/which-key.nvim
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    enabled = true,
-    opts = {
-      preset = 'helix', -- Single column list in the bottom right corner
-      icons = { mappings = false }, -- Disable icons
-    },
-  },
-
+  -- https://github.com/nvim-mini/mini.clue
   {
     'nvim-mini/mini.clue',
-    enabled = false,
     config = function()
       local mc = require 'mini.clue'
       mc.setup {
