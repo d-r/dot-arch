@@ -71,6 +71,9 @@ vim.o.clipboard = 'unnamedplus'
 -- Enable mouse support
 vim.o.mouse = 'a'
 
+-- Decrease the time to wait for a mapped sequence to complete
+vim.o.timeoutlen = 300 -- ms
+
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
 
