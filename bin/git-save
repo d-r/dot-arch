@@ -1,0 +1,12 @@
+#!/usr/bin/env nu
+
+# Commit, and optionally push, all changes made to a git repo
+def main [$repo: string = ".", --push] {
+    cd $repo
+    let $changes = (git status --porcelain)
+    if ($changes | is-not-empty) {
+        git add .
+        git commit -m "Auto save"
+        if $push { git push }
+    }
+}
