@@ -252,19 +252,21 @@ local plugins = {
     end,
   },
 
+  -- Show the context of the currently visible buffer contents
+  -- https://github.com/nvim-treesitter/nvim-treesitter-context
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {},
+  },
+
   -- Syntax aware text-objects, select, move, swap, and peek support
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'main',
+    lazy = false,
     opts = {},
     keys = function()
-      local function select(o)
-        return function()
-          require('nvim-treesitter-textobjects.select').select_textobject(o, 'textobjects')
-        end
-      end
-
       local function goto_prev(o)
         return function()
           require('nvim-treesitter-textobjects.move').goto_previous_start(o, 'textobjects')
@@ -286,30 +288,16 @@ local plugins = {
       end
 
       return {
-        -- Select
-
-        { 'aa', desc = 'Argument', mode = xo, select '@parameter.outer' },
-        { 'ia', desc = 'Argument', mode = xo, select '@parameter.inner' },
-
-        { 'at', desc = 'Type', mode = xo, select '@class.outer' },
-        { 'it', desc = 'Type', mode = xo, select '@class.inner' },
-
-        { 'af', desc = 'Function', mode = xo, select '@function.outer' },
-        { 'if', desc = 'Function', mode = xo, select '@function.inner' },
-
-        { 'ac', desc = 'Comment', mode = xo, select '@comment.outer' },
-        { 'ic', desc = 'Comment', mode = xo, select '@comment.inner' },
-
         -- Goto
 
-        { '[t', desc = 'Previous type', goto_prev '@class.outer' },
-        { ']t', desc = 'Next type', goto_next '@class.outer' },
+        { '[t', desc = 'Previous type', mode = nxo, goto_prev '@class.outer' },
+        { ']t', desc = 'Next type', mode = nxo, goto_next '@class.outer' },
 
-        { '[f', desc = 'Previous function', goto_prev '@function.outer' },
-        { ']f', desc = 'Next function', goto_next '@function.outer' },
+        { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
+        { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
 
-        { '[c', desc = 'Previous comment', goto_prev '@comment.outer' },
-        { ']c', desc = 'Next comment', goto_next '@comment.outer' },
+        { '[c', desc = 'Previous comment', mode = nxo, goto_prev '@comment.outer' },
+        { ']c', desc = 'Next comment', mode = nxo, goto_next '@comment.outer' },
 
         -- Swap
 
@@ -325,11 +313,35 @@ local plugins = {
     end,
   },
 
-  -- Show the context of the currently visible buffer contents
-  -- https://github.com/nvim-treesitter/nvim-treesitter-context
+  -- Extend and create a/i textobjects
+  -- https://github.com/nvim-mini/mini.ai
   {
-    'nvim-treesitter/nvim-treesitter-context',
-    opts = {},
+    'nvim-mini/mini.ai',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    config = function()
+      local ai = require 'mini.ai'
+      local ts = ai.gen_spec.treesitter
+      ai.setup {
+        n_lines = 500,
+        custom_textobjects = {
+          -- Block
+          o = ts {
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+          },
+          -- Argument
+          a = ts { a = '@parameter.outer', i = '@parameter.inner' },
+          -- Function
+          f = ts { a = '@function.outer', i = '@function.inner' },
+          -- Type
+          t = ts { a = '@class.outer', i = '@class.inner' },
+          -- Comment
+          c = ts { a = '@comment.outer', i = '@comment.inner' },
+        },
+      }
+    end,
   },
 
   -- Auto pair delimiters
