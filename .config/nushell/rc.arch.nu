@@ -12,6 +12,3 @@ alias out = paru -Qu
 
 # Sync package database
 alias syn = paru -Fy
-
-# Bitwig Studio
-alias bw = wm spawn flatpak run com.bitwig.BitwigStudio
