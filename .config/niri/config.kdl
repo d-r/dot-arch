@@ -21,14 +21,11 @@ binds {
     }
 
     Mod+Return hotkey-overlay-title="Terminal" {
-        spawn-sh "uh term";
+        spawn "trm";
     }
     Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn-sh "uh console";
+        spawn "console";
     }
-    // Mod+Semicolon hotkey-overlay-title="Music player" {
-    //     spawn "uh" "music";
-    // }
 
     // CONTROL
 
@@ -46,11 +43,11 @@ binds {
 
     // FILE MANAGER
 
-    Mod+Y hotkey-overlay-title="Open CWD" {
-        spawn-sh "uh file-manager-cwd";
+    Mod+Y hotkey-overlay-title="Open CWD in yazi" {
+        spawn-sh "cli yazi-cwd";
     }
-    Mod+Shift+Y hotkey-overlay-title="Open directory" {
-        spawn-sh "uh file-manager";
+    Mod+Shift+Y hotkey-overlay-title="Open a directory in yazi" {
+        spawn-sh "cli yazi";
     }
 
     // MODALS
@@ -60,7 +57,7 @@ binds {
     }
 
     Mod+S {
-        spawn-sh "uh bookmark";
+        spawn-sh "tui bookmark-cb";
     }
 
     Mod+R {

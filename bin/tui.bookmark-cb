@@ -1,0 +1,8 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+let $s = (wl-paste)
+if ($s | is-url) {
+    tui.bookmark $s
+}

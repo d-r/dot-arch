@@ -3,20 +3,6 @@
 use ~/dot/nu/niri.nu *
 
 # Spawn a terminal and optionally run a command inside of it
-def --wrapped main [...$cmd, --class:string] {
-    let $class = ($class | default kitty)
-    wm spawn kitty --class $class -d (cwd) -- ...$cmd
-}
-
-# Get the working directory for the focused workspace
-def cwd [] {
-    match (wm focused-workspace).name {
-        "web" => "~/dl"
-        "dot" => "~/dot"
-        "dev" => "~/src"
-        "brn" => "~/brain"
-        "snd" => "~/snd"
-        _ => "~"
-    }
-    | path expand
+def --wrapped main [...$cmd] {
+    wm spawn kitty --app-id term -d (wm cwd) -- ...$cmd
 }

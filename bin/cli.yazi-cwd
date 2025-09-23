@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+cli.yazi (wm cwd)
