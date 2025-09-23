@@ -7,9 +7,5 @@ const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 # Present a TUI dialog box
 def main [$cmd: string, ...$args] {
     let $cmd = $"tui.($cmd)"
-
-    # This is very slow:
-    # wm spawn-or-focus-in-ws $cmd kitty --config $CONFIG --app-id $cmd -- $cmd ...$args
-
     kitty --config $CONFIG --app-id $cmd -- $cmd ...$args
 }
