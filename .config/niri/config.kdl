@@ -350,7 +350,6 @@ window-rule {
     open-floating true
     default-window-height { proportion 0.9; }
     default-column-width { proportion 0.9; }
-    opacity 0.9
 }
 
 //------------------------------------------------------------------------------
