@@ -57,7 +57,7 @@ binds {
     }
 
     Mod+S {
-        spawn-sh "tui bookmark-cb";
+        spawn "bookmark-cb";
     }
 
     Mod+R {

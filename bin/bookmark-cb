@@ -4,5 +4,5 @@ use ~/dot/nu/all.nu *
 
 let $s = (wl-paste)
 if ($s | is-url) {
-    tui.bookmark $s
+    tui bookmark $s
 }
