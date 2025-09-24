@@ -7,5 +7,17 @@ const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 # Present a TUI dialog box
 def main [$cmd: string, ...$args] {
     let $cmd = $"tui.($cmd)"
-    kitty --config $CONFIG --app-id $cmd -- $cmd ...$args
+    (
+        kitten panel
+        --layer=overlay
+        --single-instance
+        --hide-on-focus-loss=yes
+        --exclusive-zone=0
+        --override-exclusive-zone
+        --lines=20
+        --config=($CONFIG)
+        --app-id=($cmd)
+        --
+        $cmd ...$args
+    )
 }

@@ -342,15 +342,6 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-window-rule {
-    match app-id="tui"
-    match app-id="music"
-
-    open-floating true
-    default-window-height { proportion 0.9; }
-    default-column-width { proportion 0.9; }
-}
-
 //------------------------------------------------------------------------------
 // WORKSPACES
 
