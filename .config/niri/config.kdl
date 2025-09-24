@@ -24,7 +24,7 @@ binds {
         spawn "trm";
     }
     Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn "console";
+        spawn-sh "kitten quick-access-terminal";
     }
 
     // CONTROL
@@ -344,7 +344,6 @@ window-rule {
 
 window-rule {
     match app-id="tui"
-    match app-id="console"
     match app-id="music"
 
     open-floating true

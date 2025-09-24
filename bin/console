@@ -1,8 +1,0 @@
-#!/usr/bin/env nu
-
-use ~/dot/nu/all.nu *
-
-const $APP_ID = "console"
-
-# Attach to existing tmux session, or create a new one if none exists
-wm toggle $APP_ID kitty --app-id $APP_ID -- tmux new -A -s $APP_ID
