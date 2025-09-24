@@ -11,9 +11,11 @@ def main [$cmd: string, ...$args] {
         kitten panel
         --layer=overlay
         --single-instance
-        --hide-on-focus-loss=yes
+        --instance-group=($cmd)
         --exclusive-zone=0
         --override-exclusive-zone
+        --toggle-visibility=yes
+        --hide-on-focus-loss=yes
         --lines=20
         --config=($CONFIG)
         --app-id=($cmd)
