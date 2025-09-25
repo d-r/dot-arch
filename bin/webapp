@@ -6,5 +6,10 @@ def main [$name: string, $url: string] {
     let $state_dir = ($env.XDG_STATE_HOME)
     let $data_dir = $"($state_dir)/webapp"
     mkdir $data_dir
-    chromium --user-data-dir=($data_dir) --app=($url) --class=($id)
+
+    # The app ID of the window will be something like:
+    # chrome-www.keybr.com__-Default
+    #
+    # You can't change it. The --class option does nothing in app mode.
+    chromium --user-data-dir=($data_dir) --app=($url) # --class=($id)
 }
