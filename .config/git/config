@@ -22,33 +22,25 @@
     last = "log -1 HEAD --stat"
 
     # Changes
-    ca = "commit -a --amend --no-edit"
+    ca = "commit --all --amend --no-edit"
     amend = "commit --amend"
-    nm = "nevermind"
-    nevermind = "!git reset --hard HEAD && git clean -d -f"
+    nm = "!git reset --hard HEAD && git clean --delete --force"
     undo = "reset --hard HEAD~"
     discard = "checkout --"
     unstage = "reset head --"
     untrack = "rm -r --cached"
     pf = "push --force"
 
-    # Branches (verbose)
-    new-branch = "checkout -b"
-    delete-branch = "branch -D"
-    delete-remote-branch = "push origin --delete"
-    move-branch = "branch -f"
-    rename-branch = "branch -m"
-
-    # Branches (terse)
+    # Branches
     co = "checkout"
-    nb = "new-branch"
-    db = "delete-branch"
-    drb = "delete-remote-branch"
-    mb = "move-branch"
-    rb = "rename-branch"
+    nb = "checkout --branch"
+    db = "branch --delete"
+    drb = "push origin --delete"
+    mb = "branch --force" # move
+    rb = "branch --move" # rename
 
     # Lists
-    branches = "branch -a -v"
-    tags = "tag list"
-    remotes = "remote -v"
-    stashes = "stash list"
+    lsb = "branch --all -vv"
+    lst = "tag list"
+    lsr = "remote -v"
+    lss = "stash list"
