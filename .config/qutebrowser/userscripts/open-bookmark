@@ -3,7 +3,7 @@
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 const $URL_FILE = "/tmp/qb-url"
 
-kitty --config $CONFIG --app-id tui.visit tui.qb-visit
+tui qb-visit
 
 if ($URL_FILE | path exists) {
     let $url = (open $URL_FILE)
