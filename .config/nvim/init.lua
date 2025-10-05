@@ -445,6 +445,9 @@ local plugins = {
             hidden = true,
           },
         },
+        layout = {
+          fullscreen = true,
+        },
         win = {
           input = {
             keys = {
