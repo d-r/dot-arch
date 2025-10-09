@@ -24,7 +24,7 @@
     # Changes
     ca = "commit --all --amend --no-edit"
     amend = "commit --amend"
-    nm = "!git reset --hard HEAD && git clean --delete --force"
+    nm = "!git reset --hard HEAD && git clean -d --force"
     undo = "reset --hard HEAD~"
     discard = "checkout --"
     unstage = "reset head --"
