@@ -15,6 +15,8 @@ alias cr = cargo run
 alias cp = cp -v
 alias mv = mv -v
 
+alias h = harsh
+
 # Set context
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
