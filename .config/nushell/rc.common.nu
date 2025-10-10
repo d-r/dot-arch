@@ -17,6 +17,8 @@ alias mv = mv -v
 
 alias h = harsh
 
+alias music = rmpc
+
 # Set context
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
