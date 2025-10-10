@@ -16,6 +16,8 @@ alias cp = cp -v
 alias mv = mv -v
 
 alias h = harsh
+alias ha = harsh ask
+alias hl = harsh log
 
 alias music = rmpc
 
