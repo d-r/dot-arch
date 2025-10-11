@@ -74,6 +74,17 @@ vim.o.mouse = 'a'
 -- Decrease the time to wait for a mapped sequence to complete
 vim.o.timeoutlen = 300 -- ms
 
+vim.diagnostic.config {
+  virtual_text = { -- show inline messages
+    prefix = '●',
+    spacing = 2,
+  },
+  signs = true, -- show signs in the gutter
+  underline = true, -- underline problematic text
+  update_in_insert = false, -- don't update diagnostics while typing
+  severity_sort = true, -- sort diagnostics by severity
+}
+
 --------------------------------------------------------------------------------
 -- AUTO COMMANDS (HOOKS)
 
@@ -87,6 +98,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- PLUGINS
 
 local plugins = {
+  -- Display inline diagnostic messages where the cursor is
+  -- https://github.com/rachartier/tiny-inline-diagnostic.nvim
+  {
+    'rachartier/tiny-inline-diagnostic.nvim',
+    event = 'VeryLazy',
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup()
+      vim.diagnostic.config { virtual_text = false } -- Disable default virtual text
+    end,
+  },
+
   -- A window in the bottom right corner that displays LSP progress messages
   -- https://github.com/j-hui/fidget.nvim
   {
