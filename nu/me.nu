@@ -8,8 +8,8 @@ export def projects [] {
     [
         (project ~/dot)
         (project ~/brain)
-        (project ~/lab)
         (project ~/vault obsidian)
+        (projects-in ~/lab)
         (projects-in ~/src)
     ]
     | flatten
