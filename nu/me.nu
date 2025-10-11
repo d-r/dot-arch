@@ -8,6 +8,7 @@ export def projects [] {
     [
         (project ~/dot)
         (project ~/brain)
+        (project ~/.config/harsh)
         (project ~/vault obsidian)
         (projects-in ~/lab)
         (projects-in ~/src)
