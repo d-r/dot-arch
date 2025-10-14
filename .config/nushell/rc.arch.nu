@@ -12,3 +12,6 @@ alias out = paru -Qu
 
 # Sync package database
 alias syn = paru -Fy
+
+# Reboot the system without going back to BIOS
+alias soft-reboot = systemctl soft-reboot
