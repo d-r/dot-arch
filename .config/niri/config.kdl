@@ -338,6 +338,8 @@ window-rule {
 // "Maximize"
 window-rule {
     match app-id="chrome"
+    match app-id="imv"
+    match app-id="mpv"
 
     default-column-width { proportion 0.98; }
 }
