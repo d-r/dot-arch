@@ -21,6 +21,7 @@ hint = "info"
 # CODE
 
 keyword = "builtin"
+operator = "builtin"
 label = "builtin"
 "type.builtin" = "builtin"
 "variable.builtin" = "builtin"
@@ -43,7 +44,6 @@ string = "string"
 punctuation = "dim"
 
 attribute = "fg"
-operator = "fg"
 variable = "fg"
 namespace = "fg"
 function = "fg"
