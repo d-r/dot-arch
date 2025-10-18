@@ -24,6 +24,7 @@ keyword = "builtin"
 "type.builtin" = "builtin"
 "variable.builtin" = "builtin"
 "function.builtin" = "builtin"
+label = "builtin"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
 comment = "info"
@@ -45,7 +46,6 @@ variable = "fg"
 namespace = "fg"
 function = "fg"
 tag = "fg"
-label = "fg"
 constructor = "fg"
 type = "fg"
 
