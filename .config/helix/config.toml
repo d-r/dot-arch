@@ -1,5 +1,5 @@
-theme = "yo_berry"
-# theme = "glum"
+# theme = "yo_berry"
+theme = "glum"
 
 [editor]
 bufferline = "multiple"
