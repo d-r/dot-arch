@@ -1,53 +1,53 @@
 #-------------------------------------------------------------------------------
 # UI
 
-"ui.text" = { fg = "fg" }
+"ui.text" = "fg"
 "ui.background" = { bg = "bg", fg = "fg" }
 "ui.selection" = { bg = "#333333" }
 
 # DIAGNOSTICS
 
-error = { fg = "error" }
-warning = { fg = "warning" }
-info = { fg = "info" }
-hint = { fg = "info" }
+error = "error"
+warning = "warning"
+info = "info"
+hint = "info"
 
-"diagnostic.error" = { fg = "error" }
-"diagnostic.warning" = { fg = "warning" }
-"diagnostic.info" = { fg = "info" }
-"diagnostic.hint" = { fg = "info" }
+"diagnostic.error" = "error"
+"diagnostic.warning" = "warning"
+"diagnostic.info" = "info"
+"diagnostic.hint" = "info"
 
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = { fg = "builtin" }
+keyword = "builtin"
 "type.builtin" = "builtin"
 "variable.builtin" = "builtin"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
-comment = { fg = "info" }
-attribute = { fg = "fg" } # highlight?
+comment = "info"
+attribute = "fg" # highlight?
 
 special = "meta"
 "function.macro" = "meta"
 
-"constant.numeric" = { fg = "constant" }
-"constant.character" = { fg = "constant" }
-string = { fg = "constant" }
-"string.special.symbol" = { fg = "constant" }
-"type.parameter" = { fg = "constant" }
+"constant.numeric" = "constant"
+"constant.character" = "constant"
+string = "constant"
+"string.special.symbol" = "constant"
+"type.parameter" = "constant"
 
-operator = { fg = "fg" }
-punctuation = { fg = "fg" }
-"punctuation.delimiter" = { fg = "fg" }
-variable = { fg = "fg" }
-namespace = { fg = "fg" }
-function = { fg = "fg" }
+operator = "fg"
+punctuation = "fg"
+"punctuation.delimiter" = "fg"
+variable = "fg"
+namespace = "fg"
+function = "fg"
 "function.builtin" = "fg"
-tag = { fg = "fg" }
-label = { fg = "fg" }
-constructor = { fg = "fg" }
-type = { fg = "fg" }
+tag = "fg"
+label = "fg"
+constructor = "fg"
+type = "fg"
 
 # MARKUP
 
