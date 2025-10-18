@@ -20,10 +20,9 @@ hint = { fg = "info" }
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = { fg = "keyword" }
-"type.builtin" = "keyword"
-"variable.builtin" = "keyword"
-"constant.builtin" = { fg = "keyword" }
+keyword = { fg = "builtin" }
+"type.builtin" = "builtin"
+"variable.builtin" = "builtin"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
 comment = { fg = "info" }
@@ -60,7 +59,7 @@ type = { fg = "fg" }
 
 bg = "#1a1a1a"
 fg = "#c6c6c6"
-keyword = "#7fa396"
+builtin = "#7fa396"
 info = "#98c379"
 constant = "#de8ade"
 error = "#ee518a"
