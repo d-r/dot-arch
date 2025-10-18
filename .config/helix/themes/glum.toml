@@ -21,24 +21,26 @@ hint = "info"
 # CODE
 
 keyword = "builtin"
+label = "builtin"
 "type.builtin" = "builtin"
 "variable.builtin" = "builtin"
 "function.builtin" = "builtin"
-label = "builtin"
+"constant.builtin" = "builtin"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
 comment = "info"
-attribute = "fg" # highlight?
 
 special = "meta"
 "function.macro" = "meta"
 
-"constant.numeric" = "constant"
-"constant.character" = "constant"
-string = "constant"
-"string.special.symbol" = "constant"
+constant = "constant"
 "type.parameter" = "constant"
 
+string = "string"
+"string.special.symbol" = "string"
+"constant.character" = "string"
+
+attribute = "fg"
 operator = "fg"
 punctuation = "fg"
 "punctuation.delimiter" = "fg"
@@ -64,7 +66,8 @@ fg = "#c6c6c6"
 builtin = "#7fa396"
 info = "#98c379"
 meta = "#ff9e64"
-constant = "#de8ade"
+constant = "#9eb1ff"
+string = "#de8ade"
 error = "#ee518a"
 warning = "#ffff57"
 
@@ -74,6 +77,7 @@ black = "#000000"
 white = "#ffffff"
 purple = "#de8ade"
 teal = "#7fa396"
+cyan = "#9eb1ff"
 green = "#98c379"
 orange = "#ff9e64"
 yellow = "#ffff57"
