@@ -28,6 +28,9 @@ keyword = { fg = "builtin" }
 comment = { fg = "info" }
 attribute = { fg = "fg" } # highlight?
 
+special = "meta"
+"function.macro" = "meta"
+
 "constant.numeric" = { fg = "constant" }
 "constant.character" = { fg = "constant" }
 string = { fg = "constant" }
@@ -40,7 +43,6 @@ punctuation = { fg = "fg" }
 variable = { fg = "fg" }
 namespace = { fg = "fg" }
 function = { fg = "fg" }
-"function.macro" = "fg"
 "function.builtin" = "fg"
 tag = { fg = "fg" }
 label = { fg = "fg" }
@@ -61,6 +63,7 @@ bg = "#1a1a1a"
 fg = "#c6c6c6"
 builtin = "#7fa396"
 info = "#98c379"
+meta = "#ff9e64"
 constant = "#de8ade"
 error = "#ee518a"
 warning = "#ffff57"
