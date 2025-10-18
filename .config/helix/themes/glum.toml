@@ -23,12 +23,12 @@ hint = { fg = "info" }
 keyword = { fg = "keyword" }
 "type.builtin" = "keyword"
 "variable.builtin" = "keyword"
+"constant.builtin" = { fg = "keyword" }
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
 comment = { fg = "info" }
 attribute = { fg = "fg" } # highlight?
 
-"constant.builtin" = { fg = "constant" }
 "constant.numeric" = { fg = "constant" }
 "constant.character" = { fg = "constant" }
 string = { fg = "constant" }
