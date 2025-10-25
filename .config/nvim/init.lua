@@ -328,6 +328,9 @@ local plugins = {
         { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
         { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
 
+        { '[a', desc = 'Previous argument', mode = nxo, goto_prev '@argument.outer' },
+        { ']a', desc = 'Next argument', mode = nxo, goto_next '@argument.outer' },
+
         { '[c', desc = 'Previous comment', mode = nxo, goto_prev '@comment.outer' },
         { ']c', desc = 'Next comment', mode = nxo, goto_next '@comment.outer' },
 
