@@ -23,6 +23,40 @@ menu:
   - key: "k"
     desc: keybr.com
     cmd: webapp keybr https://www.keybr.com/
+  - key: "v"
+    desc: Volume
+    submenu:
+      - key: ","
+        desc: Lower
+        cmd: swayosd-client --output-volume lower
+        keep_open: true
+      - key: "."
+        desc: Raise
+        cmd: swayosd-client --output-volume raise
+        keep_open: true
+      - key: "/"
+        desc: Mute/unmute
+        cmd: swayosd-client --output-volume mute-toggle
+        keep_open: true
+  - key: "b"
+    desc: Brightness
+    submenu:
+      - key: ","
+        desc: Lower
+        cmd: swayosd-client --brightness lower
+        keep_open: true
+      - key: "."
+        desc: Raise
+        cmd: swayosd-client --brightness raise
+        keep_open: true
+      - key: "<" # This is not displayed in the menu for some reason
+        desc: Set minimum
+        cmd: swayosd-client --brightness 0
+        keep_open: true
+      - key: ">"
+        desc: Set maximum
+        cmd: swayosd-client --brightness 100
+        keep_open: true
   - key: "p"
     desc: Power
     submenu:
