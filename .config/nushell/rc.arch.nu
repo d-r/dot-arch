@@ -15,3 +15,8 @@ alias syn = paru -Fy
 
 # Reboot the system without going back to BIOS
 alias soft-reboot = systemctl soft-reboot
+
+# Add the current user to a group
+def add-me-to [$group] {
+    sudo usermod -aG $group $env.USER
+}
