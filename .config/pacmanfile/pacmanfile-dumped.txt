@@ -1,5 +1,4 @@
 7zip
-alacritty
 amd-ucode
 base
 base-devel
@@ -10,6 +9,7 @@ blobdrop-git
 brightnessctl
 btop
 carapace
+cardinal
 chromium
 clang
 cmake
@@ -31,7 +31,8 @@ gnome-keyring
 gnome-themes-extra
 grub
 gum
-helix-git
+harsh-git
+helix
 impala
 imv
 inotify-tools
@@ -41,7 +42,6 @@ jetbrains-toolbox
 just
 keyd
 kitty
-klystrack-git
 lazygit
 less
 libnotify
@@ -56,7 +56,6 @@ man-db
 marksman
 micro
 milkytracker
-most
 mpc
 mpd
 mpv
@@ -69,6 +68,7 @@ noto-fonts-emoji
 nushell
 obsidian
 openssh
+orca
 otf-atkinson-hyperlegible
 pacman-contrib
 pacmanfile
@@ -87,10 +87,9 @@ ripdrag-git
 ripgrep
 rmpc-git
 rtcqs
+rustup
 schismtracker-git
-screen
 scummvm
-skim
 stow
 stylua
 sudo
@@ -123,7 +122,6 @@ visual-studio-code-bin
 vulkan-radeon
 waybar
 wev
-wezterm-git
 wget
 wgsl-analyzer-bin
 wl-clipboard
@@ -132,10 +130,10 @@ xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
 xdg-user-dirs
 xwayland-satellite-git
-yay
 yazi
 yt-dlp
 zathura-pdf-mupdf
+zed
 zk
 zoxide
 zsh
