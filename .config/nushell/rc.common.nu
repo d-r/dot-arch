@@ -94,3 +94,9 @@ def nusc [$file: path]: nothing -> nothing {
     cp ~/dot/assets/script.nu $file
     chmod +x $file
 }
+
+# Clone a git repo into ~/src
+def --wrapped clone [...$args] {
+    cd ~/src
+    git clone ...$args
+}
