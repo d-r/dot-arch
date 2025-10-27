@@ -1,5 +1,11 @@
-# Install a package
-alias in = paru -S
+# Install package(s)
+def --wrapped in  [...$args] {
+    if ($args | is-empty) {
+        paru -S (paru -Slq | fzf --preview 'paru -Si {1}' --preview-window 'down:50%:wrap')
+    } else {
+        paru -S ...$args
+    }
+}
 
 # Uninstall a package
 alias un = paru -Rs
