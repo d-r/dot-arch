@@ -1,4 +1,5 @@
 alias m = micro
+alias hx = helix
 alias v = nvim
 alias ng = nvim +Neogit
 alias yt = yt-dlp
