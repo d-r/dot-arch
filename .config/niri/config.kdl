@@ -143,10 +143,10 @@ binds {
 
     // VOLUME KEYS
 
-    XF86AudioLowerVolume hotkey-overlay-title="Decrease volume" {
+    XF86AudioLowerVolume hotkey-overlay-title="Lower volume" {
         spawn-sh "swayosd-client --output-volume lower";
     }
-    XF86AudioRaiseVolume hotkey-overlay-title="Increase volume" {
+    XF86AudioRaiseVolume hotkey-overlay-title="Raise volume" {
         spawn-sh "swayosd-client --output-volume raise";
     }
     XF86AudioMute hotkey-overlay-title="Mute/unmute sound" {
@@ -158,10 +158,10 @@ binds {
 
     // BRIGHTNESS KEYS
 
-    XF86MonBrightnessDown hotkey-overlay-title="Decrease brightness" {
+    XF86MonBrightnessDown hotkey-overlay-title="Lower brightness" {
         spawn-sh "swayosd-client --brightness lower";
     }
-    XF86MonBrightnessUp hotkey-overlay-title="Increase brightness" {
+    XF86MonBrightnessUp hotkey-overlay-title="Raise brightness" {
         spawn-sh "swayosd-client --brightness raise";
     }
     Shift+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
