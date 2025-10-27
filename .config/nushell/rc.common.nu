@@ -5,9 +5,6 @@ alias yt = yt-dlp
 alias c = clear
 alias j = just
 alias lg = lazygit
-alias t = task
-alias ta = task add
-alias tt = taskwarrior-tui
 alias resume = job unfreeze
 
 alias cr = cargo run
@@ -24,10 +21,26 @@ alias music = rmpc
 
 alias rr = rustrover
 
-# Set context
+# Set context (`task` project)
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
 }
+
+# task
+def --wrapped t [...$args] {
+    let $p = $env.CONTEXT?
+    if ($p | is-empty) {
+        task ...$args
+    } else {
+        task $"pro:($p)" ...$args
+    }
+}
+
+# task add
+alias ta = t add
+
+# taskwarrior-tui
+alias tt = taskwarrior-tui
 
 # Clear all nvim state
 def nvim-clear [] {
