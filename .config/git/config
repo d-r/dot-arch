@@ -33,7 +33,7 @@
 
     # Branches
     co = "checkout"
-    nb = "checkout --branch"
+    nb = "checkout -b"
     db = "branch --delete"
     drb = "push origin --delete"
     mb = "branch --force" # move
