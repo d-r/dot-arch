@@ -20,8 +20,6 @@ alias hs = harsh log stats
 
 alias music = rmpc
 
-alias rr = rustrover
-
 # Set context (`task` project)
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
