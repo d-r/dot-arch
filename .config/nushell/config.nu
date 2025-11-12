@@ -11,6 +11,8 @@ source settings.nu
 source rc.common.nu
 source rc.linux.nu
 source rc.arch.nu
-source ~/.cache/zoxide.nu
+
+# zoxide init nushell | save -f ~/dot/.config/nushell/zoxide.nu
+source zoxide.nu
 
 plugin add nu_plugin_formats
