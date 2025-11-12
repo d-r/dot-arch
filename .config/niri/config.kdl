@@ -393,7 +393,7 @@ window-rule {
 
 // SND
 
-spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
+// spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
 // spawn-at-startup "renoise"
 
 window-rule {
