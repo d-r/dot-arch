@@ -349,8 +349,8 @@ window-rule {
 
 workspace "brn"
 workspace "web"
-workspace "dot"
 workspace "dev"
+workspace "dot"
 workspace "snd"
 
 spawn-sh-at-startup "niri msg action focus-workspace web"
