@@ -34,7 +34,7 @@
     # Branches
     co = "checkout"
     nb = "checkout -b"
-    db = "branch --D"
+    db = "branch -D"
     drb = "push origin --delete"
     mb = "branch --force" # move
     rb = "branch --move" # rename
