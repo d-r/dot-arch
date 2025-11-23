@@ -369,7 +369,7 @@ window-rule {
 
 // WEB
 
-spawn-at-startup "firefox-nightly"
+spawn-at-startup "firefox"
 
 window-rule {
     match app-id="firefox" at-startup=true
