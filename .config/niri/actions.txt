@@ -217,6 +217,8 @@ Actions:
           Switch between preset window heights backwards
   maximize-column
           Toggle the maximized state of the focused column
+  maximize-window-to-edges
+          Toggle the maximized-to-edges state of the focused window
   set-column-width
           Change the width of the focused column
   expand-column-to-available-width
