@@ -8,64 +8,26 @@
 // Get a list of bindable actions:
 //   $ niri msg action -h | less
 
-// Run a command inside of a shell:
-//   { spawn "sh" "-c" "notify-send Hello \"OH, HAI!\""" }
-
 binds {
-    Mod+Delete { spawn-sh "wlr-which-key --initial-keys p"; }
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Backspace { close-window; }
-
-    Mod+Space {
-        spawn "wlr-which-key";
-    }
-
-    Mod+Return hotkey-overlay-title="Terminal" {
-        spawn "trm";
-    }
-    Mod+Apostrophe hotkey-overlay-title="Console" {
-        spawn-sh "kitten quick-access-terminal";
-    }
-
-    // CONTROL
-
-    Mod+F12 { switch-layout "next"; }
-
     Mod+Shift+P { power-off-monitors; }
-    Mod+Shift+Slash { show-hotkey-overlay; }
-
-    Mod+Comma hotkey-overlay-title="Settings" {
-        spawn "better-control";
-    }
-    Mod+Shift+Comma hotkey-overlay-title="Audio settings" {
-        spawn "pavucontrol";
-    }
-
-    // FILE MANAGER
-
-    Mod+Y hotkey-overlay-title="Open CWD in yazi" {
-        spawn-sh "cli yazi-cwd";
-    }
-    Mod+Shift+Y hotkey-overlay-title="Open a directory in yazi" {
-        spawn-sh "cli yazi";
-    }
+    Mod+F12 { switch-layout "next"; }
 
     // MODALS
 
-    Mod+O {
-        spawn-sh "tui visit";
-    }
+    Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+S {
-        spawn "bookmark-cb";
-    }
+    Mod+Space { spawn "wlr-which-key"; }
+    Mod+Delete { spawn-sh "wlr-which-key --initial-keys p"; }
 
-    Mod+R {
-        spawn "fuzzel";
-    }
-    Mod+P {
-        spawn-sh "tui edit";
-    }
+    Mod+Return { spawn "trm"; }
+    Mod+Apostrophe { spawn-sh "kitten quick-access-terminal"; }
+
+    Mod+O { spawn-sh "tui visit"; }
+    Mod+S { spawn "bookmark-cb"; }
+    Mod+R { spawn "fuzzel"; }
+    Mod+P { spawn-sh "tui edit"; }
 
     // TABS
 
@@ -143,33 +105,17 @@ binds {
 
     // VOLUME KEYS
 
-    XF86AudioLowerVolume hotkey-overlay-title="Lower volume" {
-        spawn-sh "swayosd-client --output-volume lower";
-    }
-    XF86AudioRaiseVolume hotkey-overlay-title="Raise volume" {
-        spawn-sh "swayosd-client --output-volume raise";
-    }
-    XF86AudioMute hotkey-overlay-title="Mute/unmute sound" {
-        spawn-sh "swayosd-client --output-volume mute-toggle";
-    }
-    XF86AudioMicMute hotkey-overlay-title="Mute/unmute microphone" {
-        spawn-sh "swayosd-client --input-volume mute-toggle";
-    }
+    XF86AudioLowerVolume { spawn-sh "swayosd-client --output-volume lower"; }
+    XF86AudioRaiseVolume { spawn-sh "swayosd-client --output-volume raise"; }
+    XF86AudioMute { spawn-sh "swayosd-client --output-volume mute-toggle"; }
+    XF86AudioMicMute { spawn-sh "swayosd-client --input-volume mute-toggle"; }
 
     // BRIGHTNESS KEYS
 
-    XF86MonBrightnessDown hotkey-overlay-title="Lower brightness" {
-        spawn-sh "swayosd-client --brightness lower";
-    }
-    XF86MonBrightnessUp hotkey-overlay-title="Raise brightness" {
-        spawn-sh "swayosd-client --brightness raise";
-    }
-    Shift+XF86MonBrightnessDown hotkey-overlay-title="Set minimum brightness" {
-        spawn-sh "swayosd-client --brightness 0";
-    }
-    Shift+XF86MonBrightnessUp hotkey-overlay-title="Set maximum brightness" {
-        spawn-sh "swayosd-client --brightness 100";
-    }
+    XF86MonBrightnessDown { spawn-sh "swayosd-client --brightness lower"; }
+    XF86MonBrightnessUp { spawn-sh "swayosd-client --brightness raise"; }
+    Shift+XF86MonBrightnessDown { spawn-sh "swayosd-client --brightness 0"; }
+    Shift+XF86MonBrightnessUp { spawn-sh "swayosd-client --brightness 100"; }
 
     // SCREENSHOTS
 
