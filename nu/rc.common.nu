@@ -17,6 +17,8 @@ alias hs = harsh log stats
 
 alias music = rmpc
 
+alias pick-file = fzf --preview 'bat --color=always {}'
+
 # Set context (`task` project)
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
