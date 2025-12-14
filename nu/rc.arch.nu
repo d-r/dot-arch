@@ -1,7 +1,10 @@
 # Install package(s)
 def --wrapped in [...$args] {
     if ($args | is-empty) {
-        paru -S (paru -Slq | fzf --preview 'paru -Si {1}' --preview-window 'down:50%:wrap')
+        # Use pacman to list packages, as `paru -Slq` falls apart and starts
+        # printing garbage.
+        # TODO: Handle AUR packages.
+        paru -S (pacman -Slq | fzf --preview 'paru -Si {}' --preview-window 'down:50%:wrap')
     } else {
         paru -S ...$args
     }
@@ -11,7 +14,7 @@ def --wrapped in [...$args] {
 def --wrapped un [...$args] {
     if ($args | is-empty) {
         # -Qe = list packages that were explicitly installed
-        paru -Rs (paru -Qeq | fzf --preview 'paru -Si {1}' --preview-window 'down:50%:wrap')
+        paru -Rs (paru -Qeq | fzf --preview 'paru -Si {}' --preview-window 'down:50%:wrap')
     } else {
         paru -Rs ...$args
     }
