@@ -8,6 +8,7 @@ export def projects [] {
     [
         (project ~/dot)
         (project ~/brain)
+        (project ~/data)
         (project ~/.config/harsh)
         (project ~/vault obsidian)
         (projects-in ~/lab)
@@ -34,7 +35,7 @@ def project [$dir, $editor?] {
 #-------------------------------------------------------------------------------
 # BOOKMARKS
 
-const $BOOKMARK_FILE = '~/brain/data/bookmarks.toml' | path expand
+const $BOOKMARK_FILE = '~/data/bookmarks.toml' | path expand
 
 # List bookmarks
 export def bookmarks []: nothing -> record {
