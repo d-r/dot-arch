@@ -27,18 +27,8 @@ alias ln='ln -v'
 
 alias c='clear'
 alias ls='ls -lAF --group-directories-first --si --color'
-alias j='just'
-alias t='task'
-alias yt='yt-dlp'
-alias qb='qutebrowser'
-
 alias e=$EDITOR
 alias m='micro'
-alias rr='rustrover'
-
-alias in='yay -Sy' # install
-alias un='yay -Rs' # uninstall
-alias up='yay' # update
 
 # Wrapper around yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
