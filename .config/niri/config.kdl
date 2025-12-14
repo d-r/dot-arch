@@ -326,6 +326,18 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
+// DEV
+
+spawn-sh-at-startup "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover"
+
+window-rule {
+    match app-id="rustrover" at-startup=true
+
+    open-on-workspace "dev"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
 // DOT
 
 spawn-sh-at-startup "code ~/dot"
