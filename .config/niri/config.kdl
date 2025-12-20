@@ -290,6 +290,11 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
+window-rule {
+    match app-id="jetbrains-toolbox"
+    open-floating false
+}
+
 //------------------------------------------------------------------------------
 // WORKSPACES
 
