@@ -1,0 +1,104 @@
+// https://yalter.github.io/niri/Configuration%3A-Input.html
+// https://yalter.github.io/niri/Configuration%3A-Outputs.html
+// https://yalter.github.io/niri/Configuration%3A-Layout.html
+// https://yalter.github.io/niri/Configuration%3A-Gestures.html
+// https://yalter.github.io/niri/Configuration%3A-Miscellaneous.html
+
+prefer-no-csd // Remove window decorations
+
+screenshot-path "~/dl/screenshot-%Y-%m-%d-%H-%M-%S.png"
+
+output "eDP-1" {
+    scale 1
+}
+
+input {
+    workspace-auto-back-and-forth
+
+    keyboard {
+        xkb {
+            layout "us,se"
+        }
+    }
+
+    touchpad {
+        natural-scroll
+        dwt // Disable while typing
+        click-method "clickfinger"
+    }
+
+    mouse {
+        natural-scroll
+    }
+}
+
+// Disable middle-click paste
+clipboard {
+    disable-primary
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+layout {
+    gaps 8
+    background-color "transparent"
+    center-focused-column "on-overflow"
+    // center-focused-column "never"
+    default-column-display "tabbed"
+
+    default-column-width { proportion 0.49; }
+    preset-column-widths {
+        proportion 0.49
+        proportion 0.98
+    }
+
+    border {
+        on
+        width 1
+
+        // The default colors
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    focus-ring {
+        off
+        width 2
+
+        // The default colors
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    tab-indicator {
+        position "top"
+        place-within-column // So it doesn't spill out into the upper gap
+        hide-when-single-tab
+        length total-proportion=1.0 // Stretch across the full width of the column
+        width 4
+        gaps-between-tabs 8
+    }
+}
+
+overview {
+    // zoom 0.3
+}
+
+debug {
+    // Make xdg-activation work in more cases.
+    // I.e., the thing where an app asks to be focused, and the WM focuses it.
+    // Without this, Firefox won't gain focus when I run:
+    // xdg-open https://calendar.google.com/
+    honor-xdg-activation-with-invalid-serial
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+

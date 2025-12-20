@@ -1,0 +1,42 @@
+// https://yalter.github.io/niri/Configuration%3A-Window-Rules.html
+// https://yalter.github.io/niri/Configuration%3A-Layer-Rules.html
+
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+    // This is for swaybg; change for other wallpaper tools.
+    // Find the right namespace by running niri msg layers.
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+window-rule {
+    // Only draw the border *around* the window, don't draw it as a rectangle
+    // *behind* the window.
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id="firefox"
+
+    // For some reason, Firefox eats up one pixel of any border given to it.
+    // So if the global border width is 2, a Firefox window will get a single
+    // pixel border. It'll get *no border* when the width is 1.
+    // So give it an extra pixel.
+    border {
+        width 2
+    }
+}
+
+// "Maximize"
+window-rule {
+    match app-id="chrome"
+    match app-id="imv"
+    match app-id="mpv"
+
+    default-column-width { proportion 0.98; }
+}
+
+window-rule {
+    match app-id="jetbrains-toolbox"
+    open-floating false
+}

@@ -1,0 +1,15 @@
+// https://yalter.github.io/niri/Configuration%3A-Miscellaneous.html
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    GTK_THEME "Adwaita:dark"
+}
+
+spawn-at-startup "desktop-settings"
+spawn-sh-at-startup "swaybg --image ~/wallpapers/alena-aenami-all-i-need-1080p.jpg"
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-at-startup "swayosd-server"
+
+// Disabled because it keeps breaking shit:
+// spawn-at-startup "wl-clip-persist" "--clipboard" "regular"

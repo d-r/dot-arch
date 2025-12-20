@@ -1,0 +1,72 @@
+// https://yalter.github.io/niri/Configuration%3A-Named-Workspaces.html
+
+workspace "brn"
+workspace "web"
+workspace "dev"
+workspace "dot"
+workspace "snd"
+
+spawn-sh-at-startup "niri msg action focus-workspace web"
+
+// BRN
+
+spawn-at-startup "obsidian"
+
+window-rule {
+    match app-id="obsidian" at-startup=true
+
+    open-on-workspace "brn"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+// WEB
+
+spawn-at-startup "firefox"
+
+window-rule {
+    match app-id="firefox" at-startup=true
+    match app-id="Chromium" at-startup=true
+
+    open-on-workspace "web"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+// DEV
+
+spawn-sh-at-startup "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover"
+
+window-rule {
+    match app-id="rustrover" at-startup=true
+
+    open-on-workspace "dev"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+// DOT
+
+spawn-sh-at-startup "code ~/dot"
+
+window-rule {
+    match app-id="code" at-startup=true
+
+    open-on-workspace "dot"
+    open-focused false
+}
+
+// SND
+
+// spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
+spawn-at-startup "renoise"
+
+window-rule {
+    match app-id="Renoise" at-startup=true
+    match app-id="sunvox" at-startup=true
+    match app-id="bitwig" at-startup=true
+
+    open-on-workspace "snd"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
