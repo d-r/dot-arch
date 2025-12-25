@@ -3,8 +3,8 @@
 workspace "brn"
 workspace "web"
 workspace "dev"
-workspace "dot"
 workspace "snd"
+workspace "dot"
 
 spawn-sh-at-startup "niri msg action focus-workspace web"
 
@@ -45,17 +45,6 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-// DOT
-
-spawn-sh-at-startup "code ~/dot"
-
-window-rule {
-    match app-id="code" at-startup=true
-
-    open-on-workspace "dot"
-    open-focused false
-}
-
 // SND
 
 // spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
@@ -69,4 +58,15 @@ window-rule {
     open-on-workspace "snd"
     open-focused false
     default-column-width { proportion 0.98; }
+}
+
+// DOT
+
+spawn-sh-at-startup "code ~/dot"
+
+window-rule {
+    match app-id="code" at-startup=true
+
+    open-on-workspace "dot"
+    open-focused false
 }
