@@ -17,9 +17,6 @@ PROMPT="%F{blue}%~>%f " # the current path in blue
 #-------------------------------------------------------------------------------
 # ALIASES
 
-alias n='niri-session'
-
-# Be verbose. I like getting feedback on my actions.
 alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
@@ -29,6 +26,9 @@ alias c='clear'
 alias ls='ls -lAF --group-directories-first --si --color'
 alias e=$EDITOR
 alias m='micro'
+alias n='niri-session'
+alias sc='systemctl'
+alias js='journalctl'
 
 # Wrapper around yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
