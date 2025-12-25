@@ -2,6 +2,7 @@ alias l = ^ls -lAF --group-directories-first --si --color
 alias xo = xdg-open
 
 alias sc = systemctl
+alias scu = systemctl --user
 alias jc = journalctl
 
 const $RUSTROVER = (

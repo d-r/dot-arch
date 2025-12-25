@@ -27,7 +27,9 @@ alias ls='ls -lAF --group-directories-first --si --color'
 alias e=$EDITOR
 alias m='micro'
 alias n='niri-session'
+
 alias sc='systemctl'
+alias scu='systemctl --user'
 alias js='journalctl'
 
 # Wrapper around yazi that changes the current working directory on exit.
