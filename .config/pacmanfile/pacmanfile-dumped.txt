@@ -4,7 +4,6 @@ base
 base-devel
 bash-language-server
 bat
-better-control-git
 blobdrop-git
 brightnessctl
 btop
@@ -15,8 +14,10 @@ clang
 cmake
 dex
 dhcpcd
+dnsmasq
 efibootmgr
 emacs-wayland
+eza
 fastfetch
 fd
 firefox
@@ -33,15 +34,18 @@ grub
 gum
 harsh-git
 helix
+hydrogen
 impala
 imv
 inotify-tools
 inter-font
+iptables-nft
 janet-lang
 jetbrains-toolbox
 just
 keyd
 kitty
+klystrack-plus
 lazygit
 less
 libnotify
@@ -61,7 +65,6 @@ mpd
 mpv
 nautilus
 neovim-git
-networkmanager
 niri-git
 noto-fonts-cjk
 noto-fonts-emoji
@@ -72,7 +75,6 @@ orca
 otf-atkinson-hyperlegible
 pacman-contrib
 pacmanfile
-paru
 pavucontrol
 pdfjs
 pipewire
@@ -80,6 +82,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 python-adblock
+qemu-full
 qt6-wayland
 qutebrowser-git
 realtime-generic-setup
@@ -118,6 +121,7 @@ ttf-jetbrains-mono-nerd
 ttf-nerd-fonts-symbols-mono
 unzip
 vim
+virt-manager
 visual-studio-code-bin
 vulkan-radeon
 waybar
@@ -130,11 +134,13 @@ xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
 xdg-user-dirs
 xwayland-satellite-git
+yay
 yazi
 yt-dlp
 zathura-pdf-mupdf
 zed
 zk
 zoxide
+zram-generator
 zsh
 zsh-syntax-highlighting
