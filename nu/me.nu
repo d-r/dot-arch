@@ -17,7 +17,7 @@ export def projects [] {
     | flatten
 }
 
-def "projects-in" [$dir] {
+def projects-in [$dir] {
     let $dir = ($dir | path expand)
     let $dirs = (ls $dir | where type == dir | get name)
     $dirs | each { project $in }
