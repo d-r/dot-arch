@@ -1,3 +1,18 @@
+alias l = ^ls -lAF --group-directories-first --si --color
+alias xo = xdg-open
+
+alias sc = systemctl
+alias jc = journalctl
+
+const $RUSTROVER = (
+    "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover" | path expand
+)
+
+# RustRover
+def --wrapped rr [$path = ".", ...$rest] {
+    wm spawn $RUSTROVER ($path | path expand) ...$rest
+}
+
 # Install package(s)
 def --wrapped in [...$args] {
     if ($args | is-empty) {

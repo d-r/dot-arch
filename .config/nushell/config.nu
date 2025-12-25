@@ -5,7 +5,6 @@ use niri.nu *
 use me.nu
 
 source rc.common.nu
-source rc.linux.nu
 source rc.arch.nu
 
 # zoxide init nushell | save -f ~/dot/.config/nushell/zoxide.nu
