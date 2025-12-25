@@ -52,7 +52,7 @@ menu:
     desc: Power
     submenu:
       - key: "s"
-        desc: Sleep
+        desc: Suspend
         cmd: systemctl suspend
       - key: "r"
         desc: Soft reboot
@@ -61,5 +61,5 @@ menu:
         desc: Reboot
         cmd: reboot
       - key: "o"
-        desc: Off
-        cmd: poweroff
+        desc: Power-off
+        cmd: systemctl poweroff
