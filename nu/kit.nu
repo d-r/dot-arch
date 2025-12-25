@@ -1,4 +1,4 @@
-# As set of useful tools
+# A set of useful tools
 
 export alias say = notify-send
 
@@ -71,4 +71,18 @@ export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
 export def is-url []: any -> bool {
     let $url = try { url parse }
     ($url | is-not-empty)
+}
+
+#------------------------------------------------------------------------------
+# FILES
+
+# Create all directories on the path to the given file
+export def mktrail [$file: path]: nothing -> nothing {
+    mkdir ($file | path dirname)
+}
+
+# Like `touch`, but creates missing directories
+export def poke [$file: path]: nothing -> nothing {
+    mktrail $file
+    touch $file
 }

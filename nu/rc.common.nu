@@ -59,17 +59,6 @@ def --env y [...args] {
     rm -fp $tmp
 }
 
-# Create all directories on the path to the given file
-def mktrail [$file: path]: nothing -> nothing {
-    mkdir ($file | path dirname)
-}
-
-# Like `touch`, but creates missing directories
-def poke [$file: path]: nothing -> nothing {
-    mktrail $file
-    touch $file
-}
-
 # Return the current year
 def year []: nothing -> string {
     (date now | format date "%Y")
