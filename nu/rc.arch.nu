@@ -1,12 +1,9 @@
 # Install package(s)
 def --wrapped in [...$args] {
     if ($args | is-empty) {
-        # Use pacman to list packages, as `paru -Slq` falls apart and starts
-        # printing garbage.
-        # TODO: Handle AUR packages.
-        paru -S (pacman -Slq | fzf --preview 'paru -Si {}' --preview-window 'down:50%:wrap')
+        yay -S (yay -Slq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
     } else {
-        paru -S ...$args
+        yay -S ...$args
     }
 }
 
@@ -14,20 +11,20 @@ def --wrapped in [...$args] {
 def --wrapped un [...$args] {
     if ($args | is-empty) {
         # -Qe = list packages that were explicitly installed
-        paru -Rs (paru -Qeq | fzf --preview 'paru -Si {}' --preview-window 'down:50%:wrap')
+        yay -Rs (yay -Qeq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
     } else {
-        paru -Rs ...$args
+        yay -Rs ...$args
     }
 }
 
 # Update outdated packages
-alias up = paru
+alias up = yay
 
 # List outdated packages
-alias out = paru -Qu
+alias out = yay -Qu
 
 # Sync package database
-alias syn = paru -Fy
+alias syn = yay -Fy
 
 # Reboot the system without going back to BIOS
 alias soft-reboot = systemctl soft-reboot
