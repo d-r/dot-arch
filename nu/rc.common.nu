@@ -19,6 +19,8 @@ alias music = rmpc
 
 alias pick-file = fzf --preview 'bat --color=always {}'
 
+alias as-tree = tree --fromfile
+
 # Set context (`task` project)
 def --env cx [$context:string = ""]: nothing -> nothing {
     $env.CONTEXT = $context
