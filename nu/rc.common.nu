@@ -19,6 +19,7 @@ alias music = rmpc
 
 alias pick-file = fzf --preview 'bat --color=always {}'
 
+alias tree = ^tree -F --dirsfirst --noreport
 alias as-tree = tree --fromfile
 
 # Set context (`task` project)
