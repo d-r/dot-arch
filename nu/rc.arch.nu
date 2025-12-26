@@ -1,4 +1,4 @@
-alias l = ^ls -lAF --group-directories-first --si --color
+alias l = eza -l --group-directories-first
 alias xo = xdg-open
 
 alias sc = systemctl

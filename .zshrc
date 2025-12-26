@@ -23,7 +23,7 @@ alias rm='rm -v'
 alias ln='ln -v'
 
 alias c='clear'
-alias ls='ls -lAF --group-directories-first --si --color'
+alias ls='eza -l --group-directories-first'
 alias e=$EDITOR
 alias m='micro'
 alias n='niri-session'
