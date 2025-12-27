@@ -35,24 +35,24 @@ export def key-of [$v]: record -> any {
 const $COLUMN_SEP = "\t"
 
 export def pick-item []: record -> any {
-    let $row = (kv | pick --match-column k)
+    let $row = (kv | pick --column k)
     $row.v
 }
 
-export def pick [...$columns: string, --match-column: string]: table -> record {
-    let $table = $in
-    let $menu = ($table | select ...$columns | indexed | table-str)
-
-    # TODO: DRY this up
-    let $choice = if ($match_column | is-empty) {
-        $menu | fzf --delimiter $COLUMN_SEP --with-nth 2..
+export def pick [...$columns: string, --column: string]: table -> record {
+    let $menu = $in | select ...$columns | indexed
+    let $choice = if ($column | is-empty) {
+        $menu | pick-row
     } else {
-        let $n = ($table | index-of-column $match_column) + 1
-        $menu | fzf --delimiter $COLUMN_SEP --with-nth 2.. --nth $n
+        let $n = ($menu | index-of-column $column) + 1
+        $menu | pick-row --nth $n
     }
-
     let $i = $choice | split row -r $COLUMN_SEP | first | into int
     $in | get $i
+}
+
+def --wrapped pick-row [...$args]: table -> string {
+    table-str | fzf --delimiter $COLUMN_SEP --with-nth 2.. ...$args
 }
 
 export def table-str []: table -> string {
