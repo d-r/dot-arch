@@ -7,7 +7,7 @@ def main [] {}
 def "main save-clipped-url" [] {
     let $s = (wl-paste)
     if ($s | is-url) {
-        tui bookmark $s
+        tui save-url $s
     }
 }
 
