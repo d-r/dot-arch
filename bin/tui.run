@@ -1,6 +1,0 @@
-#!/usr/bin/env nu
-
-use ~/dot/nu/all.nu *
-
-let $app = (me apps | select desktop_file name | pick name)
-wm spawn dex $app.desktop_file

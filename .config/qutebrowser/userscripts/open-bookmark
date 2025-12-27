@@ -3,7 +3,7 @@
 const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
 const $URL_FILE = "/tmp/qb-url"
 
-tui qb-visit
+tui-term open-bookmark-in-qb
 
 if ($URL_FILE | path exists) {
     let $url = (open $URL_FILE)

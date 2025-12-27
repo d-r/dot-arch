@@ -1,0 +1,25 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
+
+# Present a TUI dialog box
+def main [$cmd: string, ...$args] {
+    let $id = $"tui.($cmd)"
+    (
+        kitten panel
+        --layer=overlay
+        --single-instance
+        --instance-group=($id)
+        --exclusive-zone=0
+        --override-exclusive-zone
+        --toggle-visibility=yes
+        --hide-on-focus-loss=yes
+        --lines=20
+        --config=($CONFIG)
+        --app-id=($id)
+        --
+        tui $cmd ...$args
+    )
+}

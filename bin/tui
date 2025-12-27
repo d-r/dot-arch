@@ -2,24 +2,42 @@
 
 use ~/dot/nu/all.nu *
 
-const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
+def main [] {}
 
-# Present a TUI dialog box
-def main [$cmd: string, ...$args] {
-    let $cmd = $"tui.($cmd)"
-    (
-        kitten panel
-        --layer=overlay
-        --single-instance
-        --instance-group=($cmd)
-        --exclusive-zone=0
-        --override-exclusive-zone
-        --toggle-visibility=yes
-        --hide-on-focus-loss=yes
-        --lines=20
-        --config=($CONFIG)
-        --app-id=($cmd)
-        --
-        $cmd ...$args
-    )
+def "main save-clipped-url" [] {
+    let $s = (wl-paste)
+    if ($s | is-url) {
+        tui bookmark $s
+    }
+}
+
+def "main save-url" [$url] {
+    let $marks = (me bookmarks)
+    let $key = ($marks | key-of $url) | default ""
+
+    let $key = gum input --placeholder $"Key for ($url)" --value $key
+
+    if ($key | is-not-empty) {
+        $marks | upsert $key $url | me save-bookmarks
+        notify-send "Bookmark saved"
+    }
+}
+
+def "main open-bookmark" [] {
+    xdg-open (me bookmarks | pick-item)
+}
+
+def "main open-bookmark-in-qb" [] {
+    (me bookmarks | pick-item) o> /tmp/qb-url
+}
+
+def "main open-project" [] {
+    let $pro = me projects | pick name dir --match-column name
+    let $dir = $pro.dir | path expand
+    wm spawn $pro.editor $dir
+}
+
+def "main run" [] {
+    let $app = me apps | select desktop_file name | pick name
+    wm spawn dex $app.desktop_file
 }

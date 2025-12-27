@@ -1,7 +1,0 @@
-#!/usr/bin/env nu
-
-use ~/dot/nu/all.nu *
-
-let $pro = (me projects | pick name dir --match-column name)
-let $dir = ($pro.dir | path expand)
-wm spawn $pro.editor $dir

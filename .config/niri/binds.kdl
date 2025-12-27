@@ -19,10 +19,10 @@ binds {
     Mod+Return { spawn "trm"; }
     Mod+Apostrophe { spawn-sh "kitten quick-access-terminal"; }
 
-    Mod+O { spawn-sh "tui visit"; }
-    Mod+S { spawn "bookmark-cb"; }
     Mod+R { spawn "fuzzel"; }
-    Mod+P { spawn-sh "tui edit"; }
+    Mod+P { spawn-sh "tui-term open-project"; }
+    Mod+O { spawn-sh "tui-term open-bookmark"; }
+    Mod+S { spawn-sh "tui-term save-clipped-url"; }
 
     // TABS
 
