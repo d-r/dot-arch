@@ -39,18 +39,21 @@ export def pick-item []: record -> any {
     $row.v
 }
 
-export def pick [...$columns: string, --column: string, --no-headers]: table -> record {
-    let $menu = $in | select ...$columns | indexed
-    let $menu_str = $menu | table-str --no-headers=($no_headers)
+# TODO: Rename?
+# TODO: Clean up
+export def pick [...$columns: string, --column: string = "", --no-headers]: table -> record {
+    let $table = $in
+    let $menu = $table | select ...$columns | indexed
+    let $menu = $menu | table-str --no-headers=($no_headers)
     let $hl = if $no_headers { 0 } else { 1 }
     let $choice = if ($column | is-empty) {
-        $menu_str | pick-line $hl
+        $menu | pick-line $hl
     } else {
-        let $n = ($menu | index-of-column $column) + 1
-        $menu_str | pick-line $hl --nth $n
+        let $n = ($table | index-of-column $column) + 1
+        $menu | pick-line $hl --nth $n
     }
     let $i = $choice | split row -r $COLUMN_SEP | first | into int
-    $in | get $i
+    $table | get $i
 }
 
 def --wrapped pick-line [$hl, ...$args]: string -> string {
