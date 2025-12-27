@@ -35,28 +35,31 @@ export def key-of [$v]: record -> any {
 const $COLUMN_SEP = "\t"
 
 export def pick-item []: record -> any {
-    let $row = (kv | pick --column k)
+    let $row = (kv | pick --column k --no-headers)
     $row.v
 }
 
-export def pick [...$columns: string, --column: string]: table -> record {
+export def pick [...$columns: string, --column: string, --no-headers]: table -> record {
     let $menu = $in | select ...$columns | indexed
+    let $menu_str = $menu | table-str --no-headers=($no_headers)
+    let $hl = if $no_headers { 0 } else { 1 }
     let $choice = if ($column | is-empty) {
-        $menu | pick-row
+        $menu_str | pick-line $hl
     } else {
         let $n = ($menu | index-of-column $column) + 1
-        $menu | pick-row --nth $n
+        $menu_str | pick-line $hl --nth $n
     }
     let $i = $choice | split row -r $COLUMN_SEP | first | into int
     $in | get $i
 }
 
-def --wrapped pick-row [...$args]: table -> string {
-    table-str | fzf --delimiter $COLUMN_SEP --with-nth 2.. ...$args
+def --wrapped pick-line [$hl, ...$args]: string -> string {
+    fzf --header-lines $hl --delimiter $COLUMN_SEP --with-nth 2.. ...$args
 }
 
-export def table-str []: table -> string {
-    to tsv --noheaders | column --table --separator "\t" --output-separator $COLUMN_SEP
+export def table-str [--no-headers]: table -> string {
+    let $tsv = $in | to tsv --noheaders=($no_headers)
+    $tsv | column --table --separator "\t" --output-separator $COLUMN_SEP
 }
 
 export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {

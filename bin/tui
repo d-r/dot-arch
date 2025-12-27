@@ -32,12 +32,12 @@ def "main open-bookmark-in-qb" [] {
 }
 
 def "main open-project" [] {
-    let $pro = me projects | pick name dir --column name
+    let $pro = me projects | pick name dir --column name --no-headers
     let $dir = $pro.dir | path expand
     wm spawn $pro.editor $dir
 }
 
 def "main run" [] {
-    let $app = me apps | select desktop_file name | pick name
+    let $app = me apps | select desktop_file name | pick name --no-headers
     wm spawn dex $app.desktop_file
 }
