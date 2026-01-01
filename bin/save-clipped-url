@@ -1,0 +1,10 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/kit.nu *
+
+def main [] {
+    let $s = (wl-paste)
+    if ($s | is-url) {
+        tui-term save-url $s
+    }
+}

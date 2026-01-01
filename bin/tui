@@ -4,13 +4,6 @@ use ~/dot/nu/all.nu *
 
 def main [] {}
 
-def "main save-clipped-url" [] {
-    let $s = (wl-paste)
-    if ($s | is-url) {
-        tui save-url $s
-    }
-}
-
 def "main save-url" [$url] {
     let $marks = (me bookmarks)
     let $key = ($marks | key-of $url) | default ""

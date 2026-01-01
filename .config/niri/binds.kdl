@@ -22,7 +22,7 @@ binds {
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn-sh "tui-term open-project"; }
     Mod+O { spawn-sh "tui-term open-bookmark"; }
-    Mod+S { spawn-sh "tui-term save-clipped-url"; }
+    Mod+S { spawn "save-clipped-url"; }
 
     // TABS
 
