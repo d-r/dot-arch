@@ -383,6 +383,7 @@ local plugins = {
   -- https://github.com/nvim-mini/mini.pairs
   {
     'nvim-mini/mini.pairs',
+    enabled = false,
     opts = {},
   },
 
