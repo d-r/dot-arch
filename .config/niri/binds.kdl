@@ -14,14 +14,14 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Space { spawn "wlr-which-key"; }
-    Mod+Delete { spawn-sh "wlr-which-key --initial-keys p"; }
+    Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Return { spawn "trm"; }
-    Mod+Apostrophe { spawn-sh "kitten quick-access-terminal"; }
+    Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
 
     Mod+R { spawn "fuzzel"; }
-    Mod+P { spawn-sh "tui-term open-project"; }
-    Mod+O { spawn-sh "tui-term open-bookmark"; }
+    Mod+P { spawn "tui-term" "open-project"; }
+    Mod+O { spawn "tui-term" "open-bookmark"; }
     Mod+S { spawn "save-clipped-url"; }
 
     // TABS
@@ -104,17 +104,17 @@ binds {
 
     // VOLUME KEYS
 
-    XF86AudioLowerVolume { spawn-sh "swayosd-client --output-volume lower"; }
-    XF86AudioRaiseVolume { spawn-sh "swayosd-client --output-volume raise"; }
-    XF86AudioMute { spawn-sh "swayosd-client --output-volume mute-toggle"; }
-    XF86AudioMicMute { spawn-sh "swayosd-client --input-volume mute-toggle"; }
+    XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioMute { spawn "swayosd-client" "--output-volume mute-toggle"; }
+    XF86AudioMicMute { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
     // BRIGHTNESS KEYS
 
-    XF86MonBrightnessDown { spawn-sh "swayosd-client --brightness lower"; }
-    XF86MonBrightnessUp { spawn-sh "swayosd-client --brightness raise"; }
-    Shift+XF86MonBrightnessDown { spawn-sh "swayosd-client --brightness 0"; }
-    Shift+XF86MonBrightnessUp { spawn-sh "swayosd-client --brightness 100"; }
+    XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
+    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
+    Shift+XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "0"; }
+    Shift+XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "100"; }
 
     // SCREENSHOTS
 
