@@ -17,6 +17,7 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Return { spawn "trm"; }
+    Mod+Shift+Return { spawn "footclient"; }
     Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
 
     Mod+R { spawn "fuzzel"; }
