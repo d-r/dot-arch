@@ -10,6 +10,4 @@ spawn-sh-at-startup "swaybg --image ~/wallpapers/alena-aenami-all-i-need-1080p.j
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
-
-// Disabled because it keeps breaking shit:
-// spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+spawn-at-startup "foot" "--server"
