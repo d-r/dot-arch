@@ -12,7 +12,6 @@ export def projects [] {
         (project ~/.config/harsh)
         (project ~/vault obsidian)
         (projects-in ~/lab)
-        (projects-in ~/src)
     ]
     | flatten
 }

@@ -107,7 +107,7 @@ export def "wm cwd" [] {
     match (wm ws-name) {
         "web" => "~/dl"
         "dot" => "~/dot"
-        "dev" => "~/src"
+        "dev" => "~/lab"
         "brn" => "~/brain"
         "snd" => "~/snd"
         _ => "~"
