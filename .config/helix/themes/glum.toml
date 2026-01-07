@@ -30,9 +30,6 @@ label = "teal"
 
 comment = "green"
 
-special = "orange"
-"function.macro" = "orange"
-
 constant = "cyan"
 "type.parameter" = "cyan"
 
@@ -49,6 +46,8 @@ function = "fg"
 tag = "fg"
 constructor = "fg"
 type = "fg"
+special = "fg"
+"function.macro" = "fg"
 
 # MARKUP
 
