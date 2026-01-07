@@ -7,38 +7,38 @@
 
 # DIAGNOSTICS
 
-error = "error"
-warning = "warning"
-info = "info"
-hint = "info"
+error = "red"
+warning = "yellow"
+info = "green"
+hint = "green"
 
-"diagnostic.error" = "error"
-"diagnostic.warning" = "warning"
-"diagnostic.info" = "info"
-"diagnostic.hint" = "info"
+"diagnostic.error" = "red"
+"diagnostic.warning" = "yellow"
+"diagnostic.info" = "green"
+"diagnostic.hint" = "green"
 
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = "builtin"
-label = "builtin"
-"type.builtin" = "builtin"
-"variable.builtin" = "builtin"
-"function.builtin" = "builtin"
-"constant.builtin" = "builtin"
+keyword = "teal"
+label = "teal"
+"type.builtin" = "teal"
+"variable.builtin" = "teal"
+"function.builtin" = "teal"
+"constant.builtin" = "teal"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
-comment = "info"
+comment = "green"
 
-special = "meta"
-"function.macro" = "meta"
+special = "orange"
+"function.macro" = "orange"
 
-constant = "constant"
-"type.parameter" = "constant"
+constant = "cyan"
+"type.parameter" = "cyan"
 
-string = "string"
-"string.special.symbol" = "string"
-"constant.character" = "string"
+string = "purple"
+"string.special.symbol" = "purple"
+"constant.character" = "purple"
 
 punctuation = "fg"
 operator = "fg"
@@ -62,17 +62,7 @@ type = "fg"
 
 bg = "#1a1a1a"
 fg = "#c6c6c6"
-builtin = "#7fa396"
-info = "#98c379"
-meta = "#ff9e64"
-constant = "#9eb1ff"
-string = "#de8ade"
-error = "#ee518a"
-warning = "#ffff57"
-dim = "#777777"
-
-off_black = "#1a1a1a"
-off_white = "#c6c6c6"
+gray = "#777777"
 black = "#000000"
 white = "#ffffff"
 purple = "#de8ade"
