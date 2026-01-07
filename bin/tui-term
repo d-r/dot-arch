@@ -2,24 +2,15 @@
 
 use ~/dot/nu/all.nu *
 
-const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
+const $FONT = "font=JetBrains Mono:size=14"
 
-# Present a TUI dialog box
+# Run `tui ...` inside of a terminal.
 def main [$cmd: string, ...$args] {
     let $id = $"tui.($cmd)"
-    (
-        kitten panel
-        --layer=overlay
-        --single-instance
-        --instance-group=($id)
-        --exclusive-zone=0
-        --override-exclusive-zone
-        --toggle-visibility=yes
-        --hide-on-focus-loss=yes
-        --lines=20
-        --config=($CONFIG)
-        --app-id=($id)
-        --
-        tui $cmd ...$args
-    )
+    let $w = (wm window-with-app-id $id)
+    if ($w | is-empty) {
+        footclient -a $id -o $FONT -- tui $cmd ...$args
+   } else {
+        wm focus-window $w.id
+    }
 }
