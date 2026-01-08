@@ -4,5 +4,5 @@ use ~/dot/nu/niri.nu *
 
 # Spawn a terminal and optionally run a command inside of it
 def --wrapped main [...$cmd] {
-    footclient -D (wm cwd) ...$cmd
+    kitty --single-instance -d (wm cwd) ...$cmd
 }
