@@ -20,23 +20,23 @@ hint = "green"
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = "purple"
-label = "purple"
-"type.builtin" = "purple"
-"variable.builtin" = "purple"
-"function.builtin" = "purple"
-"constant.builtin" = "purple"
+keyword = "teal"
+label = "teal"
+"type.builtin" = "teal"
+"variable.builtin" = "teal"
+"function.builtin" = "teal"
+"constant.builtin" = "teal"
 
-type = "magenta"
+type = "fg"
 
-comment = "gray"
+comment = "green"
 
 "constant.numeric" = "cyan"
 "type.parameter" = "cyan"
 
-string = "green"
-"string.special.symbol" = "green"
-"constant.character" = "green"
+string = "purple"
+"string.special.symbol" = "purple"
+"constant.character" = "purple"
 
 constant = "fg"
 punctuation = "fg"
