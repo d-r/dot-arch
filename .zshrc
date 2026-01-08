@@ -31,6 +31,7 @@ alias n='niri-session'
 alias sc='systemctl'
 alias scu='systemctl --user'
 alias js='journalctl'
+alias soft-reboot='systemctl soft-reboot'
 
 # Wrapper around yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
