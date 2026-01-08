@@ -628,20 +628,30 @@ local plugins = {
   -- TODO: Replace this with my own theme.
   --
   -- https://github.com/folke/tokyonight.nvim
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     styles = {
+  --       comments = { italic = false },
+  --       keywords = { italic = false },
+  --     },
+  --   },
+  -- },
+
   {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-      },
-    },
-  },
+    "oskarnurm/koda.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- require("koda").setup({ transparent = true })
+      vim.cmd("colorscheme koda")
+    end,
+  }
 }
 
-local theme = 'tokyonight-night'
+local theme = 'koda'
 
 kit.init_lazy {
   spec = plugins,
