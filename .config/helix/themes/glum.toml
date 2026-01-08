@@ -30,6 +30,8 @@ label = "teal"
 type = "off_white"
 
 comment = "gray"
+"comment.line.documentation" = "green"
+"comment.block.documentation" = "green"
 
 "constant.numeric" = "magenta"
 "type.parameter" = "magenta"
