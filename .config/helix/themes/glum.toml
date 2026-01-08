@@ -31,8 +31,8 @@ type = "off_white"
 
 comment = "green"
 
-"constant.numeric" = "cyan"
-"type.parameter" = "cyan"
+"constant.numeric" = "magenta"
+"type.parameter" = "magenta"
 
 string = "purple"
 "string.special.symbol" = "purple"
