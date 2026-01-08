@@ -38,7 +38,7 @@
         "format": "{signalStrength:03} <span foreground=\"#777\">W</span>",
         "format-disconnected": "DIS <span foreground=\"#777\">W</span>",
         "tooltip-format": "{essid}\n{ipaddr}\n{ifname}",
-        "on-click": "kitty impala"
+        "on-click": "footclient -a impala -e impala"
     },
     "battery": {
         "interval": 5,
