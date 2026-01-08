@@ -20,22 +20,24 @@ hint = "green"
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = "teal"
-label = "teal"
-"type.builtin" = "teal"
-"variable.builtin" = "teal"
-"function.builtin" = "teal"
-"constant.builtin" = "teal"
+keyword = "purple"
+label = "purple"
+"type.builtin" = "purple"
+"variable.builtin" = "purple"
+"function.builtin" = "purple"
+"constant.builtin" = "purple"
 # "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
-comment = "green"
+type = "magenta"
+
+comment = "gray"
 
 constant = "cyan"
 "type.parameter" = "cyan"
 
-string = "purple"
-"string.special.symbol" = "purple"
-"constant.character" = "purple"
+string = "green"
+"string.special.symbol" = "green"
+"constant.character" = "green"
 
 punctuation = "fg"
 operator = "fg"
@@ -45,7 +47,6 @@ namespace = "fg"
 function = "fg"
 tag = "fg"
 constructor = "fg"
-type = "fg"
 special = "fg"
 "function.macro" = "fg"
 
@@ -60,10 +61,10 @@ special = "fg"
 [palette]
 
 bg = "#1a1a1a"
-fg = "#c6c6c6"
+fg = "#b6b6b6"
 gray = "#777777"
 black = "#000000"
-white = "#ffffff"
+white = "#e0e0e0"
 purple = "#de8ade"
 magenta = "#bb9af7"
 teal = "#7fa396"
