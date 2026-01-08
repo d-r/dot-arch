@@ -26,19 +26,19 @@ label = "purple"
 "variable.builtin" = "purple"
 "function.builtin" = "purple"
 "constant.builtin" = "purple"
-# "keyword.directive" = "keyword" # -- preprocessor comments (#if in C)
 
 type = "magenta"
 
 comment = "gray"
 
-constant = "cyan"
+"constant.numeric" = "cyan"
 "type.parameter" = "cyan"
 
 string = "green"
 "string.special.symbol" = "green"
 "constant.character" = "green"
 
+constant = "fg"
 punctuation = "fg"
 operator = "fg"
 attribute = "fg"
