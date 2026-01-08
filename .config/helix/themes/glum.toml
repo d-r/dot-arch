@@ -27,7 +27,7 @@ label = "teal"
 "function.builtin" = "teal"
 "constant.builtin" = "teal"
 
-type = "fg"
+type = "off_white"
 
 comment = "green"
 
@@ -52,7 +52,7 @@ special = "fg"
 
 # MARKUP
 
-"markup.heading" = { fg = "white", modifiers = ["bold"] }
+"markup.heading" = { fg = "off_white", modifiers = ["bold"] }
 "markup.bold" = { modifiers = ["bold"] }
 "markup.italic" = { modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
@@ -64,7 +64,7 @@ bg = "#181818"
 fg = "#b6b6b6"
 gray = "#777777"
 black = "#000000"
-white = "#e0e0e0"
+off_white = "#e0e0e0"
 purple = "#de8ade"
 magenta = "#bb9af7"
 teal = "#7fa396"
