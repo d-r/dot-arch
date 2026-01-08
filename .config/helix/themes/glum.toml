@@ -29,7 +29,7 @@ label = "teal"
 
 type = "off_white"
 
-comment = "green"
+comment = "gray"
 
 "constant.numeric" = "magenta"
 "type.parameter" = "magenta"
