@@ -26,7 +26,7 @@ def project [$dir, $editor?] {
     let $dir = ($dir | path expand)
     {
         name: ($dir | path basename)
-        dir: ($dir | str replace $nu.home-path "~"),
+        dir: ($dir | str replace $nu.home-dir "~"),
         editor: "code",
     }
 }
