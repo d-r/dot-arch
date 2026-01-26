@@ -25,9 +25,11 @@ def "main open-bookmark-in-qb" [] {
 }
 
 def "main open-project" [] {
-    let $pro = me projects | pick name --no-headers
-    let $dir = $pro.dir | path expand
-    wm spawn $pro.editor $dir
+    cd ~/lab
+    code (fd -td | fzf)
+    # let $pro = me projects | pick name --no-headers
+    # let $dir = $pro.dir | path expand
+    # wm spawn $pro.editor $dir
 }
 
 def "main run" [] {
