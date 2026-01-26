@@ -16,15 +16,15 @@ def "main save-url" [$url] {
     }
 }
 
-def "main open-bookmark" [] {
+def "main urls" [] {
     xdg-open (me bookmarks | pick-item)
 }
 
-def "main open-bookmark-in-qb" [] {
+def "main qb-urls" [] {
     (me bookmarks | pick-item) o> /tmp/qb-url
 }
 
-def "main open-project" [] {
+def "main lab" [] {
     cd ~/lab
     code (fd -td | fzf)
     # let $pro = me projects | pick name --no-headers
@@ -32,7 +32,7 @@ def "main open-project" [] {
     # wm spawn $pro.editor $dir
 }
 
-def "main run" [] {
+def "main apps" [] {
     let $app = me apps | select desktop_file name | pick name --no-headers
     wm spawn dex $app.desktop_file
 }

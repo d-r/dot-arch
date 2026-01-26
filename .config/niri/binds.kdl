@@ -21,8 +21,8 @@ binds {
     Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
 
     Mod+R { spawn "fuzzel"; }
-    Mod+P { spawn "tui-term" "open-project"; }
-    Mod+O { spawn "tui-term" "open-bookmark"; }
+    Mod+P { spawn "tui-term" "lab"; }
+    Mod+O { spawn "tui-term" "urls"; }
     Mod+S { spawn "save-clipped-url"; }
 
     // TABS
