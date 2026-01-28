@@ -8,7 +8,10 @@ alias j = just
 alias lg = lazygit
 alias resume = job unfreeze
 
+alias cb = cargo build
 alias cr = cargo run
+alias cc = cargo clippy
+alias cf = cargo fmt
 
 alias h = harsh
 alias ha = harsh ask
