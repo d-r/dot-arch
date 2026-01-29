@@ -24,7 +24,7 @@ def "main save" [$url: string]: nothing -> nothing {
 
     if ($key | is-not-empty) {
         ($marks | upsert $key $url) | main write
-        notify-send "Bookmark saved"
+        notify-send $"Bookmark ($key) saved"
     }
 }
 
