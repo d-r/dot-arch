@@ -25,8 +25,8 @@ def "main t" []: nothing -> list {
 
 # List MIME associations (MIME type -> application)
 # It will take a while.
-def "mime a" []: nothing -> table {
-    (mime-types) | each { get-association $in } | sort-by app
+def "main a" []: nothing -> table {
+    (mime t) | each { get-association $in } | sort-by app
 }
 
 def get-association [$type] {
