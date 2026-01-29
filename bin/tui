@@ -5,23 +5,15 @@ use ~/dot/nu/all.nu *
 def main [] {}
 
 def "main save-url" [$url] {
-    let $marks = (me bookmarks)
-    let $key = ($marks | key-of $url) | default ""
-
-    let $key = gum input --placeholder $"Key for ($url)" --value $key
-
-    if ($key | is-not-empty) {
-        $marks | upsert $key $url | me save-bookmarks
-        notify-send "Bookmark saved"
-    }
+    bm save $url
 }
 
 def "main urls" [] {
-    xdg-open (me bookmarks | pick-item)
+    bm open
 }
 
 def "main qb-urls" [] {
-    (me bookmarks | pick-item) o> /tmp/qb-url
+    bm qb-open
 }
 
 def "main lab" [] {

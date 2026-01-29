@@ -32,21 +32,6 @@ def project [$dir, $editor?] {
 }
 
 #-------------------------------------------------------------------------------
-# BOOKMARKS
-
-const $BOOKMARK_FILE = '~/data/bookmarks.toml' | path expand
-
-# List bookmarks
-export def bookmarks []: nothing -> record {
-    open $BOOKMARK_FILE
-}
-
-# Save bookmarks to disk
-export def save-bookmarks []: record -> nothing {
-    $in | to toml | save -f $BOOKMARK_FILE
-}
-
-#-------------------------------------------------------------------------------
 # MIME TYPES
 #
 # I wanted to see what *all* of the assigned default applications are, without

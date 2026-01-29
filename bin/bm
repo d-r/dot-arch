@@ -1,0 +1,37 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+const $FILE = ('~/data/bookmarks.toml' | path expand)
+
+def main [] {
+    main open
+}
+
+def "main open" []: nothing -> nothing {
+    xdg-open (main read | pick-item)
+}
+
+def "main qb-open" []: nothing -> nothing {
+    (main read | pick-item) o> /tmp/qb-url
+}
+
+def "main save" [$url: string]: nothing -> nothing {
+    let $marks = main read
+    let $key = ($marks | key-of $url) | default ""
+
+    let $key = gum input --placeholder $"Key for ($url)" --value $key
+
+    if ($key | is-not-empty) {
+        ($marks | upsert $key $url) | main write
+        notify-send "Bookmark saved"
+    }
+}
+
+def "main read" []: nothing -> record {
+    open $FILE
+}
+
+def "main write" []: record -> nothing {
+    $in | to toml | save -f $FILE
+}
