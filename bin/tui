@@ -23,8 +23,3 @@ def "main lab" [] {
     # let $dir = $pro.dir | path expand
     # wm spawn $pro.editor $dir
 }
-
-def "main apps" [] {
-    let $app = me apps | select desktop_file name | pick name --no-headers
-    wm spawn dex $app.desktop_file
-}
