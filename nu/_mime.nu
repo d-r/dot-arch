@@ -1,5 +1,3 @@
-#!/usr/bin/env nu
-
 #-------------------------------------------------------------------------------
 # MIME TYPES
 #
@@ -14,18 +12,18 @@
 #
 # I used `mimeo -m` to generate the contents of mime-types.txt.
 
-def main [] {
-    help main
+export def mime [] {
+    help mime
 }
 
 # List MIME types
-def "main t" []: nothing -> list {
+export def "mime t" []: nothing -> list {
     open ~/dot/assets/mime-types.txt | lines
 }
 
 # List MIME associations (MIME type -> application)
 # It will take a while.
-def "main a" []: nothing -> table {
+export def "mime a" []: nothing -> table {
     (mime t) | each { get-association $in } | sort-by app
 }
 
