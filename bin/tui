@@ -19,7 +19,4 @@ def "main qb-urls" [] {
 def "main lab" [] {
     cd ~/lab
     code (fd -td | fzf)
-    # let $pro = me projects | pick name --no-headers
-    # let $dir = $pro.dir | path expand
-    # wm spawn $pro.editor $dir
 }

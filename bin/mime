@@ -1,35 +1,4 @@
-# My stuff
-
-#-------------------------------------------------------------------------------
-# PROJECTS
-
-# List projects
-export def projects [] {
-    [
-        (project ~/dot)
-        (project ~/brain)
-        (project ~/data)
-        (project ~/.config/harsh)
-        (project ~/vault obsidian)
-        (projects-in ~/lab)
-    ]
-    | flatten
-}
-
-def projects-in [$dir] {
-    let $dir = ($dir | path expand)
-    let $dirs = (ls $dir | where type == dir | get name)
-    $dirs | each { project $in }
-}
-
-def project [$dir, $editor?] {
-    let $dir = ($dir | path expand)
-    {
-        name: ($dir | path basename)
-        dir: ($dir | str replace $nu.home-dir "~"),
-        editor: "code",
-    }
-}
+#!/usr/bin/env nu
 
 #-------------------------------------------------------------------------------
 # MIME TYPES
@@ -45,18 +14,22 @@ def project [$dir, $editor?] {
 #
 # I used `mimeo -m` to generate the contents of mime-types.txt.
 
+def main [] {
+    help main
+}
+
 # List MIME types
-export def mime-types []: nothing -> list {
+def "main t" []: nothing -> list {
     open ~/dot/assets/mime-types.txt | lines
 }
 
 # List MIME associations (MIME type -> application)
 # It will take a while.
-export def mime-associations []: nothing -> table {
-    (mime-types) | each { get-mime-association $in } | sort-by app
+def "mime a" []: nothing -> table {
+    (mime-types) | each { get-association $in } | sort-by app
 }
 
-def get-mime-association [$type] {
+def get-association [$type] {
     let $app = (xdg-mime query default $type)
     if ($app | is-empty) {
         null

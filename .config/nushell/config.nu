@@ -2,7 +2,6 @@ const NU_LIB_DIRS = [~/dot/nu]
 
 use kit.nu *
 use niri.nu *
-use me.nu
 
 source rc.common.nu
 source rc.arch.nu
