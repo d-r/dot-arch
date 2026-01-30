@@ -18,5 +18,5 @@ def "main qb-urls" [] {
 
 def "main lab" [] {
     cd ~/lab
-    code (fd -td | fzf)
+    code (fd -td --follow | fzf)
 }
