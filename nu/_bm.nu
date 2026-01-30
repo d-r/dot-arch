@@ -20,7 +20,7 @@ export def "bm save" [$url: string]: nothing -> nothing {
 
     if ($key | is-not-empty) {
         ($marks | upsert $key $url) | bm write
-        notify-send $"Bookmark ($key) saved"
+        notify-send $'Bookmark "($key)" saved'
     }
 }
 
