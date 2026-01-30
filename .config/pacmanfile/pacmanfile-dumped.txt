@@ -7,7 +7,6 @@ bat
 blobdrop-git
 brightnessctl
 btop
-carapace
 cardinal
 chromium
 clang
@@ -24,9 +23,11 @@ firefox
 firefox-nightly-bin
 flatpak
 flat-remix
+foot
 fuzzel
 fwupd
 fzf
+gdu
 git
 gnome-keyring
 gnome-themes-extra
@@ -63,6 +64,7 @@ milkytracker
 mpc
 mpd
 mpv
+nano
 nautilus
 neovim-git
 niri-git
@@ -86,6 +88,7 @@ qemu-full
 qt6-wayland
 qutebrowser-git
 realtime-generic-setup
+reflector-rs
 ripdrag-git
 ripgrep
 rmpc-git
@@ -102,6 +105,7 @@ swaybg
 swaync
 swayosd-git
 systemd-resolvconf
+sysz
 taskwarrior-tui
 tealdeer
 terminus-font
