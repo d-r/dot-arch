@@ -48,7 +48,7 @@ function y() {
 
 # Completions
 # https://carapace.sh/
-source <(carapace _carapace)
+# source <(carapace _carapace)
 
 # The `z` command - better `cd`
 # https://github.com/ajeetdsouza/zoxide
