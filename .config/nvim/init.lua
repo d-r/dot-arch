@@ -639,9 +639,21 @@ local plugins = {
       },
     },
   },
+
+  -- Nord, but darker and warmer.
+  -- github.com/AlexvZyl/nordic.nvim
+  {
+      'AlexvZyl/nordic.nvim',
+      lazy = false,
+      priority = 1000,
+      opts = {
+         italic_comments = false,
+      },
+  }
 }
 
-local theme = 'tokyonight-night'
+-- local theme = 'tokyonight-night'
+local theme = 'nordic'
 
 kit.init_lazy {
   spec = plugins,
