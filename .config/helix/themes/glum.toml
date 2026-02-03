@@ -35,9 +35,9 @@ comment = "green"
 "comment.line.documentation" = "green"
 "comment.block.documentation" = "green"
 
-constant = "magenta"
-"constant.numeric" = "magenta"
-"type.parameter" = "magenta"
+constant = "cyan"
+"constant.numeric" = "cyan"
+"type.parameter" = "cyan"
 
 string = "purple"
 "string.special.symbol" = "purple"
