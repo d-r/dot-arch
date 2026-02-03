@@ -16,7 +16,7 @@ def "main qb-urls" [] {
     bm qb-open
 }
 
-def "main lab" [] {
+def "main lab" [--$ide="code"] {
     cd ~/lab
-    code (fd -td --follow | fzf)
+    exec $ide (fd -td --follow | fzf)
 }
