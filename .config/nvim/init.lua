@@ -649,11 +649,20 @@ local plugins = {
       opts = {
          italic_comments = false,
       },
+  },
+
+  {
+      "yonatan-perel/lake-dweller.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {
+        italics = false,
+      },
   }
 }
 
 -- local theme = 'tokyonight-night'
-local theme = 'nordic'
+local theme = 'lake-dweller'
 
 kit.init_lazy {
   spec = plugins,
