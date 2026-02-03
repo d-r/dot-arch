@@ -1,0 +1,50 @@
+#!/usr/bin/env nu
+
+# Manage system packages
+def main [] {
+    help main
+}
+
+# Install package(s)
+def --wrapped "main in" [...$args] {
+    if ($args | is-empty) {
+        yay -S (yay -Slq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+    } else {
+        yay -S ...$args
+    }
+}
+
+# Uninstall package(s)
+def --wrapped "main un" [...$args] {
+    if ($args | is-empty) {
+        # -Qe = list packages that were explicitly installed
+        yay -Rs (yay -Qeq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+    } else {
+        yay -Rs ...$args
+    }
+}
+
+# Update outdated packages
+def "main up" [] {
+    yay
+}
+
+# Sync package database
+def "main sync" [] {
+    yay -Fy
+}
+
+# Dump Pacmanfile
+def "main dump" [] {
+    pacmanfile dump
+}
+
+# List outdated packages
+def "min out" [] {
+    yay -Qu
+}
+
+# Get information about a package
+def "main info" [$pk] {
+    yay -Si $pk
+}
