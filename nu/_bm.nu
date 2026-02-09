@@ -5,7 +5,8 @@ export def bm [] {
 }
 
 export def "bm open" []: nothing -> nothing {
-    xdg-open (bm read | pick-item)
+    # Using `wm spawn` here makes the terminal window close quicker.
+    wm spawn xdg-open (bm read | pick-item)
 }
 
 export def "bm qb-open" []: nothing -> nothing {
