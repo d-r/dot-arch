@@ -13,7 +13,7 @@ output "eDP-1" {
 }
 
 input {
-    workspace-auto-back-and-forth
+    // workspace-auto-back-and-forth
 
     keyboard {
         xkb {
