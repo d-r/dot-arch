@@ -42,6 +42,7 @@ def "main cc" [] {
 # Dump Pacmanfile
 def "main dump" [] {
     pacmanfile dump
+    bat ~/.config/pacmanfile/pacmanfile-dumped.txt
 }
 
 # List outdated packages
