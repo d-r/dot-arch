@@ -34,13 +34,18 @@ def "main sync" [] {
     yay -Fy
 }
 
+# Clear cache
+def "main cc" [] {
+    sudo rm -rf ~/.cache/yay/*
+}
+
 # Dump Pacmanfile
 def "main dump" [] {
     pacmanfile dump
 }
 
 # List outdated packages
-def "min out" [] {
+def "main out" [] {
     yay -Qu
 }
 
