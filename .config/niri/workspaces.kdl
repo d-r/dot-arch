@@ -1,24 +1,10 @@
 // https://yalter.github.io/niri/Configuration%3A-Named-Workspaces.html
 
-workspace "brn"
 workspace "web"
 workspace "dev"
+workspace "brn"
 workspace "snd"
 workspace "dot"
-
-spawn-sh-at-startup "niri msg action focus-workspace web"
-
-// BRN
-
-spawn-at-startup "obsidian"
-
-window-rule {
-    match app-id="obsidian" at-startup=true
-
-    open-on-workspace "brn"
-    open-focused false
-    default-column-width { proportion 0.98; }
-}
 
 // WEB
 
@@ -41,6 +27,18 @@ window-rule {
     match app-id="rustrover" at-startup=true
 
     open-on-workspace "dev"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+// BRN
+
+spawn-at-startup "obsidian"
+
+window-rule {
+    match app-id="obsidian" at-startup=true
+
+    open-on-workspace "brn"
     open-focused false
     default-column-width { proportion 0.98; }
 }
