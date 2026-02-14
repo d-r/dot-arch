@@ -1,0 +1,22 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+const $LAB = ("~/lab" | path expand)
+
+# Projects
+def main [] {
+    main open
+}
+
+# Pick project
+def "main pick" [] {
+    cd $LAB
+    let $dir = (fd -td --follow | fzf)
+    [$LAB $dir] | path join
+}
+
+# Open project
+def "main open" [] {
+    wm spawn code (main pick)
+}

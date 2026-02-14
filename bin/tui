@@ -17,6 +17,5 @@ def "main qb-urls" [] {
 }
 
 def "main lab" [--$ide="code"] {
-    cd ~/lab
-    exec $ide (fd -td --follow | fzf)
+    pro open
 }
