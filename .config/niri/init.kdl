@@ -6,7 +6,7 @@ environment {
 }
 
 spawn-at-startup "desktop-settings"
-spawn-sh-at-startup "swaybg --image ~/wallpapers/alena-aenami-all-i-need-1080p.jpg"
+spawn-sh-at-startup "swaybg --image ~/dot/wallpapers/alena-aenami-all-i-need-1080p.jpg"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
