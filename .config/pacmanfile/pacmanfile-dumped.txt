@@ -4,7 +4,6 @@ base
 base-devel
 bash-language-server
 bat
-blobdrop-git
 brightnessctl
 btop
 cardinal
@@ -41,7 +40,6 @@ imv
 inotify-tools
 inter-font
 iptables-nft
-janet-lang
 jetbrains-toolbox
 just
 keyd
@@ -89,9 +87,9 @@ qt6-wayland
 qutebrowser-git
 realtime-generic-setup
 reflector-rs
-ripdrag-git
 ripgrep
 rmpc-git
+rsync
 rtcqs
 rustup
 schismtracker-git
@@ -103,7 +101,7 @@ sunvox
 surge-xt
 swaybg
 swaync
-swayosd-git
+swayosd
 systemd-resolvconf
 sysz
 taskwarrior-tui
