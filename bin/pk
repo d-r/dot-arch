@@ -42,6 +42,10 @@ def "main cc" [] {
 # Dump Pacmanfile
 def "main dump" [] {
     pacmanfile dump
+}
+
+# Show Pacmanfile
+def "main file" [] {
     bat ~/.config/pacmanfile/pacmanfile-dumped.txt
 }
 
