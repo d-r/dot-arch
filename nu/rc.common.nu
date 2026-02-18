@@ -12,6 +12,15 @@ alias cr = cargo run
 alias cc = cargo clippy
 alias cf = cargo fmt
 
+# The magic rsync incantation I will never remember.
+#
+# -a = Archive mode. Shortcut for -rlptgoD. Means "copy everything recursively,
+#      preserving symlinks, permissions, times, group, owner, and device files".
+# -v = Verbose.
+# -h = Human readable sizes.
+# -P = Progressbar.
+alias rs = rsync -avhP
+
 alias h = harsh
 alias ha = harsh ask
 alias hl = harsh log
