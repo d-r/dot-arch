@@ -5,7 +5,7 @@ alias sc = systemctl
 alias scu = systemctl --user
 alias jc = journalctl
 
-alias insert = sudo mount /dev/sda1 /media
+alias insert = sudo mount /dev/sda2 /media
 alias eject = sudo umount /media
 
 const $RUSTROVER = (
