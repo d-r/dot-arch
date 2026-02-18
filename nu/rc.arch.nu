@@ -5,6 +5,9 @@ alias sc = systemctl
 alias scu = systemctl --user
 alias jc = journalctl
 
+alias insert = sudo mount /dev/sda1 /media
+alias eject = sudo umount /media
+
 const $RUSTROVER = (
     "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover" | path expand
 )
