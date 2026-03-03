@@ -5,6 +5,8 @@ export alias say = notify-send
 #------------------------------------------------------------------------------
 # COLLECTIONS
 
+export alias get? = get -o
+
 export alias first? = try { first }
 
 export alias last? = try { last }
