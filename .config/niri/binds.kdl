@@ -20,7 +20,6 @@ binds {
 
     Mod+Return { spawn "trm"; }
     Mod+Shift+Return { spawn "alt-trm"; }
-    Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
 
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn "tui-term" "lab"; }
