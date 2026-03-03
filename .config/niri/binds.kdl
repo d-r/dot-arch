@@ -19,7 +19,6 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Return { spawn "trm"; }
-    Mod+Shift+Return { spawn "alt-trm"; }
 
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn "tui-term" "lab"; }
