@@ -20,31 +20,36 @@ hint = "green"
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = "teal"
-label = "teal"
-operator = "teal"
-"type.builtin" = "teal"
-"variable.builtin" = "teal"
-"function.builtin" = "teal"
-"constant.builtin" = "teal"
+keyword = "purple"
+label = "purple"
+"type.builtin" = "purple"
+"variable.builtin" = "purple"
+"function.builtin" = "purple"
+"constant.builtin" = "purple"
 
-type = "off_white"
-# type = "fg"
+operator = "purple"
+# operator = "gray"
 
-comment = "green"
-"comment.line.documentation" = "green"
-"comment.block.documentation" = "green"
-
-constant = "cyan"
-"constant.numeric" = "cyan"
+type = "magenta"
 "type.parameter" = "cyan"
 
-string = "purple"
-"string.special.symbol" = "purple"
-"constant.character" = "purple"
-
+comment = "gray"
 punctuation = "gray"
 
+"comment.line.documentation" = "teal"
+"comment.block.documentation" = "teal"
+
+"constant.numeric" = "orange"
+
+string = "green"
+"string.special.symbol" = "green"
+"constant.character" = "green"
+
+# string = "teal"
+# "string.special.symbol" = "teal"
+# "constant.character" = "teal"
+
+constant = "fg"
 attribute = "fg"
 variable = "fg"
 namespace = "fg"
