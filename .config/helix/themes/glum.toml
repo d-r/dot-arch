@@ -35,13 +35,13 @@ comment = "green"
 "comment.line.documentation" = "green"
 "comment.block.documentation" = "green"
 
-constant = "purple"
-"constant.numeric" = "purple"
-"type.parameter" = "purple"
+constant = "cyan"
+"constant.numeric" = "cyan"
+"type.parameter" = "cyan"
 
-string = "cyan"
-"string.special.symbol" = "cyan"
-"constant.character" = "cyan"
+string = "purple"
+"string.special.symbol" = "purple"
+"constant.character" = "purple"
 
 punctuation = "gray"
 
