@@ -18,9 +18,9 @@ def --wrapped "main in" [...$args] {
 def --wrapped "main un" [...$args] {
     if ($args | is-empty) {
         # -Qe = list packages that were explicitly installed
-        yay -Rs (yay -Qeq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+        yay -Rns (yay -Qeq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
     } else {
-        yay -Rs ...$args
+        yay -Rns ...$args
     }
 }
 
