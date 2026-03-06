@@ -1,4 +1,4 @@
-const $FILE = ('~/bucket/bookmarks.toml' | path expand)
+const $FILE = ('~/churn/bookmarks.toml' | path expand)
 
 export def bm [] {
     bm open
