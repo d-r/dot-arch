@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/_wm.nu *
+
+wm toggle "console" footclient -a console tmux new -A -s console
