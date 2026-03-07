@@ -2,8 +2,6 @@
 
 use ~/dot/nu/all.nu *
 
-const $LAB = ("~/lab" | path expand)
-
 # Projects
 def main [] {
     main open
@@ -11,9 +9,8 @@ def main [] {
 
 # Pick project
 def "main pick" [] {
-    cd $LAB
-    let $dir = (fd -td --follow | fzf)
-    [$LAB $dir] | path join
+    cd ~/lab
+    fd -td --follow | fzf | path expand
 }
 
 # Open project
