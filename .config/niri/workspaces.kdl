@@ -2,8 +2,8 @@
 
 workspace "web"
 workspace "dev"
-workspace "brn"
 workspace "snd"
+workspace "brn"
 
 // WEB
 
@@ -30,18 +30,6 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-// BRN
-
-spawn-at-startup "obsidian"
-
-window-rule {
-    match app-id="obsidian" at-startup=true
-
-    open-on-workspace "brn"
-    open-focused false
-    default-column-width { proportion 0.98; }
-}
-
 // SND
 
 // spawn-sh-at-startup "flatpak run com.bitwig.BitwigStudio"
@@ -53,6 +41,18 @@ window-rule {
     match app-id="bitwig" at-startup=true
 
     open-on-workspace "snd"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+// BRN
+
+spawn-at-startup "obsidian"
+
+window-rule {
+    match app-id="obsidian" at-startup=true
+
+    open-on-workspace "brn"
     open-focused false
     default-column-width { proportion 0.98; }
 }
