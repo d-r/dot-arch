@@ -81,6 +81,10 @@ export def is-url []: any -> bool {
     ($url | is-not-empty)
 }
 
+export def is-symlink []: path -> bool {
+    ($in | path type) == "symlink"
+}
+
 #------------------------------------------------------------------------------
 # FILES
 
@@ -93,4 +97,9 @@ export def mktrail [$file: path]: nothing -> nothing {
 export def poke [$file: path]: nothing -> nothing {
     mktrail $file
     touch $file
+}
+
+# Replace "/home/dan" with "~"" in the input string
+export def shorten-home []: string -> string {
+    str replace $nu.home-dir "~"
 }

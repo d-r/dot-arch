@@ -1,0 +1,66 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+use std/log
+
+const $CONFIG_DIR = "~/dot/cfg" | path expand
+
+def main [] {
+    main link
+}
+
+# Install links
+def "main link" [] {
+    cd ~
+    link .zshrc zshrc
+    link .zshenv zshrc
+
+    cd ~/.config
+    link nushell/config.nu nushell.nu
+    link task/taskrc taskrc
+    link fuzzel/fuzzel.ini fuzzel.ini
+    link tmux/tmux.conf tmux.conf
+    link mpd/mpd.conf mpd.conf
+    link waybar/config.jsonc waybar.jsonc
+    link waybar/style.css waybar.css
+    link mako/config mako.ini
+    link yazi/yazi.toml yazi.toml
+    link yazi/theme.toml yazi.theme.toml
+    link tealdeer/config.toml tealdeer.toml
+    link wlr-which-key/config.yaml wlr-which-key.yaml
+    link systemd/user/waybar-watcher.service systemd/waybar-watcher.service
+    link git
+    link nvim
+    link helix
+    link niri
+    link kitty
+    link foot
+    link qutebrowser
+    link doom
+}
+
+def link [$target, $source = ""] {
+    let $source = if ($source | is-empty) {
+        $target
+    } else {
+        $source
+    }
+
+    let $source = [$CONFIG_DIR $source] | path join
+    if not ($source | path exists) {
+        log warning $"Path `($source)` does not exist; skipping"
+        return;
+    }
+
+    let $dir = $target | path dirname
+    if ($dir | is-symlink) {
+        rm -v $dir
+    }
+
+    mktrail $target
+    ln -sfnT $source $target
+
+    let $target = $target | path expand --no-symlink | shorten-home
+    let $source = $source | shorten-home
+    print $"($target) -> ($source)"
+}
