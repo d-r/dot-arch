@@ -598,15 +598,38 @@ local plugins = {
 
   -- Magit for nvim
   -- https://github.com/NeogitOrg/neogit
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim', -- Required for... *something*
+  --     'sindrets/diffview.nvim', -- Diff integration
+  --     'folke/snacks.nvim', -- Picker
+  --   },
+  --   keys = {
+  --     { '<leader>g', ':Neogit kind=replace<CR>', desc = 'Neogit' },
+  --   },
+  -- },
+
+  -- LazyGit integration
+  -- https://github.com/kdheepak/lazygit.nvim?tab=readme-ov-file
   {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim', -- Required for... *something*
-      'sindrets/diffview.nvim', -- Diff integration
-      'folke/snacks.nvim', -- Picker
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
     },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
     keys = {
-      { '<leader>g', ':Neogit kind=replace<CR>', desc = 'Neogit' },
+      { '<leader>g', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
   },
 
@@ -643,22 +666,22 @@ local plugins = {
   -- Nord, but darker and warmer.
   -- github.com/AlexvZyl/nordic.nvim
   {
-      'AlexvZyl/nordic.nvim',
-      lazy = false,
-      priority = 1000,
-      opts = {
-         italic_comments = false,
-      },
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      italic_comments = false,
+    },
   },
 
   {
-      "yonatan-perel/lake-dweller.nvim",
-      lazy = false,
-      priority = 1000,
-      opts = {
-        italics = false,
-      },
-  }
+    'yonatan-perel/lake-dweller.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      italics = false,
+    },
+  },
 }
 
 -- local theme = 'tokyonight-night'
