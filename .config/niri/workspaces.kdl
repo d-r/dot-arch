@@ -4,7 +4,6 @@ workspace "web"
 workspace "dev"
 workspace "brn"
 workspace "snd"
-workspace "dot"
 
 // WEB
 
@@ -56,15 +55,4 @@ window-rule {
     open-on-workspace "snd"
     open-focused false
     default-column-width { proportion 0.98; }
-}
-
-// DOT
-
-spawn-sh-at-startup "code ~/dot"
-
-window-rule {
-    match app-id="code" at-startup=true
-
-    open-on-workspace "dot"
-    open-focused false
 }
