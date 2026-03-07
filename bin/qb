@@ -1,11 +1,14 @@
 #!/usr/bin/env nu
 
-def main [$profile:string = ""] {
-    if ($profile | is-empty) {\
-        qutebrowser
-    } else {
-        let $profile_dir = [$env.XDG_DATA_HOME, "qutebrowser-profiles", $profile] | path join
-        let $config_file = "~/.config/qutebrowser/config.py" | path expand
-        qutebrowser --basedir $profile_dir --config-py $config_file
-    }
+use ~/dot/nu/_wm.nu *
+
+def main [$profile:string] {
+    let $profile_dir = [$env.XDG_DATA_HOME "qutebrowser-profiles" $profile] | path join
+    let $config_file = "~/.config/qutebrowser/config.py" | path expand
+    let $app_id = "qb." + $profile
+    (wm spawn qutebrowser
+        --basedir $profile_dir
+        --config-py $config_file
+        --desktop-file-name $app_id
+    )
 }
