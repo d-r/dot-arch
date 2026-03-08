@@ -14,7 +14,7 @@ def "main pick-bookmark" [] {
 
 # Spawn project picker
 def "main pick-project" [] {
-    tui projects -- pro open
+    tui projects -- dev open
 }
 
 # If there is a URL inside the clipboard, save it as a bookmark

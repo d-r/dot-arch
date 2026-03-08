@@ -2,38 +2,38 @@
 
 use ~/dot/nu/all.nu *
 
-# Projects
+# Development
 def main [] {
     main open
 }
 
-# Open a project
+# Open a repo
 def "main open" [] {
     ide (main pick)
 }
 
-# Pick a project
+# Pick a repo
 def "main pick" [] {
-    (main dirs) | fzf
+    (main repos) | fzf
 }
 
-# List project directories
-def "main dirs" [] {
+# List repos
+def "main repos" [] {
     [
-        (dir ~/dot)
-        (dir ~/churn)
-        (dirs-in ~/src)
-        (dirs-in ~/lab)
+        (repo ~/dot)
+        (repo ~/churn)
+        (repos-in ~/src)
+        (repos-in ~/lab)
     ] | flatten | join-lines
 }
 
 #-------------------------------------------------------------------------------
 
-def dir [$p] {
-    [$p]
+def repo [$dir] {
+    [$dir]
 }
 
-def dirs-in [$dir] {
+def repos-in [$dir] {
     ls ($dir | path expand) | where type == dir | each { $in.name | shorten-home }
 }
 
