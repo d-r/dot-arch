@@ -25,26 +25,14 @@ def "main save-clipped-url" [] {
     } else if ($s | is-empty) {
         notify-send "Clipboard is empty"
     } else {
-        notify-send "Clipboard contents is not a URL"
+        notify-send "Clipboard content is not a URL"
     }
 }
 
 # Spawn a browser
 def "main browser" [$url = ""] {
     let $profile = (wm ws-name)
-    if ($profile | is-empty) {
-        wm spawn qutebrowser $url
-    } else {
-        let $profile_dir = (data-path "qutebrowser-profiles" $profile)
-        let $config_file = (config-path "qutebrowser" "config.py")
-        let $app_id = "qb." + $profile
-        (wm spawn qutebrowser
-            --basedir $profile_dir
-            --config-py $config_file
-            --desktop-file-name $app_id
-            $url
-        )
-    }
+    qb $profile $url
 }
 
 # Spawn a terminal and optionally run a command inside of it

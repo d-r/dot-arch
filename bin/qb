@@ -2,17 +2,18 @@
 
 use ~/dot/nu/all.nu *
 
-def main [$profile?] {
+def main [$profile = "", $url = ""] {
     if ($profile | is-empty) {
-        wm spawn qutebrowser
+        wm spawn qutebrowser $url
     } else {
         let $profile_dir = (data-path "qutebrowser-profiles" $profile)
         let $config_file = (config-path "qutebrowser" "config.py")
-        let $app_id = "qb." + $profile
+        let $app_id = "qutebrowser." + $profile
         (wm spawn qutebrowser
             --basedir $profile_dir
             --config-py $config_file
             --desktop-file-name $app_id
+            $url
         )
     }
 }
