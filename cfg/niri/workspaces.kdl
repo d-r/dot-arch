@@ -20,7 +20,7 @@ window-rule {
 
 // DEV
 
-spawn-sh-at-startup "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover"
+// spawn-sh-at-startup "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover"
 
 window-rule {
     match app-id="rustrover" at-startup=true
