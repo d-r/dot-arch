@@ -1,9 +1,0 @@
-#!/usr/bin/env nu
-
-use ~/dot/nu/all.nu *
-
-# Run a CLI application
-def main [$cmd: string, ...$args] {
-    let $cmd = $"cli.($cmd)"
-    wm spawn kitty --app-id $cmd - $cmd ...$args
-}

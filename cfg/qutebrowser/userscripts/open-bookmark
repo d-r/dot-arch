@@ -1,12 +1,10 @@
 #!/usr/bin/env nu
 
-const $CONFIG = ("~/.config/kitty/tui.conf" | path expand)
-const $URL_FILE = "/tmp/qb-url"
+tui qb-bookmarks -- bm qb-open
 
-tui-term qb-urls
-
-if ($URL_FILE | path exists) {
-    let $url = (open $URL_FILE)
+let $file = (bm qb-url-file)
+if ($file | path exists) {
+    let $url = (open $file)
     echo $"open ($url)" o> $env.QUTE_FIFO
-    rm $URL_FILE
+    rm $file
 }

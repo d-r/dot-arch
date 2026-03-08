@@ -103,3 +103,13 @@ export def poke [$file: path]: nothing -> nothing {
 export def shorten-home []: string -> string {
     str replace $nu.home-dir "~"
 }
+
+# Returns a path relative to $XDG_DATA_HOME
+export def data-path [...$args]: nothing -> path {
+    [$env.XDG_DATA_HOME] | append $args | path join
+}
+
+# Returns a path relative to $XDG_CONFIG_HOME
+export def config-path [...$args]: nothing -> path {
+    [$env.XDG_CONFIG_HOME] | append $args | path join
+}

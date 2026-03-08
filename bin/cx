@@ -1,0 +1,62 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+# Context
+def main [] {
+    help main
+}
+
+# Spawn bookmark picker
+def "main pick-bookmark" [] {
+    tui bookmarks -- bm open
+}
+
+# Spawn project picker
+def "main pick-project" [] {
+    tui projects -- pro open
+}
+
+# If there is a URL inside the clipboard, save it as a bookmark
+def "main save-clipped-url" [] {
+    let $s = (wl-paste)
+    if ($s | is-url) {
+        tui save-url -- bm save $s
+    }
+}
+
+# Spawn a browser
+def "main browser" [$url = ""] {
+    let $profile = (wm ws-name)
+    if ($profile | is-empty) {
+        wm spawn qutebrowser $url
+    } else {
+        let $profile_dir = (data-path "qutebrowser-profiles" $profile)
+        let $config_file = (config-path "qutebrowser" "config.py")
+        let $app_id = "qb." + $profile
+        (wm spawn qutebrowser
+            --basedir $profile_dir
+            --config-py $config_file
+            --desktop-file-name $app_id
+            $url
+        )
+    }
+}
+
+# Spawn a terminal and optionally run a command inside of it
+def --wrapped "main term" [...$cmd] {
+    footclient -D (main cwd) ...$cmd
+}
+
+# Get the current working directory for the focused workspace
+export def "main cwd" [] {
+    match (wm ws-name) {
+        web => "~/dl"
+        dot => "~/dot"
+        dev => "~/lab"
+        brn => "~/brain"
+        snd => "~/snd"
+        _ => "~"
+    }
+    | path expand
+}

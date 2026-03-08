@@ -1,8 +1,0 @@
-#!/usr/bin/env nu
-
-use ~/dot/nu/_wm.nu *
-
-# Spawn a terminal and optionally run a command inside of it
-def --wrapped main [...$cmd] {
-    footclient -D (wm cwd) ...$cmd
-}

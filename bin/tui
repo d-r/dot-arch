@@ -1,21 +1,16 @@
 #!/usr/bin/env nu
 
-use ~/dot/nu/all.nu *
+use ~/dot/nu/_wm.nu *
 
-def main [] {}
+const $FONT = "font=JetBrains Mono:size=14"
 
-def "main save-url" [$url] {
-    bm save $url
-}
-
-def "main urls" [] {
-    bm open
-}
-
-def "main qb-urls" [] {
-    bm qb-open
-}
-
-def "main lab" [--$ide="code"] {
-    pro open
+# Spawn a modal TUI terminal
+def --wrapped main [$id, ...$cmd] {
+    let $id = "tui." + $id
+    let $w = (wm window-with-app-id $id)
+    if ($w | is-empty) {
+        footclient -a $id -o $FONT ...$cmd
+    } else {
+        wm focus-window $w.id
+    }
 }

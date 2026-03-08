@@ -34,9 +34,9 @@ alias tree = ^tree -F --dirsfirst --noreport
 alias as-tree = tree --fromfile
 
 # Set context (`task` project)
-def --env cx [$context:string = ""]: nothing -> nothing {
-    $env.CONTEXT = $context
-}
+# def --env cx [$context:string = ""]: nothing -> nothing {
+#     $env.CONTEXT = $context
+# }
 
 # task
 def --wrapped t [...$args] {
