@@ -22,6 +22,10 @@ def "main save-clipped-url" [] {
     let $s = (wl-paste)
     if ($s | is-url) {
         tui save-url -- bm save $s
+    } else if ($s | is-empty) {
+        notify-send "Clipboard is empty"
+    } else {
+        notify-send "Clipboard contents is not a URL"
     }
 }
 
