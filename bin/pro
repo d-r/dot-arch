@@ -7,15 +7,34 @@ def main [] {
     main open
 }
 
-# Pick project
-def "main pick" [] {
-    cd ~/lab
-    fd -td --follow | fzf
-}
-
-# Open project
+# Open a project
 def "main open" [] {
     ide (main pick)
+}
+
+# Pick a project
+def "main pick" [] {
+    (main dirs) | fzf
+}
+
+# List project directories
+def "main dirs" [] {
+    [
+        (dir ~/dot)
+        (dir ~/churn)
+        (dirs-in ~/src)
+        (dirs-in ~/lab)
+    ] | flatten | join-lines
+}
+
+#-------------------------------------------------------------------------------
+
+def dir [$p] {
+    [$p]
+}
+
+def dirs-in [$dir] {
+    ls ($dir | path expand) | where type == dir | each { $in.name | shorten-home }
 }
 
 def ide [$dir] {
