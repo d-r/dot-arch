@@ -10,10 +10,14 @@ def main [] {
 # Pick project
 def "main pick" [] {
     cd ~/lab
-    fd -td --follow | fzf | path expand
+    fd -td --follow | fzf
 }
 
 # Open project
 def "main open" [] {
-    wm spawn code (main pick)
+    ide (main pick)
+}
+
+def ide [$dir] {
+    wm spawn code ($dir | path expand)
 }
