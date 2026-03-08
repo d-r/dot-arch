@@ -25,14 +25,18 @@ def "main save-clipped-url" [] {
     } else if ($s | is-empty) {
         notify-send "Clipboard is empty"
     } else {
-        notify-send "Clipboard content is not a URL"
+        notify-send "Clipboard contents is not a URL"
     }
 }
 
 # Spawn a browser
 def "main browser" [$url = ""] {
-    let $profile = (wm ws-name)
-    qb $profile $url
+    let $name = (wm ws-name)
+    if $name == "web" {
+        firefox $url
+    } else {
+        qb $name $url
+    }
 }
 
 # Spawn a terminal and optionally run a command inside of it
