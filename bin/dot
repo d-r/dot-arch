@@ -13,7 +13,7 @@ def main [] {
 def "main link" [] {
     cd ~
     link .zshrc zshrc
-    link .zshenv zshrc
+    link .zshenv zshenv
 
     cd ~/.config
     link nushell/config.nu nushell.nu
