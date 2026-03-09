@@ -3,5 +3,13 @@ editor=hx
 news.version=3.9.9 # Stop nagging me about news
 confirmation=no # Just go ahead and delete that task
 dateformat=d-b-y # 1-nov-24
-default.project=life
 alias.rm=delete
+default.project=life
+context=$TASK_CONTEXT
+
+context.life.read=pro:life
+context.life.write=pro:life
+context.sys.read=pro:sys
+context.sys.write=pro:sys
+context.dm.read=pro:dm
+context.dm.write=pro:dm
