@@ -658,5 +658,5 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.enabled = True
 
 # Bindings for normal mode
-config.bind('<Ctrl+m>', 'spawn --userscript ~/.config/qutebrowser/userscripts/save-bookmark')
+config.bind('<Ctrl+s>', 'spawn --userscript ~/.config/qutebrowser/userscripts/save-bookmark')
 config.bind('<Ctrl+o>', 'spawn --userscript ~/.config/qutebrowser/userscripts/open-bookmark')
