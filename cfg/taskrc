@@ -13,3 +13,5 @@ context.sys.read=pro:sys
 context.sys.write=pro:sys
 context.dm.read=pro:dm
 context.dm.write=pro:dm
+context.snd.read=pro:snd
+context.snd.write=pro:snd
