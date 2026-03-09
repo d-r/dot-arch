@@ -12,6 +12,10 @@ export def "main open" [] {
     cx browser (main pick)
 }
 
+export def "main pick-into" [$file] {
+    (main pick) o> $file
+}
+
 export def "main pick" [] {
     (main read | pick-item)
 }
@@ -34,16 +38,4 @@ export def "main read" [] {
 
 export def "main write" [$marks] {
     $marks | to toml | save -f $BOOKMARKS_FILE
-}
-
-# QUTEBROWSER
-
-const $QB_URL_FILE = "/tmp/qb-url"
-
-export def "main qb-open" [] {
-    (main pick) o> $QB_URL_FILE
-}
-
-export def "main qb-url-file" [] {
-    $QB_URL_FILE
 }

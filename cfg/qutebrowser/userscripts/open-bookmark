@@ -1,9 +1,10 @@
 #!/usr/bin/env nu
 
-tui qb-bookmarks -- bm qb-open
+const $file = "/tmp/qb-url.txt"
 
-let $file = (bm qb-url-file)
-if ($file | path exists) {
+tui "qb-bookmarks" bm pick-into $file
+
+try {
     let $url = (open $file)
     echo $"open ($url)" o> $env.QUTE_FIFO
     rm $file
