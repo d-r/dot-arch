@@ -23,7 +23,7 @@ def "main repos" [] {
         (repo ~/dot)
         (repo ~/churn)
         (repos-in ~/src)
-        (repos-in ~/lab)
+        (repos-in ~/repos)
     ] | flatten | join-lines
 }
 
