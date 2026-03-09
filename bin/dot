@@ -6,11 +6,24 @@ use std/log
 const $CONFIG_DIR = "~/dot/cfg" | path expand
 
 def main [] {
-    main link
+    main in
 }
 
-# Install links
-def "main link" [] {
+# Install
+def "main in" [] {
+    main links
+    main keyd
+}
+
+# Install keyd config
+def "main keyd" [] {
+    sudo mkdir -p /etc/keyd
+    sudo cp -fv (cfg-path keyd.conf) /etc/keyd/default.conf
+    sudo keyd reload
+}
+
+# Install symlinks
+def "main links" [] {
     cd ~
     link .zshrc zshrc
     link .zshenv zshenv
@@ -39,6 +52,8 @@ def "main link" [] {
     link doom
 }
 
+#-------------------------------------------------------------------------------
+
 def link [$target, $source = ""] {
     let $source = if ($source | is-empty) {
         $target
@@ -46,7 +61,7 @@ def link [$target, $source = ""] {
         $source
     }
 
-    let $source = [$CONFIG_DIR $source] | path join
+    let $source = (cfg-path $source)
     if not ($source | path exists) {
         log warning $"Path `($source)` does not exist; skipping"
         return;
@@ -63,4 +78,8 @@ def link [$target, $source = ""] {
     let $target = $target | path expand --no-symlink | shorten-home
     let $source = $source | shorten-home
     print $"($target) -> ($source)"
+}
+
+def cfg-path [...$args] {
+    [$CONFIG_DIR] | append $args | path join
 }
