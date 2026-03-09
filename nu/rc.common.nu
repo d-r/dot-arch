@@ -94,3 +94,8 @@ def nusc [$file: path]: nothing -> nothing {
     cp ~/dot/assets/script.nu $file
     chmod +x $file
 }
+
+# Pick a folder with fzf and hop into it
+def --env hop [] {
+    cd (fd -td | fzf)
+}
