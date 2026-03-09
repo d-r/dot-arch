@@ -2,6 +2,8 @@
 
 use ~/dot/nu/all.nu *
 
+const $CHECKOUT_DIR = "~/co"
+
 # Development
 def main [] {
     main open
@@ -23,14 +25,20 @@ def "main repos" [] {
         (repo ~/dot)
         (repo ~/churn)
         (repos-in ~/src)
-        (repos-in ~/repos)
+        (repos-in $CHECKOUT_DIR)
     ] | flatten | join-lines
+}
+
+# Clone a third-party git repo
+def --wrapped clone [...$args] {
+    cd $CHECKOUT_DIR
+    git clone ...$args
 }
 
 #-------------------------------------------------------------------------------
 
 def repo [$dir] {
-    [$dir]
+    [($dir | path expand)]
 }
 
 def repos-in [$dir] {
