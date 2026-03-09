@@ -3,7 +3,7 @@
 use ~/dot/nu/all.nu *
 use std/log
 
-const $CONFIG_DIR = "~/dot/cfg" | path expand
+const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
 
 def main [] {
     main in
