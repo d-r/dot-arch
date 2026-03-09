@@ -4,6 +4,13 @@ use ~/dot/nu/all.nu *
 
 const $CHECKOUT_DIR = "~/co"
 
+const $REPOS = [
+    "~/dot"
+    "~/churn"
+    "~/src/*"
+    $"($CHECKOUT_DIR)/*"
+]
+
 # Development
 def main [] {
     main open
@@ -21,15 +28,11 @@ def "main pick" [] {
 
 # List repos
 def "main repos" [] {
-    [
-        (repo ~/dot)
-        (repo ~/churn)
-        (repos-in ~/src)
-        (repos-in $CHECKOUT_DIR)
-    ]
-    | flatten
-    | each { $in | shorten-home }
-    | join-lines
+    $REPOS
+        | each { glob $in }
+        | flatten
+        | each { $in | shorten-home }
+        | join-lines
 }
 
 # Clone a third-party git repo
