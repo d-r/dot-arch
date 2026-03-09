@@ -97,6 +97,6 @@ def nusc [$file: path]: nothing -> nothing {
 
 # Clone a git repo into ~/lab
 def --wrapped clone [...$args] {
-    cd ~/lab
+    cd ~/repos
     git clone ...$args
 }
