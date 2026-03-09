@@ -8,24 +8,24 @@ corner_r: 0
 padding: 20
 anchor: center
 menu:
-  - key: "k"
+  - key: k
     desc: keybr.com
     cmd: webapp keybr https://www.keybr.com/
-  - key: "w"
+  - key: w
     desc: WhatsApp
     cmd: webapp whatsapp https://web.whatsapp.com/
-  - key: "p"
+  - key: p
     desc: Power
     submenu:
-      - key: "s"
+      - key: s
         desc: Suspend
         cmd: systemctl suspend
-      - key: "r"
+      - key: r
         desc: Soft reboot
         cmd: systemctl soft-reboot
-      - key: "R"
+      - key: R
         desc: Reboot
         cmd: reboot
-      - key: "o"
+      - key: o
         desc: Power-off
         cmd: systemctl poweroff
