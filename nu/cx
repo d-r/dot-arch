@@ -22,6 +22,11 @@ def "main dirs" [] {
     tui pick-dir
 }
 
+# Spawn TODO manager
+def "main todo" [] {
+    tui todo
+}
+
 # If there is a URL inside the clipboard, save it as a bookmark
 def "main save-clipped-url" [] {
     let $s = (wl-paste)

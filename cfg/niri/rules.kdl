@@ -48,8 +48,6 @@ window-rule {
 }
 
 window-rule {
-    match app-id="console"
-    open-floating true
-    default-column-width { proportion 0.95; }
+    match app-id="tui.todo"
     default-window-height { proportion 0.95; }
 }
