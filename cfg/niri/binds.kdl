@@ -20,7 +20,7 @@ binds {
 
     Mod+Grave { spawn "kitten" "quick-access-terminal"; }
     Mod+Return { spawn "cx" "term"; }
-    Mod+Shift+Return { spawn "cx" "term"; }
+    Mod+Shift+Return { spawn "cx" "respawn-term"; }
 
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn "cx" "repos"; }

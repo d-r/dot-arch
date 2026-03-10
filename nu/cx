@@ -45,13 +45,46 @@ def "main save-clipped-url" [] {
 }
 
 # Spawn a browser
-def "main browser" [$url = ""] {
-    let $name = (wm ws-name)
-    if $name == "web" {
-        firefox $url
+def --wrapped "main browser" [...$args] {
+    let $project = (wm project)
+    if ($project | is-empty) {
+        main general-browser ...$args
     } else {
-        qb $name $url
+        main project-browser $project ...$args
     }
+}
+
+# Spawn general browser
+def --wrapped "main general-browser" [...$args] {
+    let $app_id = "firefox"
+    if ($args | is-empty) {
+        let $win = (wm window-with-app-id $app_id)
+        if ($win | is-not-empty) {
+            wm focus-window $win.id
+            return;
+        }
+    }
+    wm spawn $app_id ...$args
+}
+
+# Spawn project-specific browser
+def --wrapped "main project-browser" [$project, ...$args] {
+    let $app_id = "qutebrowser." + $project
+    if ($args | is-empty) {
+        let $win = (wm window-with-app-id $app_id)
+        if ($win | is-not-empty) {
+            wm focus-window $win.id
+            return;
+        }
+    }
+    let $profile_dir = (data-path "qutebrowser-profiles" $project)
+    let $config_file = (config-path "qutebrowser" "config.py")
+    (wm spawn qutebrowser
+        --basedir $profile_dir
+        --config-py $config_file
+        --desktop-file-name $app_id
+        ...$args
+    )
 }
 
 # Spawn a terminal and optionally run a command inside of it
