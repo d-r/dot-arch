@@ -3,5 +3,5 @@
 use kit *
 
 def main [$file] {
-    (open ~/churn/bookmarks.toml | pick-item) o> $file
+    (churn bookmarks | pick-item) o> $file
 }

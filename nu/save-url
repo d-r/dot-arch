@@ -3,13 +3,13 @@
 use kit *
 
 def main [$url] {
-    let $marks = (open ~/churn/bookmarks.toml)
+    let $marks = (churn bookmarks)
     let $key = ($marks | key-of $url | default "")
 
     let $key = (gum input --placeholder $"Key for ($url)" --value $key)
 
     if ($key | is-not-empty) {
-        ($marks | upsert $key $url) | to toml | save -f ~/churn/bookmarks.toml
+        churn save-bookmarks ($marks | upsert $key $url)
         notify-send $'Bookmark "($key)" saved'
     }
 }

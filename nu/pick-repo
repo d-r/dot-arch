@@ -2,17 +2,5 @@
 
 use kit *
 
-const $REPOS = [
-    "~/dot"
-    "~/churn"
-    "~/src/*"
-    "~/co/*"
-]
-
-let $repos = $REPOS
-    | each { glob $in }
-    | flatten
-    | each { $in | shorten-home }
-    | join-lines
-
+let $repos = (churn repos) | each { $in | path relative-to $nu.home-dir } | join-lines
 ide ($repos | fzf)

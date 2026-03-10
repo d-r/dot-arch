@@ -2,4 +2,4 @@
 
 use kit *
 
-cx browser (open ~/churn/bookmarks.toml | pick-item)
+cx browser (churn bookmarks | pick-item)
