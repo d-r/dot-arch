@@ -46,27 +46,14 @@ def "main browser" [$url = ""] {
 
 # Spawn a terminal and optionally run a command inside of it
 def --wrapped "main term" [...$cmd] {
-    footclient -D (main cwd) ...$cmd
+    footclient -D (wm cwd) ...$cmd
 }
 
 # If the focused window is a terminal, close it and spawn another term in its place
 def "main respawn-term" [] {
     let $w = (wm focused-window)
     if ($w | is-not-empty) and $w.app_id == "footclient" {
-        wm spawn footclient -D (main cwd)
+        wm spawn footclient -D (wm cwd)
         wm close-window $w.id
     }
-}
-
-# Get the current working directory for the focused workspace
-export def "main cwd" [] {
-    match (wm ws-name) {
-        web => "~/dl"
-        dot => "~/dot"
-        dev => "~/lab"
-        brn => "~/brain"
-        snd => "~/snd"
-        _ => "~"
-    }
-    | path expand
 }

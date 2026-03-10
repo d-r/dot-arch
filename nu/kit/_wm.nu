@@ -5,6 +5,19 @@ export def wm [] {
     help wm
 }
 
+# Get the current working directory for the focused workspace
+export def "wm cwd" [] {
+    match (wm ws-name) {
+        web => "~/dl"
+        dot => "~/dot"
+        dev => "~/lab"
+        brn => "~/brain"
+        snd => "~/snd"
+        _ => "~"
+    }
+    | path expand
+}
+
 #-------------------------------------------------------------------------------
 # ACTIONS
 
