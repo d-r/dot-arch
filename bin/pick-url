@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+cx browser (open ~/churn/bookmarks.toml | pick-item)

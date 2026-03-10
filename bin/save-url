@@ -1,0 +1,15 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+def main [$url] {
+    let $marks = (open ~/churn/bookmarks.toml)
+    let $key = ($marks | key-of $url | default "")
+
+    let $key = (gum input --placeholder $"Key for ($url)" --value $key)
+
+    if ($key | is-not-empty) {
+        ($marks | upsert $key $url) | to toml | save -f ~/churn/bookmarks.toml
+        notify-send $'Bookmark "($key)" saved'
+    }
+}

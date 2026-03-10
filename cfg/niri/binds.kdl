@@ -19,13 +19,13 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Return { spawn "cx" "term"; }
-    Mod+Shift+Return { spawn "cx" "respawn-term"; }
+    Mod+Shift+Return { spawn "cx" "term"; }
     Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
     // Mod+Apostrophe { spawn "console"; }
 
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn "cx" "pick-project"; }
-    Mod+O { spawn "cx" "pick-bookmark"; }
+    Mod+O { spawn "cx" "pick-url"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 
     // TABS

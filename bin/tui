@@ -5,11 +5,11 @@ use ~/dot/nu/_wm.nu *
 const $FONT = "font=JetBrains Mono:size=14"
 
 # Spawn a modal TUI terminal
-def --wrapped main [$id, ...$cmd] {
-    let $id = "tui." + $id
+def --wrapped main [$cmd, ...$args] {
+    let $id = "tui." + $cmd
     let $w = (wm window-with-app-id $id)
     if ($w | is-empty) {
-        footclient -a $id -o $FONT ...$cmd
+        footclient -a $id -o $FONT $cmd ...$args
     } else {
         wm focus-window $w.id
     }

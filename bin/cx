@@ -8,20 +8,20 @@ def main [] {
 }
 
 # Spawn bookmark picker
-def "main pick-bookmark" [] {
-    tui bookmarks -- bm open
+def "main pick-url" [] {
+    tui pick-url
 }
 
 # Spawn project picker
 def "main pick-project" [] {
-    tui projects -- dev open
+    tui pick-project
 }
 
 # If there is a URL inside the clipboard, save it as a bookmark
 def "main save-clipped-url" [] {
     let $s = (wl-paste)
     if ($s | is-url) {
-        tui save-url -- bm save $s
+        tui save-url $s
     } else if ($s | is-empty) {
         notify-send "Clipboard is empty"
     } else {

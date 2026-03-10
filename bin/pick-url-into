@@ -1,0 +1,7 @@
+#!/usr/bin/env nu
+
+use ~/dot/nu/all.nu *
+
+def main [$file] {
+    (open ~/churn/bookmarks.toml | pick-item) o> $file
+}
