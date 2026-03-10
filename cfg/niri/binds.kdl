@@ -18,10 +18,9 @@ binds {
     Mod+Space { spawn "wlr-which-key"; }
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
+    Mod+Grave { spawn "kitten" "quick-access-terminal"; }
     Mod+Return { spawn "cx" "term"; }
     Mod+Shift+Return { spawn "cx" "term"; }
-    Mod+Apostrophe { spawn "kitten" "quick-access-terminal"; }
-    // Mod+Apostrophe { spawn "console"; }
 
     Mod+R { spawn "fuzzel"; }
     Mod+P { spawn "cx" "repos"; }
