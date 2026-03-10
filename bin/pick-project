@@ -1,2 +1,5 @@
 #!/usr/bin/env nu
 
+use dot.nu *
+
+dev open
