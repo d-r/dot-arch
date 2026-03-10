@@ -4,6 +4,6 @@ use kit *
 
 # Taskwarrior in context
 def --wrapped main [...$args] {
-    $env.TASK_CONTEXT = (wm task-context)
+    $env.DOT_TASK_CONTEXT = (wm project)
     task ...$args
 }

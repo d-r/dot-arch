@@ -5,7 +5,7 @@ confirmation=no # Just go ahead and delete that task
 dateformat=d-b-y # 1-nov-24
 alias.rm=delete
 default.project=life
-context=$TASK_CONTEXT
+context=$DOT_TASK_CONTEXT
 
 context.life.read=pro:life
 context.life.write=pro:life
