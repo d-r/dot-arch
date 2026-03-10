@@ -1,11 +1,12 @@
-const NU_LIB_DIRS = [~/dot/nu]
+const NU_LIB_DIRS = [
+    ~/dot/cfg/nushell
+    ~/dot/nu
+]
 
-use all.nu *
+use kit *
 
 source rc.common.nu
 source rc.arch.nu
-
-# zoxide init nushell | save -f ~/dot/.config/nushell/zoxide.nu
 source zoxide.nu
 
 plugin add nu_plugin_formats

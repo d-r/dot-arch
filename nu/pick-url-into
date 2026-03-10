@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use dot.nu *
+use kit *
 
 def main [$file] {
     (open ~/churn/bookmarks.toml | pick-item) o> $file

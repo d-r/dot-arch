@@ -1,5 +1,5 @@
 #!/usr/bin/env nu
 
-use dot.nu *
+use kit *
 
 cx browser (open ~/churn/bookmarks.toml | pick-item)

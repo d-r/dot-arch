@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use dot.nu *
+use kit *
 
 def main [$profile, $url = ""] {
     let $profile_dir = (data-path "qutebrowser-profiles" $profile)

@@ -2,9 +2,9 @@ set shell := ["nu", "-c"]
 
 # Install (create/update symlinks)
 in:
-    ./bin/dot in
+    ./nu/dot in
 
-# Create a new Nushell script in bin/
-bin name:
-    cp assets/script.nu bin/{{name}}
-    chmod +x bin/{{name}}
+# Create a new Nushell script in nu/
+nu name:
+    cp assets/script.nu nu/{{name}}
+    chmod +x nu/{{name}}

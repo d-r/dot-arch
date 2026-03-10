@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use dot.nu *
+use kit *
 use std/log
 
 const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
@@ -25,11 +25,13 @@ def "main keyd" [] {
 # Install symlinks
 def "main links" [] {
     cd ~
+
     link .zshrc zshrc
     link .zshenv zshenv
 
     cd ~/.config
-    link nushell/config.nu nushell.nu
+
+    link nushell/config.nu
     link task/taskrc taskrc
     link fuzzel/fuzzel.ini fuzzel.ini
     link tmux/tmux.conf tmux.conf
@@ -42,6 +44,7 @@ def "main links" [] {
     link tealdeer/config.toml tealdeer.toml
     link wlr-which-key/config.yaml wlr-which-key.yaml
     link systemd/user/waybar-watcher.service systemd/waybar-watcher.service
+
     link git
     link nvim
     link helix
