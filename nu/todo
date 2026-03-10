@@ -1,0 +1,6 @@
+#!/usr/bin/env nu
+
+use kit *
+
+$env.TASK_CONTEXT = (wm task-context)
+taskwarrior-tui
