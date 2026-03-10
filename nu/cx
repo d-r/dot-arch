@@ -18,8 +18,13 @@ def "main repos" [] {
 }
 
 # Spawn directory picker
-def "main dirs" [] {
+def "main explorer" [] {
     tui pick-dir
+}
+
+# Open the CWD
+def "main dir" [] {
+    main term yazi (wm cwd)
 }
 
 # Spawn TODO manager
