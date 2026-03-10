@@ -1,0 +1,18 @@
+#!/usr/bin/env nu
+
+use kit *
+
+const $REPOS = [
+    "~/dot"
+    "~/churn"
+    "~/src/*"
+    "~/co/*"
+]
+
+let $repos = $REPOS
+    | each { glob $in }
+    | flatten
+    | each { $in | shorten-home }
+    | join-lines
+
+ide ($repos | fzf)

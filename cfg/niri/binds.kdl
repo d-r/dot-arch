@@ -24,7 +24,7 @@ binds {
     // Mod+Apostrophe { spawn "console"; }
 
     Mod+R { spawn "fuzzel"; }
-    Mod+P { spawn "cx" "pick-project"; }
+    Mod+P { spawn "cx" "pick-repo"; }
     Mod+O { spawn "cx" "pick-url"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 

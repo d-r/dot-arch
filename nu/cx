@@ -13,8 +13,8 @@ def "main pick-url" [] {
 }
 
 # Spawn project picker
-def "main pick-project" [] {
-    tui pick-project
+def "main pick-repo" [] {
+    tui pick-repo
 }
 
 # If there is a URL inside the clipboard, save it as a bookmark
