@@ -8,6 +8,18 @@ corner_r: 0
 padding: 20
 anchor: center
 menu:
+  - key: b
+    desc: Browser
+    cmd: cx browser
+  - key: m
+    desc: Bookmarks
+    cmd: cx bookmarks
+  - key: r
+    desc: Repos
+    cmd: cx repos
+  - key: d
+    desc: Directories
+    cmd: cx dirs
   - key: k
     desc: keybr.com
     cmd: webapp keybr https://www.keybr.com/

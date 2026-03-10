@@ -8,13 +8,18 @@ def main [] {
 }
 
 # Spawn bookmark picker
-def "main pick-url" [] {
+def "main bookmarks" [] {
     tui pick-url
 }
 
-# Spawn project picker
-def "main pick-repo" [] {
+# Spawn repo picker
+def "main repos" [] {
     tui pick-repo
+}
+
+# Spawn directory picker
+def "main dirs" [] {
+    tui pick-dir
 }
 
 # If there is a URL inside the clipboard, save it as a bookmark
