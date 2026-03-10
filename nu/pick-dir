@@ -3,4 +3,4 @@
 use kit *
 
 cd
-wm spawn footclient yazi (fd -td | fzf)
+wm spawn footclient y (fd -td | fzf)
