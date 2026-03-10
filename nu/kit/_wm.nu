@@ -18,6 +18,16 @@ export def "wm cwd" [] {
     | path expand
 }
 
+# Get the Taskwarrior context for the focused workspace
+export def "wm task-context" [] {
+    match (wm ws-name) {
+        dot => "sys"
+        dev => "dm"
+        snd => "snd"
+        _ => ""
+    }
+}
+
 #-------------------------------------------------------------------------------
 # ACTIONS
 
