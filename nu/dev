@@ -35,11 +35,6 @@ def "main repos" [] {
         | join-lines
 }
 
-# Clone a third-party git repo
-def --wrapped clone [...$args] {
-    cd $CHECKOUT_DIR
-    git clone ...$args
-}
 
 #-------------------------------------------------------------------------------
 

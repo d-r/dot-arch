@@ -1,0 +1,7 @@
+#!/usr/bin/env nu
+
+# Clone a third-party git repo
+def --wrapped main [...$args] {
+    cd ~/co
+    git clone ...$args
+}
