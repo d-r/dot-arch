@@ -38,16 +38,6 @@ alias as-tree = tree --fromfile
 #     $env.CONTEXT = $context
 # }
 
-# task
-def --wrapped t [...$args] {
-    let $p = $env.CONTEXT?
-    if ($p | is-empty) {
-        task ...$args
-    } else {
-        task $"pro:($p)" ...$args
-    }
-}
-
 # task add
 alias ta = t add
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env nu
+
+use kit *
+
+# Taskwarrior in context
+def --wrapped main [...$args] {
+    $env.TASK_CONTEXT = (wm task-context)
+    task ...$args
+}
