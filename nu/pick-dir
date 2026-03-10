@@ -1,0 +1,6 @@
+#!/usr/bin/env nu
+
+use kit *
+
+cd
+wm spawn footclient yazi (fd -td | fzf)
