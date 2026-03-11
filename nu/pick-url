@@ -2,4 +2,12 @@
 
 use kit *
 
-xdg-open (churn bookmarks | pick-item)
+let $menu = (churn bookmarks | kv | table-str --no-headers)
+let $url = ($menu | fzf
+    -d "\t"
+    -n 1 # name
+    --accept-nth 2 # url
+    --bind "ctrl-e:become(edit-bookmarks)"
+    --header "ctrl+e to edit"
+)
+xdg-open $url

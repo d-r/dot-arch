@@ -1,0 +1,6 @@
+#!/usr/bin/env nu
+
+use kit *
+
+wm spawn code ("~/churn/bookmarks.toml" | path expand)
+exit 1
