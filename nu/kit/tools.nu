@@ -33,6 +33,10 @@ export def key-of [$v]: record -> any {
     kv | where v == $v | get k | first?
 }
 
+export def to-map [$key_col, $value_col]: table -> record {
+    $in | reduce -f {} {|it, r| $r | upsert ($it | get $key_col) ($it | get $value_col) }
+}
+
 #------------------------------------------------------------------------------
 # PICKER
 
