@@ -25,8 +25,12 @@ def "main toggle-space" [$idx] {
     wm focus-workspace $ws
 }
 
-# Switch primary activity
-# TODO: Name?
+# Focus the primary workspace
+def "main focus-primary" [] {
+    wm focus-workspace (read-tag)
+}
+
+# Switch primary workspace
 def "main switch-primary" [] {
     match (wm tag) {
         dev => (main set-primary snd)
