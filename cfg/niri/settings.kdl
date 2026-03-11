@@ -19,6 +19,8 @@ input {
         xkb {
             layout "us,se"
         }
+        repeat-delay 200
+        repeat-rate 40
     }
 
     touchpad {
