@@ -19,7 +19,7 @@
     ],
     "niri/workspaces": {
         "format": "{value}",
-        "current-only": true
+        "current-only": false
     },
     "niri/window": {
         "format": "{app_id}",
