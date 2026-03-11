@@ -2,5 +2,5 @@
 
 use kit *
 
-wm spawn code ("~/churn/bookmarks.toml" | path expand)
+wm spawn code $env.DOT_LINK_FILE
 exit 1

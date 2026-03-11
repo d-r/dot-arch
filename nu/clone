@@ -2,6 +2,6 @@
 
 # Clone a third-party git repo
 def --wrapped main [...$args] {
-    cd ~/co
+    cd $env.DOT_CLONE_DIR
     git clone ...$args
 }
