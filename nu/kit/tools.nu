@@ -115,3 +115,8 @@ export def data-path [...$args]: nothing -> path {
 export def config-path [...$args]: nothing -> path {
     [$env.XDG_CONFIG_HOME] | append $args | path join
 }
+
+# Try to open a file, returning a default value if that fails
+export def open? [$file: path, $default: any]: nothing -> any {
+    try { open $file } catch { $default }
+}

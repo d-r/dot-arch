@@ -5,11 +5,7 @@ use kit *
 const $TAG_FILE = "/tmp/tag.txt"
 
 def read-tag [] {
-    try {
-        open $TAG_FILE
-    } catch {
-        "dev"
-    }
+    open? $TAG_FILE "dev"
 }
 
 def write-tag [$tag] {
