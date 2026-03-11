@@ -7,7 +7,7 @@ export def wm [] {
 
 # Get the current working directory for the focused workspace
 export def "wm cwd" [] {
-    match (wm ws-name) {
+    match (wm tag) {
         web => "~/dl"
         dev => "~/dot"
         brn => "~/brain"
@@ -19,11 +19,21 @@ export def "wm cwd" [] {
 
 # Get the Taskwarrior context for the focused workspace
 export def "wm project" [] {
-    match (wm ws-name) {
+    match (wm tag) {
         dot => "dot"
         dev => "dm"
         snd => "snd"
         _ => ""
+    }
+}
+
+# Get the name of the current workspace
+export def "wm tag" []: nothing -> string {
+    let $ws = (wm focused-workspace)
+    if ($ws.name | is-not-empty) {
+        $ws.name
+    } else {
+        $ws.idx | into string
     }
 }
 
@@ -112,11 +122,6 @@ export def "wm windows" [] {
 # Get the focused workspace
 export def "wm focused-workspace" [] {
     wm workspaces | where is_focused == true | first
-}
-
-# Get the name of the current workspace
-export def "wm ws-name" []: nothing -> string {
-    (wm focused-workspace).name | default ""
 }
 
 # List workspaces
