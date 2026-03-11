@@ -18,7 +18,8 @@
         "clock"
     ],
     "niri/workspaces": {
-        "format": "{value}"
+        "format": "{value}",
+        "current-only": true
     },
     "niri/window": {
         "format": "{app_id}",

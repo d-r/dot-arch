@@ -2,20 +2,48 @@
 
 use kit *
 
+const $TAG_FILE = "/tmp/tag.txt"
+
+def read-tag [] {
+    try {
+        open $TAG_FILE
+    } catch {
+        "dev"
+    }
+}
+
+def write-tag [$tag] {
+    $tag o> $TAG_FILE
+}
+
+#-------------------------------------------------------------------------------
+
 # Context
 def main [] {
     help main
 }
 
-# Cycle main activity
+# Toggle workspace
+def "main toggle-space" [$idx] {
+    let $ws = if (wm focused-workspace).idx != $idx { $idx } else { (read-tag) }
+    wm focus-workspace $ws
+}
+
+# Switch primary activity
 # TODO: Name?
-def "main cycle" [] {
+def "main switch-primary" [] {
     match (wm tag) {
-        dev => (wm focus-workspace snd)
-        snd => (wm focus-workspace dev)
+        dev => (main set-primary snd)
+        snd => (main set-primary dev)
         _ => {}
     }
 }
+
+def "main set-primary" [$tag] {
+    wm focus-workspace $tag
+    write-tag $tag
+}
+
 
 # Spawn bookmark picker
 def "main bookmarks" [] {

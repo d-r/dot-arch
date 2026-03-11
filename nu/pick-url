@@ -2,4 +2,4 @@
 
 use kit *
 
-cx browser (churn bookmarks | pick-item)
+xdg-open (churn bookmarks | pick-item)

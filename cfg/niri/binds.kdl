@@ -19,7 +19,7 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Grave { spawn "kitten" "quick-access-terminal"; }
-    Mod+Tab { spawn "cx" "cycle"; }
+    Mod+Tab { spawn "cx" "switch-primary"; }
 
     Mod+Return { spawn "cx" "term"; }
     Mod+Shift+Return { spawn "cx" "respawn-term"; }
@@ -64,8 +64,11 @@ binds {
     Mod+Home { focus-column-first; }
     Mod+End { focus-column-last; }
 
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
+    Mod+1 { spawn "cx" "toggle-space" "1"; }
+    Mod+2 { spawn "cx" "toggle-space" "2"; }
+
+    // Mod+1 { focus-workspace 1; }
+    // Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
     Mod+4 { focus-workspace 4; }
     Mod+5 { focus-workspace 5; }
