@@ -37,37 +37,6 @@ export def to-map [$key_col, $value_col]: table -> record {
     $in | reduce -f {} {|it, r| $r | upsert ($it | get $key_col) ($it | get $value_col) }
 }
 
-#------------------------------------------------------------------------------
-# PICKER
-
-const $COLUMN_SEP = "\t"
-
-export def pick-item []: record -> any {
-    let $row = (kv | pick --column k --no-headers)
-    $row.v
-}
-
-# TODO: Rename?
-# TODO: Clean up
-export def pick [...$columns: string, --column: string = "", --no-headers]: table -> record {
-    let $table = $in
-    let $menu = $table | select ...$columns | indexed
-    let $menu = $menu | table-str --no-headers=($no_headers)
-    let $hl = if $no_headers { 0 } else { 1 }
-    let $choice = if ($column | is-empty) {
-        $menu | pick-line $hl
-    } else {
-        let $n = ($table | index-of-column $column) + 1
-        $menu | pick-line $hl --nth $n
-    }
-    let $i = $choice | split row -r $COLUMN_SEP | first | into int
-    $table | get $i
-}
-
-def --wrapped pick-line [$hl, ...$args]: string -> string {
-    fzf --header-lines $hl --delimiter $COLUMN_SEP --with-nth 2.. ...$args
-}
-
 # Render the input table into a string that can be fed into `fzf` or `sk`.
 # Columns are separated by a tab character ('\t'), and column cells are padded
 # out to the same length with whitespace (' ') characters.
@@ -75,7 +44,7 @@ export def table-str [
     --no-headers # Do not list the column names on the first line
 ]: table -> string {
     let $tsv = $in | to tsv --noheaders=($no_headers)
-    $tsv | column --table --separator "\t" --output-separator $COLUMN_SEP
+    $tsv | column --table --separator "\t" --output-separator "\t"
 }
 
 export def dict-str [$kv_sep: string, $pair_sep: string]: record -> string {
