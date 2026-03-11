@@ -2,15 +2,6 @@
 
 use kit *
 
-# TODO: DRY up.
 def main [$file] {
-    let $menu = (churn bookmarks | kv | table-str --no-headers)
-    let $url = ($menu | fzf
-        -d "\t"
-        -n 1 # name
-        --accept-nth 2 # url
-        --bind "ctrl-e:become(edit-bookmarks)"
-        --header "ctrl+e to edit"
-    )
-    $url o> $file
+    (pick url) o> $file
 }

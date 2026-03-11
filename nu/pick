@@ -1,0 +1,38 @@
+#!/usr/bin/env nu
+
+use kit *
+
+# Pick a thing.
+def main [] {
+    help main
+}
+
+# Pick a URL.
+def "main url" [] {
+    let $menu = (churn bookmarks | kv | table-str --no-headers)
+    ($menu | fzf
+        -d "\t"
+        -n 1 # name
+        --accept-nth 2 # url
+        --bind "ctrl-e:become(pick.edit-bookmarks)"
+        --header "ctrl+e to edit"
+    )
+}
+
+# Pick a git repository.
+def "main repo" [] {
+    let $repos = (churn repos) | each { repo $in }
+    let $menu = $repos | table-str --no-headers
+    ($menu | fzf
+        -d "\t"
+        -n 1 # name
+        --with-nth 1
+        --accept-nth 2 # dir
+    )
+}
+
+#-------------------------------------------------------------------------------
+
+def repo [$dir: path]: nothing -> record {
+    {name: ($dir | path basename), dir: $dir}
+}

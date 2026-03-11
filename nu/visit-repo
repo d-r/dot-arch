@@ -2,5 +2,4 @@
 
 use kit *
 
-let $repos = (churn repos) | each { $in | path relative-to $nu.home-dir } | join-lines
-ide ($repos | fzf)
+ide (pick repo)
