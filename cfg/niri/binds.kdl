@@ -19,6 +19,8 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+Grave { spawn "kitten" "quick-access-terminal"; }
+    Mod+Tab { spawn "cx" "cycle"; }
+
     Mod+Return { spawn "cx" "term"; }
     Mod+Shift+Return { spawn "cx" "respawn-term"; }
 
@@ -61,8 +63,6 @@ binds {
 
     Mod+Home { focus-column-first; }
     Mod+End { focus-column-last; }
-
-    Mod+Tab { focus-window-previous; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }

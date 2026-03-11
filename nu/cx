@@ -7,6 +7,16 @@ def main [] {
     help main
 }
 
+# Cycle main activity
+# TODO: Name?
+def "main cycle" [] {
+    match (wm tag) {
+        dev => (wm focus-workspace snd)
+        snd => (wm focus-workspace dev)
+        _ => {}
+    }
+}
+
 # Spawn bookmark picker
 def "main bookmarks" [] {
     tui pick-url
