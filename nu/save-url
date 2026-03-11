@@ -3,13 +3,13 @@
 use kit *
 
 def main [$url] {
-    let $marks = (churn links)
-    let $key = ($marks | key-of $url | default "")
+    let $links = (open $env.DOT_LINK_FILE)
+    let $key = ($links | key-of $url | default "")
 
     let $key = (gum input --placeholder $"Key for ($url)" --value $key)
 
     if ($key | is-not-empty) {
-        churn save-links ($marks | upsert $key $url)
+        (links | upsert $key $url) | to toml | save -f $env.DOT_LINK_FILE
         notify-send $'Bookmark "($key)" saved'
     }
 }

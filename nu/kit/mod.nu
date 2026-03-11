@@ -1,7 +1,6 @@
 export use tools.nu *
 export use _wm.nu *
 export use _mime.nu *
-export use _churn.nu *
 
 export-env {
     let $clone_dir = "~/co"

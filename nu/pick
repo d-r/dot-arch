@@ -9,7 +9,8 @@ def main [] {
 
 # Pick a link.
 def "main link" [] {
-    let $menu = (churn links | kv | table-str --no-headers)
+    let $links = (open $env.DOT_LINK_FILE)
+    let $menu = ($links | kv | table-str --no-headers)
     ($menu | fzf
         -d "\t"
         -n 1 # name
@@ -21,7 +22,7 @@ def "main link" [] {
 
 # Pick a git repository.
 def "main repo" [] {
-    let $repos = (churn repos) | each { repo $in }
+    let $repos = $env.DOT_REPOS | each { repo $in }
     let $menu = $repos | table-str --no-headers
     ($menu | fzf
         -d "\t"
