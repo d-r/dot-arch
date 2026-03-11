@@ -685,8 +685,8 @@ local plugins = {
   },
 }
 
--- local theme = 'tokyonight-night'
-local theme = 'lake-dweller'
+local theme = 'tokyonight-night'
+-- local theme = 'lake-dweller'
 
 kit.init_lazy {
   spec = plugins,
