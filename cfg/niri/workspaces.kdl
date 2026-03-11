@@ -2,8 +2,8 @@
 
 workspace "web"
 workspace "brn"
-workspace "dev"
 workspace "snd"
+workspace "dev"
 
 // WEB
 
@@ -18,15 +18,16 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-// DEV
+// BRN
 
-spawn-sh-at-startup "code ~/dot"
+spawn-at-startup "obsidian"
 
 window-rule {
-    match app-id="code" at-startup=true
+    match app-id="obsidian" at-startup=true
 
-    open-on-workspace "dev"
+    open-on-workspace "brn"
     open-focused false
+    default-column-width { proportion 0.98; }
 }
 
 // SND
@@ -43,14 +44,13 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-// BRN
+// DEV
 
-spawn-at-startup "obsidian"
+spawn-sh-at-startup "code ~/dot"
 
 window-rule {
-    match app-id="obsidian" at-startup=true
+    match app-id="code" at-startup=true
 
-    open-on-workspace "brn"
+    open-on-workspace "dev"
     open-focused false
-    default-column-width { proportion 0.98; }
 }
