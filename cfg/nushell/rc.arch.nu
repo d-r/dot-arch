@@ -8,6 +8,9 @@ alias jc = journalctl
 alias insert = sudo mount /dev/sda2 /media
 alias eject = sudo umount /media
 
+alias in = pk in
+alias un = pk un
+
 const $RUSTROVER = (
     "~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover" | path expand
 )
