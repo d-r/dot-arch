@@ -3,5 +3,5 @@
 use kit *
 
 def main [$file] {
-    (pick url) o> $file
+    (pick link) o> $file
 }

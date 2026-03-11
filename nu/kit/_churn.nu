@@ -5,7 +5,7 @@ const $REPOS = [
     "~/co/*"
 ]
 
-const $BOOKMARK_FILE = ("~/churn/bookmarks.toml" | path expand)
+const $LINK_FILE = ("~/churn/links.toml" | path expand)
 
 export def churn [] {
     help churn
@@ -15,10 +15,10 @@ export def "churn repos" []: nothing -> list {
     $REPOS | each { glob $in } | flatten
 }
 
-export def "churn bookmarks" []: nothing -> record {
-    open $BOOKMARK_FILE
+export def "churn links" []: nothing -> record {
+    open $LINK_FILE
 }
 
-export def "churn save-bookmarks" [$marks: record]: nothing -> nothing {
-    $marks | to toml | save -f $BOOKMARK_FILE
+export def "churn save-links" [$links: record]: nothing -> nothing {
+    $links | to toml | save -f $LINK_FILE
 }

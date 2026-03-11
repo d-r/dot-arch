@@ -11,9 +11,9 @@ menu:
   - key: "b"
     desc: Browser
     cmd: cx browser
-  - key: "m"
-    desc: Bookmarks
-    cmd: cx bookmarks
+  - key: "l"
+    desc: Links
+    cmd: cx links
   - key: "r"
     desc: Repos
     cmd: cx repos

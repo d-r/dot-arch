@@ -42,8 +42,8 @@ def "main set-primary" [$tag] {
 
 
 # Spawn bookmark picker
-def "main bookmarks" [] {
-    tui visit-url
+def "main links" [] {
+    tui visit-link
 }
 
 # Spawn repo picker

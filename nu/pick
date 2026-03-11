@@ -7,9 +7,9 @@ def main [] {
     help main
 }
 
-# Pick a URL.
-def "main url" [] {
-    let $menu = (churn bookmarks | kv | table-str --no-headers)
+# Pick a link.
+def "main link" [] {
+    let $menu = (churn links | kv | table-str --no-headers)
     ($menu | fzf
         -d "\t"
         -n 1 # name

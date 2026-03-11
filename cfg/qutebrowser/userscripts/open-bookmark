@@ -2,7 +2,7 @@
 
 const $file = "/tmp/qb-url.txt"
 
-tui pick-url-into $file
+tui pick-link-into $file
 
 try {
     let $url = (open $file)
