@@ -68,7 +68,12 @@ def --wrapped pick-line [$hl, ...$args]: string -> string {
     fzf --header-lines $hl --delimiter $COLUMN_SEP --with-nth 2.. ...$args
 }
 
-export def table-str [--no-headers]: table -> string {
+# Render the input table into a string that can be fed into `fzf` or `sk`.
+# Columns are separated by a tab character ('\t'), and column cells are padded
+# out to the same length with whitespace (' ') characters.
+export def table-str [
+    --no-headers # Do not list the column names on the first line
+]: table -> string {
     let $tsv = $in | to tsv --noheaders=($no_headers)
     $tsv | column --table --separator "\t" --output-separator $COLUMN_SEP
 }
