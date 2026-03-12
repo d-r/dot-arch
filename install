@@ -3,7 +3,7 @@
 use ./nu/kit *
 use std/log
 
-const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
+const $SOURCE_DIR = ("~/dot/src" | path expand --no-symlink)
 
 # Install
 def "main" [] {
@@ -14,7 +14,7 @@ def "main" [] {
 # Install keyd config
 def "main keyd" [] {
     sudo mkdir -p /etc/keyd
-    sudo cp -fv (cfg-path keyd.conf) /etc/keyd/default.conf
+    sudo cp -fv (source-path keyd.conf) /etc/keyd/default.conf
     sudo keyd reload
 }
 
@@ -60,7 +60,7 @@ def link [$target, $source = ""] {
         $source
     }
 
-    let $source = (cfg-path $source)
+    let $source = (source-path $source)
     if not ($source | path exists) {
         log warning $"Path `($source)` does not exist; skipping"
         return;
@@ -79,6 +79,6 @@ def link [$target, $source = ""] {
     print $"($target) -> ($source)"
 }
 
-def cfg-path [...$args] {
-    [$CONFIG_DIR] | append $args | path join
+def source-path [...$args] {
+    [$SOURCE_DIR] | append $args | path join
 }

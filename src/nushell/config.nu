@@ -1,5 +1,5 @@
 const NU_LIB_DIRS = [
-    ~/dot/cfg/nushell
+    ~/dot/src/nushell
     ~/dot/nu
 ]
 
