@@ -4,7 +4,7 @@ set shell := ["nu", "-c"]
 in:
     ./install
 
-# Create a new Nushell script in nu/
-nu name:
-    cp assets/script.nu nu/{{name}}
-    chmod +x nu/{{name}}
+# Create a new Nushell script in bin/
+bin name:
+    cp assets/script.nu bin/{{name}}
+    chmod +x bin/{{name}}

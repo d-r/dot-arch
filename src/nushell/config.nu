@@ -1,6 +1,5 @@
 const NU_LIB_DIRS = [
     ~/dot/src/nushell
-    ~/dot/nu
 ]
 
 use kit *
