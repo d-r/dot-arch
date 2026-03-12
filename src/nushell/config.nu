@@ -25,7 +25,7 @@ $env.config.color_config.row_index = "dark_gray"
 
 $env.PROMPT_COMMAND_RIGHT = {|| $env.CONTEXT?}
 
-export-env {
+$env.LS_COLORS = do {
     const $BLACK = "30"
     const $RED = "31"
     const $GREEN = "32"
@@ -54,7 +54,7 @@ export-env {
             | str join ":"
     }
 
-    $env.LS_COLORS = ls_colors {
+    ls_colors {
         fi: $WHITE
         di: $BLUE
         ex: $GREEN
