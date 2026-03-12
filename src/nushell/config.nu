@@ -8,9 +8,6 @@ source rc.common.nu
 source rc.arch.nu
 source zoxide.nu
 
-# Need this for INI file support.
-plugin add nu_plugin_formats
-
 #-------------------------------------------------------------------------------
 # SETTINGS
 
