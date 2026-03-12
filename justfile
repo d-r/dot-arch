@@ -2,7 +2,7 @@ set shell := ["nu", "-c"]
 
 # Install (create/update symlinks)
 in:
-    ./nu/dot in
+    ./install
 
 # Create a new Nushell script in nu/
 nu name:

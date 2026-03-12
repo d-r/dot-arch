@@ -1,16 +1,12 @@
 #!/usr/bin/env nu
 
-use kit *
+use ./nu/kit *
 use std/log
 
 const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
 
-def main [] {
-    main in
-}
-
 # Install
-def "main in" [] {
+def "main" [] {
     main links
     main keyd
 }
