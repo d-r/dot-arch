@@ -522,50 +522,20 @@ local plugins = {
   },
 
   -- Show available keybinds in a popup as you type
-  -- https://github.com/nvim-mini/mini.clue
+  -- https://github.com/folke/which-key.nvim
   {
-    'nvim-mini/mini.clue',
-    config = function()
-      local mc = require 'mini.clue'
-      mc.setup {
-        triggers = kit.triggers {
-          { '<Leader>', 'nx' },
-          { 'g', 'nx' },
-          { 's', 'nx' },
-          { 'z', 'nx' },
-          { '[', 'n' },
-          { ']', 'n' },
-
-          -- Completion
-          { '<C-x>', 'i' },
-
-          -- Window commands
-          { '<C-w>', 'n' },
-
-          -- Marks
-          { '`', 'nx' },
-          { '"', 'nx' },
-
-          -- Registers
-          { '<C-r>', 'ic' },
-          { "'", 'nx' },
-        },
-        clues = {
-          mc.gen_clues.builtin_completion(),
-          mc.gen_clues.marks(),
-          mc.gen_clues.registers(),
-          mc.gen_clues.windows(),
-          mc.gen_clues.g(),
-          mc.gen_clues.z(),
-        },
-        window = {
-          delay = 200, -- ms
-          config = {
-            width = 'auto',
-          },
-        },
-      }
-    end,
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = {
+      preset = "helix",
+    },
+    keys = {
+      {
+        '<leader>?',
+        function() require('which-key').show { global = false } end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
   },
 
   -- File type icons
