@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use ./nu/kit *
+use ./bin/dot *
 use std/log
 
 const $SOURCE_DIR = ("~/dot/src" | path expand --no-symlink)
