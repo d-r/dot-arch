@@ -7,6 +7,7 @@ const $SOURCE_DIR = ("~/dot/src" | path expand --no-symlink)
 
 # Install
 def "main" [] {
+    main shell
     main links
     main keyd
 }
@@ -20,14 +21,8 @@ def "main keyd" [] {
 
 # Install symlinks
 def "main links" [] {
-    cd ~
-
-    link .zshrc zshrc
-    link .zshenv zshenv
-
     cd ~/.config
 
-    link nushell/config.nu
     link task/taskrc taskrc
     link fuzzel/fuzzel.ini fuzzel.ini
     link tmux/tmux.conf tmux.conf
@@ -51,7 +46,95 @@ def "main links" [] {
     link doom
 }
 
+# Install shell config
+def "main shell" [] {
+    let $home = $nu.home-dir
+    let $lang = "en_IE.UTF-8"
+
+    let $path = [
+        $"($home)/.cargo/bin"
+        $"($home)/.local/share/JetBrains/Toolbox/scripts"
+        $"($home)/.config/emacs/bin"
+        $"($home)/lab"
+        $"($home)/dot/bin"
+    ]
+
+    let $vars = {
+        # https://wiki.archlinux.org/title/XDG_Base_Directory
+        XDG_CONFIG_HOME: $"($home)/.config"
+        XDG_CACHE_HOME: $"($home)/.cache"
+        XDG_DATA_HOME: $"($home)/.local/share"
+        XDG_STATE_HOME: $"($home)/.local/state"
+
+        # https://wiki.archlinux.org/title/XDG_user_directories
+        XDG_DOWNLOAD_DIR: $"($home)/dl"
+        XDG_DOCUMENTS_DIR: $"($home)/doc"
+        XDG_MUSIC_DIR: $"($home)/media/audio/releases"
+        XDG_VIDEOS_DIR: $"($home)/media/video" # ?
+        XDG_PICTURES_DIR: $"($home)/images" # ?
+        XDG_DESKTOP_DIR: $"($home)/tmp" # ?
+
+        LANG: $lang
+        LC_ALL: $lang
+        LC_COLLATE: $lang
+        LC_CTYPE: $lang
+        LC_MESSAGES: $lang
+        LC_MONETARY: $lang
+        LC_NUMERIC: $lang
+        LC_TIME: $lang
+
+        EDITOR: "micro"
+        MANPAGER: "nvim +Man!"
+        FZF_DEFAULT_OPTS: "--style=minimal --reverse"
+        SKIM_DEFAULT_OPTIONS: "--reverse"
+        FD_OPTS: "--hidden"
+    }
+
+    # nushell
+    mkdir ~/.config/nushell
+    do {
+        cd ~/.config/nushell
+
+        rm config.nu
+        cp -v ~/dot/src/nushell.nu config.nu
+        (nushell-env $path $vars) | save -a config.nu
+    }
+
+    # zsh
+    do {
+        cd
+
+        rm .zshenv
+        rm .zshrc
+        (zsh-env $path $vars) | save .zshenv
+        link .zshrc zshrc
+    }
+}
+
 #-------------------------------------------------------------------------------
+# CODE GENERATION
+
+def zsh-env [$path, $vars] {
+    let $p = $path | each { echo $'export PATH="$PATH:($in)"' }
+    let $v = $vars | items { |k, v| echo $'export ($k)="($v)"' }
+    ($p ++ $v) | str join "\n"
+}
+
+def nushell-env [$path, $vars] {
+    let $p = $path | to nuon --indent 4
+    let $v = $vars | to nuon --indent 4
+    [
+        ""
+        $'$env.path ++= ($p)'
+        ""
+        $"load-env ($v)"
+        ""
+    ]
+    | str join "\n"
+}
+
+#-------------------------------------------------------------------------------
+# LINKING
 
 def link [$target, $source = ""] {
     let $source = if ($source | is-empty) {
