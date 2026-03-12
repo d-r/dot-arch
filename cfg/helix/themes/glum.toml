@@ -30,7 +30,8 @@ label = "purple"
 operator = "purple"
 # operator = "gray"
 
-type = "magenta"
+type = "off_white"
+# type = "magenta"
 "type.parameter" = "cyan"
 
 comment = "gray"
