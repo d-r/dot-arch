@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use kit *
+use dot *
 
 const $FONT = "font=JetBrains Mono:size=14"
 

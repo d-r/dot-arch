@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use kit *
+use dot *
 
 $env.DOT_TASK_CONTEXT = (wm project)
 taskwarrior-tui

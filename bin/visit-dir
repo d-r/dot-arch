@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use kit *
+use dot *
 
 cd
 wm spawn footclient y (fd -td | fzf)

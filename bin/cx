@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use kit *
+use dot *
 
 const $TAG_FILE = "/tmp/tag.txt"
 

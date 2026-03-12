@@ -2,7 +2,7 @@ const NU_LIB_DIRS = [
     ~/dot/src/nushell
 ]
 
-use kit *
+use dot *
 
 source rc.common.nu
 source rc.arch.nu

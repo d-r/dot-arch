@@ -1,4 +1,4 @@
-export use tools.nu *
+export use base.nu *
 export use _wm.nu *
 export use _mime.nu *
 

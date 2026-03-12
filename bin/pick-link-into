@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use kit *
+use dot *
 
 def main [$file] {
     (pick link) o> $file
