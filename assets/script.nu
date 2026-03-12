@@ -1,4 +1,4 @@
 #!/usr/bin/env nu
 
-use dot *
+use kit *
 

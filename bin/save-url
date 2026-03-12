@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use dot *
+use kit *
 
 def main [$url] {
     let $links = (open $env.DOT_LINK_FILE)

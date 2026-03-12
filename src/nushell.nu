@@ -1,11 +1,8 @@
-const NU_LIB_DIRS = [
-    ~/dot/nu
-]
+const NU_LIB_DIRS = [~/dot/nu]
 
-use dot *
+use kit *
 
-source rc.common.nu
-source rc.arch.nu
+source rc.nu
 source zoxide.nu
 
 #-------------------------------------------------------------------------------
