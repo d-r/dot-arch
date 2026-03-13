@@ -227,65 +227,38 @@ local plugins = {
   -- You should have these packages installed on the system:
   -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
   -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
-  {
-    'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
-    lazy = false,
-    build = ':TSUpdate',
-    config = function()
-      local ts = require 'nvim-treesitter'
+{
+  'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
+  lazy = false,
+  build = ':TSUpdate',
+  config = function()
+    local ts = require 'nvim-treesitter'
+    local types = {
+      'bash', 'c', 'cpp', 'css', 'diff', 'git_config', 'git_rebase',
+      'gitcommit', 'gitignore', 'html', 'ini', 'json', 'json5', 'kdl',
+      'lua', 'luadoc', 'markdown_inline', 'markdown', 'nu', 'query',
+      'ron', 'rust', 'toml', 'vim', 'vimdoc', 'wgsl',
+    }
 
-      ts.setup {
-        -- Directory to install parsers and queries to
-        install_dir = vim.fn.stdpath 'data' .. '/treesitter',
-      }
+    ts.setup {
+      install_dir = vim.fn.stdpath 'data' .. '/treesitter',
+    }
 
-      ts.install {
-        'bash',
-        'c',
-        'cpp',
-        'css',
-        'diff',
-        'git_config',
-        'git_rebase',
-        'gitcommit',
-        'gitignore',
-        'html',
-        'ini',
-        'json',
-        'json5',
-        'kdl',
-        'lua',
-        'luadoc',
-        'markdown_inline',
-        'markdown',
-        'nu',
-        'query',
-        'ron',
-        'rust',
-        'toml',
-        'vim',
-        'vimdoc',
-        'wgsl',
-      }
+    ts.install(types)
 
-      vim.api.nvim_create_autocmd('FileType', {
-        desc = 'Enable treesitter highlighting',
-        group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
-        callback = function(event)
-          if pcall(vim.treesitter.start) then
-            -- Enable folding and indentation.
-            -- TODO: Verify that it works.
-            -- I don't know what these incantations mean.
-            vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end
-        end,
-      })
-    end,
-  },
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = types,
+      desc = 'Enable treesitter highlighting',
+      group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
+      callback = function(event)
+        vim.treesitter.start(event.buf)
+      end,
+    })
+  end,
+},
 
-  -- Show the context of the currently visible buffer contents
+-- Show the context of the currently visible buffer contents
   -- https://github.com/nvim-treesitter/nvim-treesitter-context
   {
     'nvim-treesitter/nvim-treesitter-context',
@@ -635,15 +608,13 @@ local plugins = {
   },
 }
 
-local theme = 'tokyonight-night'
+-- local theme = 'tokyonight-night'
 -- local theme = 'lake-dweller'
 
 kit.init_lazy {
   spec = plugins,
-  install = { colorscheme = { theme } }, -- Theme to use when installing plugins
+  -- install = { colorscheme = { theme } }, -- Theme to use when installing plugins
 }
-
-vim.cmd.colorscheme(theme)
 
 --------------------------------------------------------------------------------
 -- LSP
@@ -703,7 +674,6 @@ kit.bind_keys {
 
 vim.o.statusline = '%{%v:lua.statusline_mode()%} %f%m%= %{%v:lua.lsp_diagnostics()%}  %{%v:lua.lsp_status()%}  %l:%c '
 
--- Mode with colors and 3-char truncation
 function _G.statusline_mode()
   local mode_map = {
     n = { text = 'NOR', hl = 'StatusLineNormal' },
@@ -720,7 +690,6 @@ function _G.statusline_mode()
   return string.format('%%#%s# %s %%*', current.hl, current.text)
 end
 
--- LSP diagnostics with colored dots
 function _G.lsp_diagnostics()
   local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
   local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -736,21 +705,18 @@ function _G.lsp_diagnostics()
   return table.concat(parts, '  ')
 end
 
--- LSP active indicator
 function _G.lsp_status()
   local clients = vim.lsp.get_active_clients({ bufnr = 0 })
   if #clients == 0 then
     return ''
   end
 
-  -- Substitution table for shorter names
   local short_names = {
-    rust_analyzer = 'ra',
-    pyright = 'py',
-    tsserver = 'ts',
-    lua_ls = 'lua',
-    clangd = 'clang',
-    -- Add more as needed
+    ["rust-analyzer"] = 'ra',
+    ["pyright"] = 'py',
+    ["tsserver"] = 'ts',
+    ["lua_ls"] = 'lua',
+    ["clangd"] = 'clang',
   }
 
   local names = {}
@@ -769,3 +735,21 @@ vim.api.nvim_set_hl(0, 'StatusLineVisual', { bg = '#d75f5f', fg = '#ffffff', bol
 vim.api.nvim_set_hl(0, 'StatusLineCommand', { bg = '#d7af5f', fg = '#000000', bold = true })
 vim.api.nvim_set_hl(0, 'StatusLineReplace', { bg = '#af5f5f', fg = '#ffffff', bold = true })
 vim.api.nvim_set_hl(0, 'StatusLineTerminal', { bg = '#5faf5f', fg = '#000000', bold = true })
+
+--------------------------------------------------------------------------------
+-- GLUM
+
+vim.cmd.colorscheme 'glum'
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*/colors/*.lua',
+  callback = function()
+    vim.cmd.colorscheme 'glum'
+  end,
+  desc = 'Auto-reload colorscheme on save',
+})
+
+vim.keymap.set('n', '<c-r>', function()
+  vim.cmd('hi clear')
+  vim.cmd('colorscheme glum')
+end, { desc = 'Reload colorscheme' })
