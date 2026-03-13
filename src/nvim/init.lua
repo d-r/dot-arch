@@ -433,6 +433,7 @@ local plugins = {
     opts = {
       scroll = { enabled = true },
       indent = { enabled = true },
+      notifier = { enabled = true },
       picker = {
         enabled = true,
         sources = {
