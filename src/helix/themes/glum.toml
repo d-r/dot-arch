@@ -20,35 +20,30 @@ hint = "green"
 #-------------------------------------------------------------------------------
 # CODE
 
-keyword = "purple"
-label = "purple"
-"type.builtin" = "purple"
-"variable.builtin" = "purple"
-"function.builtin" = "purple"
-"constant.builtin" = "purple"
+keyword = "teal"
+label = "teal"
+"type.builtin" = "teal"
+"variable.builtin" = "teal"
+"function.builtin" = "teal"
+operator = "teal"
 
-operator = "purple"
-# operator = "gray"
+special = "dim_teal2"
 
-type = "off_white"
-# type = "magenta"
-"type.parameter" = "cyan"
+punctuation = "dim_teal"
+
+type = "green"
+"type.parameter" = "green"
+
+"constant.numeric" = "lavender"
+"constant.builtin" = "lavender"
+
+string = "purple"
+"string.special.symbol" = "purple"
+"constant.character" = "purple"
 
 comment = "gray"
-punctuation = "dim_gray"
-
-"comment.line.documentation" = "blue"
-"comment.block.documentation" = "blue"
-
-"constant.numeric" = "orange"
-
-string = "green"
-"string.special.symbol" = "orange"
-"constant.character" = "orange"
-
-# string = "teal"
-# "string.special.symbol" = "teal"
-# "constant.character" = "teal"
+"comment.line.documentation" = "gray"
+"comment.block.documentation" = "gray"
 
 constant = "fg"
 attribute = "fg"
@@ -57,9 +52,9 @@ namespace = "fg"
 function = "fg"
 tag = "fg"
 constructor = "fg"
-special = "fg"
 "function.macro" = "fg"
 
+#-------------------------------------------------------------------------------
 # MARKUP
 
 "markup.heading" = { fg = "off_white", modifiers = ["bold"] }
@@ -70,17 +65,19 @@ special = "fg"
 #-------------------------------------------------------------------------------
 [palette]
 
-bg = "#181818"
-fg = "#b6b6b6"
-gray = "#777777"
-dim_gray = "#606060"
+bg = "#161918"
+fg = "#b3b6b4"
+gray = "#747877"
 black = "#000000"
 off_white = "#e0e0e0"
+
 # purple = "#cd9bcd"
 purple = "#c594c5"
 pink = "#d88fd8 "
-magenta = "#bb9af7"
+lavender = "#bb9af7"
 teal = "#7fa396"
+dim_teal = "#4a6761"
+dim_teal2 = "#5a7873"
 cyan = "#9eb1ff"
 green = "#98c379"
 orange = "#ff9e64"
