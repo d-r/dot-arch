@@ -9,7 +9,7 @@ def main [$url] {
     let $key = (gum input --placeholder $"Key for ($url)" --value $key)
 
     if ($key | is-not-empty) {
-        (links | upsert $key $url) | to toml | save -f $env.DOT_LINK_FILE
+        ($links | upsert $key $url) | to toml | save -f $env.DOT_LINK_FILE
         notify-send $'Bookmark "($key)" saved'
     }
 }
