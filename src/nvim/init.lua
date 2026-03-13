@@ -740,18 +740,20 @@ vim.api.nvim_set_hl(0, 'StatusLineTerminal', { bg = '#5faf5f', fg = '#000000', b
 --------------------------------------------------------------------------------
 -- GLUM
 
-vim.cmd.colorscheme 'glum'
+local theme = 'glum'
+
+vim.cmd.colorscheme(theme)
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '*/colors/*.lua',
   callback = function()
-    vim.cmd.colorscheme 'glum'
+    vim.cmd.colorscheme(theme)
   end,
-  desc = 'Auto-reload colorscheme on save',
+  desc = 'Auto-reload theme on save',
 })
 
-vim.keymap.set('n', '<leader>cr', function()
-  vim.cmd('hi clear')
-  vim.cmd('colorscheme glum')
+vim.keymap.set('n', '<f5>', function()
+  vim.cmd.hi.clear()
+  vim.cmd.colorscheme(theme)
   vim.notify('Theme reloaded')
 end, { desc = 'Reload colorscheme' })
