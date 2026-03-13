@@ -18,6 +18,9 @@ local colors = {
   green = '#98c379',
   orange = '#ff9e64',
   lavender = '#bb9af7',
+  teal = "#7fa396",
+  cyan = "#9eb1ff",
+  cyan2 = "#56b6c2",
 
   -- UI colors
   border = '#404040',
@@ -49,47 +52,43 @@ hl('WinSeparator', { fg = colors.border })
 hl('FloatBorder', { fg = colors.border })
 
 -- Statusline
-hl('StatusLine', { fg = colors.fg, bg = colors.cursor_line })
-hl('StatusLineNC', { fg = colors.comment, bg = colors.bg })
-
--- Basic syntax
+hl('Keyword', { fg = colors.teal })
 hl('Comment', { fg = colors.comment })
-hl('String', { fg = colors.green })
+hl('String', { fg = colors.purple })
 hl('Character', { fg = colors.green })
-hl('Number', { fg = colors.orange })
-hl('Boolean', { fg = colors.orange })
-hl('Float', { fg = colors.orange })
+hl('Number', { fg = colors.lavender })
+hl('Boolean', { fg = colors.lavender })
+hl('Float', { fg = colors.lavender })
 hl('Constant', { fg = colors.fg })  -- Regular constants (not highlighted)
 hl('Function', { fg = colors.fg })  -- Function definitions
-hl('Keyword', { fg = colors.purple })
-hl('Operator', { fg = colors.purple })
+hl('Operator', { fg = colors.teal })
 hl('Type', { fg = colors.fg })  -- Not highlighted
 hl('Identifier', { fg = colors.fg })
 hl('Special', { fg = colors.orange })  -- Escape sequences
 hl('Delimiter', { fg = colors.punctuation })
 
 -- Types
-hl('@type.builtin', { fg = colors.purple })
+hl('@type.builtin', { fg = colors.teal })
 
-hl('@type', { fg = colors.lavender })
-hl('@type.qualifier', { fg = colors.lavender })  -- mut, const
-hl('@lsp.type.type', { fg = colors.lavender })
-hl('@lsp.type.struct', { fg = colors.lavender })
-hl('@lsp.type.enum', { fg = colors.lavender })
+hl('@type', { fg = colors.blue })
+hl('@type.qualifier', { fg = colors.blue })  -- mut, const
+hl('@lsp.type.type', { fg = colors.blue })
+hl('@lsp.type.struct', { fg = colors.blue })
+hl('@lsp.type.enum', { fg = colors.blue })
 
 -- Treesitter
 hl('@comment', { link = 'Comment' })
-hl('@comment.documentation', { fg = colors.blue })  -- Doc comments
+hl('@comment.documentation', { fg = colors.comment })  -- Doc comments
 
 -- Strings and escapes
 hl('@string', { link = 'String' })
-hl('@string.escape', { fg = colors.orange })
-hl('@string.special', { fg = colors.orange })
+hl('@string.escape', { fg = colors.teal })
+hl('@string.special', { fg = colors.teal })
 
 -- Numbers and constants
 hl('@number', { link = 'Number' })
-hl('@boolean', { fg = colors.orange })
-hl('@constant.builtin', { fg = colors.orange })  -- true, false, None
+hl('@boolean', { fg = colors.lavender })
+hl('@constant.builtin', { fg = colors.lavender })  -- true, false, None
 hl('@constant', { fg = colors.fg })  -- Regular constants
 
 -- Keywords and operators
@@ -105,7 +104,7 @@ hl('@macro', { fg = colors.lavender })
 
 -- Variables (not highlighted)
 hl('@variable', { fg = colors.fg })
-hl('@variable.builtin', { fg = colors.purple })  -- self, super
+hl('@variable.builtin', { fg = colors.teal })  -- self, super
 hl('@parameter', { fg = colors.fg })
 hl('@property', { fg = colors.fg })
 hl('@field', { fg = colors.fg })
@@ -141,6 +140,8 @@ hl('GitSignsChange', { fg = colors.blue })
 hl('GitSignsDelete', { fg = colors.orange })
 
 -- LSP Semantic Tokens (override LSP's defaults)
-hl('@lsp.type.comment.documentation', { fg = colors.blue })
-hl('@lsp.typemod.comment.documentation', { fg = colors.blue })
-hl('@lsp.mod.documentation', { fg = colors.blue })
+hl('@lsp.type.comment.documentation', { fg = colors.comment })
+hl('@lsp.typemod.comment.documentation', { fg = colors.comment })
+hl('@lsp.mod.documentation', { fg = colors.comment })
+
+hl('@constructor.lua', { link = '' } ) -- I don't want orange punctuation
