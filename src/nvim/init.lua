@@ -393,20 +393,15 @@ local plugins = {
     'nvim-mini/mini.surround',
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
-      -- These are the defaults. Duplicated here for reference.
       mappings = {
-        add = 'sa', -- Add surrounding in Normal and Visual modes
-        delete = 'sd', -- Delete surrounding
-        find = 'sf', -- Find surrounding (to the right)
-        find_left = 'sF', -- Find surrounding (to the left)
-        highlight = 'sh', -- Highlight surrounding
-        replace = 'sr', -- Replace surrounding
-
-        suffix_last = 'l', -- Suffix to search with "prev" method
-        suffix_next = 'n', -- Suffix to search with "next" method
+        add = 'ys', -- Add surrounding in Normal and Visual modes
+        delete = 'ds', -- Delete surrounding
+        find = '', -- Find surrounding (to the right)
+        find_left = '', -- Find surrounding (to the left)
+        highlight = '', -- Highlight surrounding
+        replace = 'cs', -- Replace surrounding
       },
     },
-    init = function() vim.keymap.set(nx, 's', '<Nop>') end,
   },
 
   -- Comment lines
@@ -437,7 +432,6 @@ local plugins = {
   {
     'folke/flash.nvim',
     event = 'VeryLazy',
-    enabled = false,
     opts = {
       modes = {
         char = { enabled = false }, -- Don't override f, t, F, T,
@@ -446,14 +440,13 @@ local plugins = {
     keys = {
       -- m is for "move"
       -- This overwrites the "set mark" bind.
-      { 'm', desc = 'Flash', mode = nxo, flash.jump },
-      { 'M', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
+      { 's', desc = 'Flash', mode = nxo, flash.jump },
+      { 'S', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
 
       -- TODO: Find out what these do:
       { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
       { 'R', desc = 'Treesitter search', mode = xo, flash.treesitter_search },
     },
-    init = function() vim.keymap.set('n', 'm', '<Nop>') end,
   },
 
   -- Snacks - a collection of small quality-of-life plugins
