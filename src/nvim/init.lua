@@ -749,7 +749,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   desc = 'Auto-reload colorscheme on save',
 })
 
-vim.keymap.set('n', '<c-r>', function()
+vim.keymap.set('n', '<leader>cr', function()
   vim.cmd('hi clear')
   vim.cmd('colorscheme glum')
+  vim.notify('Theme reloaded')
 end, { desc = 'Reload colorscheme' })

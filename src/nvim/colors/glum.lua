@@ -13,11 +13,11 @@ local colors = {
   punctuation = '#606060',
 
   -- Syntax colors
-  purple = '#c594c5',    -- keywords, operators
-  blue = '#8ca6bf',      -- doc comments, attributes
-  green = '#98c379',     -- strings
-  orange = '#ff9e64',    -- numbers, escapes, booleans
-  magenta = '#e096c7',   -- macros (placeholder, adjust if needed)
+  purple = '#c594c5',
+  blue = '#8ca6bf',
+  green = '#98c379',
+  orange = '#ff9e64',
+  lavender = '#bb9af7',
 
   -- UI colors
   border = '#404040',
@@ -60,13 +60,22 @@ hl('Number', { fg = colors.orange })
 hl('Boolean', { fg = colors.orange })
 hl('Float', { fg = colors.orange })
 hl('Constant', { fg = colors.fg })  -- Regular constants (not highlighted)
-hl('Function', { fg = colors.white })  -- Function definitions
+hl('Function', { fg = colors.fg })  -- Function definitions
 hl('Keyword', { fg = colors.purple })
 hl('Operator', { fg = colors.purple })
 hl('Type', { fg = colors.fg })  -- Not highlighted
 hl('Identifier', { fg = colors.fg })
 hl('Special', { fg = colors.orange })  -- Escape sequences
 hl('Delimiter', { fg = colors.punctuation })
+
+-- Types
+hl('@type.builtin', { fg = colors.purple })
+
+hl('@type', { fg = colors.lavender })
+hl('@type.qualifier', { fg = colors.lavender })  -- mut, const
+hl('@lsp.type.type', { fg = colors.lavender })
+hl('@lsp.type.struct', { fg = colors.lavender })
+hl('@lsp.type.enum', { fg = colors.lavender })
 
 -- Treesitter
 hl('@comment', { link = 'Comment' })
@@ -83,14 +92,6 @@ hl('@boolean', { fg = colors.orange })
 hl('@constant.builtin', { fg = colors.orange })  -- true, false, None
 hl('@constant', { fg = colors.fg })  -- Regular constants
 
--- Functions
-hl('@function', { fg = colors.white })
-hl('@function.builtin', { fg = colors.white })
-hl('@function.call', { fg = colors.fg })  -- Function calls NOT highlighted
-hl('@function.macro', { fg = colors.magenta })  -- Macro invocations
-hl('@function.method', { fg = colors.white })
-hl('@function.method.call', { fg = colors.fg })
-
 -- Keywords and operators
 hl('@keyword', { link = 'Keyword' })
 hl('@keyword.function', { link = 'Keyword' })
@@ -98,14 +99,9 @@ hl('@keyword.operator', { link = 'Keyword' })
 hl('@keyword.return', { link = 'Keyword' })
 hl('@operator', { link = 'Operator' })
 
--- Types (not highlighted)
-hl('@type', { fg = colors.fg })
-hl('@type.builtin', { fg = colors.fg })
-hl('@type.qualifier', { fg = colors.purple })  -- mut, const
-
 -- Attributes and macros
 hl('@attribute', { fg = colors.blue })
-hl('@macro', { fg = colors.magenta })
+hl('@macro', { fg = colors.lavender })
 
 -- Variables (not highlighted)
 hl('@variable', { fg = colors.fg })
@@ -143,3 +139,8 @@ hl('DiffText', { fg = colors.orange, bold = true })
 hl('GitSignsAdd', { fg = colors.green })
 hl('GitSignsChange', { fg = colors.blue })
 hl('GitSignsDelete', { fg = colors.orange })
+
+-- LSP Semantic Tokens (override LSP's defaults)
+hl('@lsp.type.comment.documentation', { fg = colors.blue })
+hl('@lsp.typemod.comment.documentation', { fg = colors.blue })
+hl('@lsp.mod.documentation', { fg = colors.blue })
