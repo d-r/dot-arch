@@ -114,6 +114,7 @@ local plugins = {
   -- https://github.com/j-hui/fidget.nvim
   {
     'j-hui/fidget.nvim',
+    enabled = false,
     opts = {
       notification = {
         window = {
