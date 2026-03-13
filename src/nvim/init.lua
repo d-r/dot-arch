@@ -383,7 +383,7 @@ local plugins = {
   -- https://github.com/nvim-mini/mini.pairs
   {
     'nvim-mini/mini.pairs',
-    enabled = false,
+    enabled = true,
     opts = {},
   },
 
@@ -527,7 +527,7 @@ local plugins = {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      preset = "helix",
+      preset = 'helix',
     },
     keys = {
       {
