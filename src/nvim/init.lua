@@ -550,13 +550,7 @@ local plugins = {
   {
     'nvim-mini/mini.statusline',
     enabled = true,
-    config = function()
-      local sl = require 'mini.statusline'
-      sl.setup()
-      sl.section_location = function()
-        return '%4l:%-3v' -- line:column
-      end
-    end,
+    opts = {},
   },
 
   -- Pin buffers
