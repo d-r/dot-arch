@@ -25,7 +25,7 @@ vim.g.maplocalleader = ' '
 -- kitty has builtin Nerd Font support
 vim.g.have_nerd_font = true
 
--- Don't show the current mode, since mini.statusline already does that
+-- Don't show the current mode, as it's already in the statusline
 vim.o.showmode = false
 
 -- Enable gutter space for LSP info on the left
@@ -538,14 +538,6 @@ local plugins = {
     opts = {},
   },
 
-  -- Minimal and fast statusline with opinionated default look
-  -- https://github.com/nvim-mini/mini.statusline
-  {
-    'nvim-mini/mini.statusline',
-    enabled = true,
-    opts = {},
-  },
-
   -- Pin buffers
   -- https://github.com/iofq/dart.nvim
   {
@@ -704,3 +696,75 @@ kit.bind_keys {
   { '<c-s>', desc = 'Save', mode = ni, '<cmd>write<CR>' },
   { '<c-q>', desc = 'Quit', mode = ni, '<cmd>quit!<CR>' },
 }
+
+--------------------------------------------------------------------------------
+-- STATUSLINE (from Claude)
+
+vim.o.statusline = '%{%v:lua.statusline_mode()%} %f%m%= %{%v:lua.lsp_diagnostics()%}  %{%v:lua.lsp_status()%}  %l:%c '
+
+-- Mode with colors and 3-char truncation
+function _G.statusline_mode()
+  local mode_map = {
+    n = { text = 'NOR', hl = 'StatusLineNormal' },
+    i = { text = 'INS', hl = 'StatusLineInsert' },
+    v = { text = 'VIS', hl = 'StatusLineVisual' },
+    V = { text = 'V-L', hl = 'StatusLineVisual' },
+    ['\22'] = { text = 'V-B', hl = 'StatusLineVisual' }, -- Ctrl-V
+    c = { text = 'CMD', hl = 'StatusLineCommand' },
+    R = { text = 'REP', hl = 'StatusLineReplace' },
+    t = { text = 'TER', hl = 'StatusLineTerminal' },
+  }
+
+  local current = mode_map[vim.fn.mode()] or { text = '???', hl = 'StatusLine' }
+  return string.format('%%#%s# %s %%*', current.hl, current.text)
+end
+
+-- LSP diagnostics with colored dots
+function _G.lsp_diagnostics()
+  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+
+  local parts = {}
+  if errors > 0 then
+    table.insert(parts, string.format('%%#DiagnosticError#●%%* %d', errors))
+  end
+  if warnings > 0 then
+    table.insert(parts, string.format('%%#DiagnosticWarn#●%%* %d', warnings))
+  end
+
+  return table.concat(parts, '  ')
+end
+
+-- LSP active indicator
+function _G.lsp_status()
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  if #clients == 0 then
+    return ''
+  end
+
+  -- Substitution table for shorter names
+  local short_names = {
+    rust_analyzer = 'ra',
+    pyright = 'py',
+    tsserver = 'ts',
+    lua_ls = 'lua',
+    clangd = 'clang',
+    -- Add more as needed
+  }
+
+  local names = {}
+  for _, client in pairs(clients) do
+    local name = short_names[client.name] or client.name
+    table.insert(names, name)
+  end
+
+  return table.concat(names, ' ')
+end
+
+-- Define highlight groups for mode colors
+vim.api.nvim_set_hl(0, 'StatusLineNormal', { bg = '#5f87af', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineInsert', { bg = '#87af87', fg = '#000000', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineVisual', { bg = '#d75f5f', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineCommand', { bg = '#d7af5f', fg = '#000000', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineReplace', { bg = '#af5f5f', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineTerminal', { bg = '#5faf5f', fg = '#000000', bold = true })
