@@ -23,7 +23,7 @@ binds {
     Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
 
     Mod+R { spawn "fuzzel"; }
-    Mod+P { spawn "cx" "repos"; }
+    // Mod+P { spawn "cx" "repos"; }
     Mod+O { spawn "cx" "links"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 

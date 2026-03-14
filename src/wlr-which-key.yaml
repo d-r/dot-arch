@@ -14,9 +14,9 @@ menu:
   - key: "l"
     desc: Links
     cmd: cx links
-  - key: "r"
-    desc: Repos
-    cmd: cx repos
+  # - key: "r"
+  #   desc: Repos
+  #   cmd: cx repos
   - key: "e"
     desc: Explorer
     cmd: cx explorer
