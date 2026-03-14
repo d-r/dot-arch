@@ -56,7 +56,12 @@ def "main out" [] {
 
 # List packages no longer required as dependencies
 def "main orphans" [] {
-    yay -Qdtq
+    yay -Qdtq | lines
+}
+
+# Uninstall orphans
+def "main clean" [] {
+    main un ...(main orphans)
 }
 
 # Get information about a package
