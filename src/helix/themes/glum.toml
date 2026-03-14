@@ -29,7 +29,8 @@ operator = "teal"
 
 special = "dim_teal2"
 
-punctuation = "dim_teal"
+# punctuation = "dim_teal"
+punctuation = "dim_teal2"
 
 type = "green"
 "type.parameter" = "green"
