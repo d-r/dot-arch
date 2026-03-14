@@ -54,6 +54,11 @@ def "main out" [] {
     yay -Qu
 }
 
+# List packages no longer required as dependencies
+def "main orphans" [] {
+    yay -Qdtq
+}
+
 # Get information about a package
 def "main info" [$pk] {
     yay -Si $pk
