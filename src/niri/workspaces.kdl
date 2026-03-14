@@ -43,14 +43,3 @@ window-rule {
     open-focused false
     default-column-width { proportion 0.98; }
 }
-
-// DEV
-
-spawn-sh-at-startup "code ~/dot"
-
-window-rule {
-    match app-id="code" at-startup=true
-
-    open-on-workspace "dev"
-    open-focused false
-}
