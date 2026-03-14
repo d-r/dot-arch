@@ -23,9 +23,9 @@ menu:
   - key: "d"
     desc: Directory
     cmd: cx dir
-  - key: "k"
-    desc: keybr.com
-    cmd: webapp keybr https://www.keybr.com/
+  # - key: "k"
+  #   desc: keybr.com
+  #   cmd: webapp keybr https://www.keybr.com/
   - key: "t"
     desc: TODO
     cmd: cx todo
