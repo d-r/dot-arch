@@ -652,7 +652,6 @@ local plugins = {
   },
 }
 
--- local theme = 'tokyonight-night'
 -- local theme = 'lake-dweller'
 
 kit.init_lazy {
@@ -782,9 +781,10 @@ vim.api.nvim_set_hl(0, 'StatusLineReplace', { bg = '#af5f5f', fg = '#ffffff', bo
 vim.api.nvim_set_hl(0, 'StatusLineTerminal', { bg = '#5faf5f', fg = '#000000', bold = true })
 
 --------------------------------------------------------------------------------
--- GLUM
+-- THEME
 
-local theme = 'glum'
+local theme = 'tokyonight-night'
+-- local theme = 'glum'
 
 vim.cmd.colorscheme(theme)
 
