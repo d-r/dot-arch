@@ -152,6 +152,7 @@ local plugins = {
     'saghen/blink.cmp',
     -- use a release tag to download pre-built binaries
     version = '1.*',
+    enabled = false,
     opts = {
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
       -- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -227,38 +228,58 @@ local plugins = {
   -- You should have these packages installed on the system:
   -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
   -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
-{
-  'nvim-treesitter/nvim-treesitter',
-  branch = 'main',
-  lazy = false,
-  build = ':TSUpdate',
-  config = function()
-    local ts = require 'nvim-treesitter'
-    local types = {
-      'bash', 'c', 'cpp', 'css', 'diff', 'git_config', 'git_rebase',
-      'gitcommit', 'gitignore', 'html', 'ini', 'json', 'json5', 'kdl',
-      'lua', 'luadoc', 'markdown_inline', 'markdown', 'nu', 'query',
-      'ron', 'rust', 'toml', 'vim', 'vimdoc', 'wgsl',
-    }
+  {
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
+    config = function()
+      local ts = require 'nvim-treesitter'
+      local types = {
+        'bash',
+        'c',
+        'cpp',
+        'css',
+        'diff',
+        'git_config',
+        'git_rebase',
+        'gitcommit',
+        'gitignore',
+        'html',
+        'ini',
+        'json',
+        'json5',
+        'kdl',
+        'lua',
+        'luadoc',
+        'markdown_inline',
+        'markdown',
+        'nu',
+        'query',
+        'ron',
+        'rust',
+        'toml',
+        'vim',
+        'vimdoc',
+        'wgsl',
+      }
 
-    ts.setup {
-      install_dir = vim.fn.stdpath 'data' .. '/treesitter',
-    }
+      ts.setup {
+        install_dir = vim.fn.stdpath 'data' .. '/treesitter',
+      }
 
-    ts.install(types)
+      ts.install(types)
 
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = types,
-      desc = 'Enable treesitter highlighting',
-      group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
-      callback = function(event)
-        vim.treesitter.start(event.buf)
-      end,
-    })
-  end,
-},
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = types,
+        desc = 'Enable treesitter highlighting',
+        group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
+        callback = function(event) vim.treesitter.start(event.buf) end,
+      })
+    end,
+  },
 
--- Show the context of the currently visible buffer contents
+  -- Show the context of the currently visible buffer contents
   -- https://github.com/nvim-treesitter/nvim-treesitter-context
   {
     'nvim-treesitter/nvim-treesitter-context',
@@ -673,7 +694,8 @@ kit.bind_keys {
 --------------------------------------------------------------------------------
 -- STATUSLINE (from Claude)
 
-vim.o.statusline = '%{%v:lua.statusline_mode()%} %f%m%= %{%v:lua.lsp_diagnostics()%}  %{%v:lua.lsp_status()%}  %l:%c '
+vim.o.statusline =
+  '%{%v:lua.statusline_mode()%} %f%m%= %{%v:lua.lsp_diagnostics()%}  %{%v:lua.lsp_status()%}  %l:%c '
 
 function _G.statusline_mode()
   local mode_map = {
@@ -707,17 +729,17 @@ function _G.lsp_diagnostics()
 end
 
 function _G.lsp_status()
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  local clients = vim.lsp.get_active_clients { bufnr = 0 }
   if #clients == 0 then
     return ''
   end
 
   local short_names = {
-    ["rust-analyzer"] = 'ra',
-    ["pyright"] = 'py',
-    ["tsserver"] = 'ts',
-    ["lua_ls"] = 'lua',
-    ["clangd"] = 'clang',
+    ['rust-analyzer'] = 'ra',
+    ['pyright'] = 'py',
+    ['tsserver'] = 'ts',
+    ['lua_ls'] = 'lua',
+    ['clangd'] = 'clang',
   }
 
   local names = {}
@@ -746,14 +768,12 @@ vim.cmd.colorscheme(theme)
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '*/colors/*.lua',
-  callback = function()
-    vim.cmd.colorscheme(theme)
-  end,
+  callback = function() vim.cmd.colorscheme(theme) end,
   desc = 'Auto-reload theme on save',
 })
 
 vim.keymap.set('n', '<f5>', function()
   vim.cmd.hi.clear()
   vim.cmd.colorscheme(theme)
-  vim.notify('Theme reloaded')
+  vim.notify 'Theme reloaded'
 end, { desc = 'Reload colorscheme' })
