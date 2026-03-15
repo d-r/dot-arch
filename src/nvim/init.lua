@@ -235,7 +235,7 @@ local plugins = {
     build = ':TSUpdate',
     config = function()
       local ts = require 'nvim-treesitter'
-      local types = {
+      local parsers = {
         'bash',
         'c',
         'cpp',
@@ -268,13 +268,35 @@ local plugins = {
         install_dir = vim.fn.stdpath 'data' .. '/treesitter',
       }
 
-      ts.install(types)
+      ts.install(parsers)
 
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = types,
+        -- pattern = parsers,
         desc = 'Enable treesitter highlighting',
         group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
-        callback = function(event) vim.treesitter.start(event.buf) end,
+        callback = function(args)
+          local buf, filetype = args.buf, args.match
+
+          local language = vim.treesitter.language.get_lang(filetype)
+          if not language then
+            return
+          end
+
+          -- check if parser exists and load it
+          if not vim.treesitter.language.add(language) then
+            return
+          end
+          -- enables syntax highlighting and other treesitter features
+          vim.treesitter.start(buf, language)
+
+          -- enables treesitter based folds
+          -- for more info on folds see `:help folds`
+          -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          -- vim.wo.foldmethod = 'expr'
+
+          -- enables treesitter based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },
