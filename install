@@ -14,6 +14,7 @@ def "main" [] {
 
 # Install keyd config
 def "main keyd" [] {
+    sudo systemctl enable --now keyd
     sudo mkdir -p /etc/keyd
     sudo cp -fv (source-path keyd.conf) /etc/keyd/default.conf
     sudo keyd reload
