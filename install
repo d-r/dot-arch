@@ -92,7 +92,7 @@ def "main shell" [] {
     do {
         cd ~/.config/nushell
 
-        rm config.nu
+        rm -f config.nu
         cp -v ~/dot/src/nushell.nu config.nu
         (nushell-env $path $vars) | save -a config.nu
     }
@@ -101,8 +101,8 @@ def "main shell" [] {
     do {
         cd
 
-        rm .zshenv
-        rm .zshrc
+        rm -f .zshenv
+        rm -f .zshrc
         (zsh-env $path $vars) | save .zshenv
         link .zshrc zshrc
     }
