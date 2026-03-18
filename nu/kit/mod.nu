@@ -15,5 +15,5 @@ export-env {
         $"($clones)/*"
     ] | each { glob $in } | flatten
 
-    $env.DOT_LINK_FILE = ("~/churn/links.toml" | path expand)
+    $env.DOT_LINK_FILE = ("~/churn/links.yaml" | path expand)
 }
