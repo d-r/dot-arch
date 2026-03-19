@@ -1,3 +1,9 @@
+# To make this work:
+#
+# yay -S inotify-tools
+# systemctl --user daemon-reload
+# systemctl --user enable --now waybar-watcher.service
+
 [Unit]
 Description=Auto-reload Waybar on config/style changes
 

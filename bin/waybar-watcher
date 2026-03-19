@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# To make this work:
+#
+# yay -S inotify-tools
 # systemctl --user daemon-reload
 # systemctl --user enable --now waybar-watcher.service
 

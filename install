@@ -9,6 +9,7 @@ const $SOURCE_DIR = ("~/dot/src" | path expand --no-symlink)
 def "main" [] {
     main shell
     main links
+    main systemd
     main keyd
 }
 
@@ -35,7 +36,6 @@ def "main links" [] {
     link yazi/theme.toml yazi.theme.toml
     link tealdeer/config.toml tealdeer.toml
     link wlr-which-key/config.yaml wlr-which-key.yaml
-    link systemd/user/waybar-watcher.service systemd/waybar-watcher.service
 
     link git
     link nvim
@@ -44,6 +44,22 @@ def "main links" [] {
     link kitty
     link foot
     link qutebrowser
+}
+
+# Install systemd services
+def "main systemd" [] {
+    systemctl --user daemon-reload
+
+    mkdir ~/.config/systemd/user
+    cd ~/.config/systemd/user
+
+    for $source in (glob ~/dot/src/systemd/*.service) {
+        let $target = ($source | path basename)
+        
+        ln -sfv $source ($target | path expand --no-symlink)
+
+        systemctl --user enable --now $target
+    }    
 }
 
 # Install shell config
