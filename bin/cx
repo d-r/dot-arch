@@ -15,17 +15,17 @@ def "main toggle-space" [$idx] {
 
 # Spawn bookmark picker
 def "main links" [] {
-    tui visit-link
+    tui-term visit-link
 }
 
 # Spawn repo picker
 def "main repos" [] {
-    tui visit-repo
+    tui-term visit-repo
 }
 
 # Spawn directory picker
 def "main explorer" [] {
-    tui visit-dir
+    tui-term visit-dir
 }
 
 # Open the CWD
@@ -35,14 +35,14 @@ def "main dir" [] {
 
 # Spawn TODO manager
 def "main todo" [] {
-    tui todo
+    tui-term todo
 }
 
 # If there is a URL inside the clipboard, save it as a bookmark
 def "main save-clipped-url" [] {
     let $s = (wl-paste)
     if ($s | is-url) {
-        tui save-url $s
+        tui-term save-url $s
     } else if ($s | is-empty) {
         notify-send "Clipboard is empty"
     } else {
