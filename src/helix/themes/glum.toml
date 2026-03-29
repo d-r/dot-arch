@@ -27,13 +27,12 @@ label = "teal"
 "function.builtin" = "teal"
 operator = "teal"
 
-special = "dim_teal2"
-
-# punctuation = "dim_teal"
 punctuation = "dim_teal2"
+# punctuation = "dim_teal"
 
 type = "green"
-"type.parameter" = "green"
+special = "cyan"
+"type.parameter" = "cyan"
 
 "constant.numeric" = "lavender"
 "constant.builtin" = "lavender"
