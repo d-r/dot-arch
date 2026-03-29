@@ -2,18 +2,6 @@
 
 use kit *
 
-const $TAG_FILE = "/tmp/tag.txt"
-
-def read-tag [] {
-    open? $TAG_FILE "dev"
-}
-
-def write-tag [$tag] {
-    $tag o> $TAG_FILE
-}
-
-#-------------------------------------------------------------------------------
-
 # Context
 def main [] {
     help main
@@ -24,26 +12,6 @@ def "main toggle-space" [$idx] {
     let $ws = if (wm focused-workspace).idx != $idx { $idx } else { (read-tag) }
     wm focus-workspace $ws
 }
-
-# Focus the primary workspace
-def "main focus-primary" [] {
-    wm focus-workspace (read-tag)
-}
-
-# Switch primary workspace
-def "main switch-primary" [] {
-    match (wm tag) {
-        dev => (main set-primary snd)
-        snd => (main set-primary dev)
-        _ => {}
-    }
-}
-
-def "main set-primary" [$tag] {
-    wm focus-workspace $tag
-    write-tag $tag
-}
-
 
 # Spawn bookmark picker
 def "main links" [] {
