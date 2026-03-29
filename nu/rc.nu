@@ -1,5 +1,3 @@
-alias c = clear
-
 alias l = eza -l --group-directories-first
 alias pick-file = fzf --preview 'bat --color=always {}'
 alias tree = ^tree -F --dirsfirst --noreport
