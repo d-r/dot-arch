@@ -3,7 +3,7 @@
 use ./nu/kit *
 use std/log
 
-const $SOURCE_DIR = ("~/dot/src" | path expand --no-symlink)
+const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
 
 # Install
 def "main" [] {
@@ -17,7 +17,7 @@ def "main" [] {
 def "main keyd" [] {
     sudo systemctl enable --now keyd
     sudo mkdir -p /etc/keyd
-    sudo cp -fv (source-path keyd.conf) /etc/keyd/default.conf
+    sudo cp -fv (cfg-path keyd.conf) /etc/keyd/default.conf
     sudo keyd reload
 }
 
@@ -53,7 +53,7 @@ def "main systemd" [] {
     mkdir ~/.config/systemd/user
     cd ~/.config/systemd/user
 
-    for $source in (glob ~/dot/src/systemd/*.service) {
+    for $source in (glob (cfg-path "systemd" "*.service")) {
         let $target = ($source | path basename)
         
         ln -sfv $source ($target | path expand --no-symlink)
@@ -110,7 +110,7 @@ def "main shell" [] {
         cd ~/.config/nushell
 
         rm -f config.nu
-        cp -v ~/dot/src/nushell.nu config.nu
+        cp -v (cfg-path nushell.nu) config.nu
         (nushell-env $path $vars) | save -a config.nu
     }
 
@@ -157,7 +157,7 @@ def link [$target, $source = ""] {
         $source
     }
 
-    let $source = (source-path $source)
+    let $source = (cfg-path $source)
     if not ($source | path exists) {
         log warning $"Path `($source)` does not exist; skipping"
         return;
@@ -176,6 +176,6 @@ def link [$target, $source = ""] {
     print $"($target) -> ($source)"
 }
 
-def source-path [...$args] {
-    [$SOURCE_DIR] | append $args | path join
+def cfg-path [...$args] {
+    [$CONFIG_DIR] | append $args | path join
 }
