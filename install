@@ -5,24 +5,85 @@ use std/log
 
 const $CONFIG_DIR = ("~/dot/cfg" | path expand --no-symlink)
 
-# Install
 def "main" [] {
     main shell
-    main links
+    main user-dirs
+    main configs
     main systemd
     main keyd
 }
 
-# Install keyd config
-def "main keyd" [] {
-    sudo systemctl enable --now keyd
-    sudo mkdir -p /etc/keyd
-    sudo cp -fv (cfg-path keyd.conf) /etc/keyd/default.conf
-    sudo keyd reload
+def "main shell" [] {
+    let $home = $nu.home-dir
+    let $lang = "en_IE.UTF-8"
+
+    let $path = [
+        $"($home)/dot/bin"
+        $"($home)/.cargo/bin"
+        $"($home)/lab"
+    ]
+
+    let $vars = {
+        # https://wiki.archlinux.org/title/XDG_Base_Directory
+        XDG_CONFIG_HOME: $"($home)/.config"
+        XDG_CACHE_HOME: $"($home)/.cache"
+        XDG_DATA_HOME: $"($home)/.local/share"
+        XDG_STATE_HOME: $"($home)/.local/state"
+
+        # https://wiki.archlinux.org/title/XDG_user_directories
+        # XDG_DOWNLOAD_DIR: $"($home)/dl"
+        # XDG_DOCUMENTS_DIR: $"($home)/doc"
+        # XDG_MUSIC_DIR: $"($home)/media/audio/releases"
+        # XDG_VIDEOS_DIR: $"($home)/media/video" # ?
+        # XDG_PICTURES_DIR: $"($home)/images" # ?
+        # XDG_DESKTOP_DIR: $"($home)/tmp" # ?
+
+        LANG: $lang
+        LC_ALL: $lang
+        LC_COLLATE: $lang
+        LC_CTYPE: $lang
+        LC_MESSAGES: $lang
+        LC_MONETARY: $lang
+        LC_NUMERIC: $lang
+        LC_TIME: $lang
+
+        EDITOR: "micro"
+        MANPAGER: "nvim +Man!"
+        FZF_DEFAULT_OPTS: "--style=minimal --reverse"
+        SKIM_DEFAULT_OPTIONS: "--reverse"
+        FD_OPTS: "--hidden"
+    }
+
+    # nushell
+    do {
+        mkcd ~/.config/nushell
+
+        rm -f config.nu
+        cp -v (cfg-path nushell.nu) config.nu
+        (nushell-env $path $vars) | save -a config.nu
+    }
+
+    # zsh
+    do {
+        cd
+
+        rm -f .zshenv
+        rm -f .zshrc
+        (zsh-env $path $vars) | save .zshenv
+        link .zshrc zshrc
+    }
 }
 
-# Install symlinks
-def "main links" [] {
+def "main user-dirs" [] {
+    cd ~/.config
+
+    link user-dirs.dirs
+    link user-dirs.locale
+
+    xdg-user-dirs-update
+}
+
+def "main configs" [] {
     cd ~/.config
 
     link task/taskrc taskrc
@@ -46,12 +107,10 @@ def "main links" [] {
     link qutebrowser
 }
 
-# Install systemd services
 def "main systemd" [] {
     systemctl --user daemon-reload
 
-    mkdir ~/.config/systemd/user
-    cd ~/.config/systemd/user
+    mkcd ~/.config/systemd/user
 
     for $source in (glob (cfg-path "systemd" "*.service")) {
         let $target = ($source | path basename)
@@ -62,68 +121,13 @@ def "main systemd" [] {
     }    
 }
 
-# Install shell config
-def "main shell" [] {
-    let $home = $nu.home-dir
-    let $lang = "en_IE.UTF-8"
-
-    let $path = [
-        $"($home)/dot/bin"
-        $"($home)/.cargo/bin"
-        $"($home)/lab"
-    ]
-
-    let $vars = {
-        # https://wiki.archlinux.org/title/XDG_Base_Directory
-        XDG_CONFIG_HOME: $"($home)/.config"
-        XDG_CACHE_HOME: $"($home)/.cache"
-        XDG_DATA_HOME: $"($home)/.local/share"
-        XDG_STATE_HOME: $"($home)/.local/state"
-
-        # https://wiki.archlinux.org/title/XDG_user_directories
-        XDG_DOWNLOAD_DIR: $"($home)/dl"
-        XDG_DOCUMENTS_DIR: $"($home)/doc"
-        XDG_MUSIC_DIR: $"($home)/media/audio/releases"
-        XDG_VIDEOS_DIR: $"($home)/media/video" # ?
-        XDG_PICTURES_DIR: $"($home)/images" # ?
-        XDG_DESKTOP_DIR: $"($home)/tmp" # ?
-
-        LANG: $lang
-        LC_ALL: $lang
-        LC_COLLATE: $lang
-        LC_CTYPE: $lang
-        LC_MESSAGES: $lang
-        LC_MONETARY: $lang
-        LC_NUMERIC: $lang
-        LC_TIME: $lang
-
-        EDITOR: "micro"
-        MANPAGER: "nvim +Man!"
-        FZF_DEFAULT_OPTS: "--style=minimal --reverse"
-        SKIM_DEFAULT_OPTIONS: "--reverse"
-        FD_OPTS: "--hidden"
-    }
-
-    # nushell
-    mkdir ~/.config/nushell
-    do {
-        cd ~/.config/nushell
-
-        rm -f config.nu
-        cp -v (cfg-path nushell.nu) config.nu
-        (nushell-env $path $vars) | save -a config.nu
-    }
-
-    # zsh
-    do {
-        cd
-
-        rm -f .zshenv
-        rm -f .zshrc
-        (zsh-env $path $vars) | save .zshenv
-        link .zshrc zshrc
-    }
+def "main keyd" [] {
+    sudo systemctl enable --now keyd
+    sudo mkdir -p /etc/keyd
+    sudo cp -fv (cfg-path keyd.conf) /etc/keyd/default.conf
+    sudo keyd reload
 }
+
 
 #-------------------------------------------------------------------------------
 # CODE GENERATION

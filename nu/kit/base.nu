@@ -1,4 +1,4 @@
-# A set of useful tools
+# A set of useful tools.
 
 export alias say = notify-send
 
@@ -68,33 +68,39 @@ export def is-symlink []: path -> bool {
 #------------------------------------------------------------------------------
 # FILES
 
-# Create all directories on the path to the given file
+# Create all directories on the path to the given file.
 export def mktrail [$file: path]: nothing -> nothing {
     mkdir ($file | path dirname)
 }
 
-# Like `touch`, but creates missing directories
+# Like `touch`, but creates missing directories.
 export def poke [$file: path]: nothing -> nothing {
     mktrail $file
     touch $file
 }
 
-# Replace "/home/dan" with "~"" in the input string
+# Replace "/home/dan" with "~"" in the input string.
 export def shorten-home []: string -> string {
     str replace $nu.home-dir "~"
 }
 
-# Returns a path relative to $XDG_DATA_HOME
+# Returns a path relative to $XDG_DATA_HOME.
 export def data-path [...$args]: nothing -> path {
     [$env.XDG_DATA_HOME] | append $args | path join
 }
 
-# Returns a path relative to $XDG_CONFIG_HOME
+# Returns a path relative to $XDG_CONFIG_HOME.
 export def config-path [...$args]: nothing -> path {
     [$env.XDG_CONFIG_HOME] | append $args | path join
 }
 
-# Try to open a file, returning a default value if that fails
+# Try to open a file, returning a default value if that fails.
 export def open? [$file: path, $default: any]: nothing -> any {
     try { open $file } catch { $default }
+}
+
+# Create a directory, if it doesn't already exist, and `cd` into it.
+export def --env mkcd [$path: path]: nothing -> nothing {
+    mkdir $path
+    cd $path
 }
