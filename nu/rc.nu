@@ -26,8 +26,8 @@ alias scu = systemctl --user
 alias soft-reboot = systemctl soft-reboot
 alias jc = journalctl
 
-alias insert = sudo mount /dev/sda2 /media
-alias eject = sudo umount /media
+alias insert = sudo mount /dev/sda2 /mnt/drive
+alias eject = sudo umount /mnt/drive
 
 alias in = pk in
 alias un = pk un
