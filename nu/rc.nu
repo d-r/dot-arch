@@ -43,6 +43,18 @@ alias ta = t add
 
 #-------------------------------------------------------------------------------
 
+# Wrapper for yazi that changes the current working directory on exit.
+# https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
+def --env y [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	^yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != $env.PWD and ($cwd | path exists) {
+		cd $cwd
+	}
+	rm -fp $tmp
+}
+
 # Pick a folder with fzf and hop into it.
 def --env hop [] {
     cd (fd -td | fzf)
