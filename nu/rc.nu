@@ -41,7 +41,11 @@ alias resume = job unfreeze
 
 alias ta = t add
 
-#-------------------------------------------------------------------------------
+# Taskwarrior in context
+def --wrapped t [...$args] {
+    $env.DOT_TASK_CONTEXT = (wm project)
+    task ...$args
+}
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
