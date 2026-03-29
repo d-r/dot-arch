@@ -3,7 +3,7 @@ export use _wm.nu *
 export use _mime.nu *
 
 export-env {
-    let $repos = "~/lab"
+    let $repos = "~/src"
     let $clones = "~/co"
 
     $env.DOT_REPO_DIR = ($repos | path expand)
