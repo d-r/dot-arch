@@ -1,6 +1,0 @@
-#!/usr/bin/env nu
-
-use kit *
-
-let $dir = (pick repo)
-wm spawn code ($dir | path expand)

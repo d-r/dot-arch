@@ -1,6 +1,0 @@
-#!/usr/bin/env nu
-
-use kit *
-
-wm spawn code $env.DOT_LINK_FILE
-exit 1

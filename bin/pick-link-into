@@ -1,7 +1,0 @@
-#!/usr/bin/env nu
-
-use kit *
-
-def main [$file] {
-    (pick link) o> $file
-}

@@ -1,0 +1,69 @@
+#!/usr/bin/env nu
+
+use kit *
+
+def main [] {}
+
+def "main save-url" [$url] {
+    let $links = (open? $env.DOT_LINK_FILE {})
+    let $key = ($links | key-of $url | default "")
+
+    let $key = (gum input --placeholder $"Key for ($url)" --value $key)
+
+    if ($key | is-not-empty) {
+        ($links | upsert $key $url) | to yaml | save -f $env.DOT_LINK_FILE
+        notify-send $'Bookmark "($key)" saved'
+    }
+}
+
+def "main pick-link" [] {
+    xdg-open (pick-link)
+}
+
+def "main pick-link-into" [$file] {
+    (pick-link) o> $file
+}
+
+def "main pick-dir" [] {
+    cd
+    wm spawn kitty yazi (fd -td | fzf)
+}
+
+def "main pick-repo" [] {
+    let $dir = (pick-repo)
+    wm spawn code ($dir | path expand)
+}
+
+def "main todo" [] {
+    $env.DOT_TASK_CONTEXT = (wm project)
+    taskwarrior-tui
+}
+
+#-------------------------------------------------------------------------------
+
+def pick-link [] {
+    let $links = (open? $env.DOT_LINK_FILE {})
+    let $menu = ($links | kv | table-str --no-headers)
+    ($menu | fzf
+        -d "\t"
+        -n 1 # name
+        --accept-nth 2 # url
+        --bind "ctrl-e:become(edit-links)"
+        --header "ctrl+e to edit"
+    )
+}
+
+def pick-repo [] {
+    let $repos = $env.DOT_REPOS | each { repo $in }
+    let $menu = $repos | table-str --no-headers
+    ($menu | fzf
+        -d "\t"
+        -n 1 # name
+        --with-nth 1
+        --accept-nth 2 # dir
+    )
+}
+
+def repo [$dir: path]: nothing -> record {
+    {name: ($dir | path basename), dir: $dir}
+}

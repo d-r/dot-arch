@@ -7,25 +7,19 @@ def main [] {
     help main
 }
 
-# Toggle workspace
-def "main toggle-space" [$idx] {
-    let $ws = if (wm focused-workspace).idx != $idx { $idx } else { (read-tag) }
-    wm focus-workspace $ws
-}
-
 # Spawn bookmark picker
 def "main links" [] {
-    tui-term visit-link
+    tui-term pick-link
 }
 
 # Spawn repo picker
 def "main repos" [] {
-    tui-term visit-repo
+    tui-term pick-repo
 }
 
 # Spawn directory picker
 def "main explorer" [] {
-    tui-term visit-dir
+    tui-term pick-dir
 }
 
 # Open the CWD

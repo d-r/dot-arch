@@ -1,6 +1,0 @@
-#!/usr/bin/env nu
-
-use kit *
-
-cd
-wm spawn kitty yazi (fd -td | fzf)
