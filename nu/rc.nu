@@ -64,6 +64,12 @@ def --env hop [] {
     cd (fd -td | fzf)
 }
 
+# Clone a third-party git repo
+def --wrapped clone [...$args] {
+    cd $env.DOT_CLONE_DIR
+    git clone ...$args
+}
+
 # Add the current user to a group.
 def add-me-to [$group] {
     sudo usermod -aG $group $env.USER
