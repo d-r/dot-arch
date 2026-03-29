@@ -17,12 +17,12 @@ menu:
   # - key: "r"
   #   desc: Repos
   #   cmd: cx repos
-  - key: "e"
-    desc: Explorer
-    cmd: cx explorer
-  - key: "d"
-    desc: Directory
-    cmd: cx dir
+  # - key: "e"
+  #   desc: Explorer
+  #   cmd: cx explorer
+  # - key: "d"
+  #   desc: Directory
+  #   cmd: cx dir
   # - key: "k"
   #   desc: keybr.com
   #   cmd: webapp keybr https://www.keybr.com/

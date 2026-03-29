@@ -4,30 +4,31 @@
 //   $ niri msg action -h | less
 
 binds {
+    Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
     Mod+Shift+Delete { quit skip-confirmation=true; }
     Mod+Backspace { close-window; }
     Mod+Shift+P { power-off-monitors; }
 
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
     Mod+F11 repeat=false { toggle-overview; }
     Mod+F12 { switch-layout "next"; }
 
-    // TERMINALS
+    // TOOLS
 
     Mod+Grave { spawn "kitten" "quick-access-terminal"; }
     Mod+Return { spawn "cx" "term"; }
     Mod+Shift+Return { spawn "cx" "respawn-term"; }
 
-    // MODALS
-
-    Mod+Space { spawn "wlr-which-key"; }
-    Mod+Delete { spawn "wlr-which-key" "--initial-keys" "p"; }
-
-    Mod+R { spawn "fuzzel"; }
+    Mod+E { spawn "cx" "explorer"; }
+    Mod+D { spawn "cx" "dir"; }
     Mod+P { spawn "cx" "repos"; }
     Mod+O { spawn "cx" "links"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+R { spawn "fuzzel"; }
+
+    Mod+Space { spawn "wlr-which-key"; }
 
     // LAYOUT
 
