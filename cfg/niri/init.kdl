@@ -3,6 +3,7 @@
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     GTK_THEME "Adwaita:dark"
+    QT_QPA_PLATFORMTHEME "qt6ct"
 }
 
 spawn-at-startup "desktop-settings"
