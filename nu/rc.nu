@@ -41,6 +41,10 @@ alias resume = job unfreeze
 
 alias ta = t add
 
+def rr [$dir = "."] {
+    wm spawn ~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover ($dir | path expand)
+}
+
 # Taskwarrior in context
 def --wrapped t [...$args] {
     $env.DOT_TASK_CONTEXT = (wm project)
