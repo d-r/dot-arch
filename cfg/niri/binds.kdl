@@ -120,8 +120,6 @@ binds {
 
     XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
     XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
-    Shift+XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "0"; }
-    Shift+XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "100"; }
 
     // SCREENSHOTS
 
