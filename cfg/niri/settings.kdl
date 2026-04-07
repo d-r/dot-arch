@@ -14,6 +14,7 @@ output "eDP-1" {
 
 input {
     workspace-auto-back-and-forth
+    focus-follows-mouse
 
     keyboard {
         xkb {
