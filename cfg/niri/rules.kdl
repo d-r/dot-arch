@@ -32,6 +32,8 @@ window-rule {
 window-rule {
     match app-id="firefox"
     match app-id="chrome"
+    match app-id="BitwigStudio"
+    match app-id="Renoise"
     match app-id="imv"
     match app-id="mpv"
 
