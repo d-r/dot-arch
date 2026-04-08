@@ -26,7 +26,7 @@ def "main pick-link-into" [$file] {
 
 def "main pick-dir" [] {
     cd
-    wm spawn kitty yazi (fd -td | fzf)
+    wm spawn kitty --app-id "yazi" -- yazi (fd -td | fzf)
 }
 
 def "main pick-repo" [] {
