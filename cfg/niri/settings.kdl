@@ -16,7 +16,6 @@ input {
     workspace-auto-back-and-forth
 
     focus-follows-mouse
-    warp-mouse-to-focus mode="center-xy"
 
     keyboard {
         xkb {
