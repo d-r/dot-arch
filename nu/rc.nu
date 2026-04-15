@@ -31,6 +31,7 @@ alias eject = sudo umount /mnt/drive
 
 alias in = pk in
 alias un = pk un
+alias up = pk up
 alias out = pk out
 
 alias cb = cargo build
