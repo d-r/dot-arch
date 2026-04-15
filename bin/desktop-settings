@@ -2,6 +2,7 @@
 
 const $BROWSER = "brave-browser.desktop"
 const $IMAGE_VIEWER = "imv.desktop"
+const $AUDIO_PLAYER = "mpv.desktop"
 const $VIDEO_PLAYER = "mpv.desktop"
 
 # Default browser
@@ -19,6 +20,15 @@ xdg-mime default $IMAGE_VIEWER image/gif
 xdg-mime default $IMAGE_VIEWER image/webp
 xdg-mime default $IMAGE_VIEWER image/bmp
 xdg-mime default $IMAGE_VIEWER image/tiff
+
+# Audio
+xdg-mime default $AUDIO_PLAYER audio/flac
+xdg-mime default $AUDIO_PLAYER audio/x-flac
+xdg-mime default $AUDIO_PLAYER audio/mp3
+xdg-mime default $AUDIO_PLAYER audio/x-mp3
+xdg-mime default $AUDIO_PLAYER audio/mp4
+xdg-mime default $AUDIO_PLAYER audio/aac
+xdg-mime default $AUDIO_PLAYER audio/x-aac
 
 # Videos
 xdg-mime default $VIDEO_PLAYER video/mp4
