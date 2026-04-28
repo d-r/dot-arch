@@ -41,7 +41,9 @@ alias cf = cargo fmt
 
 alias resume = job unfreeze
 
-alias ta = t add
+alias h = harsh
+alias ha = harsh ask
+alias hl = harsh log
 
 def rr [$dir = "."] {
     wm spawn ~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover ($dir | path expand)
@@ -52,6 +54,8 @@ def --wrapped t [...$args] {
     $env.DOT_TASK_CONTEXT = (wm project)
     task ...$args
 }
+
+alias ta = t add
 
 # Wrapper for yazi that changes the current working directory on exit.
 # https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
