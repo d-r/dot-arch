@@ -1,0 +1,801 @@
+local kit = require 'kit'
+
+local picker = kit.proxy(function() return Snacks.picker end)
+local flash = kit.proxy(function() return require 'flash' end)
+
+-- n = normal mode
+-- x = visual mode
+-- o = operator-pending
+-- i = insert mode
+-- s = selection mode
+-- v = visual + selection mode
+-- c = command mode
+local nxo = { 'n', 'x', 'o' }
+local nx = { 'n', 'x' }
+local xo = { 'x', 'o' }
+local ni = { 'n', 'i' }
+
+--------------------------------------------------------------------------------
+-- OPTIONS
+
+-- Set <leader> key to <space>
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- kitty has builtin Nerd Font support
+vim.g.have_nerd_font = true
+
+-- Don't show the current mode, as it's already in the statusline
+vim.o.showmode = false
+
+-- Enable gutter space for LSP info on the left
+vim.o.signcolumn = 'yes'
+
+-- Enable relative line numbers
+vim.o.number = true
+vim.o.relativenumber = true
+
+-- Highlight the line that the cursor is on
+vim.o.cursorline = true
+
+-- Minimum number of screen lines to keep above and below the cursor
+vim.o.scrolloff = 10
+
+-- Perform case insensitive search, *unless* the search term contains at least
+-- one capital letter
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- Don't highlight the matches of the previous search
+vim.o.hlsearch = false
+
+-- Indent using 4 spaces by default
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.autoindent = true
+
+-- Disable the swap file, as it's a source of pointless error messages
+vim.o.swapfile = false
+
+-- Auto reload files whey they change on disk
+vim.o.autoread = true
+
+-- Save undo history to disk
+vim.o.undofile = true
+
+-- Use the system clipboard
+vim.o.clipboard = 'unnamedplus'
+
+-- Enable mouse support
+vim.o.mouse = 'a'
+
+-- Decrease the time to wait for a mapped sequence to complete
+vim.o.timeoutlen = 300 -- ms
+
+vim.diagnostic.config {
+  virtual_text = { -- show inline messages
+    prefix = '●',
+    spacing = 2,
+  },
+  signs = true, -- show signs in the gutter
+  underline = true, -- underline problematic text
+  update_in_insert = false, -- don't update diagnostics while typing
+  severity_sort = true, -- sort diagnostics by severity
+}
+
+--------------------------------------------------------------------------------
+-- AUTO COMMANDS (HOOKS)
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight yanked text',
+  group = vim.api.nvim_create_augroup('user-highlight-yank', { clear = true }),
+  callback = function() vim.hl.on_yank() end,
+})
+
+--------------------------------------------------------------------------------
+-- PLUGINS
+
+local plugins = {
+  -- Display inline diagnostic messages where the cursor is
+  -- https://github.com/rachartier/tiny-inline-diagnostic.nvim
+  {
+    'rachartier/tiny-inline-diagnostic.nvim',
+    event = 'VeryLazy',
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup()
+      vim.diagnostic.config { virtual_text = false } -- Disable default virtual text
+    end,
+  },
+
+  -- A window in the bottom right corner that displays LSP progress messages
+  -- https://github.com/j-hui/fidget.nvim
+  {
+    'j-hui/fidget.nvim',
+    enabled = false,
+    opts = {
+      notification = {
+        window = {
+          max_width = 0,
+        },
+      },
+    },
+  },
+
+  -- Rust IDE
+  -- https://github.com/mrcjkb/rustaceanvim
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6',
+    lazy = false, -- This plugin is already lazy
+  },
+
+  -- -- Lua Language Server setup for the Neovim config
+  -- -- https://github.com/folke/lazydev.nvim
+  -- {
+  --   'folke/lazydev.nvim',
+  --   ft = 'lua', -- Only enable for .lua files
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       -- (whatever that means)
+  --       { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  --     },
+  --   },
+  -- },
+
+  -- Completion
+  -- https://cmp.saghen.dev/
+  {
+    'saghen/blink.cmp',
+    -- use a release tag to download pre-built binaries
+    version = '1.*',
+    enabled = false,
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = {
+        preset = 'default',
+      },
+
+      -- (Default) Only show the documentation popup when manually triggered
+      completion = { documentation = { auto_show = false } },
+
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+
+      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+      -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+      -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+      --
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
+    },
+    opts_extend = { 'sources.default' },
+  },
+
+  -- Intelligent code formatting
+  -- https://github.com/stevearc/conform.nvim
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+      },
+    },
+    keys = {
+      {
+        '<leader>=',
+        desc = 'Format buffer',
+        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+      },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        desc = 'Format on save',
+        group = vim.api.nvim_create_augroup('user-format-on-save', { clear = true }),
+        callback = function(args) require('conform').format { bufnr = args.buf } end,
+      })
+    end,
+  },
+
+  -- Auto detect indentation size
+  -- https://github.com/NMAC427/guess-indent.nvim
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {},
+  },
+
+  -- Treesitter integration
+  -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main
+  --
+  -- You should have these packages installed on the system:
+  -- https://archlinux.org/groups/x86_64/tree-sitter-grammars/
+  -- https://archlinux.org/packages/extra/x86_64/tree-sitter-cli/
+  {
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
+    config = function()
+      local ts = require 'nvim-treesitter'
+      local parsers = {
+        'bash',
+        'c',
+        'cpp',
+        'css',
+        'diff',
+        'git_config',
+        'git_rebase',
+        'gitcommit',
+        'gitignore',
+        'html',
+        'ini',
+        'json',
+        'json5',
+        'kdl',
+        'lua',
+        'luadoc',
+        'markdown_inline',
+        'markdown',
+        'nu',
+        'query',
+        'ron',
+        'rust',
+        'toml',
+        'vim',
+        'vimdoc',
+        'wgsl',
+      }
+
+      ts.setup {
+        install_dir = vim.fn.stdpath 'data' .. '/treesitter',
+      }
+
+      ts.install(parsers)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        -- pattern = parsers,
+        desc = 'Enable treesitter highlighting',
+        group = vim.api.nvim_create_augroup('user-treesitter', { clear = true }),
+        callback = function(args)
+          local buf, filetype = args.buf, args.match
+
+          local language = vim.treesitter.language.get_lang(filetype)
+          if not language then
+            return
+          end
+
+          -- check if parser exists and load it
+          if not vim.treesitter.language.add(language) then
+            return
+          end
+          -- enables syntax highlighting and other treesitter features
+          vim.treesitter.start(buf, language)
+
+          -- enables treesitter based folds
+          -- for more info on folds see `:help folds`
+          -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          -- vim.wo.foldmethod = 'expr'
+
+          -- enables treesitter based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
+  },
+
+  -- Show the context of the currently visible buffer contents
+  -- https://github.com/nvim-treesitter/nvim-treesitter-context
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {},
+  },
+
+  -- Syntax aware text-objects, select, move, swap, and peek support
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    lazy = false,
+    opts = {},
+    keys = function()
+      local function goto_prev(o)
+        return function()
+          require('nvim-treesitter-textobjects.move').goto_previous_start(o, 'textobjects')
+        end
+      end
+
+      local function goto_next(o)
+        return function()
+          require('nvim-treesitter-textobjects.move').goto_next_start(o, 'textobjects')
+        end
+      end
+
+      local function swap_prev(o)
+        return function() require('nvim-treesitter-textobjects.swap').swap_previous(o) end
+      end
+
+      local function swap_next(o)
+        return function() require('nvim-treesitter-textobjects.swap').swap_next(o) end
+      end
+
+      return {
+        -- Goto
+
+        { '[t', desc = 'Previous type', mode = nxo, goto_prev '@class.outer' },
+        { ']t', desc = 'Next type', mode = nxo, goto_next '@class.outer' },
+
+        { '[f', desc = 'Previous function', mode = nxo, goto_prev '@function.outer' },
+        { ']f', desc = 'Next function', mode = nxo, goto_next '@function.outer' },
+
+        { '[a', desc = 'Previous argument', mode = nxo, goto_prev '@argument.outer' },
+        { ']a', desc = 'Next argument', mode = nxo, goto_next '@argument.outer' },
+
+        { '[c', desc = 'Previous comment', mode = nxo, goto_prev '@comment.outer' },
+        { ']c', desc = 'Next comment', mode = nxo, goto_next '@comment.outer' },
+
+        -- Swap
+
+        { '<leader>pa', desc = 'Swap previous argument', swap_prev '@parameter.outer' },
+        { '<leader>na', desc = 'Swap next argument', swap_next '@parameter.outer' },
+
+        { '<leader>pf', desc = 'Swap previous function', swap_prev '@function.outer' },
+        { '<leader>nf', desc = 'Swap next function', swap_next '@function.outer' },
+
+        { '<leader>pt', desc = 'Swap previous type', swap_prev '@class.outer' },
+        { '<leader>nt', desc = 'Swap next type', swap_next '@class.outer' },
+      }
+    end,
+  },
+
+  -- Extend and create a/i textobjects
+  -- https://github.com/nvim-mini/mini.ai
+  {
+    'nvim-mini/mini.ai',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    config = function()
+      local ai = require 'mini.ai'
+      local ts = ai.gen_spec.treesitter
+      ai.setup {
+        n_lines = 500,
+        custom_textobjects = {
+          -- Block
+          o = ts {
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+          },
+          -- Argument
+          a = ts { a = '@parameter.outer', i = '@parameter.inner' },
+          -- Function
+          f = ts { a = '@function.outer', i = '@function.inner' },
+          -- Type
+          t = ts { a = '@class.outer', i = '@class.inner' },
+          -- Comment
+          c = ts { a = '@comment.outer', i = '@comment.inner' },
+        },
+      }
+    end,
+  },
+
+  -- Auto pair delimiters
+  -- https://github.com/nvim-mini/mini.pairs
+  {
+    'nvim-mini/mini.pairs',
+    enabled = true,
+    opts = {},
+  },
+
+  -- Add/delete/replace/find surrounding characters
+  -- https://github.com/nvim-mini/mini.surround
+  {
+    'nvim-mini/mini.surround',
+    opts = {
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        add = 'ys', -- Add surrounding in Normal and Visual modes
+        delete = 'ds', -- Delete surrounding
+        find = '', -- Find surrounding (to the right)
+        find_left = '', -- Find surrounding (to the left)
+        highlight = '', -- Highlight surrounding
+        replace = 'cs', -- Replace surrounding
+      },
+    },
+  },
+
+  -- Comment lines
+  -- https://github.com/nvim-mini/mini.comment
+  {
+    'nvim-mini/mini.comment',
+    opts = {
+      mappings = {
+        -- Toggle comment (like `gcip` - comment inner paragraph) for both
+        -- Normal and Visual modes
+        comment = '',
+
+        -- Toggle comment on current line
+        comment_line = '<c-/>',
+
+        -- Toggle comment on visual selection
+        comment_visual = '<c-/>',
+
+        -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+        -- Works also in Visual mode if mapping differs from `comment_visual`
+        textobject = 'gc',
+      },
+    },
+  },
+
+  -- Jump around
+  -- https://github.com/folke/flash.nvim
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {
+      modes = {
+        char = { enabled = false }, -- Don't override f, t, F, T,
+      },
+    },
+    keys = {
+      -- m is for "move"
+      -- This overwrites the "set mark" bind.
+      { 's', desc = 'Flash', mode = nxo, flash.jump },
+      { 'S', desc = 'Flash treesitter', mode = nxo, flash.treesitter },
+
+      -- TODO: Find out what these do:
+      { 'r', desc = 'Remote flash', mode = 'o', flash.remote },
+      { 'R', desc = 'Treesitter search', mode = xo, flash.treesitter_search },
+    },
+  },
+
+  -- Snacks - a collection of small quality-of-life plugins
+  -- https://github.com/folke/snacks.nvim
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      scroll = { enabled = true },
+      indent = { enabled = true },
+      notifier = { enabled = true },
+      picker = {
+        enabled = true,
+        sources = {
+          files = {
+            hidden = true,
+          },
+        },
+        layout = {
+          fullscreen = true,
+        },
+        win = {
+          input = {
+            keys = {
+              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+            },
+          },
+        },
+      },
+    },
+    keys = function()
+      return {
+        { '<c-p>', desc = 'Command palette', picker.commands },
+        { '<leader><space>', desc = 'Smart find files', picker.smart },
+        { '<leader>f', desc = 'Files', picker.files },
+        { '<leader>b', desc = 'Buffers', picker.buffers },
+        { '<leader>c', desc = 'Commands', picker.commands },
+        { '<leader>d', desc = 'Diagnostics (buffer)', picker.diagnostics_buffer },
+        { '<leader>D', desc = 'Diagnostics (global)', picker.diagnostics },
+        { '<leader>h', desc = 'Help', picker.help },
+        { '<leader>k', desc = 'Keymaps', picker.keymaps },
+        { '<leader>/', desc = 'Grep in workspace', picker.grep },
+      }
+    end,
+  },
+
+  -- Detect TODO comments
+  -- https://github.com/folke/todo-comments.nvim
+  {
+    'folke/todo-comments.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'folke/snacks.nvim', -- For the picker
+    },
+    opts = {
+      signs = false, -- Don't put icons in the sign column
+      highlight = {
+        keyword = 'fg', -- Colorize the keyword
+        -- after = "",     -- Don't colorize the rest of the line
+      },
+    },
+    keys = {
+      { '<leader>t', desc = 'TODO comments', picker.todo_comments },
+    },
+  },
+
+  -- Show available keybinds in a popup as you type
+  -- https://github.com/folke/which-key.nvim
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = {
+      preset = 'helix',
+    },
+    keys = {
+      {
+        '<leader>?',
+        function() require('which-key').show { global = false } end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
+  },
+
+  -- File type icons
+  -- https://github.com/nvim-mini/mini.icons
+  {
+    'nvim-mini/mini.icons',
+    opts = {},
+  },
+
+  -- Pin buffers
+  -- https://github.com/iofq/dart.nvim
+  {
+    'iofq/dart.nvim',
+    enabled = false,
+    opts = {},
+  },
+
+  -- Magit for nvim
+  -- https://github.com/NeogitOrg/neogit
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim', -- Required for... *something*
+  --     'sindrets/diffview.nvim', -- Diff integration
+  --     'folke/snacks.nvim', -- Picker
+  --   },
+  --   keys = {
+  --     { '<leader>g', ':Neogit kind=replace<CR>', desc = 'Neogit' },
+  --   },
+  -- },
+
+  -- LazyGit integration
+  -- https://github.com/kdheepak/lazygit.nvim?tab=readme-ov-file
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { '<leader>g', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
+
+  -- File bookmarks
+  -- https://github.com/otavioschwanck/arrow.nvim
+  {
+    'otavioschwanck/arrow.nvim',
+    opts = {
+      show_icons = false,
+      leader_key = '\\',
+      buffer_leader_key = '<leader>\\',
+    },
+  },
+
+  -- An "angry fruit salad" color scheme that insists on giving every single
+  -- fucking token a different color.
+  -- But all the major themes do that, and I prefer this one to most.
+  --
+  -- TODO: Replace this with my own theme.
+  --
+  -- https://github.com/folke/tokyonight.nvim
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+  },
+
+  -- Nord, but darker and warmer.
+  -- github.com/AlexvZyl/nordic.nvim
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      italic_comments = false,
+    },
+  },
+
+  {
+    'yonatan-perel/lake-dweller.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      italics = false,
+    },
+  },
+}
+
+-- local theme = 'lake-dweller'
+
+kit.init_lazy {
+  spec = plugins,
+  -- install = { colorscheme = { theme } }, -- Theme to use when installing plugins
+}
+
+--------------------------------------------------------------------------------
+-- LSP
+
+vim.lsp.enable {
+  -- rust_analyzer is left for rustaceanvim to configure
+  'clangd',
+  'lua_ls',
+  'marksman',
+  'nushell',
+  'wgsl_analyzer',
+  'zk',
+}
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Add LSP-related keybinds when an LSP attaches to a buffer',
+  group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
+  callback = function(_)
+    kit.bind_keys {
+      { '<c-.>', desc = 'Code action', mode = nx, vim.lsp.buf.code_action },
+
+      { '<leader>a', desc = 'Code action', mode = nx, vim.lsp.buf.code_action },
+      { '<leader>r', desc = 'Rename symbol', vim.lsp.buf.rename },
+      { '<leader>=', desc = 'Format buffer', vim.lsp.buf.format },
+      { '<leader>s', desc = 'Symbols', picker.lsp_symbols },
+      { '<leader>S', desc = 'Workspace symbols', picker.lsp_workspace_symbols },
+
+      { 'gd', desc = 'Goto definition', picker.lsp_definitions },
+      { 'gD', desc = 'Goto declaration', picker.lsp_declarations },
+      { 'gy', desc = 'Goto type definition', picker.lsp_type_definitions },
+      { 'gr', desc = 'Goto references', nowait = true, picker.lsp_references },
+      { 'gi', desc = 'Goto implementation', picker.lsp_implementations },
+    }
+  end,
+})
+
+--------------------------------------------------------------------------------
+-- BINDS
+
+-- Disabled because it inteferes with flash
+-- Make ESC close floating windows
+-- vim.keymap.set('n', '<esc>', function()
+--   for _, win in ipairs(vim.api.nvim_list_wins()) do
+--     if vim.api.nvim_win_get_config(win).relative == 'win' then
+--       vim.api.nvim_win_close(win, false)
+--     end
+--   end
+-- end)
+
+kit.bind_keys {
+  { '<c-s>', desc = 'Save', mode = ni, '<cmd>write<CR>' },
+  { '<c-q>', desc = 'Quit', mode = ni, '<cmd>quit!<CR>' },
+}
+
+--------------------------------------------------------------------------------
+-- STATUSLINE (from Claude)
+
+vim.o.statusline =
+  '%{%v:lua.statusline_mode()%} %f%m%= %{%v:lua.lsp_diagnostics()%}  %{%v:lua.lsp_status()%}  %l:%c '
+
+function _G.statusline_mode()
+  local mode_map = {
+    n = { text = 'NOR', hl = 'StatusLineNormal' },
+    i = { text = 'INS', hl = 'StatusLineInsert' },
+    v = { text = 'VIS', hl = 'StatusLineVisual' },
+    V = { text = 'V-L', hl = 'StatusLineVisual' },
+    ['\22'] = { text = 'V-B', hl = 'StatusLineVisual' }, -- Ctrl-V
+    c = { text = 'CMD', hl = 'StatusLineCommand' },
+    R = { text = 'REP', hl = 'StatusLineReplace' },
+    t = { text = 'TER', hl = 'StatusLineTerminal' },
+  }
+
+  local current = mode_map[vim.fn.mode()] or { text = '???', hl = 'StatusLine' }
+  return string.format('%%#%s# %s %%*', current.hl, current.text)
+end
+
+function _G.lsp_diagnostics()
+  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+
+  local parts = {}
+  if errors > 0 then
+    table.insert(parts, string.format('%%#DiagnosticError#●%%* %d', errors))
+  end
+  if warnings > 0 then
+    table.insert(parts, string.format('%%#DiagnosticWarn#●%%* %d', warnings))
+  end
+
+  return table.concat(parts, '  ')
+end
+
+function _G.lsp_status()
+  local clients = vim.lsp.get_active_clients { bufnr = 0 }
+  if #clients == 0 then
+    return ''
+  end
+
+  local short_names = {
+    ['rust-analyzer'] = 'ra',
+    ['pyright'] = 'py',
+    ['tsserver'] = 'ts',
+    ['lua_ls'] = 'lua',
+    ['clangd'] = 'clang',
+  }
+
+  local names = {}
+  for _, client in pairs(clients) do
+    local name = short_names[client.name] or client.name
+    table.insert(names, name)
+  end
+
+  return table.concat(names, ' ')
+end
+
+-- Define highlight groups for mode colors
+vim.api.nvim_set_hl(0, 'StatusLineNormal', { bg = '#5f87af', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineInsert', { bg = '#87af87', fg = '#000000', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineVisual', { bg = '#d75f5f', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineCommand', { bg = '#d7af5f', fg = '#000000', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineReplace', { bg = '#af5f5f', fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineTerminal', { bg = '#5faf5f', fg = '#000000', bold = true })
+
+--------------------------------------------------------------------------------
+-- THEME
+
+local theme = 'tokyonight-night'
+-- local theme = 'glum'
+
+vim.cmd.colorscheme(theme)
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*/colors/*.lua',
+  callback = function() vim.cmd.colorscheme(theme) end,
+  desc = 'Auto-reload theme on save',
+})
+
+vim.keymap.set('n', '<f5>', function()
+  vim.cmd.hi.clear()
+  vim.cmd.colorscheme(theme)
+  vim.notify 'Theme reloaded'
+end, { desc = 'Reload colorscheme' })
