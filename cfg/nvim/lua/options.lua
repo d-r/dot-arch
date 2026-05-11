@@ -1,14 +1,14 @@
 -- Set <leader> key to <space>.
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Enable RGB true color support.
 vim.opt.termguicolors = true
 
 -- Use the system clipboard.
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
--- Disable the swap file as it's a source of pointless error messages.
+-- Disable the swap file as it"s a source of pointless error messages.
 vim.opt.swapfile = false
 
 -- Auto reload a file when it changes on disk.
@@ -18,7 +18,7 @@ vim.opt.autoread = true
 vim.opt.undofile = true
 
 -- Enable gutter space for LSP info.
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Enable relative line numbers.
 vim.opt.number = true
