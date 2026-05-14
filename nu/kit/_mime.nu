@@ -17,14 +17,14 @@ export def mime [] {
 }
 
 # List MIME types
-export def "mime t" []: nothing -> list {
+export def "mime types" []: nothing -> list {
     open ~/dot/assets/mime-types.txt | lines
 }
 
 # List MIME associations (MIME type -> application)
 # It will take a while.
-export def "mime a" []: nothing -> table {
-    (mime t) | each { get-association $in } | sort-by app
+export def "mime assoc" []: nothing -> table {
+    (mime types) | each { get-association $in } | sort-by app
 }
 
 def get-association [$type] {
