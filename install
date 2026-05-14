@@ -31,7 +31,6 @@ def "main configs" [] {
     link waybar/style.css waybar.css
     link mako/config mako.ini
     link yazi/yazi.toml yazi.toml
-    link yazi/theme.toml yazi.theme.toml
     link tealdeer/config.toml tealdeer.toml
     link wlr-which-key/config.yaml wlr-which-key.yaml
 
