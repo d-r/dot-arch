@@ -1,6 +1,7 @@
 #!/usr/bin/env nu
 
 const $BROWSER = "brave-browser.desktop"
+const $DOC_VIEWER = "zathura.desktop"
 const $IMAGE_VIEWER = "imv.desktop"
 const $AUDIO_PLAYER = "mpv.desktop"
 const $VIDEO_PLAYER = "mpv.desktop"
@@ -11,7 +12,8 @@ xdg-mime default $BROWSER x-scheme-handler/http
 xdg-mime default $BROWSER x-scheme-handler/https
 
 # Documents
-xdg-mime default $BROWSER application/pdf
+xdg-mime default $DOC_VIEWER application/pdf
+xdg-mime default $DOC_VIEWER application/epub+zip
 
 # Images
 xdg-mime default $IMAGE_VIEWER image/png
