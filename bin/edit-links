@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use kit *
+
+code $env.DOT_LINK_FILE
