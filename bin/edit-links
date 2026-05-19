@@ -2,4 +2,5 @@
 
 use kit *
 
-code $env.DOT_LINK_FILE
+wm spawn code $env.DOT_LINK_FILE
+exit -1
