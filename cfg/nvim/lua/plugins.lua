@@ -33,7 +33,16 @@ require("lazy").setup({
           desc = "Buffer Local Keymaps (which-key)",
         },
       },
-    }
+    },
+
+    -- Automatically install and enable tree-sitter parsers.
+    -- https://github.com/arborist-ts/arborist.nvim
+    {
+      "arborist-ts/arborist.nvim",
+      opts = {
+        prefer_wasm = false,
+      },
+    },
   },
   -- Settings go here. See the documentation for more details.
 })
