@@ -1,0 +1,7 @@
+#!/usr/bin/env nu
+
+use kit *
+
+def main [$path] {
+    wm spawn code ($path | path expand)
+}

@@ -31,7 +31,7 @@ def "main pick-dir" [] {
 
 def "main pick-repo" [] {
     let $dir = (pick-repo)
-    wm spawn code ($dir | path expand)
+    ide ($dir | path expand)
 }
 
 def "main todo" [] {
