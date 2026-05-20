@@ -18,12 +18,11 @@ return {
     },
   },
 
-  -- Automatically install and enable tree-sitter parsers.
-  -- https://github.com/arborist-ts/arborist.nvim
+  -- Manage tree-sitter parsers.
+  -- Tree-sitter CLI must be installed.
+  -- https://github.com/romus204/tree-sitter-manager.nvim
   {
-    "arborist-ts/arborist.nvim",
-    opts = {
-      prefer_wasm = false,
-    },
+    "romus204/tree-sitter-manager.nvim",
+    opts = {},
   },
 }
