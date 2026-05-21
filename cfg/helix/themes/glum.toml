@@ -30,7 +30,9 @@ operator = "teal"
 punctuation = "dim_teal2"
 # punctuation = "dim_teal"
 
-type = "green"
+# type = "green"
+type = "fg"
+
 special = "cyan"
 "type.parameter" = "cyan"
 
