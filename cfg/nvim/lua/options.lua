@@ -24,6 +24,12 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Disable line-wrapping.
+vim.opt.wrap = false
+
+-- Don't split words.
+vim.opt.linebreak = true
+
 -- Highlight the current line.
 vim.opt.cursorline = true
 
