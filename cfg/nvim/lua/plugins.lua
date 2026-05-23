@@ -26,4 +26,18 @@ return {
     "romus204/tree-sitter-manager.nvim",
     opts = {},
   },
+
+  -- A window in the bottom right corner that displays LSP progress messages.
+  -- https://github.com/j-hui/fidget.nvim
+  {
+    'j-hui/fidget.nvim',
+    opts = {
+      notification = {
+        window = {
+          -- No width limit so that lines will not get wrapped.
+          max_width = 0,
+        },
+      },
+    },
+  },
 }
