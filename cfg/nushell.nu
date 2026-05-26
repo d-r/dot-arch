@@ -5,6 +5,9 @@ use kit *
 source rc.nu
 source zoxide.nu
 
+# Unbind Ctrl+S and Ctrl+Q, freeing them up for use.
+^stty -ixon -ixoff
+
 #-------------------------------------------------------------------------------
 # SETTINGS
 
