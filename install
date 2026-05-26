@@ -23,6 +23,8 @@ def "main zsh" [] {
 def "main configs" [] {
     cd ~/.config
 
+    link nushell/config.nu nushell.nu
+
     link task/taskrc taskrc
     link fuzzel/fuzzel.ini fuzzel.ini
     link tmux/tmux.conf tmux.conf
