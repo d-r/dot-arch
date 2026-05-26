@@ -14,6 +14,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local theme = "tokyonight-night"
+
 require("lazy").setup({
   spec = { import = "plugins" },
+  install = { colorscheme = { theme } },
 })
+
+vim.cmd.colorscheme(theme)

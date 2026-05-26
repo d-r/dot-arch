@@ -1,4 +1,23 @@
 return {
+  -- An "angry fruit salad" color scheme that insists on giving every single
+  -- token a different color.
+  -- But all the major themes do that, and I prefer this one to most.
+  --
+  -- TODO: Replace this with my own theme.
+  --
+  -- https://github.com/folke/tokyonight.nvim
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+  },
+
   -- Show available keybindings in a popup as you type.
   -- https://github.com/folke/which-key.nvim
   {
