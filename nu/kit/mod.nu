@@ -11,6 +11,7 @@ export-env {
     $env.DOT_REPOS = [
         "~/dot"
         "~/churn"
+        "~/.config/harsh"
         $"($repos)/*"
         $"($clones)/*"
     ] | each { glob $in } | flatten
