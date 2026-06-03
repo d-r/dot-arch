@@ -20,6 +20,10 @@ def "main pick-link" [] {
     xdg-open (pick-link)
 }
 
+def "main pick-snippet" [] {
+    wl-copy (pick-snippet)
+}
+
 def "main pick-link-into" [$file] {
     (pick-link) o> $file
 }
@@ -40,6 +44,18 @@ def "main todo" [] {
 }
 
 #-------------------------------------------------------------------------------
+
+def pick-snippet [] {
+    let $snippets = (open? $env.DOT_SNIPPET_FILE {})
+    let $menu = ($snippets | kv | table-str --no-headers)
+    ($menu | fzf
+        -d "\t"
+        -n 1 # key
+        --accept-nth 2 # value
+        --bind "ctrl-e:become(edit-snippets)"
+        --header "ctrl+e to edit"
+    )
+}
 
 def pick-link [] {
     let $links = (open? $env.DOT_LINK_FILE {})

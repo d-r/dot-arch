@@ -17,4 +17,5 @@ export-env {
     ] | each { glob $in } | flatten
 
     $env.DOT_LINK_FILE = ("~/churn/links.yaml" | path expand)
+    $env.DOT_SNIPPET_FILE = ("~/churn/snippets.yaml" | path expand)
 }

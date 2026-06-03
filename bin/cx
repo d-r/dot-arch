@@ -12,6 +12,11 @@ def "main links" [] {
     tui-term pick-link
 }
 
+# Spawn snippet picker
+def "main snippets" [] {
+    tui-term pick-snippet
+}
+
 # Spawn repo picker
 def "main repos" [] {
     tui-term pick-repo

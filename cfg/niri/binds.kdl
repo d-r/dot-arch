@@ -26,6 +26,9 @@ binds {
     Mod+O { spawn "cx" "links"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 
+    // TODO: Find a better bind for this.
+    Mod+B { spawn "cx" "snippets"; }
+
     Mod+R { spawn "fuzzel"; }
 
     Mod+Space { spawn "wlr-which-key"; }
