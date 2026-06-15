@@ -55,3 +55,10 @@ window-rule {
     open-fullscreen true
     default-column-width { proportion 0.98; }
 }
+
+// "Maximzie"
+window-rule {
+    match app-id="brave"
+
+    default-column-width { proportion 0.98; }
+}
