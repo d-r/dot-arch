@@ -59,6 +59,7 @@ window-rule {
 // "Maximzie"
 window-rule {
     match app-id="brave"
+    match app-id="firefox"
 
     default-column-width { proportion 0.98; }
 }
