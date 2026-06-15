@@ -45,6 +45,18 @@ alias h = harsh
 alias ha = harsh ask
 alias hl = harsh log
 
+# Set CPU governor mode.
+def cpu [$mode: string] {
+    sudo cpupower frequency-set -g $mode
+    cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+}
+
+# Plugged into AC - switch CPU governor to `performance`.
+alias ac = cpu performance
+
+# Using battery - switch CPU governor to `powersave`.
+alias bt = cpu powersave
+
 def rr [$dir = "."] {
     wm spawn ~/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover ($dir | path expand)
 }
