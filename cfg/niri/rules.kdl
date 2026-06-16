@@ -46,20 +46,3 @@ window-rule {
 
     default-window-height { proportion 0.95; }
 }
-
-// Open Bitwig Studio in fullscreen to work around the bug where popup menus
-// don't track the mouse cursor position correctly.
-window-rule {
-    match app-id="bitwig"
-
-    open-fullscreen true
-    default-column-width { proportion 0.98; }
-}
-
-// "Maximzie"
-window-rule {
-    match app-id="brave"
-    match app-id="firefox"
-
-    default-column-width { proportion 0.98; }
-}

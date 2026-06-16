@@ -12,6 +12,7 @@ window-rule {
     match at-startup=true app-id="brave"
 
     open-on-workspace "web"
+    default-column-width { proportion 0.98; }
 }
 
 window-rule {
@@ -26,4 +27,9 @@ window-rule {
 
     open-on-workspace "snd"
     open-focused false
+    default-column-width { proportion 0.98; }
+
+    // Open Bitwig Studio in fullscreen to work around the bug where popup menus
+    // don't track the mouse cursor position correctly.
+    open-fullscreen true
 }
