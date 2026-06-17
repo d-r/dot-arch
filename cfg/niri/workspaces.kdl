@@ -3,10 +3,12 @@
 workspace "web"
 workspace "dev"
 workspace "snd"
+workspace "vlt"
 
 spawn-at-startup "brave"
 spawn-at-startup "code"
 spawn-at-startup "bitwig-studio"
+spawn-at-startup "obsidian"
 
 window-rule {
     match at-startup=true app-id="brave"
@@ -32,4 +34,12 @@ window-rule {
     // Open Bitwig Studio in fullscreen to work around the bug where popup menus
     // don't track the mouse cursor position correctly.
     open-fullscreen true
+}
+
+window-rule {
+    match at-startup=true app-id="obsidian"
+
+    open-on-workspace "vlt"
+    open-focused false
+    default-column-width { proportion 0.98; }
 }
