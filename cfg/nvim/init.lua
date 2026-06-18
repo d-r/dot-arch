@@ -144,6 +144,17 @@ local plugins = {
     -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
     -- No need for lazy.nvim to lazy-load it.
     lazy = false,
+    config = function ()
+      vim.g.rustaceanvim = {
+        server = {
+          settings = {
+            ["rust-analyzer"] = {
+              check = { command = "clippy" },
+            },
+          },
+        },
+      }
+    end,
   },
 
   -- Show available keybinds in a popup as you type.
