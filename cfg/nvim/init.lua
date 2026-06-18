@@ -91,6 +91,22 @@ local plugins = {
     opts = {},
   },
 
+  -- Formatter.
+  -- https://github.com/stevearc/conform.nvim
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        rust = { "rustfmt" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
+
   -- A window in the bottom right corner that displays LSP progress messages.
   -- https://github.com/j-hui/fidget.nvim
   {
