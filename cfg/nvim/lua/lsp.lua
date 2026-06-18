@@ -1,5 +1,6 @@
 vim.lsp.enable {
-  'rust_analyzer',
+  -- Let rustaceanvim configure rust_analyzer.
+  -- 'rust_analyzer',
   'clangd',
   'lua_ls',
   'marksman',

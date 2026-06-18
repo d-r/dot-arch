@@ -53,6 +53,18 @@ return {
     },
   },
 
+  -- Rust IDE.
+  -- https://github.com/mrcjkb/rustaceanvim
+  {
+    'mrcjkb/rustaceanvim',
+    -- To avoid being surprised by breaking changes,
+    -- I recommend you set a version range
+    version = '^9',
+    -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
+    -- No need for lazy.nvim to lazy-load it.
+    lazy = false,
+  },
+
   -- Show available keybindings in a popup as you type.
   -- https://github.com/folke/which-key.nvim
   {
