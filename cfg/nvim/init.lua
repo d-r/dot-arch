@@ -94,7 +94,7 @@ local plugins = {
   -- Formatter.
   -- https://github.com/stevearc/conform.nvim
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
@@ -110,7 +110,7 @@ local plugins = {
   -- A window in the bottom right corner that displays LSP progress messages.
   -- https://github.com/j-hui/fidget.nvim
   {
-    'j-hui/fidget.nvim',
+    "j-hui/fidget.nvim",
     opts = {
       notification = {
         window = {
@@ -137,10 +137,10 @@ local plugins = {
   -- Rust IDE.
   -- https://github.com/mrcjkb/rustaceanvim
   {
-    'mrcjkb/rustaceanvim',
+    "mrcjkb/rustaceanvim",
     -- To avoid being surprised by breaking changes,
     -- I recommend you set a version range
-    version = '^9',
+    version = "^9",
     -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
     -- No need for lazy.nvim to lazy-load it.
     lazy = false,
@@ -152,15 +152,13 @@ local plugins = {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      preset = 'helix',
+      preset = "helix",
       delay = 500,
     },
     keys = {
       {
         "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
+        function() require("which-key").show { global = false } end,
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
@@ -199,7 +197,11 @@ local plugins = {
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       -- Find
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      {
+        "<leader>fc",
+        function() Snacks.picker.files { cwd = vim.fn.stdpath "config" } end,
+        desc = "Find Config File",
+      },
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
@@ -216,10 +218,15 @@ local plugins = {
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
       { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-      { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      {
+        "<leader>sw",
+        function() Snacks.picker.grep_word() end,
+        desc = "Visual selection or word",
+        mode = { "n", "x" },
+      },
       -- Search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
-      { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+      { "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -264,10 +271,10 @@ local plugins = {
 --------------------------------------------------------------------------------
 -- LAZY.NVIM SETUP
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  local out = vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -293,12 +300,12 @@ vim.cmd.colorscheme(theme)
 vim.lsp.enable {
   -- Let rustaceanvim configure rust_analyzer.
   -- 'rust_analyzer',
-  'clangd',
-  'lua_ls',
-  'marksman',
-  'nushell',
-  'wgsl_analyzer',
-  'zk',
+  "clangd",
+  "lua_ls",
+  "marksman",
+  "nushell",
+  "wgsl_analyzer",
+  "zk",
 }
 
 --------------------------------------------------------------------------------
