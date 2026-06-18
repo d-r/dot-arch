@@ -170,4 +170,12 @@ return {
       { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
     },
   },
+
+  -- Highlight TODO comments.
+  -- https://github.com/folke/todo-comments.nvim
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
 }
