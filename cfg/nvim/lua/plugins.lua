@@ -40,6 +40,19 @@ return {
     },
   },
 
+  -- Properly configure LuaLS for editing your Neovim config.
+  -- https://github.com/folke/lazydev.nvim
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- Only load on lua files.
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found.
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
   -- Show available keybindings in a popup as you type.
   -- https://github.com/folke/which-key.nvim
   {
