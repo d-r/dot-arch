@@ -18,6 +18,28 @@ return {
     },
   },
 
+  -- Manage tree-sitter parsers.
+  -- Tree-sitter CLI must be installed.
+  -- https://github.com/romus204/tree-sitter-manager.nvim
+  {
+    "romus204/tree-sitter-manager.nvim",
+    opts = {},
+  },
+
+  -- A window in the bottom right corner that displays LSP progress messages.
+  -- https://github.com/j-hui/fidget.nvim
+  {
+    'j-hui/fidget.nvim',
+    opts = {
+      notification = {
+        window = {
+          -- No width limit so that lines will not get wrapped.
+          max_width = 0,
+        },
+      },
+    },
+  },
+
   -- Show available keybindings in a popup as you type.
   -- https://github.com/folke/which-key.nvim
   {
@@ -38,25 +60,28 @@ return {
     },
   },
 
-  -- Manage tree-sitter parsers.
-  -- Tree-sitter CLI must be installed.
-  -- https://github.com/romus204/tree-sitter-manager.nvim
+  -- A collection of small Quality Of Life plugins.
+  -- https://github.com/folke/snacks.nvim
   {
-    "romus204/tree-sitter-manager.nvim",
-    opts = {},
-  },
-
-  -- A window in the bottom right corner that displays LSP progress messages.
-  -- https://github.com/j-hui/fidget.nvim
-  {
-    'j-hui/fidget.nvim',
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
     opts = {
-      notification = {
-        window = {
-          -- No width limit so that lines will not get wrapped.
-          max_width = 0,
-        },
-      },
+      -- Fuzzy matching picker.
+      picker = { enabled = true },
+
+      -- Animated indent guides with scope highlighting.
+      indent = { enabled = true },
+
+      -- Highlights other occurrences of the word under the cursor.
+      words = { enabled = true },
+
+      -- Pretty vim.notify.
+      notifier = { enabled = true },
+
+      -- Nicer line number / sign column layout.
+      statuscolumn = { enabled = true },
     },
   },
 }
