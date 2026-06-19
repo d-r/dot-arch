@@ -1,15 +1,11 @@
 // https://yalter.github.io/niri/Configuration%3A-Named-Workspaces.html
 
 workspace "web"
+workspace "vlt"
 workspace "dev"
 workspace "snd"
-workspace "vlt"
 
 spawn-at-startup "brave"
-spawn-at-startup "code"
-spawn-at-startup "bitwig-studio"
-spawn-at-startup "obsidian"
-
 window-rule {
     match at-startup=true app-id="brave"
 
@@ -17,6 +13,16 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
+spawn-at-startup "obsidian"
+window-rule {
+    match at-startup=true app-id="obsidian"
+
+    open-on-workspace "vlt"
+    open-focused false
+    default-column-width { proportion 0.98; }
+}
+
+spawn-at-startup "code"
 window-rule {
     match at-startup=true app-id="code"
 
@@ -24,6 +30,7 @@ window-rule {
     open-focused false
 }
 
+spawn-at-startup "bitwig-studio"
 window-rule {
     match at-startup=true app-id="bitwig"
 
@@ -36,10 +43,3 @@ window-rule {
     open-fullscreen true
 }
 
-window-rule {
-    match at-startup=true app-id="obsidian"
-
-    open-on-workspace "vlt"
-    open-focused false
-    default-column-width { proportion 0.98; }
-}
