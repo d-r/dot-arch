@@ -184,7 +184,16 @@ local plugins = {
     ---@type snacks.Config
     opts = {
       -- Fuzzy matching picker.
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+            },
+          },
+        },
+      },
 
       -- Animated indent guides with scope highlighting.
       indent = { enabled = true },
