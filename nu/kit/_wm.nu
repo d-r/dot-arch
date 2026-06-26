@@ -17,16 +17,6 @@ export def "wm cwd" [] {
     | path expand
 }
 
-# Get the Taskwarrior context for the focused workspace
-export def "wm project" [] {
-    match (wm tag) {
-        dot => "dot"
-        dev => "dm"
-        snd => "snd"
-        _ => ""
-    }
-}
-
 # Get the name of the current workspace
 export def "wm tag" []: nothing -> string {
     let $ws = (wm focused-workspace)

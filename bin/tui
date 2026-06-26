@@ -39,7 +39,6 @@ def "main pick-repo" [] {
 }
 
 def "main todo" [] {
-    $env.DOT_TASK_CONTEXT = (wm project)
     taskwarrior-tui
 }
 
