@@ -9,9 +9,9 @@ export def wm [] {
 export def "wm cwd" [] {
     match (wm tag) {
         web => "~/dl"
-        dev => "~/dot"
-        brn => "~/brain"
-        snd => "~/snd"
+        vlt => "~/vault"
+        dev => "~/src"
+        snd => "~/prod"
         _ => "~"
     }
     | path expand
