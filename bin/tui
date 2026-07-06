@@ -34,8 +34,7 @@ def "main pick-dir" [] {
 }
 
 def "main pick-repo" [] {
-    let $dir = (pick-repo)
-    ide ($dir | path expand)
+    ide (pick-repo)
 }
 
 def "main todo" [] {
@@ -69,14 +68,9 @@ def pick-link [] {
 }
 
 def pick-repo [] {
-    let $repos = $env.DOT_REPOS | each { repo $in }
-    let $menu = $repos | table-str --no-headers
-    ($menu | fzf
-        -d "\t"
-        -n 1 # name
-        --with-nth 1
-        --accept-nth 2 # dir
-    )
+    cd $env.DOT_REPO_DIR
+    let $dir = (fd -td --follow --max-depth 1 | fzf)
+    ($dir | path expand )
 }
 
 def repo [$dir: path]: nothing -> record {
