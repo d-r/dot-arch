@@ -33,8 +33,8 @@ def "main pick-dir" [] {
     wm spawn kitty --app-id "yazi" -- yazi (fd -td | fzf)
 }
 
-def "main pick-repo" [] {
-    ide (pick-repo)
+def "main pick-project" [] {
+    ide (pick-project)
 }
 
 def "main todo" [] {
@@ -67,12 +67,8 @@ def pick-link [] {
     )
 }
 
-def pick-repo [] {
+def pick-project [] {
     cd $env.DOT_REPO_DIR
-    let $dir = (fd -td --follow --max-depth 1 | fzf)
+    let $dir = (fd -td --follow | fzf)
     ($dir | path expand )
-}
-
-def repo [$dir: path]: nothing -> record {
-    {name: ($dir | path basename), dir: $dir}
 }

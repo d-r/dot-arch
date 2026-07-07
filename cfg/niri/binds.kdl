@@ -22,7 +22,7 @@ binds {
 
     Mod+E { spawn "cx" "explorer"; }
     Mod+D { spawn "cx" "dir"; }
-    Mod+P { spawn "cx" "repos"; }
+    Mod+P { spawn "cx" "projects"; }
     Mod+O { spawn "cx" "links"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
 

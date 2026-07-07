@@ -18,8 +18,8 @@ def "main snippets" [] {
 }
 
 # Spawn repo picker
-def "main repos" [] {
-    tui-term pick-repo
+def "main projects" [] {
+    tui-term pick-project
 }
 
 # Spawn directory picker
