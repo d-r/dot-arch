@@ -15,6 +15,7 @@ alias rs = rsync -avhP
 alias m = micro
 alias hx = helix
 alias v = nvim
+alias zez = zeditor
 alias j = just
 alias lg = lazygit
 
