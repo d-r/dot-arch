@@ -26,9 +26,6 @@ menu:
   # - key: "k"
   #   desc: keybr.com
   #   cmd: webapp keybr https://www.keybr.com/
-  - key: "t"
-    desc: TODO
-    cmd: cx todo
   - key: "w"
     desc: WhatsApp
     cmd: webapp whatsapp https://web.whatsapp.com/

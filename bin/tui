@@ -16,24 +16,24 @@ def "main save-url" [$url] {
     }
 }
 
-def "main pick-link" [] {
+def "main links" [] {
     xdg-open (pick-link)
 }
 
-def "main pick-snippet" [] {
+def "main snippets" [] {
     wl-copy (pick-snippet)
 }
 
-def "main pick-link-into" [$file] {
+def "main qb-links" [$file] {
     (pick-link) o> $file
 }
 
-def "main pick-dir" [] {
+def "main dirs" [] {
     cd
     wm spawn kitty --app-id "yazi" -- yazi (fd -td | fzf)
 }
 
-def "main pick-project" [] {
+def "main projects" [] {
     ide (pick-project)
 }
 
