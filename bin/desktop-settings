@@ -1,6 +1,7 @@
 #!/usr/bin/env nu
 
-const $BROWSER = "brave-browser.desktop"
+# const $BROWSER = "brave-browser.desktop"
+const $BROWSER = "firefox.desktop"
 const $DOC_VIEWER = "zathura.desktop"
 const $IMAGE_VIEWER = "imv.desktop"
 const $AUDIO_PLAYER = "mpv.desktop"

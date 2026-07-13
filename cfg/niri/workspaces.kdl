@@ -5,9 +5,9 @@ workspace "vlt"
 workspace "dev"
 workspace "snd"
 
-// spawn-at-startup "brave"
+spawn-at-startup "firefox"
 window-rule {
-    match at-startup=true app-id="brave"
+    match at-startup=true app-id="firefox"
 
     open-on-workspace "web"
     default-column-width { proportion 0.98; }
