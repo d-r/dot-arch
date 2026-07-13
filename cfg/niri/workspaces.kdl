@@ -5,7 +5,7 @@ workspace "vlt"
 workspace "dev"
 workspace "snd"
 
-spawn-at-startup "brave"
+// spawn-at-startup "brave"
 window-rule {
     match at-startup=true app-id="brave"
 
@@ -13,7 +13,7 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-spawn-at-startup "obsidian"
+// spawn-at-startup "obsidian"
 window-rule {
     match at-startup=true app-id="obsidian"
 
@@ -22,7 +22,7 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-spawn-at-startup "code"
+// spawn-at-startup "code"
 window-rule {
     match at-startup=true app-id="code"
 
@@ -30,7 +30,7 @@ window-rule {
     open-focused false
 }
 
-spawn-at-startup "bitwig-studio"
+// spawn-at-startup "bitwig-studio"
 window-rule {
     match at-startup=true app-id="bitwig"
 
