@@ -7,10 +7,11 @@ def main [] {
 
 # Install package(s)
 def --wrapped "main in" [...$args] {
+    # TODO: DRY this up.
     if ($args | is-empty) {
-        yay -S (yay -Slq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+        yay -Syu --needed (yay -Slq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
     } else {
-        yay -S ...$args
+        yay -Syu --needed ...$args
     }
 }
 
