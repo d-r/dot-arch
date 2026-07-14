@@ -350,6 +350,23 @@ local plugins = {
     enabled = true,
     opts = {},
   },
+
+  -- Add/delete/replace/find surrounding characters
+  -- https://github.com/nvim-mini/mini.surround
+  {
+    'nvim-mini/mini.surround',
+    opts = {
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        add = 'ys', -- Add surrounding in Normal and Visual modes
+        delete = 'ds', -- Delete surrounding
+        find = '', -- Find surrounding (to the right)
+        find_left = '', -- Find surrounding (to the left)
+        highlight = '', -- Highlight surrounding
+        replace = 'cs', -- Replace surrounding
+      },
+    },
+  },
 }
 
 --------------------------------------------------------------------------------
