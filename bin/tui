@@ -68,7 +68,7 @@ def pick-link [] {
 }
 
 def pick-project [] {
-    cd $env.DOT_REPO_DIR
-    let $dir = (fd -td --follow | fzf)
+    cd ~
+    let $dir = (fd . -td --follow src co | fzf)
     ($dir | path expand )
 }
