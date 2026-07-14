@@ -16,22 +16,19 @@ binds {
 
     // TOOLS
 
-    Mod+Grave { spawn "kitten" "quick-access-terminal"; }
-    Mod+Return { spawn "cx" "term"; }
-
-    Mod+D { spawn "cx" "dir"; }
-    Mod+S { spawn "cx" "save-clipped-url"; }
-
-    Mod+E { spawn "tui-term" "dirs"; }
-    Mod+P { spawn "tui-term" "projects"; }
-    Mod+O { spawn "tui-term" "links"; }
-
-    // TODO: Find a better bind for this.
-    Mod+B { spawn "tui-term" "snippets"; }
-
+    Mod+Space { spawn "wlr-which-key"; }
     Mod+R { spawn "fuzzel"; }
 
-    Mod+Space { spawn "wlr-which-key"; }
+    Mod+Grave { spawn "kitten" "quick-access-terminal"; }
+    Mod+Return { spawn "kitty"; }
+
+    Mod+B { spawn "tui-term" "snippets"; }
+    Mod+D { spawn "tui-file-manager"; }
+    Mod+E { spawn "tui-term" "dirs"; }
+    Mod+P { spawn "tui-term" "projects"; }
+
+    Mod+O { spawn "tui-term" "links"; }
+    Mod+S { spawn "save-clipped-url"; }
 
     // LAYOUT
 

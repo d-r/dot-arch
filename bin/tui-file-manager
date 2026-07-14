@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+use kit *
+
+wm spawn kitty --app-id yazi -- yazi (wm cwd)
