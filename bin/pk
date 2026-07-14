@@ -7,12 +7,20 @@ def main [] {
 
 # Install package(s)
 def --wrapped "main in" [...$args] {
-    # TODO: DRY this up.
-    if ($args | is-empty) {
-        yay -Syu --needed (yay -Slq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+    let pkgs = if ($args | is-empty) {
+        yay -Slq
+            | fzf --multi --preview 'yay -Si {}' --preview-window 'down:50%:wrap'
+            | lines
     } else {
-        yay -Syu --needed ...$args
+        $args
     }
+
+    if ($pkgs | is-empty) {
+        print "No packages selected."
+        return
+    }
+
+    yay -Syu --needed ...$pkgs
 }
 
 # Uninstall package(s)
