@@ -8,27 +8,6 @@ corner_r: 0
 padding: 20
 anchor: center
 menu:
-  - key: "b"
-    desc: Browser
-    cmd: cx browser
-  - key: "l"
-    desc: Links
-    cmd: cx links
-  # - key: "r"
-  #   desc: Repos
-  #   cmd: cx repos
-  # - key: "e"
-  #   desc: Explorer
-  #   cmd: cx explorer
-  # - key: "d"
-  #   desc: Directory
-  #   cmd: cx dir
-  # - key: "k"
-  #   desc: keybr.com
-  #   cmd: webapp keybr https://www.keybr.com/
-  - key: "w"
-    desc: WhatsApp
-    cmd: webapp whatsapp https://web.whatsapp.com/
   - key: "p"
     desc: Power
     submenu:
