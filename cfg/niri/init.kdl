@@ -6,9 +6,9 @@ environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
 }
 
-spawn-at-startup "desktop-settings"
-spawn-sh-at-startup "swaybg --image ~/dot/wallpapers/alena-aenami-all-i-need-1080p.jpg"
-spawn-at-startup "waybar"
-spawn-at-startup "mako"
-spawn-at-startup "swayosd-server"
-spawn-at-startup "foot" "--server"
+spawn-sh-at-startup "desktop-settings"
+spawn-sh-at-startup "swaybg --image ~/media/wallpapers/alena-aenami-all-i-need-1080p.jpg"
+spawn-sh-at-startup "waybar"
+spawn-sh-at-startup "mako"
+spawn-sh-at-startup "swayosd-server"
+spawn-sh-at-startup "foot --server"
