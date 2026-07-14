@@ -13,7 +13,7 @@ window-rule {
     default-column-width { proportion 0.98; }
 }
 
-// spawn-at-startup "obsidian"
+spawn-at-startup "obsidian"
 window-rule {
     match at-startup=true app-id="obsidian"
 
