@@ -342,6 +342,14 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
+
+  -- Auto pair delimiters
+  -- https://github.com/nvim-mini/mini.pairs
+  {
+    'nvim-mini/mini.pairs',
+    enabled = true,
+    opts = {},
+  },
 }
 
 --------------------------------------------------------------------------------
