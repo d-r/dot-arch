@@ -29,12 +29,3 @@ def --wrapped "main term" [...$cmd] {
     # footclient -D (wm cwd) ...$cmd
     wm spawn kitty --app-id term -d (wm cwd) ...$cmd
 }
-
-# If the focused window is a terminal, close it and spawn another term in its place
-def "main respawn-term" [] {
-    let $w = (wm focused-window)
-    if ($w | is-not-empty) and $w.app_id == "term" {
-        main term
-        wm close-window $w.id
-    }
-}

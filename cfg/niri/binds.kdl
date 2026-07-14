@@ -18,7 +18,6 @@ binds {
 
     Mod+Grave { spawn "kitten" "quick-access-terminal"; }
     Mod+Return { spawn "cx" "term"; }
-    Mod+Shift+Return { spawn "cx" "respawn-term"; }
 
     Mod+D { spawn "cx" "dir"; }
     Mod+S { spawn "cx" "save-clipped-url"; }
