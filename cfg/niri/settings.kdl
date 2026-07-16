@@ -9,7 +9,9 @@ prefer-no-csd // Remove window decorations
 screenshot-path "~/dl/screenshot-%Y-%m-%d-%H%M%S.png"
 
 output "eDP-1" {
+    mode "1920x1080@60.001"
     scale 1
+    position x=0 y=0
 }
 
 input {
