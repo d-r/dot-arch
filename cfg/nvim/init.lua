@@ -396,6 +396,25 @@ require("lazy").setup {
 vim.cmd.colorscheme(theme)
 
 --------------------------------------------------------------------------------
+-- AUTOCOMMANDS
+
+-- Enable treesitter.
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(ev)
+    pcall(vim.treesitter.start, ev.buf)
+  end,
+})
+
+-- Enable folding for Markdown.
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "markdown",
+--   callback = function()
+--     vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+--     vim.wo[0][0].foldmethod = "expr"
+--   end,
+-- })
+
+--------------------------------------------------------------------------------
 -- LSP
 
 vim.lsp.enable {
