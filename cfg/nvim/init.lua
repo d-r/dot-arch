@@ -93,6 +93,13 @@ local plugins = {
     },
   },
 
+  -- Auto detect indentation size
+  -- https://github.com/NMAC427/guess-indent.nvim
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {},
+  },
+
   -- Formatter.
   -- https://github.com/stevearc/conform.nvim
   {
