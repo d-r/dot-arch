@@ -84,7 +84,7 @@ def --env hop [] {
 
 # Clone a third-party git repo
 def --wrapped clone [...$args] {
-    cd ~/co
+    cd ~/src
     git clone ...$args
 }
 

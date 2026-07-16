@@ -68,7 +68,7 @@ def pick-link [] {
 }
 
 def pick-project [] {
-    cd ~
-    let $dir = (fd . -td --follow src co | fzf)
+    cd ~/src
+    let $dir = (fd -td --follow | fzf)
     ($dir | path expand )
 }
