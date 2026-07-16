@@ -96,7 +96,7 @@ local plugins = {
   -- Auto detect indentation size
   -- https://github.com/NMAC427/guess-indent.nvim
   {
-    'NMAC427/guess-indent.nvim',
+    "NMAC427/guess-indent.nvim",
     opts = {},
   },
 
@@ -457,6 +457,9 @@ vim.lsp.enable {
 
 --------------------------------------------------------------------------------
 -- BINDS
+
+-- Clear search highlights with <Esc>.
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Unbind Ctrl+Z to avoid constantly suspending Neovim by accident.
 vim.keymap.set({ "n", "i", "v" }, "<C-z>", "<Nop>")
