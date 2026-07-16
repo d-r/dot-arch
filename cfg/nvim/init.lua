@@ -89,7 +89,7 @@ local plugins = {
   {
     "arborist-ts/arborist.nvim",
     opts = {
-        prefer_wasm = false,
+      prefer_wasm = false,
     },
   },
 
@@ -112,12 +112,12 @@ local plugins = {
   -- Auto completion engine.
   -- https://github.com/saghen/blink.cmp
   {
-    'saghen/blink.cmp',
+    "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = { "rafamadriz/friendly-snippets" },
 
     -- use a release tag to download pre-built binaries
-    version = '1.*',
+    version = "1.*",
     -- AND/OR build from source
     -- build = 'cargo build --release',
     -- If you use nix, you can build from source with:
@@ -138,12 +138,12 @@ local plugins = {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'enter' },
+      keymap = { preset = "enter" },
 
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono'
+        nerd_font_variant = "mono",
       },
 
       -- (Default) Only show the documentation popup when manually triggered
@@ -152,7 +152,7 @@ local plugins = {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -160,9 +160,9 @@ local plugins = {
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
       --
       -- See the fuzzy documentation for more information
-      fuzzy = { implementation = "prefer_rust_with_warning" }
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    opts_extend = { "sources.default" }
+    opts_extend = { "sources.default" },
   },
 
   -- A window in the bottom right corner that displays LSP progress messages.
@@ -202,7 +202,7 @@ local plugins = {
     -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
     -- No need for lazy.nvim to lazy-load it.
     lazy = false,
-    config = function ()
+    config = function()
       vim.g.rustaceanvim = {
         server = {
           settings = {
@@ -247,7 +247,7 @@ local plugins = {
         win = {
           input = {
             keys = {
-              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
             },
           },
         },
@@ -348,7 +348,7 @@ local plugins = {
   -- Auto pair delimiters
   -- https://github.com/nvim-mini/mini.pairs
   {
-    'nvim-mini/mini.pairs',
+    "nvim-mini/mini.pairs",
     enabled = true,
     opts = {},
   },
@@ -356,16 +356,16 @@ local plugins = {
   -- Add/delete/replace/find surrounding characters
   -- https://github.com/nvim-mini/mini.surround
   {
-    'nvim-mini/mini.surround',
+    "nvim-mini/mini.surround",
     opts = {
       -- Module mappings. Use `''` (empty string) to disable one.
       mappings = {
-        add = 'ys', -- Add surrounding in Normal and Visual modes
-        delete = 'ds', -- Delete surrounding
-        find = '', -- Find surrounding (to the right)
-        find_left = '', -- Find surrounding (to the left)
-        highlight = '', -- Highlight surrounding
-        replace = 'cs', -- Replace surrounding
+        add = "ys", -- Add surrounding in Normal and Visual modes
+        delete = "ds", -- Delete surrounding
+        find = "", -- Find surrounding (to the right)
+        find_left = "", -- Find surrounding (to the left)
+        highlight = "", -- Highlight surrounding
+        replace = "cs", -- Replace surrounding
       },
     },
   },
@@ -376,16 +376,16 @@ local plugins = {
     "nvim-mini/mini.ai",
     version = false,
     config = function()
-      local ai = require("mini.ai")
+      local ai = require "mini.ai"
       local ts_spec = ai.gen_spec.treesitter
 
       ai.setup {
         n_lines = 100,
         custom_textobjects = {
-          f = ts_spec({ a = "@function.outer", i = "@function.inner" }),
-          t = ts_spec({ a = "@type.outer", i = "@type.inner" }),
-          a = ts_spec({ a = "@parameter.outer", i = "@parameter.inner" }),
-          c = ts_spec({ a = "@comment.outer", i = "@comment.outer" }),
+          f = ts_spec { a = "@function.outer", i = "@function.inner" },
+          t = ts_spec { a = "@type.outer", i = "@type.inner" },
+          a = ts_spec { a = "@parameter.outer", i = "@parameter.inner" },
+          c = ts_spec { a = "@comment.outer", i = "@comment.outer" },
         },
       }
     end,
@@ -423,9 +423,7 @@ vim.cmd.colorscheme(theme)
 
 -- Enable treesitter.
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function(ev)
-    pcall(vim.treesitter.start, ev.buf)
-  end,
+  callback = function(ev) pcall(vim.treesitter.start, ev.buf) end,
 })
 
 -- Enable folding for Markdown.
