@@ -369,6 +369,27 @@ local plugins = {
       },
     },
   },
+
+  -- Text objects.
+  -- https://github.com/nvim-mini/mini.ai
+  {
+    "nvim-mini/mini.ai",
+    version = false,
+    config = function()
+      local ai = require("mini.ai")
+      local ts_spec = ai.gen_spec.treesitter
+
+      ai.setup {
+        n_lines = 100,
+        custom_textobjects = {
+          f = ts_spec({ a = "@function.outer", i = "@function.inner" }),
+          t = ts_spec({ a = "@type.outer", i = "@type.inner" }),
+          a = ts_spec({ a = "@parameter.outer", i = "@parameter.inner" }),
+          c = ts_spec({ a = "@comment.outer", i = "@comment.outer" }),
+        },
+      }
+    end,
+  },
 }
 
 --------------------------------------------------------------------------------
