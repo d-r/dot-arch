@@ -154,12 +154,18 @@ local plugins = {
       },
 
       -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        documentation = { auto_show = false },
+        menu = {
+          auto_show_delay_ms = 400, -- Wait before showing, feels much less "in your face".
+        },
+      },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets" },
+        min_keyword_length = 3,
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
