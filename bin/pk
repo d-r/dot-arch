@@ -1,13 +1,13 @@
 #!/usr/bin/env nu
 
-# Manage system packages
+# Manage system packages.
 def main [] {
     help main
 }
 
-# Install package(s)
+# Install package(s).
 def --wrapped "main in" [...$args] {
-    let pkgs = if ($args | is-empty) {
+    let $pkgs = if ($args | is-empty) {
         yay -Slq
             | fzf --multi --preview 'yay -Si {}' --preview-window 'down:50%:wrap'
             | lines
@@ -23,57 +23,61 @@ def --wrapped "main in" [...$args] {
     yay -Syu --needed ...$pkgs
 }
 
-# Uninstall package(s)
+# Uninstall package(s).
 def --wrapped "main un" [...$args] {
-    if ($args | is-empty) {
+    let $pkgs = if ($args | is-empty) {
         # -Qe = list packages that were explicitly installed
-        yay -Rns (yay -Qeq | fzf --preview 'yay -Si {}' --preview-window 'down:50%:wrap')
+        yay -Qeq
+            | fzf --multi --preview 'yay -Si {}' --preview-window 'down:50%:wrap'
+            | lines
     } else {
-        yay -Rns ...$args
+        $args
     }
+
+    if ($pkgs | is-empty) {
+        print "No packages selected."
+        return
+    }
+
+    yay -Rns ...$pkgs
 }
 
-# Update outdated packages
+# Update outdated packages.
 def "main up" [] {
     yay
 }
 
-# Sync package database
-def "main sync" [] {
-    yay -Fy
-}
-
-# Clear cache
-def "main cc" [] {
-    sudo rm -rf ~/.cache/yay/*
-}
-
-# Dump Pacmanfile
-def "main dump" [] {
-    pacmanfile dump
-}
-
-# Show Pacmanfile
-def "main file" [] {
-    bat ~/.config/pacmanfile/pacmanfile-dumped.txt
-}
-
-# List outdated packages
+# List outdated packages.
 def "main out" [] {
     yay -Qu
 }
 
-# List packages no longer required as dependencies
+# Clear cache.
+def "main cc" [] {
+    sudo rm -rf ~/.cache/yay/*
+}
+
+# Dump Pacmanfile.
+def "main dump" [] {
+    pacmanfile dump
+}
+
+# Show Pacmanfile.
+def "main file" [] {
+    bat ~/.config/pacmanfile/pacmanfile-dumped.txt
+}
+
+# List packages no longer required as dependencies.
 def "main orphans" [] {
     yay -Qdtq | lines
 }
 
-# Uninstall orphans
+# Uninstall orphans.
 def "main clean" [] {
     main un ...(main orphans)
 }
 
-# Get information about a package
+# Get information about a package.
 def "main info" [$pk] {
     yay -Si $pk
 }
