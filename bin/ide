@@ -3,5 +3,5 @@
 use kit *
 
 def main [$path] {
-    wm spawn zeditor ($path | path expand)
+    wm spawn code ($path | path expand)
 }
